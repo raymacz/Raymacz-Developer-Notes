@@ -1,0 +1,131 @@
+Atom Notes
+
+PLUGINS:
+  remote-ftp
+  advanced-open-file
+  atom-beautify
+  atom-css-comb
+  atom-wordpress
+  autoclose-html
+  autocomplete-modules
+  busy-signal
+
+
+
+081617
+
+atom beautify https://github.com/FriendsOfPHP/PHP-CS-Fixer
+http://storage4.static.itmages.com/i/17/0815/h_1502813813_7282349_4a4eb451bf.png
+http://storage9.static.itmages.com/i/17/0815/h_1502813546_4495943_40462db552.png
+http://storage4.static.itmages.com/i/17/0815/h_1502813615_1246531_620d2718b5.png
+/usr/local/bin/php-cs-fixer
+
+
+============ atom  config
+"*":
+  "atom-autocomplete-php": {}
+  "atom-beautify":
+    coffeescript:
+      disabled: true
+    css: {}
+    d:
+      disabled: true
+    ejs:
+      disabled: true
+    elm:
+      disabled: true
+    erb:
+      disabled: true
+    erlang:
+      disabled: true
+    executables:
+      php:
+        path: "/usr/bin/php"
+      "php-cs-fixer":
+        path: "/usr/local/bin/php-cs-fixer"
+    fortran:
+      disabled: true
+    general:
+      _analyticsUserId: "c75e114a-bc10-4605-b8c5-4754a9b654d1"
+    gherkin:
+      disabled: true
+    glsl:
+      disabled: true
+    go:
+      disabled: true
+    gohtml:
+      disabled: true
+    handlebars:
+      disabled: true
+    haskell:
+      disabled: true
+    jsx:
+      disabled: true
+    latex:
+      disabled: true
+    less: {}
+    lua:
+      disabled: true
+    marko:
+      disabled: true
+    mustache:
+      disabled: true
+    nunjucks:
+      disabled: true
+    objectivec:
+      disabled: true
+    ocaml:
+      disabled: true
+    pawn:
+      disabled: true
+    perl:
+      disabled: true
+    php:
+      allow_risky: "yes"
+    puppet:
+      disabled: true
+    python:
+      disabled: true
+    r:
+      disabled: true
+    riot:
+      disabled: true
+    ruby:
+      disabled: true
+    rust:
+      disabled: true
+    sass: {}
+    spacebars:
+      disabled: true
+    svg:
+      disabled: true
+    swig:
+      disabled: true
+    tss:
+      disabled: true
+    twig:
+      disabled: true
+    typescript:
+      disabled: true
+    vala:
+      disabled: true
+    visualforce:
+      disabled: true
+    vue:
+      disabled: true
+    xtemplate:
+      disabled: true
+    yaml:
+      disabled: true
+  "atom-terminal": {}
+  core:
+    telemetryConsent: "limited"
+  "exception-reporting":
+    userId: "e469c921-4cd8-4f8a-b049-55ff348fedc6"
+  "linter-php":
+    executablePath: "/opt/lampp/bin/php"
+  "linter-ui-default": {}
+  minimap: {}
+".html.php.text":
+  editor:
+    showIndentGuide: true

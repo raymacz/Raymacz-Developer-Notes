@@ -1,0 +1,60 @@
+Plugin Notes
+
+plugins:
+Advanced Custom Fields
+Debug Bar
+Debug Bar Actions and Filters Addon
+
+007 Install and explore WordPress Theme Unit Test data
+	- for fully testing themes compatibility
+	- https://codex.wordpress.org/Theme_Unit_Test (downloadble XML file)
+	- Use tools->import->Wordpress(install now)->Run Importar->Choose file->Upload & Import(Theme Unit Test Data Plugin)
+		-- It has a default author. ( or you can choose your own existing authors)
+		-- check Download & import the attachments
+		-- When done, it will be populated with content to test your theme
+		-- tip: it is good to know what type of data this is best for testing your own content/module you are working.
+
+008 Install the Developer plugin and other useful plugins	
+	- https://wordpress.org/plugins/developer/ (Developer Plugin) 
+		- choose what you plan to develop: theme, plugin, or VIP WP ("theme" in this lesson)
+		- all are good, but for theme we mostly use:
+			-- Debug Bar  (add debugging the WP toolbar at the very top)
+			-- Monster Widget (easier to add a lof widgets to sidebar very quickly)
+			-- regenerate thumbnails ( to regenerate any featured images once default setting is made)
+			-- theme check ( test WP theme if it meets basic WP standards)
+			-- manually activate all plugins
+	- Tools->Developer (Constants Section)
+		-- WP_DEBUG (enables debug mode)
+			-open wp-config.php define('WP_DEBUG', false) & set it to true
+		-- SAVEQUERIES (logs DB queries for review) 
+	- Show Current Template	Plugin https://wordpress.org/plugins/show-current-template/
+	
+Developer
+Monster Widget
+PHP Code Widget		
+Query Monitor
+Regenerate Thumbnails
+Show Current Template
+Theme Check
+Widget CSS Classes
+WordPress Importer
+Theme My Login
+WP Mail SMTP
+
+
+
+WP Mail SMTP
+	https://wpforms.com/docs/how-to-set-up-smtp-using-the-wp-mail-smtp-plugin/
+	https://contactform7.com/recaptcha/
+	
+	[contact-form-7 id="1939" title="Contact form (frontpage)" html_id="contactForm" html_name="sentMessage"]
+		
+	[text* your-name id:name class:form-control placeholder "Your Name*"]
+	[email* your-email id:email class:form-control placeholder "Your Email*"]
+	[tel tel-664 id:phone class:form-control placeholder "Your Phone"]	
+	[textarea* your-message id:message class:form-control placeholder "Your Message*"]
+	[submit id:sendMessageButton class:btn class:btn-primary class:btn-xl class:text-uppercase "Send Message"]
+	
+
+	
+https://webmandesign.github.io/docs/auberge/#plugins	

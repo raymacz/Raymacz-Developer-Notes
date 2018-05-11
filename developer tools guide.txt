@@ -1,0 +1,628 @@
+kcd sword 530ls 5200 400ls 053ls 400 5232ls
+
+
+WORDPRESS INSTALL:
+
+
+1. extract wordpress in htdocs xampp
+2. open config.inc.php & change password later ( this only affects phpmyadmin ) f:\raymacz\xampp\phpMyAdmin\config.inc.php
+3. edit wp-config.php F:\Raymacz\xampp\htdocs\wp\site1\wp-config.php
+
+
+	define('DB_NAME', 'wp_tuts'); // include the prefix when creating new database 
+	define('DB_USER', 'root'); // match match database username
+	define('DB_PASSWORD', ''); // set password after wordpress has finished setup
+	define('DB_HOST', '127.0.0.1:3306'); 
+	define('DB_CHARSET', 'utf8');
+	define('DB_COLLATE', ''); /** The Database Collate type. Don't change this if in doubt. */
+	
+4. open http://localhost/phpmyadmin & create database	(collate utf8 general_ci )  // include the prefix when creating new database 
+	- set password to empty initially until wordpress has done setup
+	 
+
+5.  edit C:\Windows\System32\drivers\etc\hosts
+
+
+ 127.0.0.1 localhost
+ 127.0.0.1 drupal7
+ 127.0.0.1 site1
+ 127.0.0.1 site1.net
+ 127.0.0.1 localxampp
+ 
+6. edit F:\Raymacz\xampp\apache\conf\extra\httpd-vhosts.conf
+ 
+   <VirtualHost *:80>
+      ServerName site1.net
+      DocumentRoot "F:/Raymacz/xampp/htdocs/wp/site1"
+      <Directory "F:/Raymacz/xampp/htdocs/wp/site1"> 
+      ##Options +Indexes FollowSymlinks +ExecCGI
+      Options Indexes FollowSymLinks Includes ExecCGI
+      AllowOverride All
+      Require all granted
+      Order allow,deny
+      Allow from all
+      </Directory>
+  </VirtualHost>
+  
+   <VirtualHost *:80>
+      ServerName localxampp
+      DocumentRoot "F:/Raymacz/xampp/htdocs/dashboard"
+     <Directory "F:/Raymacz/xampp/htdocs/dashboard"> 
+      ##Options +Indexes FollowSymlinks +ExecCGI
+      Options Indexes FollowSymLinks Includes ExecCGI
+      AllowOverride All
+      Require all granted
+     Order allow,deny
+     Allow from all
+     </Directory>
+ </VirtualHost>
+  
+ 7. go to http://site1.net/wp-admin/install.php & start wordpress setup
+  
+  
+ 8. check f:\raymacz\xampp\apache\conf\httpd.conf
+
+
+ 9. // htaccess  F:\Raymacz\xampp\htdocs\wp\site3\.htaccess 
+
+ <IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+-------------------------------------------------------------
+PHP SANDBOX: https://github.com/raymacz/phpsandbox
+
+setup:
+1. C:\Windows\System32\drivers\etc\hosts  127.0.0.1 phpsbox
+2. F:\Raymacz\xampp\apache\conf\extra\httpd-vhosts.conf "F:/Raymacz/xampp/htdocs/phpsbox"
+3. Copy all files from - C:\Users\admin\Desktop\trash\Exercise Files\Exercise Files\Chapter14\14_02_btb_sandbox-final
+   to - F:\Raymacz\xampp\htdocs\phpsbox
+4. Netbeans new project from an exising sources
+5. create index.php and put <?php  // include_once 'array_functions.php';
+									  include_once 'cloning.php';
+	?>
+
+
+-------------------------------------------------------------
+10. underscores.me - wordpress theme
+
+1. download theme using sassify http://underscores.me/  & place to wp themes folder
+2. change  themes\gulp-dev\Gulpfile.js
+	- var themename = 'skeletonmacz'; // change to 'framemacz"
+	- tunnel: 'skeletonmacz'  // change to 'framemacz'
+	- proxy: 'site1.net', // change to  'site3.net'
+3. install npm packages
+	
+	- NOTE: (to fix issue) downgraded to https://nodejs.org/download/release/v6.12.2/  https://www.screencast.com/t/jaGv4jDzPNMz 
+	- npm install browser-sync gulp --save-dev (npm install -g browser-sync --msvs_version=2013)
+	- npm install gulp-sass --save-dev
+	- npm install --save-dev ngrok
+		- https://github.com/BrowserSync/browser-sync/issues/192
+		- https://dashboard.ngrok.com/status ( client can see site remotely)
+	- npm install --save-dev tether (https://www.npmjs.com/package/tether)
+		-- <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script> (add to enqueue script)
+		-- (https://github.com/shakacode/bootstrap-loader/issues/48)
+	- npm install --save-dev jquery
+	- npm install --save-dev popper.js	
+	- npm install --save-dev bootstrap
+	  (npm install --save-dev bootstrap@4.0.0-alpha.6)
+		(note: you have the option to use boostrap CDN or bootstrap.css - if CDN is used, bootstrap _custom.scss will not work. bootstrap.scss is not as updated as CDN)
+	- npm install --save-dev autoprefixer 
+	- npm install --save-dev gulp-image
+	- npm install gulp-jshint --save-dev
+	- npm install --save-dev gulp-postcss
+	- npm install --save-dev gulp-sourcemaps  (hint files that traces the CSS origin of the browser - "enable CSS source maps")
+	- npm install gulp-newer --save-dev
+	- npm install font-awesome
+	- npm install jquery.easing
+	- 
+	
+	- npm update 
+		-- npm cache clean (delete node_modules)
+		-- npm install --save	
+
+4.	create wp-content\themes\gulp-dev\Gulpfile.js
+	- use codes (as shown in examples) according to packages https://www.npmjs.com/package/package	
+	- change:
+		-- themename = 'framemacz'; 
+		-- tunnel: 'framemacz'
+		-- proxy: 'site3.net',
+		-- return gulp.src(scss + '*.scss')   // change this because it's not working in the tutorial version
+5.	create folders & file:
+	- wp-content\themes\framemacz\sass\bootstrap\_bootstrap.scss  (https://www.npmjs.com/package/bootstrap)
+		-- \node_modules\bootstrap\scss\bootstrap.scss copy file to app\scss\_bootstrap.scss 
+		-- app\scss\_bootstrap.scss - change to correct path (ctrl+d to multiple select in atom)
+			--- @import "custom";
+			--- @import "../../../gulp-dev/node_modules/bootstrap/scss/variables";  
+			
+	- wp-content\themes\framemacz\sass\bootstrap\_custom.scss
+		-- \node_modules\bootstrap\scss\_custom.scss copy file to app\scss\_custom.scss
+	- wp-content\themes\framemacz\sass\bootstrap.scss 
+		- @import "bootstrap/bootstrap"; (add code)
+	- wp-content\themes\framemacz\bootstrap.css (empty)
+	
+6. run gulp in gulp-dev
+7.  add to functions.php
+    -  wp_enqueue_style( 'framemacz-style-bootstrap', get_template_directory_uri()  . '/bootstrap.css');
+    -  wp_enqueue_style( 'framemacz-style', get_stylesheet_uri() ); // style.css
+    -  wp_enqueue_script( 'framemacz-script-bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js' , array('jquery'), '20171225', true );
+
+--------------------------------------------------------------------
+
+Wordpress Developer Plugins
+
+https://wordpress.org/plugins/query-monitor/
+https://wordpress.org/plugins/debug-bar/
+https://developer.wordpress.org/plugins/developer-tools/debug-bar-and-add-ons/#debug-bar-actions-and-filters-addon
+	
+--------------------------------------------------------------------
+WORDPRESS MIGRATION
+
+78. Install WordPress Like a Pro
+	- better to install than upload WP to a hosting site (installs the core files & later drop the tables from the DB)
+	- export & import WP database
+		-- if possible turn off all plugins & set theme to default, widgets are not affected
+			(turn it later once everything is uploaded/ready in the live server (take note of all plugins)
+		-- export->custom->select all tables->save output to file->format as SQL  https://www.screencast.com/t/cgYwbtOtV5ut (the rest is default)
+		-- <filename>.sql search & replace (from http://localhost:8888 to http://site.com) using IDE https://stackoverflow.com/questions/4822638/find-and-replace-in-entire-mysql-database 
+79. Install and Configure Your Custom WordPress Theme on a Live Server		
+		-- import->choose the correct database (found wp-config.php)-->drop all tables & replace by importing (initial WP table)
+		-- wp-config.php - choose a $table_prefix (match it w/ existing imported WP)
+		-- phpmyadmin - import the file & click GO
+		-- phpmyadmin - change base url of WP site by using SEARCH -->all tables (it will show how many instances of inside database)
+		-- wp-config.php - make sure username, password, dbname matches the live server (note: live site is now same credentials w/ localhost)
+	    -- http://www.wpbeginner.com/wp-tutorials/how-to-find-and-replace-text-with-one-click-in-your-wordpress-database/
+		-- restore plugins (using FTP)
+		-- media library fix by uploading from E:\raymacz\RaymaczBackup\MyWork\Bitnami\wp48\apps\wordpress\htdocs\wp-content\uploads to server w/ same directory 
+		
+--------------------------------------------------------------------
+
+Git Bash for Windows 
+
+https://git-scm.com/download/win
+
+GIT Subversion Github - guide https://gist.github.com/hofmannsven/6814451
+
+https://help.github.com/articles/setting-your-username-in-git/
+https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+https://help.github.com/articles/checking-for-existing-ssh-keys/
+
+
+		
+ 
+-------------------------------------------------------------------- 
+  
+ 
+ 
+  
+ POSTMAN
+ 
+ 
+invgamez@gmail.com invgamez pmanacezz4321!
+
+-------------------------------------------------------------------
+
+
+ NODEJS
+ 
+  cd MyTutorials\MyWork\nodejs\MyCode\server
+
+ F:\MyTutorials\MyWork\nodejs\MyCode\server.js 
+  
+ general notes:  // TO Run Curl, ajax, wp_remote_get(), json_decode() from a remove server
+ * 1. Run Git Bash
+ * 2. cd /f/MyTutorials/MyWork/nodejs/MyCode
+ * 3. $ node server.js
+ * 4. check in browser url - http://127.0.0.1:1337/products.json
+ * 5. F:\MyTutorials\MyWork\nodejs\MyCode\server.js check fs.createReadStream("./jsonsample/products.json").pipe(response);	
+ * 6. check tweet_reset_time (in min.)
+ * 7. it should work! 
+ * backup F:\MyTutorials\MyExercise\Raymacz.Custom.WP.Plugins\nodejs\MyCode
+  
+
+ NPM
+	F:\MyTutorials\MyExercise\Lynda - WordPress - Building Themes from Scratch Using Underscores\MyCode\myapp
+	F:\MyTutorials\MyExercise\Lynda - Up and Running with NPM the Node Package Manager\MyCode
+
+	- npm is a part of node.js platform
+	- like git, it runs in a UNIX based platform
+   
+  1. download & install https://nodejs.org/en/  
+  2. download & install https://git-scm.com/download/win   
+  3. https://www.npmjs.com/get-npm
+
+1. npm rm --global gulp (If you've previously installed gulp globally,)
+2. node --version
+3. npm --version
+4. gulp -v
+5. install global & local gulp (both needed to be installed)
+  - npm install gulp-cli -g (global)
+  - npm install gulp -D (local)
+6. npm init (create package.json thru wizard or you can create manually)
+7. FIX
+	- NOTE: (to fix issue) downgraded to https://nodejs.org/download/release/v6.12.2/  https://www.screencast.com/t/jaGv4jDzPNMz 
+  
+
+ SASS & BOOTSTRAP 4
+ 
+ 1. check if node, npm, gulp is installed (e.g. node --version)
+ 2. create folder (e.g. b4sass)
+ 3. npm init - (to create package.json)
+ 4. $ npm install browser-sync gulp --save-dev (https://browsersync.io/docs/gulp)
+	- ISSUE: https://github.com/BrowserSync/browser-sync/issues/1324
+ 5. $ npm install gulp-sass --save-dev (https://www.npmjs.com/package/gulp-sass)
+ 6. $ npm install bootstrap@4.0.0-alpha.6 (https://v4-alpha.getbootstrap.com/getting-started/download/#npm)
+ 7.  copy code from SASS + CSS Injecting https://browsersync.io/docs/gulp
+ 8. app\scss - from project root, create a folder for app & scss as shown in the code (step 7. code)
+ 9. \node_modules\bootstrap\scss\bootstrap.scss copy file to app\scss\_bootstrap.scss 
+ 10. \node_modules\bootstrap\scss\_custom.scss copy file to app\scss\_custom.scss
+	- note: be sure to place it above variables & mixins to override values
+ 11. @import "bootstrap"; - add code to app\scss\app.scss
+ 12. add the correct path to app\scss\_bootstrap.scss - (ctrl+d to multiple select in atom)
+	e.g. @import "../../node_modules/bootstrap/scss/variables"; (../../ means up /app/scss
+ 13. @import "../../node_modules/bootstrap/scss/custom"; change to @import "custom" - app\scss\_bootstrap.scss (since it is the same folder) 
+ 14. app\index.html add file & fill it w/ content
+ 15. run gulp
+ 16. to override some colors in bootstrap: (example)
+	node_modules\bootstrap\scss\_variables.scss 
+		-- $blue:   #0275d8 !default;
+		--   $brand-primary:    $blue !default;
+	app\scss\_custom.scss
+		--   $brand-primary:    #0275d7 ;
+	
+ 
+https://engageinteractive.co.uk/blog/top-10-scss-mixins  
+
+-------------------------------------------------------------------- 
+  
+ IDE
+
+Netbeans Shortcut:
+
+tools->options->Editor->CodeTemplates- can add a abbreviation and the Expanded text (adding custom code snippets)
+
+alt-shift-o  - search file
+ctrl-shift-h - netbeans
+
+project properties -> source https://www.screencast.com/t/afPzMAWeB4bY
+
+tip:
+	-- Name and Location: https://www.screencast.com/t/DCig6qRTd  (put netbeans metadata into a separate directory)
+	-- Run Configuration: https://www.screencast.com/t/ZkGN0JdKcNLO
+	-- Plugins: Darcula LAF for Netbeans (restart Netbeans)
+	-- ctrl-click function name - to trace source of code
+	-- autocomplete netbeans helps in remembering the code
+		--- file->project properties (include path -> wp-includes) https://www.screencast.com/t/DA3La5dY7z
+		--- tools->options->editor->code completion https://www.screencast.com/t/pULe2pojTC
+	-- if code is overwritten & Netbeans has error that it can't locate the file, just restart Netbeans
+
+autocomplete  - autocomplete automatically works if directory of projects are set properly
+			  - you don't need to include this to make it work (except global) or it may conflict https://www.screencast.com/t/K5r37oyg
+
+10. XDEBUG
+ https://xdebug.org/download.php
+ https://docs.google.com/document/d/1sLvx955Pn2k2T5vMErO58gqHNSLwApuPPyVXGXMvpAg/edit (google drive)
+ 
+ 1. http://localxampp/phpinfo.php - paste content to https://xdebug.org/wizard.php
+ 2.  php_xdebug-2.5.5-5.6-vc11.dll (PHP Version 5.6.32) or better use xampp's default file (php_xdebug.dll)
+ 3. f:\raymacz\xampp\php\php.ini
+ 
+ 
+ zend_extension = F:\Raymacz\xampp\php\ext\php_xdebug.dll
+ 
+xdebug.remote_enable = 1
+xdebug.remote_handler = "dbgp"
+xdebug.remote_host = "127.0.0.1" 
+xdebug.trace_output_dir = "\tmp\xdebug"
+xdebug.remote_log = "\tmp\xdebug\xdebug_remot.log"
+xdebug.extended_info=1
+xdebug.remote_mode=req
+xdebug.remote_port=9000
+xdebug.idekey=netbeans-xdebug
+xdebug.show_exception_trace=0
+xdebug.show_local_vars=0
+xdebug.show_mem_delta=0
+xdebug.trace_format=0
+xdebug.collect_vars=off
+xdebug.collect_params=0
+xdebug.dump_globals=on
+xdebug.collect_return=off
+xdebug.cli_color=0
+xdebug.profiler_enable = 0
+xdebug.profiler_output_name = "cachegrind.out.%t-%s"
+xdebug.profiler_output_dir = "\tmp\xdebug"
+xdebug.profiler_enable_trigger=0
+xdebug.profiler_append = 0
+xdebug.trace_enable_trigger=0
+
+4. Be sure to have the correct project directory source or xdebug won't trace properly
+	- https://www.screencast.com/t/afPzMAWeB4bY
+	- https://www.screencast.com/t/kjleOWBrBkhg
+
+5. tools->options->php->debugging https://www.screencast.com/t/oemTpoCDQ
+   project->properties->run configuration->advanced  https://www.screencast.com/t/ykieCg4u	
+			  
+			  
+--------------------------------------------------------------------
+
+Atom Notes
+
+
+1. install packages properly using git bash (eg apm install atom-bootstrap4), if possible reboot atom before clicking install package
+2. copy config.cson (settings configuration) (copy codes by package individually)
+3. install composer (Composer-Setup.exe) download here:  https://github.com/composer/windows-setup
+4. File->Snippets add your custom code snippets 
+		https://www.hongkiat.com/blog/add-custom-code-snippets-atom/
+		http://kickinbahk.com/atomeditor-custom-snippets.html
+5. you can backup your configuration from this directory C:\Users\admin\.atom
+		
+		
+http://cs.sensiolabs.org/ php-cs-fixer-v2.phar composer.phar
+https://laracasts.com/series/visual-studio-code-for-php-developers/episodes/11
+
+KEYBINDING / SHORTKEY (settings->keybinding)
+
+ctrl-p (search & open file)
+ctrl-shift-p (describes the shortcode keys)
+ctrl-shift-l (language support)
+ctrl-shift-k delete line 
+ctrl-shift-d duplicate line
+ctrl-d multiple select find-and-replace:select-next
+ctrl-, settings 
+
+PLUGINS:
+	
+	atom-smart-template
+	##atom-autocomplete-php
+	emmet  (when autosuggest emerges (e.g. bootstrap4), just press escape & then tab again to execute emmet)
+	atom-bootstrap3
+	atom-bootstrap4
+	atom-html-preview
+	color-picker
+	file-icons (just icons visual changes inside your atom editor)
+	git-plus
+	minimap
+	minimap-highlight-selected
+	minimap-find-replace
+	pigments
+	minimap-pigments
+	advanced-open-file
+	open-recent
+	linter
+	linter-ui-default
+	linter-jshint
+	linter-php
+	autocomplete-php
+    atom-beautify (
+		ctrl+shift+L you need to choose language - auto, or be specific like PHP)
+		(set php-cs-fixer https://www.screencast.com/t/c18Jca8chp)
+    ## atom-css-comb (similar to beautify)
+	autoclose-html
+	## remote-ftp (later)
+	## ask-stack (not sure later)
+	project-manager
+	busy-signal (later)
+	platformio-ide-terminal (alt-shift-t)
+	##javascript snippets (later)
+	jquery snippets
+	##css-snippets
+	wordpress-api
+	autocomplete-wordpress-hooks
+	atom-wordpress
+	
+	wordpress-suite (later)
+	wordpress-autocomplete (later)
+    ## autocomplete-modules (later)
+
+
+
+
+081617
+
+atom beautify https://github.com/FriendsOfPHP/PHP-CS-Fixer
+http://storage4.static.itmages.com/i/17/0815/h_1502813813_7282349_4a4eb451bf.png
+http://storage9.static.itmages.com/i/17/0815/h_1502813546_4495943_40462db552.png
+http://storage4.static.itmages.com/i/17/0815/h_1502813615_1246531_620d2718b5.png
+/usr/local/bin/php-cs-fixer
+
+
+============ atom  config
+"*":
+  "atom-autocomplete-php": {}
+  "atom-beautify":
+    coffeescript:
+      disabled: true
+    css: {}
+    d:
+      disabled: true
+    ejs:
+      disabled: true
+    elm:
+      disabled: true
+    erb:
+      disabled: true
+    erlang:
+      disabled: true
+    executables:
+      php:
+        path: "/usr/bin/php"
+      "php-cs-fixer":
+        path: "/usr/local/bin/php-cs-fixer"
+    fortran:
+      disabled: true
+    general:
+      _analyticsUserId: "c75e114a-bc10-4605-b8c5-4754a9b654d1"
+    gherkin:
+      disabled: true
+    glsl:
+      disabled: true
+    go:
+      disabled: true
+    gohtml:
+      disabled: true
+    handlebars:
+      disabled: true
+    haskell:
+      disabled: true
+    jsx:
+      disabled: true
+    latex:
+      disabled: true
+    less: {}
+    lua:
+      disabled: true
+    marko:
+      disabled: true
+    mustache:
+      disabled: true
+    nunjucks:
+      disabled: true
+    objectivec:
+      disabled: true
+    ocaml:
+      disabled: true
+    pawn:
+      disabled: true
+    perl:
+      disabled: true
+    php:
+      allow_risky: "yes"
+    puppet:
+      disabled: true
+    python:
+      disabled: true
+    r:
+      disabled: true
+    riot:
+      disabled: true
+    ruby:
+      disabled: true
+    rust:
+      disabled: true
+    sass: {}
+    spacebars:
+      disabled: true
+    svg:
+      disabled: true
+    swig:
+      disabled: true
+    tss:
+      disabled: true
+    twig:
+      disabled: true
+    typescript:
+      disabled: true
+    vala:
+      disabled: true
+    visualforce:
+      disabled: true
+    vue:
+      disabled: true
+    xtemplate:
+      disabled: true
+    yaml:
+      disabled: true
+  "atom-terminal": {}
+  core:
+    telemetryConsent: "limited"
+  "exception-reporting":
+    userId: "e469c921-4cd8-4f8a-b049-55ff348fedc6"
+  "linter-php":
+    executablePath: "/opt/lampp/bin/php"
+  "linter-ui-default": {}
+  minimap: {}
+".html.php.text":
+  editor:
+    showIndentGuide: true
+
+			  
+			  
+--------------------------------------------------------------------
+NOTEPAD ++
+
+
+xdebug  https://sourceforge.net/projects/npp-plugins/files/DBGP%20Plugin/
+		https://sourceforge.net/p/npp-plugins/discussion/709026/
+
+		
+		
+-------------------------------------------------------------------- 
+
+FILEZILLA 
+
+1. after setup, file->site Manager->new site
+2. enter Host of FTP
+3. Protocol: FTP
+4. Encryptin: Only use plain FTP (insecure)
+5. Logon Type: Normal / Ask for Password
+6. enter host, username & password if asked
+
+
+-------------------------------------------------------------------- 
+
+MARIADB 
+	- install to any windows drive
+	
+HEIDESQL 9.5.0.5196
+
+1. new or import session 
+2. Network Type: MySQL TCP/IP
+3. Hostname: 127.0.0.1
+4. User: root
+5. Password: (blank if none) 
+6. port: 3306  (mysqld.exe)
+7. Open
+
+
+-------------------------------------------------------------------- 
+
+https://www.000webhost.com	invgamez@gmail.com	000webhostacezz4321!
+
+
+
+--------------------------------------------------------------------
+HOSTING SITES
+
+https://my.freenom.com/domains.php (free new domain)
+	- nameservers https://www.screencast.com/t/EEfaMzmSSaML
+
+https://www.000webhost.com/members/website/test-mqassist/domain
+	- https://www.screencast.com/t/VJfdr5cGrVv
+	
+
+https://www.000webhost.com/members/website/mqassist/settings
+	- Website sleeping time frame ( can be adjusted here) 
+	
+
+https://toolbox.googleapps.com/apps/dig/#CNAME/www.example-domain.tk
+
+https://www.000webhost.com/forum/t/how-to-change-nameservers-manage-dns-in-freenom-instead/106487
+	
+-------------------------------------------------------------------- 
+
+
+Important Links: 
+
+ API Directory Source - https://www.programmableweb.com/
+ 
+ 
+ 
+ https://1stwebdesigner.com/essential-cheatsheets-web-design-developer/ 
+ https://envato.com/blog/best-sites-find-css-snippets-inspiration/
+ 
+ 
+-----------------------------------------------------
+
+
+VPN
+
+Add-VpnConnection -Name "hide.me IKEv2" -ServerAddress "free-ca.hide.me" -TunnelType "Ikev2" -RememberCredential
+etmbym hidemeboslot4321!
+ 
+--------------------------------------------
+REGEX http://www.phpliveregex.com/ https://www.functions-online.com/preg_replace.html

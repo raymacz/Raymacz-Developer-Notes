@@ -1,0 +1,25 @@
+Error: spawn EACCES
+    at exports._errnoException (util.js:1022:11)
+    at ChildProcess.spawn (internal/child_process.js:313:11)
+    at exports.spawn (child_process.js:399:9)
+    at /home/raymacz/.atom/packages/atom-beautify/src/beautifiers/executable.coffee:237:13
+    at Promise._execute (/home/raymacz/.atom/packages/atom-beautify/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/home/raymacz/.atom/packages/atom-beautify/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/home/raymacz/.atom/packages/atom-beautify/node_modules/bluebird/js/release/promise.js:79:10)
+    at HybridExecutable.Executable.spawn (/home/raymacz/.atom/packages/atom-beautify/src/beautifiers/executable.coffee:234:16)
+    at /home/raymacz/.atom/packages/atom-beautify/src/beautifiers/executable.coffee:166:10
+    at tryCatcher (/home/raymacz/.atom/packages/atom-beautify/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/home/raymacz/.atom/packages/atom-beautify/node_modules/bluebird/js/release/promise.js:512:31)
+    at Promise._settlePromise (/home/raymacz/.atom/packages/atom-beautify/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._settlePromise0 (/home/raymacz/.atom/packages/atom-beautify/node_modules/bluebird/js/release/promise.js:614:10)
+    at Promise._settlePromises (/home/raymacz/.atom/packages/atom-beautify/node_modules/bluebird/js/release/promise.js:693:18)
+    at Async._drainQueue (/home/raymacz/.atom/packages/atom-beautify/node_modules/bluebird/js/release/async.js:133:16)
+    at Async._drainQueues (/home/raymacz/.atom/packages/atom-beautify/node_modules/bluebird/js/release/async.js:143:10)
+    at Async.drainQueues (/home/raymacz/.atom/packages/atom-beautify/node_modules/bluebird/js/release/async.js:17:14)
+
+     issue https://github.com/Glavin001/atom-beautify/issues/1725#issuecomment-309316988
+http://storage4.static.itmages.com/i/17/0815/h_1502813813_7282349_4a4eb451bf.png
+http://storage9.static.itmages.com/i/17/0815/h_1502813546_4495943_40462db552.png
+http://storage4.static.itmages.com/i/17/0815/h_1502813615_1246531_620d2718b5.png
+
+/usr/local/bin/php-cs-fixer
