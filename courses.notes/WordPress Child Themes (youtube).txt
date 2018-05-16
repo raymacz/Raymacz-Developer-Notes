@@ -1,0 +1,17 @@
+https://www.youtube.com/playlist?list=PLLnpHn493BHGACfv4rC29kJamYMtw34D9
+Customizing WordPress
+	
+1. Customizing WordPress #1 - How To Create A Child Theme
+	-  child theme consists of at least one directory (the child theme directory) and two files (style.css and functions.php), which you will need to create:
+		1. create the child theme folder <parent name>-child
+		2. style.css 
+			-- create a WP header (inside a comment)
+			-- https://codex.wordpress.org/Child_Themes
+			-- @import url("../<parent theme>/style.css")
+			-- start the css code
+		3. functions.php 
+2. Customizing WordPress #2 - Using Chrome Developers Tools
+3. Customizing WordPress #3 - Understanding Template Files
+4. Customizing WordPress #4 - Creating Page Templates
+
+

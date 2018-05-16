@@ -1,0 +1,22 @@
+
+
+li.nav-item				a.nav-link
+li.nav-item.dropdown	a.nav-link.dropdown-toggle id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+						ul.dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+						
+							li a.dropdown-item
+							li a.dropdown-item.dropdown-toggle 	
+							   ul.dropdown-menu
+									li a.dropdown-item
+							li a.dropdown-item.dropdown-toggle 				
+							   ul.dropdown-menu	
+									li a.dropdown-item
+							li a.dropdown-item.dropdown-toggle
+							   ul.dropdown-menu	
+									li a.dropdown-item
+									li a.dropdown-item.dropdown-toggle
+									   ul.dropdown-menu	
+												li a.dropdown-item
+									li a.dropdown-item.dropdown-toggle
+									   ul.dropdown-menu	
+												li a.dropdown-item			

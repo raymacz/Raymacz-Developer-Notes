@@ -1,0 +1,622 @@
+008 Creating Columns
+	- class= container (1170, 970, 750, auto-minimum) vs container-fluid (auto)
+	- 30px gutters (15px each side)
+    -	 12			 	XS		 SM		  MD	 	LG (note: if size < container, then column will go stack up & not beside each other )
+	 container	      auto    750px 	 970px   1170px
+	 size            .col-xs  .col-sm  .col-md  .col-lg 
+	 column width	  auto     62px       81px     97px
+		-- XS no matter how small, it will maintain the design
+	- class= clearfix visible-sm-block (or inline-block)
+	- XS, SM, MD, LG columns can work together in one tag (e.g. div, section)
+	- col-sm-offset-0 (can be a any column)
+	- <div>  <blockquote> <p>
+	
+009 Using multiple column classes 0204
+
+010 Resetting columns 0205
+
+011 Offsetting columns 0206
+	- class= col-xs-offset-3 <div>
+
+012 Nesting columns 0207
+
+013 Customizing column order with push and pull 0207
+	- col-xs-push-3 <div>
+	- col-md-pull-12 <div>
+	- push & pull only works, if there is no next item column & is not nested (my observation)
+      -- https://www.screencast.com/t/KLkl3tujpj7
+	  
+014 Styling headings and body copy 0301
+	- uses helvetica, arial, & if none, its default: sanserif
+	- class= h1-h6 div/span can emulate tags e.g. <div class="h1" >
+	- <small>Secondary</small> / <span> class="small"</span> (w/n a tag has lighter-color & next-to-smaller-size font)
+		-- https://www.screencast.com/t/Ry7Vm0ZsGbE
+	- class= lead w/n tag a bit bolder
+		
+		
+015 Analyzing inline text styles 0302
+	- <mark> w/n tag - highlight
+	- <s> or <del> - strike through
+    - <u> or <ins> - underlined
+	- <b> or <strong> - bolder
+	- <i> or <em> - emphasized
+	
+	
+016 Modifying alignment,transformation, and abbreviations 0303
+	- text-align: center is overridden by these classes:
+	- class = text-left (align)
+	- class = text-right (align)
+	- class = text-center (align)
+	- class = text-justify (align stretched full-width)
+	- class = text-nowrap (align straight forever)
+	- class = text-lowercase 
+	- class = text-uppercase
+	- class = text-capitalize (force capitalize)
+	- <abbr title="Captain">Capt.</abbr> (abbreviation w/ mouse hover / pop-over)
+	
+
+017 Using blockquotes 0304
+	- <blockquote>
+		--<p> <footer> (is author)
+		--class= blockquote-reverse (align-right)
+		- https://www.screencast.com/t/WpqBU4TP
+
+018 Working with list styles 0305
+	- <ol> 
+		-- class= list-unstyled
+    - <ul>
+		-- class= list-inline (no bullets, side-by-side)
+	- <dl> (definition list)
+		-- class= dl-horizontal
+		-- <dt> (definition term)
+		-- <dd> (definition description)
+	- https://www.screencast.com/t/Ub7lc9ETHi
+		
+		
+019 Styling code 0306
+	- helps search-engines
+	- <code>;
+		-- &lt; &gt; (< >) e.g. <code>&lt;em &gt;</code> (<em>)
+	- <kbd> (code in a white text & black background)
+	- <var> (code italized)
+	- &sup2; (superscript)
+	- <pre> (code in a box)
+		-- class= pre-scrollable
+	- <samp> (code font)	
+	- https://www.screencast.com/t/fTIJBElq5
+		
+020 Working with Bootstrap buttons 0401
+	- class= btn btn-default (white)
+		-- <a role="button"> <button type="submit"> <input type="submit">
+		-- note: only <button> will work on nav & navbar components
+	- class= btn btn-primary (blue)
+	- class= btn btn-success (green)
+	- class= btn btn-info (lightblue)
+	- class= btn btn-warning (yellow)
+	- class= btn btn-danger (red)
+	- class= btn btn-default btn-lg (large)
+	- class= btn btn-default btn-sm (small)
+	- class= btn btn-default btn-xs (extra small)
+	- class= btn btn-default btn-block (full-width)
+	- class= btn btn-default active (full-width)
+	- class= btn btn-default disabled (disabled)
+		-- or disabled="disabled"
+	
+		
+021 Exploring table styles 0402
+	- class= table-responsive <div>
+	- class= table table-striped table-bordered table-hover  table-condensed <table> 
+	- <thead> 
+	- <tbody>
+	- class= active success info warning danger <tr> (row)
+	- <th scope="row">  (head)
+	- class= active <td>  (column)
+
+022 Adding image classes 0403
+	- class= img-responsive <img> (modify with max-width / min-width)
+	- class= center-block <img>
+	- class= img-rounded <img> ( a bit rounded-corner)
+	- class= img-circle <img>
+	- class= img-thumbnail <img> (w/ border)
+	
+	
+	
+023 Understanding Bootstrap helper classes 0404
+	- class= text-muted <p>
+	- class= text-primary <p>
+		-- class= bg-primary
+	- class= text-success <p>
+		-- class= bg-success <p>
+	- class= text-info <p>
+		-- class= bg-info <p>
+	- class= text-warning <p>
+		-- class= bg-warning <p>
+	- class= text-danger <p>
+		-- class= bg-danger <p>
+	- class= pull-left <img> (over text)	
+	- class= pull-right <img> (over text)
+	- class= navbar-left <nav> <div> <ul> <form> <button> (almost all navigation elements)
+	- class= navbar-right <nav> <div> <ul> <form> <button>   (almost all navigation elements)
+		-- https://www.w3schools.com/bootstrap/bootstrap_navbar.asp
+	- class= center-block <img>
+	- class= clearfix <img> (to fix image)
+	- class= hidden <img> 
+	- class= show <img> 
+	- class= invisible <img> (image still holds the space unlike class= hidden) 
+	- class= sr-only <p> (screen reader device only) https://stackoverflow.com/questions/19758598/what-is-sr-only-in-bootstrap-3
+		-- class= sr-only-focusable
+	- class= text-hide imghead <h1>	<div> <section> or any element 
+		--(hides the text inside any element & recommended on header w/ background images)
+
+024 Using responsive utilities 0405
+	- visibility at breakpoints/print
+	- visibility-size(-DISPLAY)
+		-- visibility: visible or hidden
+		-- size: xs, sm, md, lg, print (print means visible / hidden when printing pages)
+		-- display: block, inline, inline-block, print (if hidden, no need to provide this)
+			-- note: inline-block has size associated w/ them unlike inline
+				---(e.g. <span class="h1 visible-xs-inline-block" style = "width: 400px;">)
+
+025 Creating a basic form 0501
+	- class= sr-only (e.g. <label> you can put this class for labels that's visible only for screen-readers)
+	- class= form-control <form> <input> <select> <textarea> (maximize width)
+	- class= form-group <div> (spacing in between form elements)
+	- class= checkbox <div> (recommended as wrapper for <input type= "checkbox"> <input type= "radio">) 
+		-- note: REMOVE for="" in <label> if it's wrapped w/ element (e.g. <div> <section> <aside> etc.) (for <input type= "checkbox">) 
+		-- note: <input> is embedded w/in <label> (for <input type= "checkbox">) 
+	- <div class= "checkbox" >
+			<label>	<input id="inputAddList" type="checkbox">  Add me to e-mail blast</label>
+	  </div>
+	- class= btn btn-default <input type="submit"> 
+	- class= pull-right <input>
+	- class= pull-left  <input>
+	- note: <input> in replacement for <button> is okay in <form> elements
+
+026 Formatting radio and checkbox controls 0502
+	- use type= checkbox <input> for 1 or 2 more options
+	- for type=radio <input> use same name= e.g. https://www.screencast.com/t/4O7yES4qq5E6
+	- class= checkbox"  <div> as wrapper for type="checkbox"
+	- class= radio  <div> as wrapper for type="radio"
+	- class= disabled <div> (type= checkbox <input> & type="radio" <input>)  paired with 'disabled>' 
+	- class= radio-inline <label> 
+		--https://www.screencast.com/t/vCaHUTDgiB
+
+
+027 Using inline forms 0503
+	- class= form-inline <form> (only works if >= 768px )
+	- class= text-center <form> (etc.)
+
+028 Styling a horizontal form 0504
+	- class= form-horizontal <form> (only works if >=768px) (very nice)
+		-- (works well both on mobile devices / desktops)
+	- class= form-control	<select> <input> <textarea>
+	- class= control-label	<label>
+		-- class= col-sm-2 control-label <label>
+	- class= form-group <div> (spacing in between form elements)
+	- (note: complicated example but very nice on <form> please check --> exercise sample)
+		-- https://www.screencast.com/t/TQVAx2qTApKb
+		-- https://www.screencast.com/t/rY8008TpHPi (code)
+	
+	
+
+029 Using validation styles 0505
+	- class= has-warning	<div>
+	- class= has-error	<div>
+	- class= has-success	<div>
+		-- class= control-label	<label> (for has-* to work on labels, you need to add this class)
+	- class= has-feedback	<div> (this only works w/ text-inputs w/ a class= form-control-feedback)
+	- class= glyphicon glyphicon-ok form-control-feedback <span> (for form-control-feedback to work, it needs class= has-feedback
+		-- http://glyphicons.com/ https://www.screencast.com/t/fPwwlVxjY51
+		-- <span  id="nameStatus" class="sr-only">(success)</span> (add this instead for screen readers)
+		-- aria-describedby="nameStatus" <input>	(add this to link for id=nameStatus for screen readers)
+	- aria-hidden="true" <span> (this will hide on screen readers)
+	- https://www.screencast.com/t/i2ChGUWKi6 (code)
+	- https://www.screencast.com/t/puQW7OpY0
+
+	
+030 Using input groups 0506
+	- Boostrap Feature: Input Groups w/c allows to combine fields together w/ other elements to create some interesting controls
+	- class= form-group <div>
+	- class= input-group <div>
+	- class= input-group-addon <span>
+	- class= form-control <input>
+	- class= input-group-btn <span>
+	- class= btn btn-default <button type="button">
+	- https://www.screencast.com/t/hb0z0RgS2tbc (code)
+	- https://www.screencast.com/t/kiR8ksjbm
+	
+
+031 Using miscellaneous styles and sizing 0507
+	- misc. that handle form states and resize input fields
+	- disabled> <input>
+	- class= disabled <div> <fieldset> (in elements under div & fieldset are disabled)
+	- <fieldset> allows to group certain areas of the form together. A line separator is shown
+		-- <legend> paired for <fieldset> to put title in the line separator
+	- readonly> <input> (recommended: place a value="enter value" since its read-only)	
+	- class= form-control-static <p> (an alternative for readonly)
+	- class= input-lg <input> (size of input)
+	- class= input-sm <input>
+	- class= form-group form-group-sm <div> (size of form-group)
+	- class= form-group form-group-lg <div>
+	- https://www.screencast.com/t/7Sa8mXEg
+	- https://www.screencast.com/t/mTUs72dmlqnb (code)
+	
+		
+032 Using icons  0508
+	- http://glyphicons.com/ https://www.screencast.com/t/fPwwlVxjY51
+	- in bootstrap, replace halflings w/ glyphicons (halfling-ok change to glyphicon-ok)
+	- glyphicons sizes itself depending on the context/html tags they're in
+	- <span> is recommended than <i>
+	- aria-hidden="true" <span> (this will hide on screen readers)
+	- class= btn btn-default <button type="button">
+	- Make your desing as accessible as possible for a wider-range of user experience
+	- https://www.screencast.com/t/fur4PuKwi
+	- https://www.screencast.com/t/kTxCWqZTNpb (code)
+
+033 Creating a dropdown 0601
+
+	- class= dropdown <div>
+		-- data-toggle= dropdown <button>
+		-- class= btn btn-default dropdown-toggle id= "(samename)" <button>
+		-- class= caret <span>	
+		-- class= dropdown-menu <ul>
+			-- <li><a>
+		-- aria-labelledby="(samename)" (should be the same name w/ button id=) <ul>
+		-- aria-haspopup="true" <button>
+		-- aria-expanded="true" <button>
+	- class= dropdown-header <li> (no <a>)	
+	- class= divider <li> role= separator (no <a>)	
+	- class= disabled <li> 
+	- class= btn-group <div> 
+		-- set aria-expanded="false" <button> (for dropdown w/ separate button)
+	- https://www.screencast.com/t/a59H2AJIsAxj
+	- https://www.screencast.com/t/LoKRvfzC (code)	
+		
+
+034 Using button groups 0602
+	- usually used for button combinations
+	- class="btn btn-default" <button type="button"> 
+	- class= btn-group <div> (buttons are joined beside each other)
+	- role= group <div> (screem readers know the spectic functionality
+	- aria-label= "..." <div>
+	- class= btn-group-vertical <div> (vertically joined)
+	- class= btn-toolbar <div> (will look the same but will be tagged as group)
+	- class= btn-group btn-group-justified <div> (buttons are justified & stretched as group)
+		-- class= btn-group <div>
+	- https://www.screencast.com/t/X4aRcq0JJ	
+	- https://www.screencast.com/t/5ASnvCqR (code)
+
+035 Understanding the Bootstrap nav component 0603
+	- 3 types of Navs (if <768 stacked vertical)
+		1.) Tabs	
+			- class= nav nav-tabs <ul>
+				-- class= nav nav-stacked <ul> (vertical stretched)
+				-- class= nav nav-justified <ul> ( horizontal stretched)
+		2.) Pills
+			- class= nav nav-pills <ul>
+				-- class= nav nav-stacked <ul> (vertical stretched)
+				-- class= nav nav-justified <ul> (horizontal stretched)
+		3.) Navbars - (role="presentation" is not needed)
+		    - class= navbar navbar-default <nav> 
+			  -- class= nav navbar-nav <ul> (horizontal normal)
+				--- wrapped with <nav> (auto active)
+			- class= navbar navbar-inverse <nav>   
+			- class= navbar navbar-inverse navbar-fixed-bottom <nav>   (nav is located beneath no matter how many enclosed containers)
+			- class= navbar navbar-inverse navbar-fixed-top <nav>   (nav is located top most no matter how many enclosed containers)
+	- normal navigation takes up 50-pixels
+	- https://www.screencast.com/t/Z0fSiQgEK
+	- https://www.screencast.com/t/xNrafixj (code)
+	
+		
+	
+
+036 Adding content to the navbar 0604
+	- class= navbar-header <div>
+			-- class= navbar-brand <a>
+	- class= navbar-text <p> (aligns properly w/ navbar)
+	- class= navbar-btn <button type="button"> (aligns properly w/ navbar)
+	- class= dropdown-toggle data-toggle= dropdown <a> 
+		-- class= dropdown-menu <ul>
+	- class= navbar-form <form>
+	- class= navbar-right <form> <button>
+	- class= btn btn-default navbar-btn <button>
+	- https://www.screencast.com/t/geJon1UE
+	- https://www.screencast.com/t/Qiz4wwoGqoxd (code)
+	 
+	
+	
+037 Collapsing your navigation 0605
+	- navigation stacks up if <768
+	-  class= collapse navbar-collapse id= collapsemenu <div>
+		-- ID of <div> must match the hamburger menu icon (expandable menu icon)
+		-- class= navbar-toggle collapsed <button>
+			-- data-toggle= collapse <button>
+			-- data-target= #collapsemenu <button>
+			-- aria-expanded= false <button>
+				- class= icon-bar <span>
+	- https://www.screencast.com/t/7l2ToWljKdG
+	- https://www.screencast.com/t/N9tg38AEPu (code)
+	
+
+038 Using breadcrumbs and pagination styles 0606
+	- breadcrumbs, pagers & numeric pagination
+	- class= pager <ul> (w/in <nav>)
+		- class= previous <li>
+		- class= next <li>
+		- class= disabled <li>
+		- aria-hidden= true <span>
+		- &larr; <span>
+		- &rarr; <span>
+	- class= pagination <ol>
+	- class= pagination pagination-lg <ol>
+		- aria-label= Previous <a> (w/in <li>)
+		- aria-label= Next <a> (w/in <li>)
+		- &laquo; <a>
+		- &raquo; <a>
+	- https://www.screencast.com/t/7l2ToWljKdG	
+	- https://www.screencast.com/t/eJzU8o1il (code)
+	
+039 Creating a Jumbotron and page header 0701
+	- grouping of styles
+	- class= jumbotron <div> (gray background & enlarged fonts)	
+	- (lame video)
+	- https://www.screencast.com/t/HjItlsDW
+	
+	
+040 Working with labels and badges 0702
+	- label and badges
+	- class= label label-default <span> ( usually h3 size)
+	- class= badge badge-default <span> (small circle)
+	- note: bootstrap is smart enough to know what color to use for readability
+	- https://www.screencast.com/t/D73dO4r7Y
+	- (code)
+
+041 Using the thumbnail style 0703
+	- note: bootstrap has classes for images / captions
+	- class= thumbnail <a> <div> (child tag should be <img>)
+		- class= col-xs-6 col-sm-4 <div> (you may wrap the <a> <img> with this <div>)
+		- class= clearfix visible-sm-block visible-md-block visible-lg-block <div> 
+			(you may place clearfix in between rows to fix the unequal paragraph length)
+	- class= thumbnail <a> <div> (child tag should be <img>)	
+	- class= caption <div> (usually beneath <img>)	
+	- https://www.screencast.com/t/TZ3A2ok0sYNt
+	- https://www.screencast.com/t/XcM1SsZ8w5 (code)
+	
+	
+042 Adding media styles 0704
+	- class= media <div> <li>	
+		-- class= media-left <div> 
+		-- class= media-right <div> 
+		-- class= media-left  media-middle <div>  (slight img alignment)
+		-- class= media-left  media-bottom <div>   (slight img alignment)
+		-- class= media-left  media-top <div>   (slight img alignment)
+			--- class= media-object <img> 
+		-- class= media-body <div> 
+			--- class= media-heading <h3> 
+	- class= media-list <ul> 			
+		-- class= media <li> (usually list are better for defining html layout)
+		-- note: one issues of bootstrap is a ton of divs <div>	
+	- https://www.screencast.com/t/F8YrbuTu	
+	- https://www.screencast.com/t/VE0l2Cyxj (code) 
+
+043 Flowing video with responsive embeds 0705
+	- working w/ video usually requires css to display properly. With different breakpoints, it is a pain to take into account.
+	- thankfully bootstrap provides responsive classes	
+	- class= embed-responsive embed-responsive-4by3 <div> (or 16by9) 
+		-- class= embed-responsive-item <video>
+		-- autoplay controls muted> <video>
+	- note: this also works like an iframe (e.g. youtube videos) & scales video properly
+	- https://www.screencast.com/t/frgX2BYl (code)
+		
+
+044 Styling list groups 0801
+	-  <ul> <div>
+		-- class= list-group-item <li> <a>
+			-- class= list-group-item-success <li> <a>
+			-- class= list-group-item-heading <h3> (h1-h6)
+			-- class= list-group-item-text <li> <a>
+			-- class= badge <span>	
+	- tip: use <a> if clickable items, if not use <ul> (<button> can be also be used but not as good as it looks)		
+	- https://www.screencast.com/t/mbCmyaH8hD8Q (code)
+		
+
+045 Working with panels 0802
+	- Panels are another way to encapsulate similar to thumbnails, list-groups & tables (can combine w/ list-groups / tables)
+	- class= panel panel-default <div>	 (primary, success, info, etc.)
+	- class= panel-heading <div>	
+		-- class= panel-title <h2>	(h1-h6)
+	- class= panel-body <div>	
+	- class= panel-footer <div>	
+	- class= table-responsive <table> (be sure to add responsive class to table & put outside right below panel-body)
+	- https://www.screencast.com/t/c2wKx4lxeWJL
+	- https://www.screencast.com/t/8heg4eJlJsA (code)
+	
+046 Using wells 0803
+	- wells are super simpler version of panels (no contextual classes) 
+	- class= well <div> (creates a box recommended for "tip:" & alternative for blockquotes)
+	- class= well well-sm <div> (well-lg well-md)
+	- https://www.screencast.com/t/0ZVqhY2mQB6 (code)
+
+
+047 Creating a carousel 0901
+	- uses javascript for controllable sliding images presentation
+	- class= carousel <div> (changes pictures)
+		-- class= carousel-inner  <div> (changes pictures)
+			-- class= item active <div> (item child is <img> for multiple images, active is the initial picture)
+				-- class= carousel-caption <div> (can contain any html tags)
+	- class= carousel slide <div> (changes pictures thru slides)
+	- data-ride= carousel <div> (5 sec. interval auto-slide animation)
+	- (Carousel Controller / trigger:)
+		-- class= left carousel-control data-slide= prev <a>
+		-- class= right carousel-controldata-slide= next <a> 
+		-- href= #ID role= button  <a> (it calls the id= <div>)	
+			-- class= glyphicon glyphicon-chevron-left <span>
+			-- class= glyphicon glyphicon-chevron-right <span>
+	- (carousel photo position indicator )		
+		- class= carousel carousel-indicators <ol>
+			-- data-target= #ID data-slide-to= 0 <li> (photo position & target ID)
+		- tip: you can override the sizes / color of the indicator	
+	- class= hidden-xs (md or lg) <div> 
+		-- (it hides the carousel at specific breakpoints)
+	- note: be sure that "active" matches between <div> & <li>	
+	- note: sometimes images may not be that big to cover full width (1200px) or the height varies
+			-- (better edit images in photoshop CS6 first) 
+			-- carousel images are meant to be wide w/ specific photo dimensions to follow.
+	- note: by default when carousel is clicked, it pauses the auto-slide, keyboard left/right can control slides
+	- https://www.w3schools.com/bootstrap/bootstrap_ref_js_carousel.asp	
+	- $(function() {	$('.carousel').carousel({ interval: 2000, pause: "hover", wrap: true, keyboard: true});		});
+	- https://www.screencast.com/t/J9uo2P3jNk0
+	- https://www.screencast.com/t/KP9avrant (code)
+	
+048 Creating modals 0902
+	- shows somewhat pop-up content when user clicks a button
+	- class= modal fade id= ID tabindex= "-1" role= dialog aria-labelledby= modalLabel <div> ( -1 means it's not accessible unless triggered )
+		-- (tabindex is for screen readers who want to navigate elements thru tab)
+		-- note: if tabindex value is "-1", means html elements are not tabable 
+		-- class= modal-dialog modal-lg role= document  <div> (modal-sm)
+			--- class= modal-content <div>
+				---- class= modal-header <div>
+					----- class= close  data-dismiss= modal aria-label= close <button> (data-dismiss - triggers modal to close)
+						------ aria-hidden = true  <span> (&times; or Close - x means hidden from screen readers) 
+					----- class= modal-title id= modalLabel <h3> (must match aria-labelledby= ID)
+				---- class= modal-body <div>
+				---- class= modal-footer <div>
+	- data-toggle= modal data-target= #ID class= btn btn-default <button> (trigger)
+	- tip: "esc" key can close the modal
+	- https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp
+	- https://www.screencast.com/t/oBFQw8WrAc (code)
+	- https://www.screencast.com/t/JhKbvRhYYa
+	
+	
+049 Controlling tabs with JavaScript 0903
+	
+	- tabs are great way to organize content in a very concise space 
+	- (Tab Controller / Trigger)
+	- class= nav nav-tabs <ul>
+	- class= nav nav-pills role= tablist<ul>
+		-- class= active role= presentation <li>
+			--- data-toggle= tab role= tab href= #ID<a> 
+	- https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp
+	- (Tab Panel - The content of each tab panel)
+	- class= tab-content <div>
+		- class= tab-pane active id= ID role= tabpanel <div> 
+	- BEST TIP: you can basically change the color of any bootstrap CSS 
+		-- https://www.screencast.com/t/8JzhuHIREb	1111
+	- https://www.w3schools.com/bootstrap/bootstrap_ref_js_tab.asp	
+	- https://www.screencast.com/t/P8AglDzJrrt
+	- https://www.screencast.com/t/e0ctKWrimNz6 (code)
+	
+	
+
+050 Crafting collapsible content and accordions 0904
+	- javascript component that appears / disappears when clicking an element
+	(target:)	
+	- class= panel-group id= IDaccordion role= tablist area-multiselectable= true <div>
+		-- class= panel panel-default <div>
+			--- class= panel-heading role= tab id= anyID1 <div>
+				---- class= panel-title <h4> (h1-h6)
+					(accordion controller: <a> more popular on accordions)
+					----- data-toggle= collapse data-parent= #IDaccordion role="button" href= #ID <a> (use href instead of data-target for anchors)
+					----- data-toggle= collapse data-parent= #IDaccordion class=btn btn-primary role="button" data-target= #ID <button> (use data-target instead of href for buttons)
+					----- aria-expanded= false aria-controls= exoticpets <button> <a>
+					(put class= collapsed <a> for accordion panels not expanded or w/o a class= in)
+			--- class= collapse panel-collapse in id= ID role= tabpanel aria-labelledby= anyID1 <div> 
+				("in" is the default active) (aria-labelledby refers to panel-heading <div>)
+				---- class= panel-body <div> (content)
+	- https://www.w3schools.com/howto/howto_js_accordion.asp 
+		-- .panel-title a:after {
+				content: "\2796"; /* Unicode character for "minus" sign (-) */
+				font-size: 13px;
+				color: #777;
+				float: right;
+				margin-left: 5px;
+			}
+			.panel-title a.collapsed:after {
+				content: '\02795'; /* Unicode character for "plus" sign (+) */
+			} 
+	- https://www.screencast.com/t/e81YSORV (anchor)
+	- https://www.screencast.com/t/Cj7NIwzWGv3D (button)
+	- https://www.screencast.com/t/5MVG8J5eo2i (code)
+
+051 Creating a tooltip 0905
+	- enhance inline content 
+	- note: need to add jquery on <file>.js
+		-- $('[data-toggle="tooltip"]').tooltip();
+	- data-toggle= tooltip data-placement= top title= anycontenthere <a> ( data-placement=  top / bottom / left / right)
+	- https://www.screencast.com/t/vZKDtc2yU
+	- https://www.screencast.com/t/7jhj2rwF (code)
+
+
+052 Adding a popover 0906
+	- show a pop-up overlay a bit like tool tips & dropdown
+	- note: need to manually activated
+	- data-toggle= popover data-placement= right data-container= body data-title= "anytitle" data-content= "<p>anycontenthere</p>"  class= btn btn-default<button>
+		 -- needs to be clicked	
+	- data-toggle= popover data-placement= right data-container= body data-title= "anytitle" data-content= "anycontenthere"  class=btn btn-default <a>
+	  - role=button tabindex= "0" data-trigger= focus <a>  
+	    (data-trigger means dismissable poperover & works only w/ <a>) ( data-placement can be top / bottom / left / right) (tabindex is order of activation) 
+		-- $('[data-toggle="popover"]').popover();	(add to <myscript>.js)
+	- https://www.screencast.com/t/8MUA6dBUOCYZ (code)	
+	- https://www.screencast.com/t/0otjge76cv5
+	   
+		
+053 Controlling menus with ScrollFix-Affix 0907
+	- data-spy= affix  data-offset= 200 <nav> <a> (data-offset-top / data-offset-bottom) 
+		- BEST TIP: a.scroller.affix-top {visibility :hidden;} (you can hide element when reaches top for data-offset)
+		   -- <a href="#topheader" role="button" class="btn btn-info scroller" data-spy="affix"  data-offset="10"><span class="glyphicon glyphicon-arrow-up"></span></a>  
+		   -- https://www.screencast.com/t/LzPBHL7MFQ9 (code)
+		   -- https://www.screencast.com/t/BD6RYqktTm (css)
+		(affix: makes navigation sticky when scrolling down the page;  offset: target alignment or a certain point in the page that element reappears)
+		(tip: you may add css to fix z-index:100 & width: 100%)
+		(data-offset=  means at the bottom, <nav> disappears, therefore we need to use data-offset-top)
+	    (note: conflicts w/ a background image in <header>	)
+	- data-spy= scroll data-target= .anytargetclass data-offset= 0 <body> (highlights the element linked to that position when scrolling)
+		-   data-offset: if data-spy= scroll indicator misses the exact position NOTE: it will not affect href:# when clicked)
+	- https://www.screencast.com/t/VuWg3oHCXQ
+	- https://www.screencast.com/t/k8SWBUb7 (code)
+	
+054 Next steps 0908
+
+055 additional
+	class= alert alert-primary role= alert <div>
+	class= close data-dismiss= alert aria-label= Close <button>
+
+
+@media screen and (min-width: 1200px)
+@media only screen and (max-width: 768px)
+@media only screen and (min-width: 450px)
+@media (max-width: 767px)
+
+background-image: url('../images/reptiles.jpg');
+background-position: bottom center;
+background-size: cover;
+height: 300px;
+
+
+(&& html)
+&nbsp; (space)
+&larr; &rarr; (<- ->)
+&laquo; &raquo; (<< >>)
+&lt; &gt; (< >)
+&sup2;  (superscript) 
+&times; (x)
+
+https://gist.github.com/planetoftheweb/f2cace4c0b2b2125b681 
+https://www.w3schools.com/howto/default.asp
+
+https://www.codeply.com/go/MnULTHRQs7/bootstrap-4-fiddle
+https://www.bootply.com/
+http://expo.getbootstrap.com/
+https://github.com/planetoftheweb/bootstrap
+
+BEST TIP:
+
+	float: right; property is used for positioning and layout on web pages. https://www.w3schools.com/css/tryit.asp?filename=trycss_layout_float
+	overflow:  specifies what happens if content overflows an element's box. https://www.w3schools.com/cssref/tryit.asp?filename=trycss_overflow
+		hidden -	The overflow is clipped, and the rest of the content will be invisible
+		scroll -	The overflow is clipped, but a scroll-bar is added to see the rest of the content
+		auto	If overflow is clipped, a scroll-bar should be added to see the rest of the content
+	list-style: none - hide bullets	
+	cursor: pointer;
+	
+	

@@ -1,4 +1,12 @@
-kcd sword 530ls 5200 400ls 053ls 400 5232ls
+kcd sword 530ls 5200 400ls 053lx 400 5232l
+
+https://gameplay.tips/guides/2010-kingdom-come-deliverance.html
+.github
+/f/Raymacz/xampp/htdocs/wp/site4/wp-content/
+/c/Users/admin/.atom/smart-templates/
+/f/Raymacz/xampp/htdocs/phpsbox/
+/f/MyTutorials/MyExercise/mynotes/Developer.notes
+/c/Users/admin/.atom/myCson_backup
 
 
 WORDPRESS INSTALL:

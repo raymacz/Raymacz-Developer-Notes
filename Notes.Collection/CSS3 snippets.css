@@ -1,0 +1,57 @@
+/* vertically align any element  */
+
+.element {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}	
+
+
+.element {
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+}
+
+/* flex */
+
+.site-branding {
+  display: flex;
+  flex-direction: row;
+  flex: 1 0 auto;
+  min-height: 65px;
+  justify-content: center;
+  text-align:center;
+}  
+
+
+
+section#instructor .circlediv {
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+}
+
+/* smoothiong font */
+
+.element {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://css-tricks.com/almanac/properties/d/display/
+http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
+https://css-tricks.com/centering-css-complete-guide/
+http://vanseodesign.com/css/vertical-centering/

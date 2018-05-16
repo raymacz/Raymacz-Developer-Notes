@@ -1,0 +1,183 @@
+02_02-Identifying requirements for a restaurant website
+
+02_03-Making a basic content inventory for the site
+	-https://www.screencast.com/t/PIsTWd0m   
+	- https://docs.google.com/spreadsheets/d/18Pmc2Lb6bl_Xrk8qT88Hb8uxpuzg0hBHTjfAnz80nyo/edit#gid=846319232
+		1. type (content) - Core Assets, Pages, Menu, Review
+		2. name 
+		3. Description
+		4. Items Required
+		
+02_04-Adding key content to the site
+	- about us
+		- create a page in wp admin  (or add page-about.php to fully customize page)
+
+03_01-Finding a theme that meets your needs					
+	- https://modernthemes.net/wordpress-themes/
+	- https://wordpress.org/themes/auberge/
+
+03_02-Installing and activating Auberge
+	- Built the following pages:
+		- about us
+		- contact
+		- reservations
+		- etc.
+
+03_03-Activating required plugins
+	- https://webmandesign.github.io/docs/auberge/#installation
+	- https://webmandesign.github.io/docs/auberge/#plugins
+	- read documentation & look for required plugins
+		- jetpack 	(gets Food Menus  - CPT (Content Post Types) , Feedback)
+		-- Add sharing buttons to your posts
+		
+	- take note also of the optional plugins
+
+03_04-Adding food menu items to the site
+	- Input now the items from your spreadsheet to your Food Menus (WP Admin)  		
+		- add taxonomy -> Menu Sections (Appetizers, Salads, Entrees, Desserts, Drinks) 
+		- Add one Item (or add new)
+		- Add Many Items
+	- note: if a new taxonomy is added, you need to go settings->permalinks and save Changesnote: if a new taxonomy is added, you need to go settings->permalinks and save Changes
+	- note: add many items has limitations ( because you have limited options on how to input items)
+
+03_05-Adding a food menu page
+	- add new page - Menu
+	- choose Template - Food Menu  (custom page templates)
+		-- note: page-resources, page-fullwidth ( means you can choose on what templates to use (display) in the Admin Templates
+
+03_06-Customizing the header
+	- remove tagline
+	- add logo (or just remove it)
+	- add site icon
+
+03_07-Customizing fonts and colors
+	- tip: auberge theme lets you choose google  https://www.screencast.com/t/hgYkhfG8EAm (customizer)
+
+03_08-Creating a static front page
+	- tip: (customizer) let's you choose what type of static is displayed in the frontpage
+		- about.us, contact, menu, reservations, sample page
+	- choose post page (blog)
+		- tip: (customizer)  you can create a backend page (no content necessary) & assign it as post page / blog
+	- set about us page as front page
+
+03_09-Customizing the front page	
+	- tip: Auberge theme let's you display customized content (MENU) to show in front page
+		- (customizer) Condensed Blog Post (what section to display?) Or opt not to display
+		- (customizer) Food Menu (what section to display?) 
+			-- you can add excerpt for a certain food (menu item) in the admin to display right beside the main content (description)
+
+03_10-Adding widgets to the front page
+	- auberge has 3 widgets: (customizer)
+		1. under Featured Image front page
+			- add google map (embedded or link only) - by jetpack plugins
+			- add welcome text			
+		2. sidebar (right-side) menu items, blog posts, pages
+			- remove default sidebar widgets
+			- add text widget
+		3. footer 
+			- add google map
+			- add image widget (cut image url from admin media & paste to image widget)
+			
+03_11-Adding featured content to the front page
+	- (customizer) "featured" tag  - this may okay but the huge text covers the header picture, it doesn't display long title well enough.
+	- better hide it in the customizer
+	
+03_12-Creating custom navigation
+	- Cutomize menu:
+		- Add page (home, menu, reservations, Contact)
+		- Add Menu Sections ( entree, deserts, salads, etc.)
+		- Shorten Title if its long, so menu would go up next to it)
+
+03_13-Adding a social media navigation menu		
+	
+	04. Extending Functionality with Plugins -----------	
+04_01-Roundup of plugins for this course	
+	- jetpack plugin
+		-- adds content to site
+		-- adds contact form
+	- restaurant reservations plugin (recommended by auberge)
+04_02-Making use of the features in Jetpack
+	-see 27 features of jetpack
+	- include:	carousel, contact form, custom css, custom content types, enchanced distribution (allows sharing), extra sidebar widgets,
+		protect (guards login spamming), publicize, sharing, site verification, spelling & grammar, widget visibility, wordpress.com stats	
+	- exclude: json api, gravatar hovercards, notification, omnisearch, post by email, Shortcode embeds, subscriptions, wp me shortlinks	
+	-jetpack changes constantly
+	-custom content types - sets the custom content types
+	- always exclude infinite scroll in jetpack
+04_03-Adding a contact form
+	- contact form shortcodes
+	- add dropdown (type of inquiry)
+	- feedack - WP Admin (will receive a copy of the email sent by the site visitors)
+04_04-Adding a reservations feature
+	- restaurant reservation plugin
+	- make a reservation page to add the shorcode (reservation)
+	- Bookings->settings (WP Admin) 
+		- general:
+		  -- select a booking page (reservation page), max party size, success message, date & time format, language
+		- booking schedule:
+		  -- add new scheduling rule
+		  -- exceptions, early bookings, late bookings, date pre-selection, time interval, Week Starts On
+		- notifications:
+		-- fully customize emails (Email Template Tags)
+	- when booking is requested:
+		-- the site admin/owner can set the booking status to pending, confirmed, closed & reply to the sender's email
+04_05-Adding a reservations widget
+	- (customizer) add a new widget - Booking Form
+05_01-Checking that the site meets with specifications
+	- GOALS:
+		- Attract New Customers
+		- Showcase the Menu
+		- Highlight locations & directions
+		- invite customers to make a reservations
+	- NEEDS:
+		- Diplay menu items w/ photos & description
+		- dynamic map (just link to the functionl map)
+		- make phone number obvious
+		- contact form 
+	 - REQUIREMENTS
+		- clean, welcoming design
+		- customizable homepage
+		- responsive design and content
+05_02-Testing the site before going live
+	- click if possible all links in the site including widgets
+	- proof- read
+	- test mobile device
+	- test reservation & contact form 
+05_03-Securing your site and getting visitors	
+	- if possible, turn off comments (usually food shops / resto) (can be set in WP admin)
+	- blog post
+	- if comments are activated, use Akismet Plugin (filters spam comments) 
+		-- sign akistmet API key (recommended backup plan)
+	- Vaultpress, restores the last working site automatically.
+	- enable search engine in settings WP admin
+	- configure Jetpack - site verification
+		- signup & paste the code --> bing & google webmaster center, pinterest site verification
+	- set sharing in social media - settings->sharing 
+		-- sharing buttons, show buttons on 
+	- restaurant.wpdiy.net/wp (live sample of lynda)
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+NOTES;
+	
+   - if a new taxonomy is added, you need to go settings->permalinks and save Changesnote: if a new taxonomy is added, you need to go settings->permalinks and save Changes	
+   - page-resources, page-fullwidth ( means you can choose on what templates to use (display) in the Admin Templates
+   
+   
+TIP:
+   - (customizer) auberge theme lets you choose google fonts
+   - (customizer) you can create a backend page (no content necessary) & assign it as post page / blog
+   -  tip: Auberge theme let's you display customized content (MENU) to show in front page
+
+   
+      
+https://themedemos.webmandesign.eu/auberge/	
+http://restaurant.wpdiy.net/wp/

@@ -1,0 +1,290 @@
+https://blueprintdigital.com/object-oriented-vs-procedural-php-programming/
+
+WordPress Actions and Filters: What's the Difference?
+https://code.tutsplus.com/articles/wordpress-actions-and-filters-whats-the-difference--cms-25700
+
+#4 What is Wordpress
+	2-ways to interact:
+		1. Theme
+		2. Plugin
+#5 What is Plugin API
+	- These are gateway functions to make hooks work. https://codex.wordpress.org/Plugin_API
+		-- 2. Actions Functions https://codex.wordpress.org/Plugin_API/Action_Reference
+		-- 1. Filter Functions https://codex.wordpress.org/Plugin_API/Filter_Reference
+	- https://developer.wordpress.org/reference/
+	- Filter & Actions are functions that handle hooks
+	- NOTE: You add filters in your code using the apply_filters() function. As the word 'apply' indicates, you apply filters to existing code, 
+	   whereas an action you create using do_action() is empty until you hook functions to it.
+
+
+#6 Action Hooks Explained
+	- https://codex.wordpress.org/Plugin_API
+	- use action hook to add, remove or change functionality
+	e.g.
+		- If any action has been registered for a hook. https://codex.wordpress.org/Function_Reference/has_action 
+		- Hooks a function on to a specific action. https://developer.wordpress.org/reference/functions/add_action/
+		- Opposite of add_action() & removes default action hook & perhaps replace it  https://codex.wordpress.org/Function_Reference/remove_action
+		- Execute functions hooked on a specific action hook. https://developer.wordpress.org/reference/functions/do_action/
+		- Retrieve the number of times an action is fired. https://codex.wordpress.org/Function_Reference/did_action
+		- Checks to see if an action is currently being executed. https://codex.wordpress.org/Function_Reference/doing_action
+		- Types of Actions: (Hooks here are listed in approx. order in which they fire)
+			-- Actions Run During a Typical Request
+			-- Actions Run During an Admin Page Request
+			-- Post, Page, Attachment, and Category Actions (Admin)
+			-- Taxonomy and Terms
+			-- Comment, Ping, and Trackback Actions
+			-- Blogroll Actions
+			-- Feed Actions
+			-- Template Actions
+			-- Administrative Actions
+			-- Dashboard "Right Now" Widget Actions
+			-- Advanced Actions
+		- do_action( string $tag,  $arg = '' )
+			-- $tag (string) (Required) The name of the action to be executed.
+			-- (Execute functions hooked on a specific action hook.) https://developer.wordpress.org/reference/functions/do_action/
+		- add_action (string $tag, callable $function_to_add, int $priority = 10, int $accepted_args = 1) 
+			-- Hooks a function on to a specific action. https://developer.wordpress.org/reference/functions/add_action/
+		- MyExercise: MyFirstPlugin-Hello.php	
+#7 Filters Explained
+	- https://codex.wordpress.org/Plugin_API
+	- takes some input, modifies it & then returns it.
+	- before data from Database hits the page, you could use a filter to modify it.
+	- Filter hooks, or filters, control how something happens or change something that's already being output. 
+	- override text output by your plugin, or to prevent something from being displayed at all.
+	e.g. 
+		- apply_filters() is a filters version of do_action() https://developer.wordpress.org/reference/functions/apply_filters/
+		- login_headerurl  https://codex.wordpress.org/Plugin_API/Filter_Reference/login_headerurl
+		- Types of Filters: (Hooks here are listed in approx. order in which they fire)
+			-- Post, Page, and Attachment (Upload) Filters
+			-- Comment, Trackback, and Ping Filters
+			-- Category and Term Filters
+			-- Link Filters
+			-- Date and Time Filters
+			-- Author and User Filters
+			-- Blogroll Filters
+			-- Blog Information and Option Filters
+			-- General Text Filters
+			-- Administrative Filters
+			-- Rich Text Editor Filters
+			-- Template Filters
+			-- Registration & Login Filters
+			-- Redirect/Rewrite Filters
+			-- WP_Query Filters
+			-- Media Filters
+			-- Advanced WordPress Filters
+			-- Widgets
+			-- Admin Bar	
+			
+#8 Priorities
+	- lower numbers = earlier execution
+	- function w/ same priority are executed in the order they were added to the action.
+	- 4 functions that utilize priorities: 
+		1. add_filter 2. remove_filter 3. add_action 4. remove_action
+	- note: remove_action / remove_filter should have the same priority as it was executed in the code (add_action / add_filter).
+		https://www.screencast.com/t/6OPHvqAGqh1
+	
+#9 Arguments
+	
+	- $accepted_args by default is 1, you need to declare 2 if you want two arguments.
+		-- e.g. $accepted_args (int) (Optional) The number of arguments the function accepts. Default value: 1 
+		-- https://www.screencast.com/t/roaJxuzo05NJ
+
+#10 Customizing the WP login page
+
+	- create a new plugin - custom-wp-login.php & activate
+	- https://developer.wordpress.org/plugins/the-basics/header-requirements/
+
+#11 Adding a custom stylesheet
+
+	- go to wp-login.php (found in WP directory) & open 
+		-- find function login_header 
+		-- https://codex.wordpress.org/Plugin_API/Action_Reference/login_head
+		-- https://developer.wordpress.org/reference/functions/wp_enqueue_style/		 
+	- when creating functions, it's recommended to add prefix (text domain in plugins)
+	- (WP plugin directory) https://developer.wordpress.org/reference/functions/plugin_dir_url/	
+	- (Register a CSS stylesheet.) https://developer.wordpress.org/reference/functions/wp_register_style/
+	- (Enqueue scripts and styles for the login page.) https://developer.wordpress.org/reference/hooks/login_enqueue_scripts/
+	- (custom-wp-login.php) note: use login_enqueue_scripts instead of wp_enqueue_scripts because its for WP login page & not your theme pages.
+	- plugin: https://www.screencast.com/t/RJguNdBp  
+	- style is loaded: https://www.screencast.com/t/9NB1stU8er7
+
+#12 Filtering login error messages
+	- https://developer.wordpress.org/reference/functions/__return_null/
+	- https://codex.wordpress.org/Plugin_API/Filter_Reference/login_errors
+	- https://developer.wordpress.org/reference/hooks/login_errors/
+
+#13  Removing the login page shake
+	- wp-login.php - shakes if wrong error function wp_shake_js() 
+	- https://codex.wordpress.org/Function_Reference/remove_action
+		-- to remove a hook, the $function_to_remove and $priority arguments must match when the hook was added. This goes for both filters and actions. No warning will be given on removal failure.
+		-- remove_action() must be called inside a function and cannot be called directly in your plugin or theme.
+    - https://codex.wordpress.org/Function_Reference/has_action			
+		
+#14 Finding references and documentation
+	1. https://codex.wordpress.org/Writing_a_Plugin
+	2. https://codex.wordpress.org/Plugin_API
+	3. https://codex.wordpress.org/Plugin_Resources
+	(any who has WP account can contribute to the documentation
+	4. you'll find related documentation below (e.g. External Resources)
+	5. https://developer.wordpress.org/plugins/ (Plugin Handbook) - it's more understandble
+	-there maybe packages/code snippets available for WP documentation on your code editor - (e.g. atom, sublime, php storm, etc.)
+	- tip: look for a plugin, see hooks used & check documentation
+
+#15 Identifying available hooks and filters
+	- google, research, scavenger hunt thing.
+	- overtime you'll familiarize or remember them it exist (not memorize the exact syntax)
+	- install both plugin:
+		- https://wordpress.org/plugins/debug-bar/
+			-- Adds a debug menu to the admin bar that shows query, cache, and other helpful debugging information.
+			-- A must for developers!
+			-- it provides data on caching, query, etc.
+		- https://developer.wordpress.org/plugins/developer-tools/debug-bar-and-add-ons/#debug-bar-actions-and-filters-addon
+			-- https://www.screencast.com/t/xdat8lXovZ9
+
+#16 A look at load order
+	- in action reference are listed in approx. load order (not alphabetically) https://codex.wordpress.org/Plugin_API/Action_Reference
+	- https://www.rarst.net/wordpress/wordpress-core-load/
+		-- note: plugins are loaded before theme is loaded
+	- https://wordpress.org/plugins/query-monitor/
+		-- more detailed information when things load than debug-bar plugin does
+		-- https://www.screencast.com/t/qLlLkPD1od
+		-- you can actually choose what to dispay: the hook & plugin/theme is using it = https://www.screencast.com/t/UoYua8xiB
+	- tip: you need to be aware of when you code is firing too early or late in the process
+	- tip: loading your code in the wrong spot could be the culprit why it's not working
+		-- example in filter reference:		https://codex.wordpress.org/Plugin_API/Filter_Reference/login_redirect
+			-- This example redirects admins to the dashboard and other users to the homepage. 
+				Make sure you use add_filter outside of is_admin(), since that function is not available when the filter is called.
+	
+#17 Understanding call back functions
+	- add_action( string $tag, callable $function_to_add, int $priority = 10, int $accepted_args = 1 )
+	- $tag - name of hook
+	- $function_to_add - callback - what to run when it gets the hook.
+	- https://codex.wordpress.org/Plugin_API/Action_Reference/pre_get_posts (action reference)
+		-- https://developer.wordpress.org/reference/hooks/pre_get_posts/
+    - https://codex.wordpress.org/Plugin_API/Filter_Reference/login_redirect  (filter reference)
+		-- https://codex.wordpress.org/Plugin_API/Filter_Reference/login_redirect
+	- you can use callback functions that are already used in wordpress (like the ones declared in functions.php)
+	- callback functions does not matter where it is located since it doesn't affect anything until its called.
+	- you can can place callback functions in a separate page & another main plugin page all functions that call hooks (using action & filter functions).
+
+#18 Using apply_filters
+	- https://codex.wordpress.org/Function_Reference/apply_filters (call functions added to a filter hook)
+	- https://www.screencast.com/t/mH7T2cNJNLav - example
+	
+
+#19 WP_Hook vs $wp_filter
+	- WP_Hook class was made in WP 4.7 to address the issue for $wp_filter (because of recursive callback -> functions that calls itself from w/in itself)
+	- https://make.wordpress.org/core/2016/09/08/wp_hook-next-generation-actions-and-filters/
+
+#20 Adding Custom Hooks
+	- plugin enables developers to inject code to WP
+	- you can create your own custom hooks using apply_filters() & do_action()
+	- adding hooks/filters in your plugin & if another developer has used it, cannot be taken back easily  (if you want to maintain backwards compatibility).
+	  tip (rule of thumb): only add hooks/filters to your own plugin when developers asked for it.
+    - note (very IMPORTANT): add_action() should be FIRST BEFORE do_action() unlike apply_filters() & add_filter() which are INTERCHANGEABLE;
+	- note: a function with RETURN won't work in do_action() / add_action()
+	- https://www.screencast.com/t/eWO22fdt (see custom hook)
+	
+#21 Inside themes and plugins with hooks
+	- a lot of plugins & theme frameworks have their own hooks build to their codebase.
+		e.g.
+			https://wordpress.org/plugins/buddypress/
+			https://my.studiopress.com/themes/genesis/
+			https://wordpress.org/plugins/easy-digital-downloads/
+			https://www.studiopress.com (creators of genesis framework)
+     - https://carriedils.com/genesis-hook-reference/ (guide for genesis framework theme)			
+
+#22 Tips for using third-party hooks 
+
+	- WP, plugins & themes have hooks, you can create ur own hooks.
+	- Best practices, 
+	1. check for dependencies on activation (if plugin is dependent on another plugin)
+		e.g. https://wordpress.org/plugins/debug-bar-actions-and-filters-addon/ (plugin dependency)
+			-- click development & browse the code https://www.screencast.com/t/OhgGsrjcC
+			-- trunk (folder) - it contains the recent plugin code for WP.org
+		    -- note: best practice for naming plugin's main file must be the same -> https://www.screencast.com/t/2PcbIBguoh		
+			-- if plugin dependency is not activated, deactivate plugin https://www.screencast.com/t/shs8D5vQpg3
+			-- if current theme is not active, deactivate plugin https://www.screencast.com/t/Tx6lYrNnWTNn
+	2. check for dependencies when you are using a hook		
+		-- (checks if theme is activated before it executes the rest of the code) https://www.screencast.com/t/eXTvoLkm
+	3. document your source code
+		-- wordpress has its own standard php documentation style https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/
+	4. be aware of updates to third-party libraries
+	-  Recommend to check other developers code for you to get an idea of what codes they use  https://www.screencast.com/t/pqVCp9K0	
+	    -- seeing how they do dependency checks w/c WP or PHP functions to use 
+		
+					
+#23 A look at what you're building
+	- create a plugin demo - add a custom widget area & display its contents to our single post 
+	 (register, display, & add custom styles using action/filter hooks & that someone could use that hooks on our plugin)
+
+
+#24 Setting up the folder and file structure
+	- single-post-content-plus.php
+	- https://developer.wordpress.org/reference/functions/wp_enqueue_style/
+	- (Fires when scripts and styles are enqueued.) https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts/
+
+
+#25 Registering a sidebar
+	- https://developer.wordpress.org/reference/functions/register_sidebar/
+	- https://developer.wordpress.org/reference/hooks/widgets_init/
+	
+
+#26 Displaying a sidebar on single posts
+	- https://codex.wordpress.org/Plugin_API/Action_Reference/dynamic_sidebar
+	- https://codex.wordpress.org/Plugin_API/Filter_Reference/the_content
+	- https://developer.wordpress.org/reference/hooks/the_content/
+	- note: filter hooks always return something
+	- (Is the query for an existing single post?) https://developer.wordpress.org/reference/functions/is_single/
+	- (Whether a sidebar is in use.) https://developer.wordpress.org/reference/functions/is_active_sidebar/
+		-- https://codex.wordpress.org/Function_Reference/is_active_sidebar
+	- (very important) https://developer.wordpress.org/reference/functions/is_main_query/
+	
+
+#27 Applying filters for loading stylesheets
+	- let someone be able to apply a hook filter in your styles
+	- https://developer.wordpress.org/reference/functions/__return_true/
+	- https://developer.wordpress.org/reference/functions/apply_filters/
+
+#28 Putting it all together    
+	- https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/
+	- https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/#docblock-formatting
+	- plugin shows us the query - https://www.screencast.com/t/s8QJPw8rf
+	- https://wordpress.org/plugins/query-monitor/
+	- https://developer.wordpress.org/plugins/the-basics/header-requirements/
+
+#29 Staying up to date with Wordpress Development
+	- https://make.wordpress.org/
+	- https://managewp.com/
+
+#30 Next Steps
+	- https://deliciousbrains.com/blog/
+	- https://tommcfarlin.com/
+	- https://pippinsplugins.com/blog/
+	- Wordpress: Custom Post Types and Taxonomies
+	- Wordpress: REST API
+	- WordPress and Internationalization
+
+A callback is any executable code that is passed as an argument to other code, which is expected to call back (execute) the argument at a given time. 
+This execution may be immediate as in a synchronous callback, or it might happen at a later time as in an asynchronous callback.
+
+note: There are common names for hook, functions, reference (Action or Filter). Sometimes, there is a hook but has no function & vice versa.
+		Sometimes function perform hooks w/ different names.
+
+	- wp_enqueue_scripts:
+		-- (action reference - used for enqueuing both scripts and styles) https://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts
+		-- (function - Wrapper for do_action(‘wp_enqueue_scripts’)) https://developer.wordpress.org/reference/functions/wp_enqueue_scripts/
+		-- (function - Enqueue a script.) https://developer.wordpress.org/reference/functions/wp_enqueue_script/
+		-- (hook - Fires when scripts and styles are enqueued)  https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts/
+		
+http://www.wpbeginner.com/wp-tutorials/25-extremely-useful-tricks-for-the-wordpress-functions-file/
+
+
+ACTIONS vs FILTER Hooks
+
+ACTION
+	Allows to run our code at a specific time when Wordpress is doing something.
+	do_action() - executes action.  add_action() - hooks custom function
+FILTERS
+	Give us access to the data which we can modify and return that data back using our custom functions.	
+	apply_filters() - executes filter.  add_filter() - hooks custom function

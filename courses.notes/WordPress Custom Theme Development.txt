@@ -1,0 +1,223 @@
+#03 Creating a Theme Prototype - Project Overview and Design Approach .
+	- 1. Custom Page Designs 
+			Home -	classes events contact about gallery
+	- 2. Page Templates
+	- 3. Plugins
+	- https://www.screencast.com/t/BycHt0uL
+#04 Creating a Theme Prototype - Planning and Starting a Prototype	
+#05 Creating a Theme Prototype - Prototype Overview
+	- least to specific (top to bottom) CSS Reset / Normalize, Typography, Global Styles, Template (custom), Page Styles (custom)
+#06 Theme Structure - Introduction
+#07 Theme Structure - Understanding Template Files
+	- Types of template files 
+		-- 1. Page Templates -- specific layout to a whole page
+		-- 2. Template Partials -- a common template part or module w/ own template file
+				using template tags (e.g. get header();)
+		-- 3. Logic, Behavior, Presentation - php, js, css
+				main file --> functions.php
+				main stylesheet --> style.css
+				
+				
+	- template heirarchy - system used to determine what template to use for displaying page by WP
+	
+#08 - Theme Structure - Template Files Overview
+    Main template file
+	- index.php - 
+	Individual page templates
+	- page.php  
+	Front Page Templates
+	- 1. front-page.php - (more static front pages)
+	- 2. home.php - default front page (shows latest post)
+	- 3. index.php - (more generic)
+    Post Templates
+	- 1. single.php - for individual post
+	- 2. archive.php - for post archives / displays all posts that have been published
+	- 3. category.php - posts for specific category
+	- 4. tag.php - posts for specific tag
+	Template Partials - a common template part or module w/ own template file
+	- header.php
+	- comments.php 
+	- sidebar.php 
+	- footer.php
+	Other Templates
+	- search.php - posts for a specific search
+	- 404.php - when slug is not found
+	- attachment.php - (not sure hehe)
+	- date.php
+	- image.php
+	- taxonomy.php
+	- author.php
+	- rtl.php
+	Infinite Variation Template samples
+	- archive-cat.php - archive pages of a custom post type of cat
+	- page-contact.php - individual page of contacts
+	- single-lady.php - single post of a custom post type of lady
+	
+	
+09 - Theme Structure - Template Hierarchy
+	- In WP template heirarchy, the black boxes are actually page types, not templates.
+	- archive page (black box) - displays a list of posts on one type
+		$slug - a string that is usually a "sub-url" for specific page
+		$id - if no $slug is given/made, it will refer to $id of a specific post
+    - the site url with the slug usually tells what post type & templates are used
+	   e.g. https://animalsite.com/breeds/pitbull
+			"breeds" - category archive / custom post type archive 
+			"pitbull" - individual post (e.g of "breeds" custom post type)
+	- display all of author's posts:
+	    https://codex.wordpress.org/Function_Reference/the_author_posts (display)
+		https://codex.wordpress.org/Function_Reference/get_the_author_posts  (Returns the total number of posts an author has published.)
+		https://codex.wordpress.org/Function_Reference/the_author (display an author of a post)
+		https://codex.wordpress.org/Function_Reference/get_the_author (retrieve/return in php the author of a post)
+		https://codex.wordpress.org/Function_Reference/the_author_link (displays a link to the Website for the author of a post.)
+		https://codex.wordpress.org/Function_Reference/the_author_posts_link (Displays a link to all posts by an author.)
+	- https://codex.wordpress.org/Template_Tags
+	
+10 - Theme Development - Introduction
+	
+	
+11 - Theme Development - Development Setup
+	- set define('WP_DEBUG', true);
+
+12 - Theme Development - Setting up a New Theme
+- create files for WP template (for best practice, use files from WP themes like 2014-17 themes as a guide)
+	- style.css - https://developer.wordpress.org/themes/basics/main-stylesheet-style-css/
+	- index.php
+	- screenshot.png 1200x900 (not larger)	
+
+13 - Theme Development - Finishing Theme Setup
+	- copy all css & add to style.css
+	
+14 - Theme Development - Creating an Index.php Template
+	- index.php - copy all html code here  (index is more generic, so we just put the content)
+		--  esc_html( get_the_title() ); https://developer.wordpress.org/reference/functions/get_the_title/
+		-- (Display the post content) https://developer.wordpress.org/reference/functions/the_content/ 
+	
+	
+15 - Theme Development - Creating the Home Page
+	- front-page.php (more static)
+	- copy code to frontpage (before header & footer - content) 
+	- if WP debug is activated, & no header.php is found when called by get_header(), a WP error is shown
+	- update image path bloginfo('template_url') https://developer.wordpress.org/reference/functions/bloginfo/
+	
+16 - Theme Development - Adding a Header and Footer Template
+	- create header.php - copy code top most to header tag
+		-- put to lowest part of header tag https://developer.wordpress.org/reference/functions/wp_head/ Fire the wp_head action.
+		  (include IE8+ compatibility)
+		-- add meta bloginfo( 'charset' ) & delete <title> tag  
+	- create footer.php - copy code lowest to footer tag
+		-- put to lowest part of footer tag https://developer.wordpress.org/reference/functions/wp_footer/ Fire the wp_footer action.
+		
+17 - Theme Development - Adding Menus
+	- https://developer.wordpress.org/reference/functions/wp_nav_menu/
+	- add menu to header and footer
+		-- use 'menu_class' for <ul>
+		-- use 'theme_location' for register_nav_menu() in functions.php
+	
+18 - Theme Development - Functions.php and WordPress Hooks
+	- http://php.net/manual/en/function.function-exists.php
+	- load language support https://developer.wordpress.org/reference/functions/load_theme_textdomain/
+	- add_theme_support https://developer.wordpress.org/reference/functions/add_theme_support/
+	- Hooks in WP - allow to "hook" into WP & use the developer's custom functions for certain situations.
+		-- (Hooks a function on to a specific action.) https://developer.wordpress.org/reference/functions/add_action/
+			--- (can be used for register_nav_menus) https://developer.wordpress.org/reference/hooks/after_setup_theme/
+			--- https://developer.wordpress.org/reference/hooks/widgets_init/
+			---  (add item data to a queue awaiting processing) https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts/
+				---- https://developer.wordpress.org/reference/functions/wp_enqueue_script/	
+				---- Enqueue a CSS stylesheet https://developer.wordpress.org/reference/functions/wp_enqueue_style/
+					https://www.screencast.com/t/L6mVlnbHY   ($handle becomes an id="" of <link> w/ a suffix of "-css")
+					
+			--- (can be used for  register_nav_menus) https://developer.wordpress.org/reference/hooks/init/	 
+				
+				
+		-- (Hook a function or method to a specific filter action.) https://developer.wordpress.org/reference/functions/add_filter/
+			(custom function that gets specified data & outputs modified data) 
+			--- https://developer.wordpress.org/reference/hooks/excerpt_more/
+			--- https://developer.wordpress.org/reference/hooks/get_the_archive_title/
+				---- https://developer.wordpress.org/reference/functions/single_cat_title/
+				---- https://developer.wordpress.org/reference/functions/single_tag_title/
+		
+
+19 - Theme Development - Creating the Header and Footer Navigation	
+	- add navigation to WP admin
+
+20 - Theme Development - Creating Page Templates
+	- add a new template page-<name>.php for single pages template & add * Template Name: <name> Page 
+	- copy static code to new template
+	- change to dynamic path https://developer.wordpress.org/reference/functions/bloginfo/
+	- in WP Admin, add a slug metabox
+
+21 - Theme Development - Global Page Templates
+	- for global page templates, we use page_<name>.php & add * Template Name: <name> Page 
+	- add page_full-width.php https://www.screencast.com/t/suAFOp1x
+	- add Page_two_column.php https://www.screencast.com/t/ALkC3xMO1rlp
+	- https://developer.wordpress.org/reference/functions/get_the_title/
+	
+22 - Theme Development - Registering Widget Areas
+	- https://developer.wordpress.org/themes/functionality/sidebars/
+	- https://developer.wordpress.org/themes/functionality/widgets/
+	- esc_html__( 'Sidebar', 'boot2wp' ) 
+	- __() means it is available for localization / langauge
+	- "%1$s" means php will generate a unique ID 
+	- "%2$s" means php will generate a unique class
+		https://wordpress.stackexchange.com/questions/115926/what-is-the-meaning-of-s-1s-etc
+	
+	
+23 - Theme Development - Creating a Dynamic Sidebar Template
+   - https://developer.wordpress.org/reference/functions/is_active_sidebar/
+   - https://developer.wordpress.org/reference/functions/dynamic_sidebar/
+   
+
+24 - Theme Development - Finishing Up
+	- https://developer.wordpress.org/reference/hooks/init/
+	- https://developer.wordpress.org/reference/functions/register_post_type/
+	- https://www.screencast.com/t/eEeXL8gjaXl
+	- https://developer.wordpress.org/reference/hooks/admin_menu/
+	- https://developer.wordpress.org/reference/functions/add_meta_box/
+
+25 - Beyond Your Theme - Introduction
+
+26 - Beyond Your Theme - Plugins
+	- Events Calender
+		https://wordpress.org/plugins/the-events-calendar/
+		https://wordpress.org/plugins/another-events-calendar/
+	- Security 	
+		https://wordpress.org/plugins/better-wp-security/
+		https://wordpress.org/plugins/search/Wordfence+Security/
+	- Backup
+		https://wordpress.org/plugins/backupwordpress/
+	- SEO 
+		https://wordpress.org/plugins/wordpress-seo/
+	- Broken Link Checker
+		https://wordpress.org/plugins/broken-link-checker/
+	- Cache
+		https://wordpress.org/plugins/w3-total-cache/
+		
+27 - Beyond Your Theme - WordPress Security
+	- 2 Main Security Issues of WP:
+		1. Brute force login - bot/person trying to force login until successful.
+			- don't use admin as username
+			- enable 2-factor authentication
+			- block IP address that frequently login (by .htcess modification)
+		2. Comment Spam - person/bot uses unsolicited comments.
+			- constant comment moderation
+			- tweak Discussion Settings to limit links when commenting & 
+					blacklist keywords & IP addresses. (be careful blackisting as it can affect other users)
+			- required registration before making comments		
+	- Choose a trusted web host	
+	- Backup often
+	- install popular plugins / themes from WP repository
+	- regulary update themes/plugins & WP
+	- use at least 2-security plugins
+	
+28 - Beyond Your Theme - Summary and Conclusion
+	
+
+
+GLOBAL variables: https://wordpress.stackexchange.com/questions/147513/how-to-set-global-variables-in-template-page
+wordpress hooks: https://www.smashingmagazine.com/2016/01/get-started-with-hooks-wordpress/
+most common functions in WP https://www.theedesign.com/blog/2012/short-code-guide-for-wordpress
+http://www.wpbeginner.com/wp-tutorials/25-extremely-useful-tricks-for-the-wordpress-functions-file/
+https://winningwp.com/best-event-calendar-plugins-for-wordpress/
+	
+	
+	

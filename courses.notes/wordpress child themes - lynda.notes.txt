@@ -1,0 +1,144 @@
+#05
+  - Stock WP themes are the best themes for parent-child theming. Usually these themes have the latest features during release.
+    Usually built to make easier child themes.
+  - Some themes are impossible to build child themes.
+  - Popper theme  is recommended
+#06 006 Creating and activating a child theme
+  - tip: just reference the Parent CSS file (not copy/paste the CSS code) using @import
+  - a better way to load CSS efficiently https://codex.wordpress.org/Child_Themes
+  - you create a new theme instead if you want to overwrite the whole css
+#008 Bringing in the parent theme stylesheet(s)
+  - Some themes offer complex CSS with multiple loads w/c brings more load than its worth.
+#009 009 Employing the laziness principle
+  - Reuse Code whenever possible. Makes a lot simpler.
+#012 Adding new styles
+  - When a post is set to sticky, a class sticky will be added to class name
+#015 Understanding the WordPress template hierarchy
+  https://wphierarchy.com/
+  - if templates are not found (main or child themes), wordpress will automatically go up the heirarchical tree until it defaults to index.php.
+#016 Show Current Template plugin to identify current template
+  - Use this plugin to determine what wordpress is currently using
+  https://wordpress.org/plugins/show-current-template/
+    note: this theme will show all the template parts its currently using including the parent & child theme
+#017 Changing an existing template file
+  - the child theme is able to change different components of the parent theme.
+  - Being able to change anything using the child theme without touching the parent theme and breaking it.
+  - note: replace an identical file from parent theme is overidden by child theme
+	-- e.g. from parent-theme/single.php to child-theme/single.php
+#018 Adding new template files
+  - Wordpress let's you choose which template to display http://storage7.static.itmages.com/i/17/0816/h_1502915380_4451584_1020692780.png
+  - create a folder "page-templates"
+  - Customized Page Template shold be name page-<name>.php  e.g. "page-sidebar-right.php"
+#019 Challenge - Add a template for the Aside post type
+  - an Aside in wordpress are one of the post formats. Usually they have titles & contain minimal information
+     found in the bottom of the front page (e.g. date & other meta info.)
+  - http://storage6.static.itmages.com/i/17/0817/h_1502961828_2670528_6a49ba1b59.png
+#020 Solution - Add a template for the Aside post type
+  - To overwrite the parent by a child theme, we need to copy the same folder structure.
+  - To override any template, always check first the root index.php of the parent theme for instructions
+#021 Understanding and using the functions.php file
+  - functions, classes, methods, hooks, https://developer.wordpress.org/reference/
+  - all themes have functions.php & used for 2 purposes:
+    1. features of theme: add theme support (e.g. featured image sizes, post format, custom menu configuration, javascripts, stylesheets)
+    2. Hold for custom function for child theme: (e.g. modification of parent functios & new functions)
+  - well built theme have hookable functions that allow child theme to override
+  - hookable function - wrapped in a conditional statement that checks if a function already exist in a child theme
+  - if you hook a function in a child theme (same function name), it will be ran in place of the parent's function
+      http://storage3.static.itmages.com/i/17/0817/h_1502982838_1412979_ac6cf181e3.png
+  - functions.php in child is called before the parent's functions.php. Both run consecutively.
+
+#022 Giving the child theme a text domain
+  - wordpress is equipped w/ transalation engine
+  - load_theme_textdomain() - function used for translation available for the theme
+  - to add child functions.php  <parent theme name>_setup.php to <parent theme name>_child_setup.php
+  - override a parent function sample -  (e.g. load_theme_textdomain() --> load_child_theme_textdomain()
+    https://developer.wordpress.org/reference/functions/load_child_theme_textdomain/
+  - textdomains - $domain are child or parent theme name. (e.g. popper, popper-child)
+  - to make translation work, one must change all reference in the child templates (e.g. popper --> popper-child)
+     http://storage8.static.itmages.com/i/17/0817/h_1502969943_6920129_121395ad41.png
+#023 Changing a function used by a template file
+  - To change output of a certain function in child template only
+  - In the later years, wordpress moved custom functions into a separate file to avoid functions.php from becoming too big.
+  - To change the function output of parent theme, one must look to each of the templates in the child
+       Steps to modify a function in a template:
+      1. Use Show Current Template plugin  http://storage4.static.itmages.com/i/17/0817/h_1502973862_4815378_982c3dbed0.png
+      2. single.php - http://storage7.static.itmages.com/i/17/0817/h_1502974161_3524237_0d85a731a1.png
+      3. content-single.php -  http://storage3.static.itmages.com/i/17/0817/h_1502974283_5539005_4905e88cdb.png
+      4. functions.php - http://storage3.static.itmages.com/i/17/0817/h_1502974413_9402712_f665e39ca3.png
+      5. template-tags.php - http://storage2.static.itmages.com/i/17/0817/h_1502974522_9909881_c2b3899253.png
+      6. create a function.php in child template & copy a snippet code from parent (tempalet-tags.php) & paste it to child
+      7. Edit the code to override the parent function
+      8. Change the textdomain ('popper' to 'popper-child')
+      9. Update CSS stylesheet (e.g. display: block or inline-block)
+#024 Challenge - Change the post meta display on index pages
+#025 Solution - Change the post meta display on index pages
+    - Steps to modify:
+    1. index.php
+    2. template-parts/content.php
+    3. functions.php
+    4. template-tags.php
+    5. create a function.php in child template & copy a snippet code from parent (tempalet-tags.php) & paste it to child
+    7. Edit the code to override the parent function
+    8. Change the textdomain ('popper' to 'popper-child')
+    9. Update CSS stylesheet (e.g. display: block or inline-block)
+#026 Adding a new menu to the child theme
+  - Menus are usually built-in & can be enabled
+  - Core items (e.g. Custom Menu, Sidebar) are usually found in functions.php
+  - steps to create a menu in footer
+    1. Enable Primary Menu in Customizer
+    2. functions.php - find "nav_menu" & copy to child http://storage8.static.itmages.com/i/17/0817/h_1502993677_4728710_1db5578d9d.png
+    3. WP Customize - Menu Locations - enable the new custom menu (menu is now loaded the WP Core ready for Display)
+    4. header.php - Check home page where primary menu was enabled & then check header.php template
+    5. footer.php - create a new footer.php in child theme folder & duplicate parent content.
+                  - Insert by pasting the code (nav_menu snippet) from header.php
+                  - http://storage3.static.itmages.com/i/17/0817/h_1502995892_6296014_18117947eb.png
+    6. WP Customize - Go Back & choose what type of data to display in Menu
+#027 Changing the menu output with properties
+  - creating lots of menu in the site might be a bad experience to site visitors
+  - make decision for customers on what's best for your site. Make themes a bit restrictive by making it easier to work with.
+  - Footer Menu Should only be top menu links
+  - check the parameters for customizing menu  https://developer.wordpress.org/reference/functions/wp_nav_menu/
+#028 Styling the new menu with CSS
+  - display:flex, flex-wrap: wrap, list-style-type:none;
+#029 Challenge - Add a new widgetized area to the footer
+#030 Solution - Add a new widgetized area to the footer
+  - sidebars are widgetized areas (even before the early days of WP - reason why function is called register_sidebar)
+  - widgets can be placed anywhere
+  - steps:
+    1. functions.php - copy the code inside the function popper_widgets_init() & paste to child theme
+    2. Change the fuction name because its not hookable, meaning the function name is common.
+      http://storage6.static.itmages.com/i/17/0818/h_1503071610_8032459_6707d30bda.png
+    3. sidebar.php - widgets are usually displayed in this theme, find the code responsible for output in the template.
+      http://storage2.static.itmages.com/i/17/0818/h_1503072198_4321481_2873085463.png
+    4. customizer - activate the widget http://storage8.static.itmages.com/i/17/0818/h_1503072607_9689123_bb023978a3.png
+    5.  Update CSS stylesheet (e.g. display: block or inline-block)
+#031 Replacing custom web fonts
+    -  https://fonts.google.com/ - Best option to replace fonts is to add new font INTO the site.
+    1. search <parent theme>_scripts.php
+    2. function.php - copy a snippet from parent & paste to child http://storage5.static.itmages.com/i/17/0818/h_1503079688_2546480_289d9177d9.png
+    3. functions.php - remove the unused font snippet
+     https://developer.wordpress.org/reference/functions/add_action/
+        (take note of action param: $priority for fonts to be updated) http://storage7.static.itmages.com/i/17/0818/h_1503080858_2264645_fad6cb7570.png
+    4. style.css - edit the child by overriding the old fonts.
+        (Note: You need to copy the CSS selectors of old fonts & add new css entry w/ the new fonts.)
+#032 Adding a screenshot
+  -copy popper/screenshot.png to popper-child/screenshot.png & edit the image
+
+  
+  
+  http://www.wpbeginner.com/beginners-guide/wordpress-child-theme-pros-cons/
+  https://digwp.com/2016/01/include-styles-child-theme/
+  
+  
+  tip: post formats 
+	  - can be activated in functions.php https://codex.wordpress.org/Post_Formats
+      - an Aside in wordpress are one of the post formats. Usually they have titles & contain minimal information
+			1. you create a post & choose a certain post format like aside
+			2. next step is to display that post format content 
+				a. create content-aside.php & customize the layout the way you like
+				b. 	add this to index.php or any template & it will call the correct template for the post format
+					get_template_part( 'template-parts/content', get_post_format() ) ); 
+				tip: a good example is the auberge-child theme which I made
+			
+			
+			

@@ -1,0 +1,1225 @@
+================================================= 30 Days to Learn jQuery  =================================================
+30 Days to Learn jQuery
+
+4. Events-101
+ - self-invoking anonymous function
+	-- (function() {})();
+ - testObj = new Object();
+   testObj.greetingMorn = "Good Morning!";
+   $('div').data(testObj)
+   alert($('div').data("greetingMorn"));
+ - <button data-file="day">Day</button>  
+   - $stylesheet = $('button').data('file');
+   - $('link').attr('href', stylesheet + '.css');
+   - $(this).siblings('button').removeAttr('disabled').end().attr('disabled', 'disabled');
+		-- end() means it ends the latest selector state & return to previous selector state.
+   - ("li.start").nextUntil("li.stop:contains('sampletext')").css({"color": "red"});	
+		
+5. Events-201
+	-  $('dd').filter(':nth-child(n+4)').addClass('hide');
+	- 	$('dl').on('mouseenter', 'dt', function() {	$(this).next().slideDown(200).siblings('dd').slideUp(200);});
+	
+6. Bind-Live-Delegate-Huh
+	- $(this).clone().appendTo('body');
+		-- note: won't respond when the newly cloned element is clicked, 
+			-- BECAUSE the newly cloned element hasn't got any event handler unlike the previous selectors
+			-- solution: clone(true) - to attach event the last event handler
+	- $('h2').live('click', function() {});	
+		-- $().live // it automatically attaches the event handler to the document.body, but was deprecated
+	- $('h2').delegate('click', function() {});	
+	- "<anymethod>:"  to search for a particular method in any jQuery.js (e.g. delegate: unbind: toggle:)
+	- $().live & $().bind & $().delegate points all to $().on --> method https://www.screencast.com/t/uBxYy9O3LX2
+		- similar to $().die pointing to $().off
+		
+	
+7.Creating-and-Appending-Content-to-DOM
+	- $('div').after('<p>anytext</p>') 
+	- $('<p>anytext</p>').insertAfter('div') 
+	- $().first().before('<p>anytext</p>')
+	- $('<p>hi hello </p>').appendTo('article') // not recommended to insert content
+		$('<a></a>',{
+			text: 'hi hello',
+			class: 'myclass',
+			href: 'http://google.com'
+		}).prependTo('div') // better use to insert content
+	- $('p').eq(0).after(function() {
+		 return $(this).prev();
+	 });	
+	
+	- var co = $('article').find('span.co').each(function() {});
+	
+	
+
+8.Effects-and-Structure
+
+	- tip: you can add css to <html> element
+	- init - is constructor method in javascript
+	- show: function() {
+		contactForm.close.call(contactForm.container); //call() is a javascript method. This method's parameter sets what object to pass to the main method - "close"
+		contactForm.container.show();
+	  }
+	  close: function() {
+		var $this= $(this); //#contact
+		$('<span class=close>X</span>').prependTo(this)
+			.on('click', function() {
+				$this.hide();
+			})
+	  }
+		-- https://www.screencast.com/t/wCvawnOiF5B (code)
+	- var contactForm = { container: $('#contact') };
+		// reference by contactForm.container or contactForm['container']	
+		-- https://www.screencast.com/t/pI7TsoTTYBi (code2)	
+	- https://www.screencast.com/t/47hrD0vTdPDJ (code3)
+	- 	$.extend(this.config, config); // $.extend() is helpful method of jquery core that sets a default object
+	- 	if ( container.is(':hidden') ) {};
+	-   if ( $this.find('span.close').length ) return;
+	- tip: constantly using multiple anonymous function is not good to organize code & can be confusing. Use OOP to structure code better.
+
+9.The-this-keyword
+	- note: $(this) is initialized to point to Parent Window Object (DOMwindow)
+	- $('a').on('click', function(e) {});  
+		-- <a> anchor tag has a default event when clicked 
+		-- "e" is the event for $().on();
+		-- console.log(e); // lets you see all event details
+	- $().event.preventDefault(); 
+		// means to prevent all default event handlers (w/c are attached to elements) from execution.
+		// commonly placed at the bottom of the code (within context related to event), but it doesn't matter
+	- $('a').on('click', function(e) { console.log(this); });  
+		- $('a').on('click', obj.doIt); // OR using direct call is the same https://www.screencast.com/t/zq3x3Gvc9hN
+		  var obj = { 
+			 doIt: function(e) { console.log(this); }
+		  }
+		- 	// this is a bit different https://www.screencast.com/t/CUEWS1hghSA // "e" - to pass an event to call()
+	-  obj.doIt.call(this, e);  // .call() lets you pass objects to the method
+			-- this - object to pass, e - object event to pass
+			-- obj - variable that contains the object, doIt - method that being called
+	   obj.doIt.apply(this, []);   //  .apply() lets pass array of variables
+	- $('a:eq(3)').on( 'click', $.proxy(obj.doIt, obj)); // obj 
+	- https://www.screencast.com/t/IS7Hq2yyV6 (code)
+
+10.Modifying-Effect-Speeds
+	- $().hide();
+	- $().on('click', function() {
+		$(this).next().slideDown('fast');
+	  }
+	- fx means effects - https://www.screencast.com/t/33ymyhpoSFL	
+	- if you set the speed to a typo. it will go as default.
+	- we change the jQUery default by:
+		-- $.fx.speeds._default= 2000;
+	- we can also set our own customized speeds by:
+		-- $.fx.speeds.turtoise = 5000;
+	
+11.Creating-Custom-Effect-Methods
+	- how to a create a custom effect in jquery
+	- copy paste & modify code from jquery.js to your code https://www.screencast.com/t/0OuASYiY
+	- jQuery.fn.flash = function( speed, easing, callback ) {
+		var $this = $(this);
+		return $this.slideDown(500, function() { $this.delay(2000).slideUp(500); });
+	  };
+	- tip: $this.slideDown(1000, function() { console.log('test'); });  // to make sure slidedown animation completes, place a callback function
+	- var content = $('div.content').hide(); // store event in a variable 
+	
+
+12.Full-Control-With-The-Animate-Method
+	-  $().animate({fontSize: '+=100', color: 'white', 'width': '+=300'}, 500, 'swing');
+	- var w1= $(window).width() / 2,
+			w2= box.outerWidth() / 2,
+			winWidth= w1-w2;
+	- center the decreased & increased  size of an element over browser window		
+	- https://www.screencast.com/t/93nkynw0     https://www.screencast.com/t/yUSdr6fXUV (code)
+	- tip: css3 has better performance than your custom JS overall
+
+13.Homework-Solution
+	-  BEST TIP: always RETURN jquery objects from your custom methods, it can help continue chaining jQuery.  https://www.screencast.com/t/EteOcxjRVrlu
+	- if no speed is defined, put OR to set / change default speed https://www.screencast.com/t/pxQ9DYIrPB7
+	- $().animate({ 
+			'height': 'toggle',
+			'opacity': 'toggle'
+		}, speed || 400, function() { 
+			$.isFunction(fn) && fn.call(this);
+		});
+	- how to make a custom callback function work inside a custom method: 
+	   - box.FadeSlideToggle(500, function() { console.log('complete'); });
+	- https://www.screencast.com/t/o22rmSYY (code) 
+
+14.The-Obligatory-Slider
+	- .slider {
+		overflow:hidden; all elements are hidden & made to fit the top most element
+	}
+	- https://www.screencast.com/t/1wbtz17iz (slider)
+	- var sliderUL = $('div.slider').children('ul') // better than $('div.slider ul'),
+		  imgs = sliderUL.find('img'),
+		  imgWidth = imgs[0].width; // or imgs.first().width();
+		  imgsLen = imgs.length, // 4 // counts the # of images in the collection
+	- container.animate({'margin-left': unit ? (unit + loc) : loc });	  // javascript condition statement inside an jQuery method
+	
+
+15.Prototypal-Inheritance-and-Refactoring-the-Slider
+
+	- https://msdn.microsoft.com/en-us/magazine/ff852808
+	- in javascript:
+		- dir(Array) - an Array is a constructor function
+		- an Object is a constructor function
+		- function have properties and methods
+	    - everything is javascript is an object even functions	
+		- prototype is an object that any array you create will inherit from
+		- arr.prototype https://www.screencast.com/t/xlftgIur - any object can access its own prototype
+		- var slider = new Slider()
+	- tip: to avoid more memory usage for every instance created, place transition in prototype as inheritance	
+	- pos += ( ~~( dir === 'next' ) || -1 ); // ~~(true) = 1 (convert boolean to number) // position is incremented by 1 if true, or decrement by -1 if false
+		--  ~~true = 1 (convert boolean to number)
+		--	typeof (~~true) = "number"
+		--	typeof true = "boolean" 
+	- https://www.w3schools.com/js/tryit.asp?filename=tryjs_oper_mod
+	- this.current = ( pos < 0 ) ? this.imgsLen - 1 : pos % this.imgsLen; // if pos < 0 is true, this.current becomes 3. if false this.current becomes 1-3 or 0
+
+16.QA
+	- this.className (vanilla javascript)
+	- $(this).attr('class')
+	- $(this).hasClass('anyclass')
+	- this.events.click.call(this); // pass the element (this) that was clicked
+	- new Slider( container, $('#slider-nav') ); // create a new object slider
+
+18.jQuery-Each-and-Templating
+	- tip: html shouldn't be placed on javascript unless we really have to. Maintain a clean clode.
+		- templates make it easy to separate html in javascript to avoid messe code
+	- useful in ajax to pull date from feeds & use json format (note: JSON is text, written with JavaScript object notation.)	
+	- $(content).each(function( index, obj ) {}); 
+	- var template = $.trim( $('#blogTemplate').html() ); 
+		- var template = $('#blogTemplate').html().trim() //OR
+	- frag += template.replace( /{{title}}/ig, obj.title );
+		-- // flags: i - means lowercase / uppercase, g - global continue searching
+		-- https://www.w3schools.com/jsref/jsref_replace.asp
+		-- tip: using a frag to build-up string & then throw to the DOM
+	- $('body').append(frag)
+		
+
+19.Say-Hello-To-Handlebars
+	- http://handlebarsjs.com/  (tools that specializes for structuring & templating)
+	- tip: jQuery is best for working/manipulating the DOM, handling asynchronous operations like AJAX 	
+	- {{text}}  - escaped & it display raw <html>
+	- ({{text}}) - not escaped, it renders <html>
+	- {{#each this}} {{/each}}
+	- {{#if age}}<span> {{age}} </span>{{/if}}
+	- {{#if age}} <span>{{age}}</span> {{else}} <h5>No quote!</h5> {{/if}}
+	- {{#unless quote}} <h5>No quote!</h5> {{/unless}} // if (!quote)
+	- https://www.screencast.com/t/wnyNpqpm4eA (code)
+
+20.Templating-and-Twitter
+	- https://parall.ax/blog/view/3109/tutorial-retrieving-tweets-from-the-twitter-v1-1-api-using-oauth-php-javascript	
+	- https://www.w3schools.com/js/json_demo.txt
+	- &callback=? - twitter uses callback function for feeds 
+	- $.getJSON ( asynchronous request means - rest of code will continue while operation is occuring)
+	- https://stackoverflow.com/questions/25421233/javascript-removing-undefined-fields-from-an-object
+	- tweets = $.map(data.Object.results, function( tweet) {
+	  return { 
+						author : tweet.name,   
+						tweet  : tweet.text,
+	  };					
+	- tweets= JSON.stringify(tweets);
+	- self.tweets = JSON.parse(tweets);
+	- var template = Handlebars.compile(this.template); 
+	- value = $.grep( data, function( o, index) { return o.last === 'macz';	}); 
+		- // filters the array object & match w/ a pattern
+	
+
+21.jQuery.grep
+	- http://api.jquery.com/jquery.grep/
+	
+22.Custom-Events-and-The-Observer-Pattern
+	- create an api for subscribe and publish
+	- $().trigger('click'); //triggers the click event even w/o actually clicking
+	- $().on('app.mycustomClick', function() {});
+		- $().trigger('app.mycustomClick');  // accepts namespace like app/mycustomClick
+	- console.dir(anyobject);
+	-  $.each ({
+			trigger: 'publish',
+			on: 'subscribe',
+			on: 'unsubscribe'
+		}, function (key,val) {
+				jQuery[val] = function() {   // could not do jQuery.val in javascript, so do jQuery.[val] instead
+				o[key].apply( o, arguments ); 
+			};
+	    }	;
+	- $.map vs $.each
+		-- .map - mostly to modify arrays/objects & will return a new array
+		-- .each - to execute a function for a certain # of times for every element in an array
+	- multiple diff. ways/approach to structure an application
+		1. prototype inheritance
+		2. MVC approach
+		3. procedural approach
+		4. variety of patterns e.g. (module pattern using object as literal)
+	- obj.text.replace(/(http:[^\s]+)/, '<a href="$1">$1</a>');  // regular expressions	
+	- clearTimeout( self.timer );  //we clear/reset timer timeout after they pause typing
+	- setTimeout(function() {},400);
+	
+23.The-Load-Method
+	- var emptyObject = $({}); // empty object to jQuery
+	- $.load() https://www.w3schools.com/jquery/event_load.asp
+	- $.ajax it would be easier to reference it immediately
+		-$.ajax()	Performs an async AJAX request (parent method of 5 - jQuery methods: .load .getJSON .get .post .getScript) 
+	- jQuery is very fast when calling function calls (esp. in ajax)
+	- $('body').load('about.html .container'); //this only works w/ live site ( nodejs, xampp - using localhost)
+
+24.Communicating-With-The-Server-Side
+	- $('form').on('submit', function(e) {});
+	- $.post( 'save.php', $(this).serialize(), function(response) {}) ; //send submitted data & get a response
+
+25-PHP-and-jQuery-Part-1	
+	- all jQuery methods: .load .getJSON .get .post .getScript point to $.ajax
+	- tip: if you use .ajax, you'll be saving some function calls (plenty of developer use $.ajax directly & ignore helper methods)
+	- - $.ajax({type:'POST', url, data, success, dataType}); default: 'GET'	
+	- - $.ajax({ url, context, success: function()}); default: 'GET'	
+	- NOTE: see the code to understand it (all php code).
+		- echo "<li data-actor_id='{$a->actor_id}'><a href='actor.php?actor_id={$a->actor_id}'>{$a->first_name} {$a->last_name}</a></li>";
+		- return $stmt->fetchAll( PDO::FETCH_OBJ ); // fetch multiple rows - http://php.net/manual/en/pdostatement.fetchobject.php 
+
+26-PHP-and-jQuery-Part-2
+	- self.config.actorsList.append( self.config.actorListTemplate( results) );
+	- 		$.ajax({
+			data: { actor_id: $(this).data( 'actor_id' ) }
+		}).then(function( results ) {
+			self.config.actorInfo.html( self.config.actorInfoTemplate( { info: results }) ).slideDown(300);
+		});
+	- note: watch the code to understand it fully
+
+27-Deferreds
+   - setTimeout(function() {}, 2000);
+      -- dilemma: some developers tend to put a lot of code inside the ajax / callback function to make sure,
+         the ajax/setTimeout completes before it executes the code inside it.
+	  -- tip: pubsub (publish / subscribe) or deferred takes care of this problem   
+   	- you put a lot of nested code inside a callback function (e.g. ajax), so it won't executed until the callback has completed.
+	- one solution is pubsub (publish subscribe), within the callback function we can publish an announcement, & outside, we can subscribe
+	- var deferred= new $.Deferred(); 	// or $.Deferred();  // create a new jQuery method deferred	// deferred is a way to use multiple callbacks()
+	- deferred.resolve(); // when its done / pending until complete - any callbacks attached will then fire
+		- setVal().done(function() {}); //pair of resolve() // https://api.jquery.com/deferred.done // A function, or array of functions, that are called when the Deferred is resolved.
+			// can be replaced with .then() if chain with .fail()
+	- return deferred.promise(); // return a limited version of deferred // a promise to let you know when operation (.resolve()) is done within the function (setVal)
+	- deferred.reject(); //  if it fails
+		- setVal().fail(function() {}); //pair of reject() // called after reject() 	
+	- setVal().always(function() {});  // fail or suceed it will still run	
+	- https://www.screencast.com/t/GWaFsGA10tb4 (Deferred: jquery.js)	
+    - setVal().then(function() {)); // can replace .done() if chained with .fail() - use comma	
+	- note: by default in jQuery, $.ajax is already setup working w/ Deferreds, and we could also remove success: & error:
+	- data: { q: search }, // the query will depend on whatever the user passes in
+	- $.when() can stack multiple asynchronous operations and when done place a callback function
+
+28-Head-First-Into-Plugin-Development
+	- tip: By extending jQuery's prototype, we can create a plugin
+		
+	- (function( $, window, document, undefined ) { // undefined is making sure it's undefined & not conflict w/ other codes outside jQuery
+		  $.fn.queryTwitter = function() { console.log('Hello World!');}; // placed in plugin.jquery.js
+	   })(jQuery, window, document); // we are creating a local scope for window & document
+	   - $('div.tweets').queryTwitter(); // use plugin
+	- tip: when creating an new jQuery Method plugin, 
+		-- place the Object outside of the main method to avoid too much nested code.
+		-- put this.each() method to be able to select multiple elements 
+			--- this.each(function() {)});
+		-- to be able to do chaining, always return the jQuery Object inside your main method
+			--- return this.each(function() {)});
+	- var mO = Object.create( myObject );
+		-- it will create a new function & return it	
+		-- it will take all of Objects methods & set it to that new function's prototype
+		-- methods will be a part of the new object's prototype & will be available to new instances
+	- tip: object.create() won't work in old browsers.	use polyfill utility  if it supports https://www.screencast.com/t/1fOVuXfu
+	
+	   
+31-goodbye
+
+
+
+
+32- bonus
+
+$("li").each(function(i, e){
+            alert($(this).text()+' '+i+' '+$(this).attr('class')+' '+$(e).attr('id'))
+        });
+
+
+
+
+	 
+=========================================== Lynda jQuery for Web Designers =====================================================	 
+	 
+	 jQuery is a javascript library w/ collection of javascript functions. It also extends javascript's core capabilities. (JS Micro Frameworks)
+		- support Internet Explore below 9 (for IE6-8, use 1.x) 
+		
+		- use CSS against  the DOM
+		- write shorter JS more quickly
+		- for building apps / browser plugin use 2.x
+	Alternative:
+		- Zeptoo, Mootools, YUI, Ext JS, chibi (microjs.com)
+	to check type:
+		- $
+		- jQuery
+	http://api.jquery.com/	 (Dash for Mac)
+	http://jqapi.com/ 
+	https://developers.google.com/speed/libraries/#jquery (CDN jquery)	
+	
+	 
+#2-2 Selecting elements to use	
+	- $(document).ready(function(){ 	});
+	- $(function(){ });
+	- jQuery(document).ready(function($){ 	});
+	- console.log('');
+	- $.find('');
+	- $.children();
+	- $.siblings();
+	- $.parents('');
+	
+#2-3 Performing multiple operations on the same line with chaining	
+	- chain with jquery methods: */
+		- $common_selector.anymethod().anymethod().anymethod(); 
+			--  $().css('');
+			--  $().animate({width: '-=100'},2000);
+			--  $().fadeout('');
+			--  $().fadein('slow');
+			
+#2-4 Using classes to find what you're looking for	
+	- $().find('li.nth-child(2)').addClass('anyclass').removeClass('anyclass');
+	- $().toggleClass('anyclass'); - reverse of status whether add/remove class
+		$().css('display:none');
+	
+	
+#2-5 Adding, modifying, and removing content dynamically
+	- add / remove elements
+	- $().append('');	- ('' or variable)
+		-- var $copy = $('#ID').find('p:first').clone();
+		-- $().append($copy);
+	- $().find('input:last')
+	- $().prepend('');	- ('' or variable)
+		
+
+
+#2-6 Challenge. Form feedback
+	- Mark first field as having an error
+	- highlight the 2nd as extra good (e.g. msg: Good Choice)
+	- HTML off limits
+		
+
+#2-7 Solution. Form feedback
+	- $().addClass('anyclass');
+	- $().append('anyhtml');
+	- $().find('.anyclass:nth-child(2)');
+
+
+#3-1 Triggering a change based on activity with event binding
+	- $().on('click', anyFunc);
+	- $().click(function(event) { event.preventDefault(); } );
+
+#3-2 Reading and changing values
+	- $().text();
+	- $().html();
+	- $()text.trim();
+	- $(#ID).val(); $(.class).val(); (form values)
+	- $('input:radio[name=station2]:checked').val(); 
+	- note: for multi-select, it returns an array
+	
+
+#3-3 Working with HTML attributes
+	- ('a:first').attr('href'); // returns the value
+		-- ('a:first').attr('href','contact.htm'); // sets the value
+	- $("img").attr("width","500"); // sets the value	
+	- ('#ID').prop('checked');  <input type="checkbox" checked="checked"> // note: properties are usually set true/false unlike attributes
+	- ('#ID').prop('checked', true);   // sets property value to true
+	- ('#ID').prop({
+		'disabled':true,
+		'checked':true,
+	  });
+	 
+#3-4 Challenge. Dynamic contact form
+	- Web form Shuffle
+	- disable tour checkboxes when page loads
+		-- when checkbox item is checked, enable all others
+	- different form responses based on subscription	
+
+#3-5 Solution. Dynamic contact form
+    - var $checkboxes = $('.checkbox-group').find('input[type=checkbox]');
+	    - $checkboxes.prop('disabled', true);
+		-- <input type="checkbox" name="backpack" id="backpack" tabindex="170" />
+	    -- // all  <input> type= checkbox (checkboxes are disabled)
+		
+    - $('#bike_check').click(function() {
+		var $toggle = $(this);
+		
+		if ($toggle.prop('checked') === true) {
+			$checkboxes.prop('disabled', false);
+		} else {
+			$checkboxes.prop('disabled', true);
+		}
+		-- <input type="checkbox" name="bike_check" id="bike_check" />
+		-- // (if checkbox is clicked, check if <input> type= checkbox property is true, then enable all checkboxes) 
+	
+	- $('#newsletterNo').click(function() {
+		$('#frmContact').attr('action', 'contact-submitted-nosub.htm');
+	  });  
+	  
+		-- // (it changes action in the contact form  if <input> type= radio is clicked)
+		-- <input type="radio" name="newsletter" id="newsletterNo" value="No" tabindex="290" />
+		-- <form id="frmContact" name="frmContact" method="post" action="contact-submitted.htm">
+		
+
+#4-1 Using the Colorbox plugin to build a slideshow gallery
+	- http://www.jacklmoore.com/colorbox/ (lightbox)
+	- $.colorbox - type on console to check it
+	- src= jquery.colorbox-min.js <script> 			<script src="../../petal/js/jquery.colorbox-min.js"></script> (renamed for this exercise)
+
+#4-2 Implementing Colorbox on your site
+	- $('#flower-items').find('a').colorbox({rel:'gal'}); - it is better to keep #ID selector for performance & followed by a filter 	
+		-- fyi - "rel" means for lightbox historical reasons that came before colorbox
+		-- note:  {rel:'gal'} - marking selected items as part of the group for colorbox.
+		
+#4-3 Changing Colorbox options
+	- 	$('#flower-items').find('a').colorbox({
+			'rel' : 'gal',
+			'maxWidth' : '90%',
+			'scalePhotos' : true
+		}); // colorbox object settings.
+	- tip: sometimes other browsers (like chrome are very strict than firefox )when fetching photos from other site.
+	-  https://www.screencast.com/t/RrniPBQ9 (code)
+		--  // group images as gallery
+		-- // place html content
+		-- // embed youtube videos
+		
+#4-4 Challenge. Convert to a slideshow
+	- auto-playing slideshow (3sec)
+	- fade between slides
+	- overlay background more transparent
+	- change "image" to "arrangment" in counter
+   	
+
+#4-5 Solution. Convert to a slideshow
+	-	$('#flower-items').find('a').colorbox({
+		'rel' : 'gallery',
+		'maxWidth' : '90%', // maximum width based on %
+		'transition' : 'fade', // fade slider
+		'opacity' : 0.5, // opacity of the lightbox background
+		'slideshow' : true, // slide animation
+		'slideshowSpeed' : 3000, // 1000 = 1sec speed
+		'current' : 'arrangement {current} of {total}' // tokens: current - current image count, total - # of images, the rest are text that can be set / changed
+	});
+
+
+#5-1 Using jQuery or CSS to animate elements
+	- Animation: CSS vs jQuery
+		-- syntax & approach differs, results are similar
+			--- CSS use keyframes, jQuery doesn't (but there are plugins)
+		-- CSS are generally smoother, not as compatible	
+		-- jQuery can respond to events, CSS can't
+			--- you can trigger CSS animations from jquery
+		-- jQuery can be extended easily via plugins	
+
+#5-2 Creating simple jQuery animations
+	- $().show 
+	- $().hide(slow)
+	- $().toggle(fast)
+	- $().fadeIn(2000)
+	- $().fadeOut(3000)
+	- $().fadeToggle(500)
+	- $().slideToggle(500)
+	- $().slideUp(500) (disappear)
+	- $().slideDown(500) (reappear)
+	- $().on('mouseenter mouseleave', function(e){} );  // works like hover 	// no hover event in jQuery anymore,
+		-- tip: use (e) / (event) for jQuery Events 
+	- $(this).children('.info').fadeToggle('slow');
+	
+#5-3 Animating numeric properties with animate()
+    - just my thought - animate for pre-size properties
+	- all of it can be relative units
+		- $().animate({'width':'+=30px'}, 2000);  ('-=30px' or '50%' - # or %)
+		- $().animate({'margin-left' : '400px'}, 2000) 
+	- note: no animation on regular static positioning 
+		-- e.g. "left: 300px"
+	- 2-ways to animate "'left':'400px'"
+		1.  by changing CSS to absolute or fixed positioning  
+		2.  change "left: 400px" to 'margin-left' : '400px'
+		
+#5-4 Understanding animation easing
+	- $().animate({'margin-left' : '400px'}, 2000, 'linear') (linear, swing)
+		1. linear - no change in speed
+		2. swing - animation speeds up & slower when it ends.
+	- http://gsgd.co.uk/sandbox/jquery/easing/ (30 + easing animations)
+	- <script src="../../petal/js/plugins.min.js"></script>	easing plugin 
+	- http://gsgd.co.uk/sandbox/jquery/easing/ (30 + easing animations)
+	- http://easing.net (for css3, but other available using javascript)
+	- easing - a mathematical function that determines how the animation progresses from start to end
+	- $().animate({'margin-left' : '400px'}, 3000, 'easeInElastic');
+	- $().animate({'margin-left' : '400px', 'width' : '+=px'}, 3000, 'easeOutBounce'); (easeinOutBack or easeinOutExpo)
+
+#5-5 Putting it together. Flowers in the cart
+	- https://www.screencast.com/t/nyU9YhnLpC (code)
+	- $ghost = $img.clone().appendTo($link).addClass('ghost'); // add a copy of the image to the document 
+		- https://www.screencast.com/t/luK9PLOC (css code)
+	- $link.find('img').offset();
+	- $ghost.animate({
+			'left' : targetCoords.left - imgCoords.left,
+			'top' : targetCoords.top - imgCoords.top
+		}, 1500);
+		
+
+#5-6 Callbacks. What to do when the animation ends
+	- callback - is a function that you call at a certain time. Different methods may call multiple callbacks or just one. 
+	           - They fire at diff. times in response to different parts of the orig. function.
+	- $().animate({'margin-left' : '400px', 'width' : '+=10px'}, 3000, 'easeOutBounce', function() { $().remove() }); 		   
+  		--  (selector).animate({styles},speed,easing,callback)	   
+
+#5-7 Challenge. Improve the animation
+	- cloned image slowly fades/shrink as it disappears (refine image)
+	- place message alert - "added (1) <flower name> to cart"
+	
+
+#5-8 Solution. Improve the animation
+	- $().animate({
+		'margin-left' : '400px', 
+		'width' : '+=10px', 
+		'opacity' : 0, 
+		'width' : '30px' 
+		}, 3000, 'easeOutBounce', function() { $().remove() }); 	
+	- $target.append('Added 1 ' + $link.find('h4').text() + '.<br>');	
+
+
+PARAMETERS:
+
+content:: (or selector::) HTML, jQuery Objects, DOM Elements (or variable)
+index:: Returns element's index position 
+html:: Returns selected element's current HTML 
+filter:: selector, element, jQueryobject - a selector expression to narrow it down
+stop:: selector expression, element or jQuery object - indicating where to stop 
+true|false:: event handlers also should be copied or not
+classname:: 1 or more class
+currentclass:: Returns selected element's current class name 
+event:: 1 or more event(s) or namespaces to attach to the selected elements. (e.g. customevent $().trigger("customevent", [[[["anytext"]]]]);
+	:: event (mouseover mouseout mouseleave mouseup mousemove mouseenter mousedown click submit keyup keydown keypress load change )    
+	:: event listeners (load, message, resize, scroll, touchmove, unload, webkitvisibilitychange)
+childSelector::  event handler should only be attached to the specified child elements 
+	:: (and not the selector itself, like the deprecated delegate() method).
+data:: additional data to pass along to the function	
+
+data:: data - contains the data returned from the server. (AJAX)
+status:: contains a string containing request status ("success", "notmodified", "error", "timeout", or "parsererror").
+xhr:: contains the XMLHttpRequest object
+
+function:: function to run when the event occurs		
+map:: event map ({event:function, event:function, ...}) containing 1 or more event to attach to the selected elements, 
+		and functions to run when the events occur
+criteria::	a selector expression, a jQuery object, 1 or more elements to be returned from group of selected elements.
+    ::  Tip: To specify multiple criteria, use comma.		 (e.g. "div, p")
+currentcontent:: Returns current HTML content of the selected element		
+currentvalue:: current value attribute of selected elements
+value:: 
+styles:: backgroundPositionY, borderWidth, borderSpacing, margin, marginRight, padding, paddingTop, height, width, maxHeight, minWidth ,fontSize
+		 bottom, left, letterSpacing, wordSpacing, lineHeight, textIndent (for more info. https://www.w3schools.com/jquery/eff_animate.asp )
+speed:: milliseconds,"slow","fast" (default: 400)
+easing::"swing" - moves slower at the beginning/end, but faster in the middle or "linear" - moves in a constant speed
+callback:: A function to be executed after a method completed -->> e.g.  $().show()
+options:: Optional. Specifies additional options for the animation. 
+	duration, easing, complete, step, progress, queue, specialEasing, start, done, fail, always
+currentoffset:: Returns the current coordinates of the selected element
+name:: Specifies the name of data to retrieve.
+    :: ($.proxy())	The existing function whose context will be changed (should be a property of the context object).
+object:: specifies an object containing name/value pairs
+context:: DOM element within which a matching element may be found  ($.closest())
+	   :: ($.proxy()) The name of the object where the function lies 
+element:: element - The current element --> $(element) or $(this) selector can also be used) 
+selectorElement:: 	selector, element, jQuery object to match against the set of elements. returns true / false.
+invert:: If "invert" is false, or not provided, "callback" returns true.
+start:: Specifies where to start the selection of elements ($.slice).
+stop:: Specifies where to end the selection of elements ($.slice).
+
+
+SYNTAX:: =====================================================================
+
+console.log('');
+(function() {})();
+(function($) {})(jQuery); 
+	- // longform jquery so users can use other form of javascript libraries outside its context. 
+	- // '$' can be used inside the function context.  As for outside, '$' may mean a different context library
+	- // '$' refers to jQuery alone to avoid conflict w/ other libararies
+
+$(document).ready(function() {});
+jQuery(document).ready(function($) {});
+$(function() {});
+
+//create an empty object
+- var emptyObject = $({}); // empty object
+- function newObject() {}
+  new newObject();
+- var mO = Object.create( myObject );
+	
+
+$('<a></a>',{
+			text: 'hi hello',
+			class: 'myclass',
+			href: 'http://google.com'})
+
+var $this = $(this);
+var contactForm = {
+		c: $('#ID'),
+		config: {                 
+			effect: 'slideToggle',
+			speed: 500
+		},
+		init: function(config) {
+		  $.extend(this.c, config);
+		};
+	}
+
+$().on( 'click', anyFunction ); function anyfunction(){}        -- (name function)
+$().on( 'click', function() {}); 								-- (anonymous function)
+function(event) 												-- or function(e)			
+function(index,currentclass)
+function(index,html)
+
+
+myarray[0].title
+myarray[0].thumbnail
+myarray[1].title
+myarray[1].thumbnail
+
+var person = [];   // initialize
+var person = new Array("John", "Doe", 46) // new single array (Arrays are Objects) // bad
+var person = ["John", "Doe", 46]; // good
+	 x = person[0];
+	 person[3] = 'tall'; person.push = 'short'; // add new element
+	 
+	// note: Adding elements with high indexes can create undefined "holes" in an array.
+	// note: Array can have objects, functions, arrays 
+	// note: object keys can't have duplicates
+
+console.dir(results.Object.results[0].text); // javascript results (in the beginnning is the name of variable
+	-  $results->Object->results[0]->text // php results
+data[7].obj.mao[3].k4[6][0].ka15 //index & keys
+data[7].obj.aa[5][1][0]          //all index for arrays
+data[7].obj.moo.k2.s2k2.sk2.skk  //all keys for objects
+data[7].obj.ao[0].kkk 			 
+data[7]["obj"]['ao'][0]["kkk"]
+data[7].obj.mao[4].k2 
+	
+
+var person = {firstName:"John", lastName:"Doe", age:46}; // single object
+    var x = person["firstName"]  x = person.firstName;
+
+var myarray =      // Array Object
+       [ { title: 'one',  thumbnail: 'http://preview.png'},
+		 { title: 'two',  thumbnail: 'http://preview.png'},
+		 { title: 'three', thumbnail: 'http://preview.png'} ]
+
+https://stackoverflow.com/questions/7545641/javascript-multidimensional-array
+		 
+
+// ways to express methods
+		
+$('selector').hide();
+$('selector')['hide']();
+
+object.object.method(); //actual (class)
+object.property //  actual (class)
+object.['property'] // actual
+object.object['method'](value); // variable e.g. myobj.('selector')['.slideToggle'](500)
+  -- e.g. contactForm.container[contactForm.config.effect](contactForm.config.speed); // or
+  -- e.g. contactForm.container[configo.effect](configo.speed)
+  -- e.g. contactForm.container['slideToggle'](cf['config'].speed);
+  -- e.g. contactForm.container[configo.effect](cf['config']['speed']);
+  -- e.g. contactForm.container['slideToggle'](cf.config['speed']);
+
+- container.animate({'margin-left': unit ? (unit + loc) : loc });	  // javascript condition statement inside an jQuery method
+
+
+	
+//initialize using custom or default configuration setup OOP
+
+var contactForm = {
+	config: { effect: 'slideToggle', speed: 500	},
+	init: function(config) { $.extend(this.config, config); }
+	};
+contactForm.init( {effect: 'fadeToggle', speed: 1000} );
+
+// ways to do OOP - $('a').on('click', function(e) { console.log(this); });  
+	- direct call is the same - https://www.screencast.com/t/zq3x3Gvc9hN
+	- this is a bit different https://www.screencast.com/t/CUEWS1hghSA  ( "e" - to pass an event to call() )
+
+
+
+// OOP /inheritance
+
+	new myObject ( container, $('#ID') );		 // new object
+	
+	function myObject( container, id ) {  // set object properties & attributes
+		this.container = container;   
+		this.id = id.show();   
+		this.imgs = this.container.find('img'); // images selector
+		this.imgWidth = this.imgs[0].width; // 600 // width of image item #1
+		this.imgsLen = this.imgs.length; // # of images
+		this.events.click.call(this); // pass the element (this) that was clicked
+	
+	}
+	myObject.prototype.method= function( param ) {  return param; };
+	
+	myObject.prototype.method= {	 // e.g. myObject.prototype.events // set property with events
+		click: function() {
+			var selfevent=this; 
+			var current = selfevent.method(  $(this).data('dir') ); 
+		} 
+	}	
+	
+SYNTAX:: =====================================================================
+	
+
+JAVASCRIPT REFERENCE vanilla ----------------------------------
+
+	console.dir(object) will log an interactive listing of an object's properties
+	object.create( myObj ) - won't work in old browsers.
+	$.length  	
+		- this.imgsLen = $().find('img').length; // The length property returns the number of elements
+	$.call() -  This method's parameter sets what object to pass & takes any function arguments separately.
+		- this.events.click.call(this); // object.prototype.events click: (method)
+	$.apply() -	Similar to $.call() but takes any function arguments as an array
+	$.width
+		-  $().imgs[0].width
+	$.toString()
+	$.sort()
+	$.push("newelem");                // adds a new element
+	$.isArray(anyarray);  // boolean to check if array
+	JSON.stringify //convert it into a string. ready to be sent to a server or use JSON.parse()
+	JSON.parse()  // to convert text into a JavaScript object & remove undefined elements - https://www.w3schools.com/js/js_json_parse.asp
+	$.join() Join the elements of an array into a string
+		- anyobject.join(' ');
+	x += ( ~~( x === 'anytext' ) || -1 ); 
+		--  ~~true = 1 (convert boolean to number)
+		--	typeof (~~true) = "number
+		--	typeof true = "boolean" 
+	$.setTimeout(function(), time) // time in milliseconds	
+		
+	
+JQUERY REFERENCE: --------------------------------
+
+JQUERY SELECTORS: https://www.w3schools.com/jquery/jquery_ref_selectors.asp
+	
+	$(".intro,.demo, h1, div, p")
+	$("p:first") 	$("p:last") $("tr:even") 	$("tr:odd")
+	
+	$("p:first-child") $("p:last-child")
+	$("p:first-of-type") first <p> element of their parent
+	$("p:last-of-type")  last <p> element of their parent 	
+	$("p:only-of-type")	All <p> elements that are the only child, of its type, of their parent $("p:nth-of-type(2)")  $("p:nth-last-of-type(2)")
+	$("p:nth-child(2)") 2nd <p> child of their parent
+	$("p:nth-last-child(2)")  child of their parent, counting from the last child
+	$("p:only-child")  only child of their parent (false if 2-children)
+	
+	$("div > p") direct child of a <div> element
+	$("div p") descendants of a <div> element
+	$("div + p") next to each <div> elements
+	$("div ~ p")  siblings of a <div> element
+	
+	$("ul li:eq(3)") The fourth element in a list (index starts at 0 & 1st encounter that matches)
+	$("ul li:gt(3)") List elements with an index greater than 3
+	$("ul li:lt(3)") List elements with an index less than 3
+	$("input:not(.intro)")	$("li:not(:empty)") All input elements that are not empty (e.g. text or element)
+		
+	$(":header") All header elements <h1>, <h2> ...
+	$(":animated")	All animated elements
+	$(":focus")	The element that currently has focus
+	$(":contains('Hello')")	All elements which contains the text "Hello"
+	$("div:has(p)")	All <div> elements that have a <p> element 
+	$(":empty")	All elements that are empty (contains text or text)
+	$(":parent")	All elements that are a parent of another element (contains text or text)
+	$("p:hidden")	All hidden <p> elements (e.g. display:none)
+	$("table:visible")	All visible tables (e.g. !=   display:none  style="visibility: hidden")
+	$(":root")	The document's root element
+	$("[href]")  $("[class=ham]") $("[id]") $("[type!=text]")	All elements with a href attribute
+	 $("[href$='.jpg']")   href attribute value ending with ".jpg"
+	$("[title|='Tom']")	attribute value equal to 'Tomorrow', or starting with 'Tom' followed by a hyphen
+	$("[title^='Tom']")	a title attribute value starting with "Tom"
+	$("[title~='hello']") attribute value containing the specific word "hello"
+	$("[title*='hello']") attribute value containing the word "hello"
+	 (input seletors: )
+	$(":input")	All input elements The :input selector selects <form> elements, also works with the button element.
+	$(":text") $(":password") $(":radio") $(":checkbox") $(":submit") $(":button") $(":reset") $(":image") 	$(":file") <input>	All input elements with a certain type
+	$(":enabled") $(":disabled") (e.g. disabled="disabled") <input>	All enabled disabled input elements
+	 $(":selected") $(":checked") (e.g. selected="selected" checked="checked") <input>	All selected / checked input elements
+	
+JQUERY EVENTS:	 https://www.w3schools.com/jquery/jquery_ref_events.asp
+	$.bind()		Deprecated in version 3.0. Use the on() method instead. Attaches event handlers to elements
+	$.blur()		Attaches/Triggers the blur event
+	$.change()	Attaches/Triggers the change event
+	$.click()		Attaches/Triggers the click event
+	$.dblclick()	Attaches/Triggers the double click event
+	$.delegate()	Deprecated in version 3.0. Use the on() method instead. Attaches a handler to current, or future, specified child elements of the matching elements
+	$.die()		Removed in version 1.9. Removes all event handlers added with the live() method
+	$.error()		Removed in version 3.0. Attaches/Triggers the error event
+	
+	$.event.currentTarget		The current DOM element within the event bubbling phase
+	$.event.data				Contains the optional data passed to an event method when the current executing handler is bound
+	$.event.delegateTarget			Returns the element where the currently-called jQuery event handler was attached
+	$.event.isDefaultPrevented()		Returns whether event.preventDefault() was called for the event object
+	$.event.isImmediatePropagationStopped()	Returns whether event.stopImmediatePropagation() was called for the event object
+	$.event.isPropagationStopped()	Returns whether event.stopPropagation() was called for the event object
+	$.event.namespace				Returns the namespace specified when the event was triggered
+	$.event.pageX					Returns the mouse position relative to the left edge of the document
+	$.event.pageY					Returns the mouse position relative to the top edge of the document
+	$.event.preventDefault()		Prevents the default action of the event (e.g. click is prevented for <a>)
+		- .click(function(event) { event.preventDefault(); } );         (sometimes useful in form validation)
+	$.event.relatedTarget			Returns which element being entered or exited on mouse movement.
+	$.event.result				Contains the last/previous value returned by an event handler triggered by the specified event
+	$.event.stopImmediatePropagation()	Prevents other event handlers from being called
+	$.event.stopPropagation()		Prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event
+	$.event.target			Returns which DOM element triggered the event
+	$.event.timeStamp			Returns the number of milliseconds since January 1, 1970, when the event is triggered
+	$.event.type				Returns which event type was triggered
+	$.event.which				Returns which keyboard key or mouse button was pressed for the event
+	
+	$.focus()					Attaches/Triggers the focus event
+	$.focusin()				Attaches an event handler to the focusin event
+	$.focusout()				Attaches an event handler to the focusout event
+	$.hover()					Attaches two event handlers to the hover event
+	$.keydown()				Attaches/Triggers the keydown event
+	$.keypress()				Attaches/Triggers the keypress event
+	$.keyup()					Attaches/Triggers the keyup event
+	$.live()					Removed in version 1.9. Adds one or more event handlers to current, or future, selected elements
+	$.load()					Removed in version 3.0. Attaches an event handler to the load event
+		- $(selector).load(function) The load event occurs when a specified element has been loaded.
+	$.mousedown()				Attaches/Triggers the mousedown event
+	$.mouseenter()			Attaches/Triggers the mouseenter event
+	$.mouseleave()			Attaches/Triggers the mouseleave event
+	$.mousemove()			Attaches/Triggers the mousemove event
+	$.mouseout()			Attaches/Triggers the mouseout event
+	$.mouseover()			Attaches/Triggers the mouseover event
+	$.mouseup()				Attaches/Triggers the mouseup event
+	$.off()					Removes event handlers attached with the on() method
+	$.on()					Attaches event handlers to elements
+		- $(selector).on(event,childSelector,data,function,map)    required: event, function     optional: childSelector, data
+			-- function(event) {} );
+	$.one()					Adds one or more event handlers to selected elements. This handler can only be triggered once per element
+	$.proxy()				Takes an existing function and returns a new one with a particular context
+							This method is often used for attaching events to an element where the context is pointing back to a different object
+		- $(selector).proxy(function,context)
+		- $(selector).proxy(context,name)
+	$.ready()				Specifies a function to execute when the DOM is fully loaded
+		- $(document).ready(function (){});			
+	$.resize()				Attaches/Triggers the resize event
+	$.scroll()				Attaches/Triggers the scroll event
+	$.select()				Attaches/Triggers the select event
+	$.submit()				Attaches/Triggers the submit event
+	$.toggle()				Removed in version 1.9. Attaches two or more functions to toggle between for the click event
+	$.trigger()				Triggers all events bound to the selected elements
+		- $(selector).trigger(event,eventObj,param1,param2,...) Required: event Optional: param1, para2... 
+	$.triggerHandler()		Triggers all functions bound to a specified event for the selected elements
+	$.unbind()				Deprecated in version 3.0. Use the off() method instead. Removes an added event handler from selected elements
+	$.undelegate()			Deprecated in version 3.0. Use the off() method instead. Removes an event handler to selected elements, now or in the future
+	$.unload()				Removed in version 3.0. Attaches an event handler to the unload event
+
+JQUERY EFFECTS:
+	$.animate()		Runs a custom animation on the selected elements
+		- (selector).animate({styles},speed,easing,callback) require: styles optional: speed, easing, callback  
+		- (selector).animate({styles},{options})
+		- styles: around 40+ (properties) that can be animated https://www.w3schools.com/jquery/eff_animate.asp	
+		- easing: swing or linear
+		- speed: 100-5000, slow, fast
+		- options: duration, easing, complete, step, progress, queue, specialEasing, start, done, fail, always
+		- note: Only numeric values can be animated (like "margin:30px") String values cannot be animated (like "background-color:red")
+			-- except for the strings "show", "hide" and "toggle" (hide sets display:none)
+		
+	$.clearQueue()	Removes all remaining queued functions from the selected elements
+	$.delay()			Sets a delay for all queued functions on the selected elements
+	$.dequeue()		Removes the next function from the queue, and then executes the function
+	$.fadeIn()		Fades in the selected elements
+		- $(selector).fadeIn(speed,easing,callback)
+	$.fadeOut()		Fades out the selected elements
+		- $(selector).fadeOut(speed,easing,callback)
+	$.fadeTo()		Fades in/out the selected elements to a given opacity
+	$.fadeToggle()	Toggles between the fadeIn() and fadeOut() methods - // fadeToggle = opacity
+		- $(selector).fadeToggle(speed,easing,callback)
+	$.finish()		Stops, removes and completes all queued animations for the selected elements
+	$.hide()			Hides the selected elements // sets element to display:none
+		- $(selector).hide(speed,easing,callback) 
+	$.queue()			Shows the queued functions on the selected elements
+	$.show()			Shows the selected elements // unsets element to display:none
+		- $(selector).show(speed,easing,callback)		
+	$.slideDown()		Slides-down (shows) the selected elements
+		- $(selector).slideDown(speed,easing,callback)		
+	$.slideToggle()	Toggles between the slideUp() and slideDown() methods   // slideToggle = height
+		- $(selector).slideToggle(speed,easing,callback) optional: speed, easing, callback
+	$.slideUp()		Slides-up (hides) the selected elements
+		- $(selector).slideUp(speed,easing,callback)
+	$.stop()			Stops the currently running animation for the selected elements
+	$.toggle()		Toggles between the hide() and show() methods
+		- $(selector).toggle(speed,easing,callback)
+
+JQUERY HTML / CSS: https://www.w3schools.com/jquery/jquery_ref_html.asp
+	$.addClass()		Adds one or more class names to selected elements
+		-  $(selector).addClass(classname,function(index,currentclass)) (e.g. class1 class2 class3 - commas not necessary)
+	$.after()	    	Inserts content after selected elements
+		- $(selector).after(content,function(index)) required: content // note: if content is selector, it will move it
+	$.append()		Inserts content at the end of selected elements
+		- $(selector).append(content,function(index,html)) 
+	$.appendTo()		Inserts HTML elements at the end of selected elements 
+		- $(content).appendTo(selector) // note: if content is selector, it will move it
+	$.attr()			Sets or returns attributes/values of selected elements (it can change attribute values)
+		- $(selector).attr(attribute)
+		- $(selector).attr(attribute,value)
+		- $(selector).attr(attribute,function(index,currentvalue))
+		- $(selector).attr({attribute:value, attribute:value,...})
+	$.before()		Inserts content before selected elements
+		- $(selector).before(content,function(index)) required: content // note: if content is selector, it will move it
+	$.clone()			Makes a copy of selected elements
+		- $(selector).clone(true|false) (default false) Note: if false, event handler attachment is excluded
+	$.css()			Sets or returns one or more style properties for selected elements
+	$.detach()		Removes selected elements (keeps data and events)
+	$.empty()			Removes all child nodes and content from selected elements
+		- $(selector).empty(); // remove all child elements inside it.
+	$.hasClass()		Checks if any of the selected elements have a specified class name // returns boolean
+		- $(selector).hasClass(classname) required: classname
+	$.height()		Sets or returns the height of selected elements
+	$.html()			Sets or returns the content of selected elements
+		- $(selector).html()
+		- $(selector).html(content) -- (may replace content)
+		- $(selector).html(function(index,currentcontent))
+	$.innerHeight()	Returns the height of an element (includes padding, but not border)
+	$.innerWidth()	Returns the width of an element (includes padding, but not border)
+	$.insertAfter()	Inserts HTML elements after selected elements
+		- $(content).insertAfter(selector) required: content, selector
+	$.insertBefore()	Inserts HTML elements before selected elements
+		- $(content).insertBefore(selector) required: content, selector
+	$.offset()		Sets or returns the offset coordinates for selected elements (relative to the document - e.g. returns coords --> object{top:10, left:10} https://www.screencast.com/t/3Tq9gceHXLG
+		- $(selector).offset()
+		- $(selector).offset({top:value,left:value})
+		- $(selector).offset(function(index,currentoffset))
+	$.offsetParent()	Returns the first positioned parent element
+	$.outerHeight()	Returns the height of an element (includes padding and border)
+	$.outerWidth()	Returns the width of an element (includes padding and border)
+	$.position()		Returns the position (relative to the parent element) of an element
+	$.prepend()		Inserts content at the beginning of selected elements
+		- $(selector).prepend(content,function(index,html))
+	$.prependTo()		Inserts HTML elements at the beginning of selected elements
+		- $(content).appendTo(selector) note: if content is selector, it will move it
+	$.prop()			Sets or returns properties/values of selected elements
+		- $(selector).prop(property) 
+		- $(selector).prop(property,value)
+		- $(selector).prop(property,function(index,currentvalue))
+		- $(selector).prop({property:value, property:value,...})
+	$.remove()		Removes the selected elements (including data and events)
+		- $(selector).remove(selector) (or no selector)
+	$.removeAttr()	Removes one or more attributes from selected elements
+		- $(selector).removeAttr(attribute) required: To remove several attributes, separate the attribute names with a space
+	$.removeClass()	Removes one or more classes from selected elements
+	$.removeProp()	Removes a property set by the prop() method
+	$.replaceAll()	Replaces selected elements with new HTML elements
+	$.replaceWith()	Replaces selected elements with new content
+	$.scrollLeft()	Sets or returns the horizontal scrollbar position of selected elements
+	$.scrollTop()		Sets or returns the vertical scrollbar position of selected elements
+	$.text()			Sets or returns the text content of selected elements
+		- $(selector).text()
+		- $(selector).text(content)
+		- $(selector).text(function(index,currentcontent))
+	$.toggleClass()	Toggles between adding/removing one or more classes from selected elements
+	$.unwrap()		Removes the parent element of the selected elements
+	$.val()			Sets / change or returns the value attribute of the selected elements (for form elements)
+		- $(selector).val()
+		- $(selector).val(value) -- (you can set / change the value)
+		- $(selector).val(function(index,currentvalue))
+	$.width()			Sets or returns the width of selected elements
+	$.wrap()			Wraps HTML element(s) around each selected element
+	$.wrapAll()		Wraps HTML element(s) around all selected elements
+	$.wrapInner()		Wraps HTML element(s) around the content of each selected element
+	
+
+JQUERY TRAVERSING:
+	$.find('');  	Returns descendant elements of the selected element
+		-  $(selector).find(filter)  
+	$.children('');  Returns all direct children of the selected element
+		- $(selector).children(filter)  // Optional. Specifies a selector expression to narrow down the search for children
+	$.closest()		Returns the first ancestor of the selected element
+		- $(selector).closest(filter) required: filter
+		- $(selector).closest(filter,context) optional: context
+	$.add() 			Adds elements to the set of matched elements ( selects multiple elements to do methods ???)
+	$.contents()		Returns all direct children of the selected element (including text and comment nodes)
+		- $(selector).contents()
+	$.each()			Executes a function for each matched element
+		- $(selector).each(function(index,element)) required: function   -- https://api.jquery.com/each/
+	$.end()			Ends the most recent filtering operation in the current chain, and return the set of matched elements to its previous state
+		- just end current filter chain & return to previous state // has no argument 
+	$.eq()			Returns an element with a specific index number of the selected elements
+		- $(selector).eq(index) required: index
+	$.filter()		Reduce the set of matched elements to those that match the selector or pass the function's test
+		- $(selector).filter(criteria,function(index)) optional: criteria
+	$.find() 		Returns descendant elements of the selected element
+		- $(selector).find(filter) require: filter
+	$.first() 		Returns the first element of the selected elements
+		- $(selector).first() // has no argument
+	$.has()			Returns all elements that have one or more elements inside of them
+	$.is() 			Checks the set of matched elements against a selector/element/jQuery object, and return true if at least one of these elements matches the given arguments
+		- $(selector).is(selectorElement,function(index,element)) required: selectorElement
+	$.last()			Returns the last element of the selected elements
+		- $(selector).last() // has no argument 
+	$.map()			Passes each element in the matched set through a function, producing a new jQuery object containing the return values
+					//  map - filter/object an array & execute a function in each object
+		- $.map(filter ,function(data)) required: filter  (data - returns an individual object from an array of objects)			
+	$.next()			Returns the next sibling element of the selected element
+		- $(selector).next(filter) optional: filter
+	$.nextAll()		Returns all next sibling elements of the selected element
+	    - $(selector).next(filter) optional: filter - To return multiple siblings, separate each expression with a comma.
+	$.nextUntil()	Returns all next sibling elements between two given arguments  ( less than but not less than or equal to)
+		- $(selector).nextUntil(stop,filter) optional: stop, filter
+	$.not()			Remove elements from the set of matched elements
+	$.offsetParent() Returns the first positioned parent element (the next parent by skipping direct parent)
+	$.parent() 		Returns the direct parent element of the selected element
+	$.parents() 		Returns all ancestor elements of the selected element
+	$.parentsUntil()	Returns all ancestor elements between two given arguments  ( less than but not less than or equal to)
+	$.prev()	Returns the previous sibling element of the selected element
+		- $(selector).prev(filter) optional: filter
+	$.prevAll()		Returns all previous sibling elements of the selected element.
+		- $(selector).prevAll(filter)  optional: filter
+	$.prevUntil()	Returns all previous sibling elements between two given arguments ( less than but not less than or equal to)
+		- $(selector).prevUntil(stop,filter) optional: stop, filter
+	$.siblings()		Returns all sibling elements of the selected element
+		- $(selector).siblings(filter) optional: filter 
+	$.slice()	Reduces the set of matched elements to a subset specified by a range of indices (works like offset)
+		- $(selector).slice(start, stop) required: start optional: stop
+				 
+	 
+JQUERY AJAX:
+	$.ajax()	Performs an async AJAX request (parent method of 5 - jQuery methods ) 
+		- $.ajax({type:'POST', url, data, success, dataType}); default: 'GET'
+	$.getJSON()	Loads JSON-encoded data from a server using a HTTP GET request	(shorthand for ajax)
+			- $(selector).getJSON(url,data,success(data,status,xhr)) 	Required: url Optional: data, success
+			- https://www.w3schools.com/jquery/ajax_getjson.asp 
+			- https://www.screencast.com/t/8uOo6cwJl (getJSON pointing to ajax)
+	$.get()	Loads data from a server using an AJAX HTTP GET request
+		- $.post('filename.php', content.serialize, function()) // similar to $.post
+	$.post() Loads data from a server using an AJAX HTTP POST request
+		- $.post('filename.php', content.serialize, function())
+
+JQUERY MISC:
+
+	$.deferred() 		 deferred is a way to use multiple callbacks()
+		- var deferred= new $.Deferred(); 
+	$.deferred.resolve()  Resolve a Deferred object and call any doneCallbacks with the given - https://api.jquery.com/deferred.resolve/
+		- deferred.resolve( [args ] )
+	$.deferred.reject  	 	Reject a Deferred object and call any failCallbacks with the given args. - https://api.jquery.com/deferred.reject/
+		- deferred.reject( [args ] )
+	$.deferred.promise();  Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished - https://api.jquery.com/promise/
+		- .promise( [type ] [, target ] ) 
+	$.done(); Add handlers to be called when the Deferred object is resolved. - https://api.jquery.com/deferred.done/
+		- deferred.done( doneCallbacks [, doneCallbacks ] )
+	$.fail(); Add handlers to be called when the Deferred object is rejected. - https://api.jquery.com/deferred.fail/
+		- deferred.fail( failCallbacks [, failCallbacks ] )
+	$.always() Add handlers to be called when the Deferred object is either resolved or rejected.  https://api.jquery.com/deferred.always/	
+		- deferred.always( alwaysCallbacks [, alwaysCallbacks ] )
+	$.then()  Add handlers to be called when the Deferred object is resolved, rejected, or still in progress - https://api.jquery.com/deferred.then/#deferred-then-doneCallbacks-failCallbacks
+		- deferred.then( doneFilter [, failFilter ] [, progressFilter ] )
+	$.serialize - similar to $.val() that gets a value but includes the name attrib. (key value pairs) from form submission, (e.g.  element's name=value)
+	$.grep()  Finds the elements of an array which satisfy a filter function. The original array is not affected. http://api.jquery.com/jquery.grep/
+		- jQuery.grep( array, function [, invert ] ) ArrayLikeObject
+	$.data()	Attaches data to, or gets data from, selected elements
+		- $(selector).data(name) Optional: name
+		- $(selector).data(object) required: object
+	$.get()	Get the DOM elements matched by the selector
+	$.index()	Search for a given element from among the matched elements
+	$.$.noConflict()	Release jQuery's control of the $ variable
+	$.$.param()	Create a serialized representation of an array or object (can be used as URL query string for AJAX requests)
+	$.removeData()	Removes a previously-stored piece of data
+	$.size()	Removed in version 3.0. Use the length property instead.
+	$.toArray()	Retrieve all the DOM elements contained in the jQuery set, as an array
+	(not in w3school)
+	$.trim()	Trim of white spices in text	
+		- e.g.( $().text().trim()  )
+	$.extend(default object, override object1, override object2); // $.extend() is helpful method of jquery core that sets a default object
+		- e.g. $.extend(this.config, config, config2);
+
+JQUERY PROPERTIES:
+
+// 30 Days to learn jQuery
+
+BEST NOTE:
+    - note: won't respond when the newly cloned element is clicked, BECAUSE the newly cloned element hasn't got any event handler unlike the previous selectors
+	- "<anymethod>:"  to search for a particular method in any jQuery.js (e.g. delegate: unbind: toggle:)	
+	- $().live & $().bind & $().delegate points all to $().on --> method https://www.screencast.com/t/uBxYy9O3LX2
+	- tip: you can add css to <html> element
+	- contactForm.close.call(contactForm.container); //call() is a javascript method. This method's parameter sets what object to pass to the main method - "close"
+		-- https://www.w3schools.com/js/js_function_call.asp 
+		-- It can be used to invoke (call) a function with an owner object as the first argument (parameter). With call(), you can use a method belonging to another object.
+	- $(this) is initialized to point to Parent Window Object (DOMwindow)	
+	- <a> anchor tag has a default event when clicked ( by using $('a').on('click', function() {}); )
+	- $.event.preventDefault(); // means to prevent all default event handlers (w/c are attached to elements) from execution.
+		-- console.log(event); // lets you see all event details
+		-- commonly placed at the bottom of the code (within context related to event), but it doesn't matter
+	- // ways to do OOP - $('a').on('click', function(e) { console.log(this); });  
+		-- direct call is the same - https://www.screencast.com/t/zq3x3Gvc9hN
+		-- this is a bit different https://www.screencast.com/t/CUEWS1hghSA  ( "e" - to pass an event to call() )	
+	-  obj.doIt.call(this, e);  // .call() lets you pass objects to the method
+			-- this - object to pass, e - object event to pass
+			-- obj - variable that contains the object, doIt - method that's being called
+	-  obj.doIt.apply(this, []);   //  .apply() lets pass array of variables	
+	- JSON is text, written with JavaScript object notation. https://www.w3schools.com/js/js_json_intro.asp
+	- by default in jQuery, $.ajax is already setup working w/ Deferreds, and we could also remove success: & error:
+	- .call vs .apply()
+		apply - pass arguments thru an array
+		call - pass thru as variables
+	
+	
+BEST TIP:
+	- constantly using multiple anonymous function is not good to organize code & can be confusing. Better use object w/ methods (OOP) for more readable code.
+	- we change the jQUery default by:	-- $.fx.speeds._default= 2000; (always refer to the jQuery source code in jquery.js
+	- $this.slideDown(1000, function() {});  // to make sure slidedown or any animation completes, place a callback function
+	- var content = $('div.content').hide(); // store event in a variable 
+	- css3 has better performance than your custom JS overall
+	- padding is not affected by any js animation nor effects.
+	- always RETURN jquery objects from your custom methods, it can help continue chaining jQuery.  https://www.screencast.com/t/EteOcxjRVrlu
+	- if no speed is defined, put OR to set / change default speed https://www.screencast.com/t/pxQ9DYIrPB7
+	- var imgs = sliderUL.find('img')
+		  imgWidth = imgs[0].width; // or imgs.first().width(); // gets width of a certain element among elements.
+	- structured functions do exactly one thing to make it maintainable for larger projects
+	- to avoid more memory usage for every instance created, place method in the object's prototype as inheritance
+	- html shouldn't be placed on javascript unless we really have to. Maintain a clean clode.
+	-  tip: using a frag to build-up string & then throw to the DOM
+	- What is the best alternative to Handlebars.js 
+		-- https://www.slant.co/options/181/alternatives/~handlebars-js-alternatives
+		-- https://stackshare.io/stackups/pug-vs-slim
+	- https://www.sitepoint.com/10-example-json-files/ json example
+	- All JavaScript functions are object methods.
+	- $.map vs $.each
+		-- .map - mostly to modify arrays/objects & will return a new array
+		-- .each - to execute a function for a certain # of times for every element in an array
+	- if you use .ajax, you'll be saving some function calls (plenty of developer use $.ajax directly & ignore helper methods)	
+	- By extending jQuery's prototype, we can create a plugin
+	- object.create() won't work in old browsers.	use polyfill utility  if it supports https://www.screencast.com/t/1fOVuXfu
+	- tip: when creating an new jQuery Method plugin
+		-- place the Object outside of the main method to avoid too much nested code.
+		-- put this.each() method to be able to select multiple elements 
+		-- to be able to do chaining, always return the jQuery Object inside your main method
+	- in javascript, object method's won't execute until called (even in a new instance) .	
+	
+// jQuery for Web Designers	
+
+BEST TIP:
+	- it is better to keep #ID selector for performance & followed by a filter like $().find()
+			(e.g. ('#ID').find(a).colorbox(); )
+	- http://gsgd.co.uk/sandbox/jquery/easing/ (30 + easing animations variations like bouncing)		
+		-- <script src="../../petal/js/plugins.min.js"></script>	easing plugin 
+	- it is better to keep #ID selector for performance & followed by a filter like $().find()
+			(e.g. ('#ID').find(a).colorbox(); )
+		--  use $('div.anyclass') rather than $('.anyclass') // be more specific w/ selectors
+	- http://easing.net (for css3, but other available using javascript)
+	- http://www.jacklmoore.com/  - lightbox	
+	
+		
+		
+BEST NOTE:	
+	- $().on('mouseenter mouseleave', function(e){} );  // works like hover 	// no hover event in jQuery anymore,
+	- http://easing.net (for css3, but other available using javascript) (wobble effect animation)
+	- CSS position:  static https://www.w3schools.com/cssref/playit.asp?filename=playcss_position&preval=relative
+		-- fixed: top & left (based on browser window)
+		-- absolute: top & left ( based on nearest ancestor's absolute & relative position ) https://www.screencast.com/t/Uy5b0FbRR
+		-- relative: top & left  ( = static + top & left)
+		-- static: (based on parents position & not affected by top & left)
+	- 	$.extend(default object, override object); // $.extend() is helpful method of jquery core that sets a default object
+	
+Lynda
+	- CSS: transitions and transforms
+	- CSS: Animations	
+	
+	
+	
+https://learnwebcode.github.io/json-example/animals-1.json
+https://stackoverflow.com/questions/18642828/origin-http-localhost3000-is-not-allowed-by-access-control-allow-origin
+https://cdnjs.com/libraries/handlebars.js

@@ -1,0 +1,294 @@
+005 Analyzing our starting markup 0102
+
+	- href= #ID refers to another part but just the same page
+	- <meta name="viewport" content="width=device-width, initial-scale=1">
+	- class= page (dealt as another page but just within the same page)
+	- <blockquote>
+		-- class= quote (child of blockquote) <div>
+			--- class= quote <span> (1st phrase/sentence of a paragraph) 
+			--- class= more <span> (continuation of quote in a paragraph)
+			--- class= customer <span> (author / customer / testimonial)
+			
+
+006 Understanding the container class
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/style.css">
+	- (NOTE: bootrap is loaded first than the custom CSS style to override) 
+	- http://getbootstrap.com/docs/4.0/getting-started/introduction/
+	- NOTE: googleapis are better to link because they are tested w/ each script version  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	- class= container vs class= container-fluid <div> 
+
+007 Using rows and columns
+	- class= row <div> removes some padding of the class= container 
+	- class= container (1170, 970, 750, auto-minimum) vs container-fluid (auto)
+	- 30px gutters (15px each side)
+    -	 12			 	XS		 SM		  MD	 	LG   (note: if size < container, then column will go stack up & not beside each other )
+	 container	      auto    750px 	 970px   1170px	
+	 size            .col-xs  .col-sm  .col-md  .col-lg 
+	 column width	  auto     62px       81px     97px
+		-- XS no matter how small, it will maintain the design
+	- class= clearfix visible-sm-block (or inline-block)
+	- XS, SM, MD, LG columns can work together in one tag (e.g. div, section)
+	- col-sm-offset-0 (can be a any column)	
+	- <div>  <blockquote> <p> <section> <article>
+	- offset is 
+	
+
+008 Creating simple column layouts
+	- layout control: container, rows, columns
+	- tip: create html comments as much as possible
+
+009 Finishing our simple layout
+	- 0106 exercise file
+
+010 Creating basic navigation
+	- 0107 exercise file
+	<div class="page" id="services">
+		<div class="content container">
+	- (NOTE: to align a menu to link to a one pager properly, you need to put the #ID outside the container)
+		https://www.screencast.com/t/cUYpTOZlT
+		
+	- class= navbar navbar-default role= navigation <nav>
+		--  class= container <div>
+			--- class= navbar-header <div>
+				---- class= navbar-brand  <a>
+		    --- class= nav navbar-nav <ul>	
+		    --- class= nav nav-tabs <ul>	
+		    --- class= nav nav-pills <ul>	
+				---- class= active <li>
+				---- class= disabled <li>
+	- tip: you can override the round edges of navbar https://www.screencast.com/t/ARi68eKE
+
+011 Controlling navigation positions
+
+	- class= nav navbar-nav navbar-right <ul>
+	- class= navbar navbar-default navbar-fixed-top <nav>  (/ navbar-fixed-top)
+	- NOTE: You can fully customize any bootrap settings https:
+		-- https://getbootstrap.com/docs/3.3/customize/
+		-- https://getbootstrap.com/docs/4.0/getting-started/theming/
+	- https://getbootstrap.com/docs/3.3/components/#navbar	
+	- (tip: in boostrap 4, navbar is simplified https://getbootstrap.com/docs/4.0/components/navbar/#nav)
+	- class= collapse navbar-collapse id= ID <div> (it must match data-target= #ID) <button>
+	
+012 Building a footer layout
+	- class= navbar navbar-default role= navigation <nav>
+	- class= nav navbar-nav navbar-right <ul>
+	- (tip: navigation usually does not necessarily align w/ content esp. footer)
+		-- you may use class= container-fluid <div>
+
+013 Adding a basic carousel
+	- most popular feature in bootstrap
+		https://getbootstrap.com/docs/3.3/javascript/#carousel
+	- class= carousel slide data-ride= carousel id= ID <div> (should match #ID <a>)
+		-- class= carousel inner <div>
+			--- class= item active <img>
+				---- <img>
+		-- href= #ID class= left carousel-control data-slide= prev role= button <a> (carousel control / trigger)		
+		-- href= #ID class= right carousel-control data-slide= next role= button <a> (carousel control / trigger)		
+			- class= glyphicon glyphicon-chevron-left <span>
+
+014 Creating basic page styles
+	- TIP: lot of complaints for bootstrap simply because they don't usually customize how they look	
+	- change font https://fonts.google.com/
+	   - https://www.typewolf.com/google-fonts
+	   - https://www.awwwards.com/20-best-web-fonts-from-google-web-fonts-and-font-face.html
+			- https://www.screencast.com/t/TWSSQwyg7Zgq     (e.g. Roboto Slab)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+			- https://www.screencast.com/t/quiuANndm (e.g. customize font)
+			- https://www.screencast.com/t/Y3jdCB2is (embed-> @import)
+			- https://www.screencast.com/t/SF00gW41 (import & calling in .css file)
+		- https://getbootstrap.com/docs/3.3/javascript/#carousel-methods  ( use the ID instead of .class to target a specific carousel to customize )	
+
+015 Working with the branding and toggle styles
+	- nice color navigation
+		-- background-repeat: no-repeat; note: by css default, background-repeat is set to default repeat. 
+		-- background-color: transparent <li> <nav>
+		-- border-bottom: 4px solid <a>
+		-- text-shadow: none <a>
+	- navbar-brand <a>
+		-- set the logo <h1>
+		-- tip: <img> <span> (by default is inline, you can set to block to go down)
+		
+	- https://www.screencast.com/t/VuJrnpgtvod	
+	
+
+016 Overcoming injection issues
+	- As change things in browser (e.g. size, device), bootstrap inserts diff. styles (e.g. classes, html, javascript, etc.)
+		-- media queries  usually solves this [ e.g. @media only screen and (max-width: 768px)] https://www.screencast.com/t/F0ZskjYp9Qzj
+		
+
+017 Styling single-page designs
+	- http://css3please.com/ (for linear gradient background)
+    - https://leaverou.github.io/prefixfree/ <script src="js/prefixfree.min.js"></script> (note: place lowest after all your css stylesheet)
+	 -- (note: lets you use only unprefixed CSS properties everywhere. It works behind the scenes, adding the current browser’s prefix to any CSS code, only when it’s needed.)
+	 
+	 
+018 Using multiple Bootstrap grids
+	- tip; usually when a paragraph is too long & too stretched to covers the whole width, its usually better to split it to at least 2-columns in a grid.
+	-- class= col-md-5 col-md-offset-1 ( these will be 2- columns equal to 12 )
+	-- class= col-lg-3 col-sm-6 col-md-4 col-xs-12 (lg: 4-columns & sm : 2-columns & md: 3-columns & xs: 1-column)
+
+019 Tackling a multilevel layout
+    - simple single combinations:
+	   -> col-md-4 / (row = () item1 / item2 / item3 ) (3-sizes)
+	   - col-sm-6 /  (row = () item1 / item2 / item3 ) (3-sizes)
+	   - col-xs-12 / (row = () item1 / item2 / item3 ) (3-sizes)
+	- note: when placing a row in multilevels, it resets back to 12-columns
+	- grid / breakpoints multilevel combinations:  
+	  -> col-lg-4 / ( 4 / 4 / 4 ) (row = () item1 / item2 / item3 ) (1-size)
+		--> col-lg-4 col-lg-offset-0 / col-lg-8   ( 4 / 8 )  (row = () photo / info) (4-sizes)
+		-- col-md-2 col-md-offset-2 / col-md-6   ( 2 + 4 / 6 )  (row = () photo / info) (4-sizes)
+		-- col-sm-3 col-sm-offset-1 / col-sm-7 col-sm-offset-0 ( 3 + 2 / 7 )  (row = () photo / info)  (4-sizes)
+	    -- col-xs-6 col-xs-offset-3 / col-xs-8 col-xs-offset-2 ( 6 + 6 / 8 + 4 ) (row = () photo / info) (4-sizes)
+	  -> col-md-6 /
+	  - col-sm-8 /
+		--> col-lg-8 / col-lg-4
+	    --> col-xs-4 / 
+	  
+020 Dealing with multiple responsive columns
+	- sometimes offsets has issues (e.g. col-md-offset-2) affecting other size breakpoints like misalignment of images. 
+	   -- To fix this issue, we could add offsets to other sizes(e.g. col-lg-offset-0).
+	   -- note: offset happens only at the left side of the element w/c looks like it is pushed to the center. (based on what I noticed)
+
+
+021 Using background images and rollovers
+	-- background-color: rgba(255,255,255,.6); (transparent white for blockquotes)
+	-- testimonial trick - hover - hide / show 
+		https://www.screencast.com/t/k808mbbj https://www.screencast.com/t/rDgnIJieG	
+
+022 Fixing our footer
+
+023 Tracking our navigation with ScrollSpy and jQuery
+	- scrollspy functionality lets you track of where you are currently on the page
+		(e.g. it highlights of where you are currently on the page)
+	- data-spy= scroll  data-target = #ID (usually <body> & NOTE: make sure CSS position:relative for <body>)
+		- or use javascript / jquery  https://www.screencast.com/t/dJL9EpJe 
+		- data-spy= affix  data-offset= 200 <nav> <a> (data-offset-top / data-offset-bottom)  (offset: target alignment of element's page location)
+		- BEST TIP: a.scroller.affix-top {visibility :hidden;} (you can hide element when reaches top for data-offset)
+	- https://getbootstrap.com/docs/3.3/javascript/#scrollspy
+	-  https://getbootstrap.com/docs/3.3/javascript/#scrollspy-events (need to study jquery adding / removing class)
+	 -- this event is triggered when scrollspy passes a target element
+		$('#myScrollspy').on('activate.bs.scrollspy', function () {
+			// do something…
+		})
+	-- https://www.screencast.com/t/t0x2bGNmyPk (js code)	
+	-- https://www.screencast.com/t/RyAVdAmb (css code) 
+		( code: when it scrolls down the page, it changes the nav menu style (e.g. logo is minimized, from transparent menu to with a color menu, bolder fontsize)
+	
+024 Smoothing our page scroll 
+	- https://gist.github.com/planetoftheweb/6729f849d7db31061b2e ( smooth scroll instead of jumping directly to certain part of the page )
+	- https://www.screencast.com/t/9PvjeHiTxPX (code)
+	
+025 Automating carousel indicators
+	-  //Automatically generate carousel indicators
+	- https://www.screencast.com/t/7LuVNxRg (code)
+		-- $().length;
+		-- $().append;
+		-- var += ''; 
+		-- https://www.screencast.com/t/yhmt1Eu6M3 (code)
+		
+
+026 Creating a carousel that fades
+	- opacity: 1; ( 0 = invisible )
+	- transition: opacity ease-out .7s;
+	- https://www.screencast.com/t/7TYdwhdmgl (code)
+
+027 Making carousel elements display full screen
+	- $(window).height();
+	- $(window).resize(function() {});
+	- $().parent();
+	- $().remove();
+	- $(this)
+	- $(window)
+	- $().attr('src');
+	- $().addClass('myclass');
+	- $().removeClass('myclass');
+	- $().find('selector');
+	- tip: sometimes background-size, background-repeat, background-position needs to be separately set because the items in carousel have diff. images.
+	- https://www.screencast.com/t/hmMt6jBO (code)
+		
+
+028 Randomizing our carousels
+	- Math.floor(Math.random()*x) (random round off w/ no decimal)
+	- - data-target= #ID data-slide-to= 0 <li> (photo position & target ID)
+
+029 Next steps
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SUMMARY HIGHLIGHTS ; -----------------------------------------------------------------------------------
+
+BEST TIP: 
+    - Lot of complaints for bootstrap simply because they don't usually customize how they look (e.g. fonts, color, border sizes)
+     -- target the right selector (if possible same selector w/ the default bootstrap), in order to get the right style modification 
+	 -- https://www.screencast.com/t/UEV3Mun0d
+    - rgba vs rgb vs hsl vs hsla (not all browsers support color values) note:
+    - https://stackoverflow.com/questions/26059228/css-hsl-or-rgba-colors
+		-- the values of Hex and RGB have completely changed, whereas HSL only one aspect changed. Because of this, it becomes intuitively easy to create colour schemes on the fly.
+	- https://www.w3schools.com/cssref/css_colors_legal.asp
+    - Injection Issues Problem w/ most frameworks (e.g. bootstrap ):
+		-- As things change in browser (e.g. screen size, device), bootstrap inserts diff. styles (e.g. classes, html, javascript, etc.)
+		-- 	-- media queries  usually solves this [ e.g. @media only screen and (max-width: 768px)] https://www.screencast.com/t/F0ZskjYp9Qzj
+	- http://css3please.com/ (for linear gradient background)
+    - https://leaverou.github.io/prefixfree/ <script src="js/prefixfree.min.js"></script> (note: place lowest after all your css stylesheet)
+	 -- (note: lets you use only unprefixed CSS properties everywhere. It works behind the scenes, adding the current browser’s prefix to any CSS code, only when it’s needed.)
+     - usually when a paragraph is too long & too stretched to cover the whole width, its usually better to split it to at least 2-columns in a grid.	
+	- "use strict"; (add it on jquery/javacscript for good practice) 
+	- font-size can be used to hide element (e.g. span w/ display: inline)
+	- css3 transition looks better if element class is inserted by jquery (e.g. class w/ change in padding, color, border)
+	 
+BEST NOTE:
+	- Display: Block (height, width, margin, padding can now be set / adjusted ) <img> <span> by default are inline
+	- set margin: 0 auto (set the CSS block to center)
+	- sometimes offsets has issues (e.g. col-md-offset-2) affecting other size breakpoints like misalignment of images. To fix this issue, we could add offsets to other sizes(e.g. col-lg-offset-0). 
+    - when creating multilevel rows in a grid , it resets back to 12-columns	
+	- CSS position:  static https://www.w3schools.com/cssref/playit.asp?filename=playcss_position&preval=relative
+		-- fixed: top & left (based on browser window)
+		-- absolute: top & left ( based on nearest ancestor's absolute & relative position ) https://www.screencast.com/t/Uy5b0FbRR
+		-- relative: top & left  ( = static + top & left)
+		-- static: (based on parents position & not affected by top & left)
+	- background-size: cover (means image fits the element background)
+	- background: url() no-repeat center center  (means x & y is centered is in the element container)
+	- testimonial trick - hover - hide / show: 
+		https://www.screencast.com/t/k808mbbj https://www.screencast.com/t/rDgnIJieG
+	- - data-spy= scroll  data-target = #ID (usually <body> & NOTE: make sure CSS position:relative for <body> or the spied element)	
+
+
+https://getbootstrap.com/docs/3.3/javascript/#tabs (javascript using jquery for modal, dropdown, tooltip, popover, alert, button, collapse, carousel, affix)
+responsive utilities - https://getbootstrap.com/docs/3.3/css/#responsive-utilities (helpful for hidden elements in breakpoints)
+https://www.w3schools.com/bootstrap/
+https://www.codeply.com/go/MnULTHRQs7/bootstrap-4-fiddle
+https://www.sitepoint.com/how-to-simulate-mobile-devices-with-device-mode-in-chrome/
+	BLUE – queries which target a maximum width
+	GREEN – queries which target widths within a range
+	ORANGE – queries which target a minimum width
+
+
+photo gallery lightbox: 
+
+
+
+https://www.jqueryscript.net/popular/2017.html
+https://www.jqueryscript.net/lightbox/Gallery-Popup-jQuery-Fs-Gal.html
+https://www.jqueryscript.net/gallery/Simple-Responsive-Gallery-Popup-Plugin-with-jQuery-Darkbox.html
+https://www.jqueryscript.net/lightbox/Responsive-Touch-enabled-jQuery-Image-Lightbox-Plugin.html
+https://www.jqueryscript.net/lightbox/Tiny-Responsive-jQuery-Lightbox-Plugin-Rebox.html
+https://www.jqueryscript.net/lightbox/Dynamic-jQuery-Gallery-Lightbox.html
+https://www.jqueryscript.net/lightbox/Simple-Gallery-Lightbox-Plugin-with-jQuery-Bootstrap-Ekko-Lightbox.html
+https://www.jqueryscript.net/lightbox/Responsive-jQuery-Lightbox-With-Amazing-CSS3-Effects-Fancy-Box-2.html
+https://www.jqueryscript.net/gallery/Responsive-Photo-Gallery-with-jQuery-and-Bootstrap-3.html
+https://www.cssscript.com/tag/gallery-lightbox/
+https://www.jqueryscript.net/demo/Feature-rich-Product-Gallery-With-Image-Zoom-xZoom/#output (magnify)

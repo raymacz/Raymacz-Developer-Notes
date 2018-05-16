@@ -1,0 +1,357 @@
+102 - Filter Hooks
+	- add_filter remove_filter filter is a way to modify content before it displays into a page
+    - note: apply_filters() can be changed with add_filter()
+	- we can use anonymous functions inside filter functions
+	- works on 5.3 or higher
+	- ucwords($content); //uppercase the first of each word http://php.net/manual/en/function.ucwords.php
+	- the_content filter isn’t used when get_the_content() function is called. https://developer.wordpress.org/reference/hooks/the_content/
+
+103 - Action Hooks
+	- add_action, remove_action to hook into specific events in the wordpress lifecycle	
+		- events like:
+			-- when a post is save/publish 
+			-- comments are liked in a blog post
+			-- header/footer is generated
+			-- user access in the admin menu
+	- bloginfo('admin_email') - prints the value vs get_bloginfo('admin_email') - gets the value
+	- wp_mail($email, 'Subject: New Comment Posted', 'Message: A new comment has been posted!');
+			
+			
+104 - Final Project - Additional Category Links
+
+	- plugin: allows the user to see relevant articles that is within a category
+	-	if (!singular_post('post')) {};
+	- $terms = get_the_terms();
+	- https://codex.wordpress.org/Class_Reference/WP_Query
+	- $cats[] = $term->cat_ID; // https://www.screencast.com/t/FmcXJNoS
+	- wp_reset_query(); // good practice to reset query when its done.
+	
+
+201 - Activating the Plugin
+	- Plugin Name: Twitter Shortcode
+	- Objective : build a short code that runs a program
+
+202 - The add_shortcode Method
+	- https://codex.wordpress.org/Function_Reference/add_shortcode
+	- note: you don't use echo, but return;
+	
+203 - Attributes
+	- add_shortcode('twitter', function() {}); //when displaying, always return in shortcode not echo...
+		- if (!isset($atts['username']) $atts['username'] ='raymacz';	
+			-- [twitter  username="myusername" hello=world] - place in post
+			-- note: // quotations are optional w/ condition that value should be one word.
+
+204 - Specifying Content
+	- print_r($atts);die();
+	- if (!isset($atts['username']) $atts['username'] ='raymacz'; // set default username
+	- if (empty($content)) $content ='Please follow';
+
+
+205 - The shortcode_atts Function
+	- 	$atts = shortcode_atts(
+			array(
+				'username' => 'raymacz',
+				'content' => !empty($content) ? $content : 'Follow me',
+			), $atts
+		);
+	-extract($atts);	//extract - gets values from an array and convert it to variables.
+		- return "<a href='http://mqassist.ml/$username'>$content</a>";  // acceptable variables after extract	
+
+206 - Tweets Project - Part 1	
+	- tip: all APIs including Twitter have a limit. 
+		-- Everytime a page is loaded (100/clicks per hour), that means we have to make a call with the API & surpass the limit.
+	- print_r($tweets->Object->results[0]->text);
+		// console.log(tweets.Object.results[0].text) (in javascript)	
+
+206 - Tweets Project - Part 2
+	- objective: use shortcode to display a twitter json in a post 
+	- add_post_meta($id, 'jw_recent_tweets', $recent_tweets);
+	- $c = curl_init($url);
+	- return json_decode(curl_exec($c));
+	- $tweets =$tweets->Object->results;
+	- $data = array();
+	- $data[] = $tweet->text;
+
+
+206 - Tweets Project - Part 3
+	- objective: use shortcode to display a twitter json in a post & refresh json within a certain time (10min)
+	- delete_post_meta($id, 'jw_recent_tweets'); 
+	- $delay = $recent_tweets[0][0] + (int)$tweet_reset_time; 
+	- return isset($recent_tweets[0][1]) ? $recent_tweets[0][1] : $recent_tweets[1];
+	- $recent_tweets = get_post_meta($id, 'jw_recent_tweets');
+
+301 - Introduction to Widgets
+	- Objective: build a widget from scratch & run a program
+
+302 - Making the Plugin Visible to WordPress
+	- Komodo Edit
+	- error_reporting(E_ALL); //during developement, add this to help in making WP plugins
+
+303 - The Skin for a Widget
+	- function __construct() { //constructors method run immediately when its instantiated
+	- widefat - class available in wordpress for nice input style
+	
+304 - The Form Method
+	- echo $this->get_field_id('title'); ?>" 
+	- echo $this->get_field_name('title'); 
+	- isset($title)) echo esc_attr($title); 
+	- parent::__construct('Messager','', $options); // https://developer.wordpress.org/reference/classes/wp_widget/__construct/
+
+305 - The Widget Method
+	- Echoes the widget content. - https://developer.wordpress.org/reference/classes/wp_widget/widget/
+	- echo "<p>$description</p>"; //must be in double quotes for variable to display its value
+	- - tip: $title = apply_filters('widget_title',$title); // widget_title can also be found in the WP Class Widget (e.g <H3 class="widget-title">
+
+306 - Registering the Twitter Widget
+	- jw Twitter Widget - create & activate plugin 
+
+307 - Creating the Twitter Widget Form		
+	- tip: In Komodo IDE, You can save snippet into toolbox	
+      tip: Atom, https://www.sitepoint.com/use-code-snippets-atom/	
+	
+308 - Querying the Twitter API
+	- $tweets = json_decode($tweets['body']);
+	- if (isset($tweets->error)) return false; // json-decode will return error
+	- $data[] = $tweet->text;	
+
+
+309 - Regular Expressions
+	-  $this->get_field_name('tweet_count');
+	- Create a helper function for regular expressions (http://bit.ly/kaOymN @userGuy) 
+	- $tweet = preg_replace('/(http[^\s]+)/im', '<a href="$1">$1</a>', $tweet); // replace urls with <a href>  (found in the string)
+	- http://www.phpliveregex.com/
+
+
+310 - The Transients API
+	- we don't want to be querying the twitter API every single page load. It has a limit (e.g. API serves 150 request/hour)
+	- WP Transients API - allows to set expiration dates. Most of the time stored in  the database.
+	- https://developer.wordpress.org/reference/functions/get_transient/ - (Get the value of a transient)
+	- $tweets = get_transient('recent_tweets_widget'); 
+	- https://developer.wordpress.org/reference/functions/set_transient/ - (Set/update the value of a transient)
+	
+
+311 - Echoing the Widget's HTML
+	- objective: It won't display a new json until a specified time (e.g. 5min) & will show the cached json instead.
+	- $data = new stdClass(); 
+
+
+312 - Completing the Widget
+	- objective:  fetch a new json if the WP form is newly inputted
+	- if (!$tweets || $tweets->username !== $username || $tweets->tweet_count !== $tweet_count) {  // if there are any changes in the form then proceed with a new fetch
+	
+
+401 - Schedule Recurring Events
+	- objective: cron -  a job based schedule to run a script. Recurring events is suited for cron jobs.
+	- NOTE: you can run cron jobs based on schedule however, it is dependent on page loads (until that moment).
+	- (Schedule a recurring event) - https://developer.wordpress.org/reference/functions/wp_schedule_event/ 
+	- (Retrieve supported event recurrence schedules.) https://developer.wordpress.org/reference/functions/wp_get_schedules/
+	- (Fires after WordPress has finished loading but before any headers are sent.) https://developer.wordpress.org/reference/hooks/init/
+	- https://wordpress.org/plugins/wp-mail-smtp/
+	- (Send mail, similar to PHP’s mail) https://developer.wordpress.org/reference/functions/wp_mail/
+		-- https://wpforms.com/how-to-securely-send-wordpress-emails-using-gmail-smtp/
+		--  note - Mail Setup - https://www.screencast.com/t/q1cjZdE5Nuy
+		-- WP cron email success -https://www.screencast.com/t/Sk2TCP30k9 
+		
+
+402 - Custom Intervals for Events
+	- (Filters the non-default cron schedules.) https://developer.wordpress.org/reference/hooks/cron_schedules/
+		-- set your own pre-defined schedules 
+	- add_filter('cron_schedules',  function ($schedules) { });  // change the preset by customizing your own schedule 
+
+
+403 - Unschedule Events
+	- (Unschedule a previously scheduled event.) https://developer.wordpress.org/reference/functions/wp_unschedule_event/
+	- (Retrieve the next timestamp for an event.)	https://developer.wordpress.org/reference/functions/wp_next_scheduled/
+	- note: even if the time has elapsed (say 2min.), WP cron won't send email unless a page load occurred.
+	- note:  Important! Be careful when using wp_unschedule_event() as it will remove your existing wp_mail() event & will refresh / execute (e.g. send email) everytime the page loads.
+
+404 - Create an Options Page
+	- (Fires before the administration menu loads in the admin.) - https://developer.wordpress.org/reference/hooks/admin_menu/
+	- (Add submenu page to the Settings main menu.) https://developer.wordpress.org/reference/functions/add_options_page/
+		- https://codex.wordpress.org/Function_Reference/add_options_page
+		- https://codex.wordpress.org/Roles_and_Capabilities#Capabilities 
+	- add_options_page('Cron Settings Page', 'Cron Settings Menu', 'manage_options', 'jw_cron', function() {}); - https://www.screencast.com/t/wRvKz6YOr
+	
+	
+405 - Displaying Scheduled Events
+	- (Retrieve cron info array option.) - https://developer.wordpress.org/reference/functions/_get_cron_array/
+		-- // this shows the cron event schedules (e.g. updates for plugins, themes, version), it also shows custom hooks we made
+	- (Retrieve supported and filtered Cron recurrences.) -  https://codex.wordpress.org/Function_Reference/wp_get_schedules	
+	- foreach($cron as $time => $hook) { 
+				echo "<h3>$time</h3>";
+			//	 print_r($hook);
+				foreach($hook as $k => $v) {
+					//echo $k.'=> '.$v;	
+				//	echo $k;
+				//	 print_r($v);
+					foreach($v as $k1 => $v1) {
+						//echo $k.'=> '.$v;	
+					//	echo $k1;
+						 print_r($v1);
+					}
+				}
+			} 	
+	- you can use cron jobs to query the API & set a schedule
+	
+406 - Schedule Single Events
+	- what if you want to schedule ang a single event (not recurring)
+		e.g. -- send email in 1hour later only
+		e.g. --  send 1day later for massive emails.
+	- (Schedules an event to run only once.) https://codex.wordpress.org/Function_Reference/wp_schedule_single_event	
+
+501 - Chapter Overview
+	- Objective: build an options page, helpful in building a theme, allows the user of the theme to specify specific stylesheet / phrases / paramaters
+	  e.g. upload own logo, theme color, 
+	- use Options API & Settings API 
+	
+
+502 - Adding an Options Page
+	- (Add sub menu page to the Settings menu.) https://codex.wordpress.org/Function_Reference/add_options_page
+	- add_options_page('My Theme Options', 'My Theme Options', 'administrator', __FILE__, function() {
+		// some developers use __FILE__ for unique ID - https://www.screencast.com/t/vTtDK4SEsEH
+		// if add_options_page is not wrapped, it will get an error & it will run on all pages
+		
+
+503 - Beginning the Form
+	- (a simple and standardized way of storing data in the database) https://codex.wordpress.org/Options_API
+	- (Creating custom options panels in WordPress) https://codex.wordpress.org/Creating_Options_Pages
+	- (allows admin pages containing settings forms to be managed semi-automatically.) https://codex.wordpress.org/Settings_API
+	- note:  enctype="multipart/form-data" <form> --- ability to upload data to any php <form> (not part of WP)
+	
+	
+
+504 - Refactoring the Code (use OOP to organize code)
+	- https://codex.wordpress.org/Settings_API
+	- https://codex.wordpress.org/Creating_Options_Pages
+	- (Add sub menu page to the Settings menu.) - https://codex.wordpress.org/Function_Reference/add_options_page	 
+	- (Add a new section to a settings page.) https://codex.wordpress.org/Function_Reference/add_settings_section
+	
+	
+
+505 - The Settings API
+	- tip:  if possible always use anonymous functions in plugins
+	- (Register a settings field to a settings page and section.) - https://codex.wordpress.org/Function_Reference/add_settings_field
+	- http://site1.net/wp-admin/options.php
+	- (WP adds hidden <inputs> for security) - https://codex.wordpress.org/Function_Reference/settings_fields 
+	- (Prints out all settings sections added to a particular settings page.) https://codex.wordpress.org/Function_Reference/do_settings_sections
+	
+	
+506 - Creating the Submit Button
+	- tip: Browse/Inspect WP admin pages to get the CSS Styles or other element attributes
+	
+	
+507 - Saving and Updating Options
+	- $this->options = get_option('mq_plugin_options'); // get the inputted section/fields value from database data based from register_setting('mq_plugin_options')
+
+508 - Uploading and Displaying Images
+	- 
+
+509 - Saving and Displaying Dropdowns
+
+510 - Testing the Final Product
+	
+
+601 - Chapter Overview
+	- custom post types & custom taxonomy
+	- 5 major default post types: post, page, attachment, revisions, nav menus
+	- The real Power are the custom post types (usually w/ additional metabox: icon, preview image, preview video, Publisher, # of Pages
+	- create a custom post type for movie database.
+	
+	
+602 - Registering a New Post Type
+	- register_post_type('jw_movie', $args); 
+	
+
+603 - Menu Positioning and Custom Icons
+	- https://codex.wordpress.org/Function_Reference/register_post_type
+	- 'menu_icon' => admin_url().'images/media-button-video.gif',  ///  F:\Raymacz\xampp\htdocs\wp\site1\wp-admin\images
+		-- (we can refer to this for more WP images) 
+
+604 - Specifying What the Post Type Supports
+	
+
+605 - Custom Taxonomies
+	- $taxonomies['genre'] = array();
+	- register_taxonomy($name, array('jw_movie'), $arr); //1st- what movie, 2nd- movie type (object), $arr - arguemnts ($args)
+	
+
+606 - Custom Meta Boxes
+    - users can usually just create their custom fields (its one way to go).  However to be more specific (& help users better), we use custom meta boxes instead.
+	- // css id, title, cb, assoc. post type/page, priority lvl, cb arg.
+	 add_meta_box('jw_movie_length', 'Movie Length', 'movie_length', 'jw_movie'); // add new metabox to the post type
+	-
+	
+	
+607 - Creating a Shortcode for Testing
+	- $meta = get_post_meta(get_the_id(), '');
+	- new WP_Query(
+		array(
+			'post_type' => 'jw_movie',
+			'order_by' => 'title';
+		));
+	- $ouput.='<li href="'.get_permalink().'"><a>'.get_the_title().' | '.$meta['jw_movie_length'][0].'</a><div>'.get_the_excerpt().'</div></li>';
+	- create a new post & place [jw_movies] shortcode in the body to display the movies
+
+
+
+
+
+
+		
+BEST NOTE:	
+- apply_filters() can be modified with add_filter()
+- bloginfo('admin_email') - prints the value vs get_bloginfo('admin_email') - gets/returns a value
+- is_singular() 
+- $tweet = preg_replace('/(http[^\s]+)/im', '<a href="$1">$1</a>', $tweet); // replace urls with <a href>  (found in the string)
+				/// /http/ - string of http
+				/// [^\s] - any character w/ no space
+				/// + - one or more chars
+				/// i - uppercase/lowercase
+				/// m -  search multiple lines
+				/// e.g. http://test.mqsssit.ml
+				/// (wrapped) - $1   -->> wrapped with parentheses
+	http://www.phpliveregex.com/			
+- WP Transients API - allows to set expiration dates. Most of the time stored in  the database.				
+- WP_Mail https://wpforms.com/how-to-securely-send-wordpress-emails-using-gmail-smtp/
+	- WP Mail SMTP Plugin  https://wpforms.com/how-to-securely-send-wordpress-emails-using-gmail-smtp/
+	- https://console.developers.google.com/apis/credentials/oauthclient/1030714980824-5estd4b9a8r22evh78350igh0k9d6vrq.apps.googleusercontent.com?project=valid-dragon-189106
+	- Mail Setup - https://www.screencast.com/t/q1cjZdE5Nuy
+- Even if the time has elapsed (say 2min.), WP cron won't send email unless a page load occurred.
+- Important! Be careful when using wp_unschedule_event() as it will remove your existing wp_mail() event & will refresh / execute (e.g. send email) everytime the page loads.
+- - note:  enctype="multipart/form-data" <form> --- ability to upload data to any php <form> (not part of WP)
+	
+BEST TIP:
+	- Wordpress: constructor objects - https://developer.wordpress.org/?s=__construct%28%29
+	- $title = apply_filters('widget_title',$title); // widget_title can also be found in the WP Class Widget (e.g <H3 class="widget-title">
+	- Atom Snippets, https://www.sitepoint.com/use-code-snippets-atom/  (In Komodo IDE, You can save snippet into toolbox)
+	- some developers use __FILE__ for unique ID ($menu_slug) - https://www.screencast.com/t/vTtDK4SEsEH
+	- if possible always use anonymous functions in plugins
+    - Browse/Inspect WP admin pages to get the CSS Styles or other element attributes
+
+WP REFERENCE:	
+
+	
+	https://developer.wordpress.org/reference/functions/get_bloginfo/
+		- get_bloginfo('admin_email') - gets/returns a value
+		- bloginfo('admin_email')  - prints the WP value 
+	https://developer.wordpress.org/reference/functions/apply_filters/ - Call the functions added to a filter hook. (filter & do the changing of content)
+	https://developer.wordpress.org/reference/functions/add_filter/ - Hook a function or method to a specific filter action. (filter & change the content before it fires)
+	https://developer.wordpress.org/reference/functions/add_action/ - Hooks a function on to a specific action. (add event)
+	https://developer.wordpress.org/reference/functions/do_action/ -  Execute functions hooked on a specific action hook.  (do event)
+	https://developer.wordpress.org/reference/functions/wp_mail/ - Send mail, similar to PHP’s mail
+	https://developer.wordpress.org/reference/functions/is_singular/ - (bool) Is the query for an existing single post of any post type (post, attachment, page, custom post types)?
+	https://developer.wordpress.org/reference/functions/get_the_terms/ - Retrieve the terms of the taxonomy that are attached to the post.
+	https://developer.wordpress.org/reference/functions/get_the_id/ - Retrieve the ID of the current item in the WordPress Loop.
+	https://developer.wordpress.org/reference/classes/wp_query/ - The WordPress Query class for custom queries.
+	https://developer.wordpress.org/reference/functions/have_posts/ - Whether current WordPress query has results to loop over.
+	https://developer.wordpress.org/reference/hooks/the_posts/ - Filters the array of retrieved posts after they’ve been fetched and internally processed.
+	https://developer.wordpress.org/reference/functions/get_the_title/ - Retrieve post title.
+	https://developer.wordpress.org/reference/functions/wp_reset_query/ - Destroys the previous query and sets up a new query.
+	https://codex.wordpress.org/Function_Reference/add_shortcode	- Adds a hook for a shortcode tag.
+	https://developer.wordpress.org/reference/functions/shortcode_atts/ - Combine user attributes with known attributes and fill in defaults when needed.
+	
+	
+	BEST NOTE: 
+	    -you can run cron jobs based on schedule however, it is dependent on page loads (until that moment) to execute that cron job.
+	    - 5 major default post types: post, page, attachment, revisions, nav menus
+	

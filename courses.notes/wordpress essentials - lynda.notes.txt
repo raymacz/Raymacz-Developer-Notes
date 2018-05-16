@@ -1,0 +1,72 @@
+
+#16 Categories vs posts
+  - apply category (heirarchical taxonomies) in every posts
+  - tags are non-heirarchical
+  - (note: FALSE - "tons of tags to boost SEO") Tags only help connections
+   between post & not Search Engine ranking
+#18 Using revisions on posts- can be found in publish panel
+#21 Post formats - Inconsistency on themes (e.g how images are displayed in featured/posts)
+  - recommendation: use Standard post format
+#20 Truncate Post using Excerpts
+  Two ways to truncate WP posts:
+    - Insert "Read More tag"
+    - Excertps gets shared on social media sites (truncated short messages)
+     (excerpts behavior depends on theme)
+#38 Using Attachment pages (Some themes support it)
+    - Helps Search Engine indexing & Social Media Posts
+#53 Recommended Plugins
+  Security:
+    - Limit Login attempts
+    - Two factor Authentication (various)
+  Contact Form:
+    - Contact Form 7
+    - Gravity Forms
+  Lightboxes and Galleries
+    - Fancybox
+    - Lightbox
+    - Tiled Galleries Carousel w/o Jetpack
+      (for posts with pictures)
+  All in one Jetpack
+    - Jetpack
+  Misc:
+    - Regenerate thumbnails
+#059 Standard User Roles
+    - Subsciber, Contributor, Author, Editor (2), Administrator (2)
+#60 how to keep inactive contributors' content
+    - change role to subscriber & change password (for inactive contributor)
+#065 - Changing Default Category: from Uncategorized to Updates
+#066 - uploading files - organize into month & year
+#069 - Recommend: Post name - configure
+- Plugins: Webshare, Jetpack (Sharing extension)
+    AddThis (clients)
+#070
+- irreplaceable files: wp-content folder, wp-config.php
+- wp-config.php - define(keys) - on live site (don't touched unless hacked)
+                - prefix "wp_" - you can change before WP installation
+#72
+- automatic update on point releases e.g. 4.1.2 -> 4.1.3
+#73 Security thru hosting, plugins, and third-party services
+  - Cloudflare - CDN Caching service w/ security
+  - plugins:
+    - vaultpress plugin - backup & security (paid)
+    - akisma - anti-spam - (combo paid)
+    - jetpack - protect
+#74 white screen of death - what to do?
+  - crashy theme 2000 (white screen demo theme)
+  - usually a theme problem.   solution below:
+          - go to wp-content/themes/<theme WSOD> & rename
+          (e.g. CrashyTheme2000 to CrashyTheme2000OLD) admin backend restored only
+          - go to appearance/theme & wordpress auto-reverts when theme crashes
+  - Destory plugin - ( destroy demo) - wordpress won't update the broken plugin
+#75 Site Migratoin
+  - local to web (impossible to import/export because it can't make an http request)
+        use Wordpress Plugin: WP Migrate DB plugin
+  - web to local (works on import/export)
+  - web to web (works on import/export)
+  - tools/export - use all content (download XML file)
+  - tools/import - Wordpress Importer plugin
+                 - import attachments
+  - import/export works however you need to do some work like the WP customizer
+    & other theming restoration & fixes like:
+      - theming - menu, widgets, social links,
+      - delete / update some content

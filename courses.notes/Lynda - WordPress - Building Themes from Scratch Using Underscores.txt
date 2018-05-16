@@ -1,0 +1,1283 @@
+
+
+Lynda - WordPress - Building Themes from Scratch Using Underscores
+
+username password http://site1.net/wp-admin/  http://192.168.1.14:8080/ myadmin boslot 
+username password http://site3.net/wp-admin/  boslot4321
+
+
+01 Set Up a WordPress Development Environment ========================	
+
+005 WP Development Environment
+	- Theme Unit Test Data Plugin
+	- NPM and GULP via Node
+	
+006 Get and install _s	
+	- install underscores.me theme & check _sassify! (to split CSS into CSS partials) & generate a new theme
+ 
+007 Install and explore WordPress Theme Unit Test data
+	- for fully testing themes compatibility
+	- https://codex.wordpress.org/Theme_Unit_Test (downloadble XML file)
+	- Use tools->import->Wordpress(install now)->Run Importar->Choose file->Upload & Import(Theme Unit Test Data Plugin)
+		-- It has a default author. ( or you can choose your own existing authors)
+		-- check Download & import the attachments
+		-- When done, it will be populated with content to test your theme
+			-- Markup: HTML Tags and Formatting (important)
+		-- tip: it is good to know what type of data this is best for testing your own content/module you are working.
+
+008 Install the Developer plugin and other useful plugins	
+	- https://wordpress.org/plugins/developer/ (Developer Plugin) 
+		- choose what you plan to develop: theme, plugin, or VIP WP ("theme" in this lesson)
+		- all are good, but for theme we mostly use:
+			-- Debug Bar  (add debugging the WP toolbar at the very top)
+			-- Monster Widget (easier to add a lof widgets to sidebar very quickly)
+			-- regenerate thumbnails ( to regenerate any featured images once default setting is made)
+			-- theme check ( test WP theme if it meets basic WP standards)
+			-- manually activate all plugins
+	- Tools->Developer (Constants Section)
+		-- WP_DEBUG (enables debug mode)
+			-open wp-config.php define('WP_DEBUG', false) & set it to true
+		-- SAVEQUERIES (logs DB queries for review) 
+	- Show Current Template	Plugin https://wordpress.org/plugins/show-current-template/
+
+009 Install and set up NetBeans or another IDE
+	- tip: ATOM - for small projects NETBEANS - for BIG PROJECTS	
+	- NETBEANS tip:
+		-- Name and Location: https://www.screencast.com/t/DCig6qRTd
+		-- Run Configuration: https://www.screencast.com/t/ZkGN0JdKcNLO
+		-- Plugins: Darcula LAF for Netbeans (restart Netbeans)
+		-- ctrl-click function name - to trace source of code
+		-- autocomplete helps in remembering the code
+			--- file->project properties (include path -> wp-includes) https://www.screencast.com/t/DA3La5dY7z
+			--- tools->options->editor->code completion https://www.screencast.com/t/pULe2pojTC
+		
+
+010 Automate theme development with Gulp and various tools
+	- gulp.js 
+		-- using commandline (e.g. compile CSS from SASS, compress & optimize images, 
+		-- requirement: gulp, npm, node.js (install all)
+		-- copy gulp-dev folder into themes main folder
+		-- package.json (config file)
+		-- gulp.js tip: you can remove repository, bugs, homepage
+		-- devDependencies (needs all of this dependencies)
+	- cmd
+		1. go to gulp-dev folder (lives outside your themes)
+		2. npm install
+		3. ignore node_modules folder (auto by node)
+		4. open gulpfile.js (manages the actual project)
+			-- var themename = 'humescores';  /* what theme to apply to */
+			-- proxy: 'humescores.dev', /* for browser sync it must have the same localhost url */ /* you may also copy your own url & paste it here instead */
+		5. any browser can sync even in scrolling (chrome, firefox) https://www.screencast.com/t/tuWa8ax5LS5u
+			-- phone also affects & in sync w/ your desktop
+			-- process is completely automated
+	- https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md		
+	- https://github.com/mojenmojen/gulp-for-wordpress-dev
+	
+	
+02 The Design to Development Process ========================	
+
+011 Modular, mobile-first design
+	- Modular Mobile-First Design:
+		1. Design modules that together comprise a full view
+		2. Design and build for small screen first
+		3. Make design decisions in the browser
+	- RWD in Three Simple Steps
+		1. Start with the smallest screen
+		2. Make your viewport wider
+		3. When a component looks strange, add a breakpoint
+
+012 How do WordPress themes work_
+	- http://site1.net/?p=1 (actual for http://site1.net/hello-world/)  
+		-- https://www.screencast.com/t/WbkEdhWLKi
+		-- https://www.screencast.com/t/pxJfypYhFX65 (single.php)
+		-- https://www.screencast.com/t/fsiSxpDaQ7nO (index.php)
+		-- https://www.screencast.com/t/IfkiHBsnRMA (page.php)
+		-- DRY (don't repeat yourself method)
+			- we call templates when we only need them
+		-- https://www.screencast.com/t/n0tO5VVuoG0P (templates)
+			- every major piece of content usually has its own template file
+	  
+
+013 How to make sense of the WordPress template hierarchy
+	- Wordpress Template Heirarchy https://wphierarchy.com/
+
+014 Underscores - An overview
+	- https://www.screencast.com/t/mtpCcVhm5x (WP directory including SASS)
+	
+	
+	
+015 Explore the Sass partials setup in _s
+	- For details of how partials work, it has a Sass map (PDF format) _s-sass-partials-map.pdf &  _s-container-map.pdf
+	- note: file that has the same name as directory usually imports the sibling files (*.scss)
+	- @import "variables-site/variables-site";  (found in style.scss)
+		-- refers to (found in sass\variables-site\_variables-site.scss)
+		-- _variables-site.scss (has all imports to its directory-siblings files )
+	- @import "typography/typography"; (found in style.scss)
+		-- refers to (found in sass\typography\_typography.scss)
+		-- _typography.scss (has all imports to its directory-siblings files )
+		
+03 Set Up the Basic Theme ========================		
+		
+016 Configure the theme info
+	- set theme info meta data
+	- note: In SASS, SCSS when compiled will move to CSS
+	- note: while gulp is running, it will automatically update/compile/clone to CSS files & will do auto browser-sync
+	- main file style.scss (set theme-info)
+	
+	
+017 Configure baseline settings and functions
+	- Underscores Theme is well-documented. (using comments)
+	- !function_exist('humescores_setup') - this is common throughout the theme because of child themes.
+	- load_theme_textdomain();
+	- add_theme_support('');
+		- 'automatic-feed-links'
+		- 'title-tag'
+		- 'post-thumbnails'  // featured thumbnails
+		- 'html-5', array('search-form', 'comment-form', 'comment-list', 'gallery', 'caption',)
+		- 'custom-background', array('default-color' => 'ffffff','default-image' => '',	)  // you can set a default background color & images
+	- $GLOBALS['content_width']  // max width for content from outside  (e.g. youtube videos.)
+	- register_nav_menus();	
+	- add_action('widget_init', 'anyCB_function');
+		-- register_sidebar();
+	- very important that it has a separate video tutorial (for adding style & scripts):L
+		-- wp_enqueue_style();
+		-- wp_enqueue_script();
+	- require get_template_directory() // (to breakdown huge code in functions.php)
+	
+		
+
+018 Enqueue and apply custom web fonts
+	- objective: replace system fonts with custom fonts
+	- Best goole fonts for this exercise (http://fonts.google.com):
+		-- $font__sans - Source Sans Pro (Headings, meta content)  
+		-- $font__serif - PT Serif (Body content & other main content) 
+		-- tip: you can customize font weights in google fonts, "Load Time: slow" is not advisable & avoid including fonts you don't really use
+		-- embed (standard or import) then use it on CSS
+	- upon browser inspect, google font <link> will be added 
+		-- ///wp_enqueue_style( 'humescores-fonts', 'https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i|Source+Sans+Pro:400,400i,600,900' );
+	-  variabled added to file  (../sass/variables-site/_typography.scss)
+		-- $font__serif: 'PT Serif', serif, Georgia,Cambria,"Times New Roman",Times;
+			// $font__serif: 'PT Serif', serif (google fonts) Georgia,Cambria,"Times New Roman",Times (backup fonts - probably default)
+		-- $font__sans: 'Source Sans Pro',sans-serif ,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial;
+	-  variables applied (..\sass\typography\_typography.scss)
+
+	
+019 Allow translators to control web fonts
+	- objective: toggle on/off of fonts if using the translator language
+	- tip: usually wordpress (because its open-source), has already a solution for any challenges, just reuse the code.
+		-- function humescores_fonts_url() // this code comes from function twentyseventeen_fonts_url() 
+	- $fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' )
+    - 'family' => urlencode( implode( '|', $font_families ) ), //uses a pipe '|' as separator (nomenclature by google font).
+	- $pt_serif = _x( 'on', 'PT Serif font: on or off', 'humescores' );
+	- return esc_url_raw( $fonts_url );
+
+020 Preconnect custom web fonts for improved performance
+	- objective: improve performance of web fonts
+	- Sources google fonts - https://www.screencast.com/t/U79nKh2X	
+	- humescores_resource_hints()  // this code comes from function twentyseventeen__resource_hints() 
+	
+021 Work with Sass and source maps
+	- Sourcemaps (gulpfile.js) - hint files that traces the CSS origin of the browser
+		- note: "enable CSS source maps" found in browsers (usually found in settings).
+			(e.g. tells the source of the CSS variable)
+
+
+022 Create responsive typography
+	- objective: change responsive size of fonts
+	- note: use mixin to ouput pixel & rem size  if browser supports, to call use @include 
+	- 1rem=16px
+	- typography then mixins
+		-- @include font-size(.9); /* 18px font-size found in \mixins\_mixins-master.scss */ 
+		-- @mixin font-size($sizeValue: 1) { // @mixin function_name($var: 1) means it sets @include function_name()
+				font-size: ($sizeValue * 20) * 1px; /*we use mixin just in case browser doesn't support rem size */
+				font-size: $sizeValue * 1.25rem; /* 20px / 16px */ 
+			}
+	- @include font-size(1); // this means it calls the function or  references the file -> mixins - sass\mixins\_mixins-master.scss  
+	- calculate em and rem sizes:
+		-- em/rem size
+		-- e.g. 20px * 1rem/16px = 1.25rem
+		-- to check rem size, go to computed (in browser)
+	- typography\_typography.scss @media screen and (min-width: 700px) { @include font-size(1);  /* 18px */	}
+	- typography\_headings.scss  h6 {font-size: 1.6em;} 
+	
+		
+023 Lay the groundwork for responsive layouts
+	- # Content is more important than # Widgets
+	- _site.scss 
+		-- //@import "../layout/content-sidebar";
+		-- //@import "../layout/sidebar-content"; // these 2-lines got replaced by @import ../layout/global;
+		--   https://www.screencast.com/t/NRVOG8Tp0nu (under ../layout/ files are also replaced)
+		-- (in my opinion, you don't have to delete these commented files when creating the new _global.scss file.
+		
+04 Build the Header ========================		
+		
+024 Style the default header	
+	- tip: no need to touch the <head> of WP
+	- tip: press tab, goes to main wp content  (for screen readers) 
+	- @import "header/header";  (add code in sass\site\_site.scss)
+		-- sass\site\header\_header.scss (create new file )
+		-- variables are found in the folder - sass\variables-site\
+	- .site-header {
+		display: flex; /* lets you stretch for menu */
+		justify-content: space-between;
+	}
+
+025 Add an optional header image function
+	- objective:
+		1. change the settings to get the right image size
+		2. hook the image into the theme
+		3. style the image.
+	- add_theme_support('custom-header') - https://codex.wordpress.org/Custom_Headers		
+	- note: WP customizer won't work properly in browser-sync because of a cross-browser issue. Just use the normal localhost domain (e.g. site1.net)
+	- 'flex-height' => true, //means flexible height crop
+	- You can add an optional custom header image to header.php
+	    -- <!-- part of this code was copied from custom-header.php (header.php file)--> 
+		--  <?php if ( get_header_image() && is_front_page() ) : ?>  
+	- echo esc_attr( get_custom_header()->width );
+	- echo esc_attr( get_custom_header()->height );
+	- img {
+		display: block;
+		width: 100vw; /* if image gets too small, it will stretch */ (_header.scss)
+	}
+	- max-height: 60vh; /* if image gets too small, it will stretch */
+	
+
+026 Show the header image only on the front page
+	- https://codex.wordpress.org/Function_Reference/is_front_page  (Is the query for the front page of the site?)
+	- https://developer.wordpress.org/reference/functions/is_home/ (Determines if the query is for the blog homepage.)
+	- https://codex.wordpress.org/Conditional_Tags#The_Main_Page
+	- <?php if ( get_header_image() && is_front_page() ) : ?>
+	
+	
+027 Add an optional custom logo to the header
+	- https://codex.wordpress.org/Theme_Logo
+	- add_theme_support( 'custom-logo', array()); // functions.php
+	- <?php the_custom_logo(); ?> // header.php
+	- ..\sass\site\header\_header.scss
+	- display: flex; /*Let all the flexible items be the same length, regardless of its content: */
+	- .site-branding__text { /* even without logo, display is still ok */
+		display: flex;
+		flex-direction: column; 
+		justify-content: center;
+		height: 65px;
+      }
+
+028 Fix responsive problems in the header
+	- .site-branding {
+		width: 35%;
+		flex: 1 0 auto; /*  1-can grow, 0-can't shrink, auto- size depends on the content */
+		}
+	- pseudo element - this clear floats (left/right), so as not to get overlap of content, this is the old way & conflicts w/ all of flex box CSS
+		-- ::before
+		-- ::after
+		-- _clearings.scss - ../sass/modules
+			-- remove CSS
+				--- .site-header:before,
+				    .site-header:after {
+						@include clearfix;
+					}
+				--- .site-header:after {
+						@include clearfix-after;
+					}
+					
+05 Create Menus ===========================
+
+029 How to register and display menus
+	- menu requires 2-components
+		1. register at backend & can be customized (in customizer)
+			- register_nav_menus() - usually function.php
+		2. add to the theme for display 
+			- wp_nav_menu() - usually header.php
+
+030 Apply styles to the menu
+	- best CSS for Menu are flex box (instead of float & clearfix)
+		-- floating items inside container, the container won't understand its own height (like zero pixels tall), & causes overlapping
+		--  <ul>
+			--- display: flex;
+			--- justify-content: space-between; (browser will find all the menu space & set it evenly in between items)
+			--- flex-direction: row-reverse; (change item's sort order)
+			ul {
+				justify-content: flex-end; /* justify right */
+				padding-top: 0;
+			}
+	- _menus.scss (delete the .main-navigation until .comment-navigation)		
+	- tip: its an advantage using flex box w/ minimal code	
+
+031 Borrow JavaScript from Twenty Seventeen to enable dropdown menus 
+	- use javascript from twenty seventeen for menu dropdown * enable menu translation for screen readers
+		- wp_enqueue_script( 'humescores-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '20151215', true );
+       // copy script from 2017 to humescores & add array('jquery')
+	   // array('jquery') - use WP built-in jquery
+	   // '20151215' - $ver - date preferred
+	   // true - load before <body> & in the <head>
+	- https://codex.wordpress.org/Function_Reference/wp_localize_script  
+	- navigation.js // copy & replace all script code from 2017 to humescores
+	- search & replace theme prefix
+	- note: php only, no javascript for translation (for screen reader text)
+	
+
+032 Customize JavaScript to work with the current theme
+	- understand navigation.js script 
+	-  // humescoresScreenReaderText - variable to pass on WP API to be translatable
+	-	wp_localize_script( 'humescores-navigation', 'humescoresScreenReaderText', array(
+		'expand' => __( 'Expand child menu', 'humescores'), // text will be added in a <span> expand / collapse 
+		'collapse' => __( 'Collapse child menu', 'humescores'),
+	));
+	- dropdownSymbol.text( dropdownSymbol.text() === '-' ? '+' : '-'); 	//find  dropdown <span> & add a -/+ text
+	- fix <button> & <input> CSS of sass\forms\_buttons.scss
+		-- input[type="submit"] {
+			@include font-size(1);
+				&:hover ,
+				&:active,
+				&:focus {
+					background: white;
+					color: black;
+				}
+			}
+
+033 Challenge - Add a social media menu to the footer
+	- objective: build a footer menu
+		-- register a new menu location
+		-- display menu location in the footer
+		-- populate the footer menu w/ social media links
+		-- make footer match header w/ basic CSS
+
+034 Solution - Add a social media menu to the footer
+	- 'social' => esc_html__( 'Social Media Menu', 'humescores' ), //secondary menu (functions.php)
+	- <?php wp_nav_menu( array( 'theme_location' => 'social' ) ); ?> (footer.php)
+	- create sass\site\footer\_footer.scss
+
+06 Configure the Single Post Template ===========================
+
+035 Get to know the single post template
+	- tip: 3 post to test content: 
+		1. http://site1.net/hello-world/
+		2. http://site1.net/markup-image-alignment/
+		3. http://site1.net/markup-html-tags-and-formatting/
+	- single.php
+		- template-parts
+			-- content-none.php (no content to display)
+			-- content.page.php (page content)
+			-- content-search.php (search results)
+			-- content.php (single post, indexed & archived pages)
+			
+
+036 Display a category list at the top of the post
+	- humescores_entry_footer() - inc\template-tags.php
+		-- cut a portion of the code that displays the category & create a new function humescores_the_category_list()  - inc\template-tags.php
+	- note: printf( esc_html__( '%1$s', 'humescores' ), $categories_list );  //  '%1$s'   - prints 1st variable of $categories_list
+	
+
+037 Modify the output of post metadata
+	- humescores_posted_on() - inc\template-tags.php
+			-- $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';	 
+			-- sprintf( $time_string,	
+				esc_attr( get_the_date( 'c' ) ), /// %1$s	
+				esc_html( get_the_date() ) ); /// ">%2$s
+	- (Retrieve the time at which the post was last modified.) https://developer.wordpress.org/reference/functions/get_the_modified_time/			
+	- (Displays the edit post link for post.)  https://developer.wordpress.org/reference/functions/edit_post_link/
+
+038 Apply CSS to the post header
+		- .cat-links { /* sass\site\primary\_posts-and-pages.scss */
+			font-size: 90%;
+				a {
+					text-decoration: none;
+					&:focus,
+					&:hover {
+						background-color: $color__interactive;
+					}
+				} 
+			}
+		- .byline {
+				&::after {
+				/* content: "| crappy";  */
+                content: "|";  
+				}
+		  }	
+
+039 Apply CSS to typical post content
+	- http://site1.net/markup-html-tags-and-formatting/
+		-- shows differents types HTML tags & formatting possibilities of content.
+	- sass\variables-site\_colors.scss
+	- sass\navigation\_links.scss
+	- sass\elements\_elements.scss
+	- sass\typography\_copy.scss
+	- sass\elements\_lists.scss  
+	- sass\elements\_tables.scss
+	- sass\typography\_headings.scss
+
+040 Configure and verify image alignments
+	-  http://site1.net/markup-image-alignment/
+		-- shows markup image alignments of content.
+	- if post edited, image alignments can be left from left to right or no alignment at all.
+		-- WP adds classes to alignment (e.g. center, left)
+	- sass\modules\_alignments.scss
+			-- generic, that it can be applied to any elements (e.g. blockquotes)
+	- .alignleft {
+		display: inline,
+		float: left,
+		margin: right; }
+		
+			
+
+041 Display 'full-bleed' images on smaller screens
+	- trends of flat & material design - make centered block-level images full bleed images into smaller screen
+		-- (images that are wide/small enough has padding for edges)
+		-- center images by: 
+			clear:both;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+	- tip: sets generic elements to be responsive ready (center) - themes\humescores\js\functions.js
+		--- wp_enqueue_script( 'humescores-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '20151215', true );		
+		--- figure {
+				margin: 0;
+				width: 100vw;
+				margin: 0 -1em; 
+			} /* vw- full viewport width & margin set to full bleed image*/
+	- create a new file - sass\media\_images.scss (& add the code above)	
+	- sass\media\_media.scss
+	
+
+042 Style image captions
+	- sass\media\_captions. (just applied very standard captions)
+
+043 Style image galleries
+	- wp has default image gallery
+		-- http://site1.net/post-format-gallery/
+		-- http://site1.net/post-format-gallery-tiled/
+	- you can set galleries (e.g. columns, size, etc.)
+		-- how to edit post gallery - https://www.screencast.com/t/4FPFhkRWaE
+		-- how to create gallery - https://www.screencast.com/t/jMHrM9bO	  
+	- tip: some use plugins to make galleries attractive (e.g. jetpack)
+	- sass\media\_galleries.scss
+		-- /* this is what really matters for the grid of galleries */
+		.gallery-columns-2 .gallery-item {	max-width: 50%; }
+	- https://jetpack.com/support/tiled-galleries/
+	- https://jetpack.com/support/carousel/
+	- tip: https://jetpack.com/support/features/
+	
+044 Configure post navigation
+	- post navigation humescores_post_navigation();
+	- single.php & inc\template-tags.php  - https://www.screencast.com/t/3WqOojNgoAs7
+	- sass\navigation\_menus.scss
+	- sass\navigation\_navigation.scss /*  @import "menus"; */ /*this has been excluded since it is a misleading title */
+	- sass\navigation\_content-navigation.scss /* replace menus.scss */
+		-- .nav-links {
+				display: flex;
+				justify-content: space-between;
+				align-items: stretch;
+				padding: 0;
+			}
+	- tip: <blockquote> nice background image - https://www.screencast.com/t/xvi8AeNtG - sass\typography\_copy.scss
+		-- to test blockquote http://site1.net/markup-html-tags-and-formatting/
+	
+
+045 Planning an unusual layout
+	- https://www.screencast.com/t/uUv2en2E
+
+046 Detect when the sidebar has widgets
+	- https://codex.wordpress.org/Function_Reference/is_active_sidebar
+	- inc\extras.php
+	- add_filter( 'body_class', 'humescores_body_classes' );
+		-- if ( is_active_sidebar( 'sidebar-1' ) ) {
+				$classes[] = 'has-sidebar';
+			}
+	- single.php & content.php
+	- get_sidebar();
+		
+
+047 Build the structure for displaying the sidebar
+	- create new file - template-parts\content-single.php
+	  -- get_template_part( 'template-parts/content', 'single' );
+	  -- cut & paste - move code 
+		--- get_sidebar(); /// from single.php to content-single.php
+		--- humescores_post_navigation(); 
+		--- comments_template();
+	 -- <section class="post-content"> /// add new section 	
+		
+	  
+
+048 Use Flexbox to create a responsive layout
+	- sketch - https://www.screencast.com/t/ixuloC9WLyWq (flex box)
+	- sass\variables-site\_structure.scss 
+		- $size__max-width: 1080px; (browser max screen size - @media queries)
+		- $size__ratio-small: 30%; (ratio of widget)
+	- sass\layout\_global.scss	
+	  -- /* max width for content $size__max-width: 1080px is set */
+			-- .site-content {
+					max-width: $size__max-width;
+					margin: 0 auto;
+			}
+	  -- flex box code - https://www.screencast.com/t/MefVYBvZ6
+	  -- /* max width for $query__medium: 900px is set */
+		@media screen and (min-width: $query__medium) {
+			.has-sidebar {
+				.hentry {
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: space-between;			
+				};
+	
+
+049 Customize the single post template for a no-sidebar layout
+	- remove sidebar in customizer, to get the no sidebar view - choose a post & remove sidebar (in widgets)
+	- if ( !is_active_sidebar( 'sidebar-1' ) ) :  //only display if there is sidebar() ?> (template-parts\content-single.php)
+	- sketch - https://www.screencast.com/t/ixuloC9WLyWq (flex box)
+
+050 Use Flexbox to create a no-sidebar responsive layout
+	- https://www.screencast.com/t/6RVgTnZNU (flex box plan)
+	- @media screen and (min-width: $query__medium) { sass\layout\_global.scss
+	- /* Custom Post Meta rules for single post / no sidebar.  (sass\site\primary\_posts-and-pages.scss)
+	- /// pipes '|' & tags <span> disappear/reappear when changing @media queries		
+		-- <span class="extra">Admin </span>'  (inc\template-tags.php) 
+		-- content: "|"; content: ""; (sass\site\primary\_posts-and-pages.scss)
+	
+051 Get to know the comments template	
+	- objective: how to display comments & comments form 
+	- problem: comment looks exactly like the post
+	- test http://site1.net/template-comments
+	- comments_template(); (content-single.php) 
+	- comments.php - works like content-single.php
+		-- have_comments()
+		-- post_password_required()
+		-- get_comment_pages_count() 
+			-- by default if comments > 50 then wp will only use comment navigation 
+		-- note: markup for comments navigation is very similar to post navigation	class= comment-navigation
+		-- wp_list_comments() - (outputs the comments list)
+		-- comments_open()
+		-- get_comments_number()
+		-- comment_form()
+	- WP default is 50 comments 	
+	- comment navigation has similar styling with post navigation
+	
+052 Configure comments output including Gravatars
+	- objective: make avatar pic bigger
+	- wp_list_comments() - (outputs the comments list)
+		-- 'walker' (very advanced, it walks to the comments & intercept what you want)
+	- comment has avatar (picture) right next to it
+		-- wp_list_comments('avatar_size')
+	
+
+053 Apply CSS to comments
+	- sass\site\primary\_comments.scss
+	- tip: to effectively CSS comments, start with one before doing multiple comments.
+	- http://site1.net/template-comments/#comment-34 (note: you can put mark-up <tags> to comments)
+	- tip: "I style comments similary to all themes (as seen in the popper theme)" - morten
+
+054 Highlight post author comments
+	- note: authors comments can be highlighted - (WP adds a unique class= bypostauthor)
+		-- /* content-box means it won't reduce in size */ (sass\site\primary\_comments.scss)
+		-- .bypostauthor .avatar {
+			box-sizing: content-box;
+			border: 5px solid $color__interactive;
+		  }
+	- https://www.screencast.com/t/YrpzFyxV7 (how it looks)
+
+055 Change the display of the comment form using CSS
+	- /* Comment Form */ (sass\site\primary\_comments.scss)
+	- 2 types of comments forms: 
+		1. logged-in
+		2. logged-out
+	- you can style these:	
+		-- class= comment-notes class= comment-notes 
+		-- class= comment-awaiting moderation (warning)
+
+056 Configure the comment section title and navigation
+	- comments.php
+		-- number_format_i18n( get_comments_number() 
+	- by default if comments > 50 then wp will only use comment navigation 
+		- to customize, go to settings https://www.screencast.com/t/HaFhyKDoi
+	- .comment-navigation, .posts-navigation, .post-navigation, .paging-navigation  
+		-- (this has the same styling sass\navigation\_content-navigation.scss)
+	-- .comment-nav-above & .comment-nav below 
+		-- (you can remove one of these to avoid redundant comment navigation)	comments.php
+		-- the reason for 2-comments navigations, because the default is 50 comments.
+		
+		
+057 How do featured images (post thumbnails) work_
+    - WP featured image (the_post_thumbnail):
+       -- featured images are usually shared in social media & 1 image per post -- https://developer.wordpress.org/reference/functions/the_post_thumbnail/
+	   -- featured images are separate from post content including database entry.
+	   -- when user/author adds featured image - it crops different sizes of it to fit
+	- regular post images - the_content()  vs. featured image - the_post_post_thumbnail() -- https://www.screencast.com/t/NgHYg9wow7n
+	
+	- the_post_thumbnail() - you can use post-id to call the featured image separately
+		-- the_post_thumbnail() & the_excerpt() or the_post_thumbnail()  & the_content()
+	- sizes of post thumbnails ( https://www.screencast.com/t/rqniTKwk): https://codex.wordpress.org/Post_Thumbnails#Thumbnail_Sizes
+	    -- the_post_thumbnail('index-img') 500x400
+		-- the_post_thumbnail('single-img') 2000x800 
+	- two featured image sizes for this theme:
+		1. single post
+		2. index pages
+	
+
+058 Display featured images in the single post template
+	- tip: featured images when uploaded do not automatically display in post pages.
+	- the_post_thumbnail('index-img') - content-single.php
+	- wrap it with <figure>
+	- has_post_thumbnail()
+	- .full-bleed  -- sass\site\primary\_posts-and-pages.scss (image is centered)
+	- 	@media screen and (min-width: $query_b4_xl) {
+		 margin-right: calc( ((-100vw + #{$query_b4_xl})/2) - 2.5em );
+		 margin-left: calc( ((-100vw + #{$query_b4_xl})/2) - 2.5em );
+	}
+	
+
+059 Create custom featured image sizes
+	- WP produces various image sizes
+	- add_image_size() (register a new custom crop image) 
+		-- add_image_size( 'humescores-full-bleed', 2000, 1200, true ); /// functions.php
+	- the_post_thumbnail('humescores-full-bleed'); /**displays the custom crop version **/  (content-single.php)
+	
+
+060 Generate new featured image sizes with a plugin
+
+	- note: when a new image is uploaded, a new image size is generated (add_image_size() ), but this is not retroactive 
+		-- (means the image previously uploaded is not included before this code is added)
+	- 2-posts w/ featured image  (theme unit test data) (images were added before the code (add_image_size() ) was implemented
+		1. site1.net/template-featured-image-horizontal
+		2. site1.net/template-featured-image-vertical
+	- to resolve this issue, use regenerate thumbnails plugin, go to tools -- https://www.screencast.com/t/CWn0HE1FnTUz
+			--- note: if tons of images already exist, go to media->list view to do it individually
+
+061 Get to know widget areas, aka 'sidebars'			
+	- customizer->widgets->sidebar->add widget (we can add: archives, calendar, categories, custom menu, meta, monster, pages, recent comments)
+	- note: in mobile, widget sidebars appear below becoming a widget area.
+		-- widget area is a general term we can add any type of widget
+	- register_sidebar() -- functions.php
+	- dynamic_sidebar() - //displays widget area  -- sidebar.php
+	
+
+062 Use the Monster Widget plugin to test all widgets
+	- objective: testing all widgets at once to save time
+	- monster widget plugin (will display every widget available at once)
+		1. check if all widgets styles are okay
+		2. site owner sometimes put multiple widgets 
+	- tip: if possible better style all WP widgets (using monster widget plugin)
+
+063 Applying CSS to the widget area
+	- sass\site\secondary\_widgets.scss
+		-- target class= widget for styles
+	- Some widgets need to indivually styled for specific content
+
+064 Add custom styles to specific widgets
+	- 'before_widget' => '<section id="%1$s" class="widget %2$s">' -- functions.php
+		-- %2$s /// replaced with widget_archive, widget_calendar, widget_pages, widget_meta, etc.
+			--- these classes allows specific styles for widgets (sass\site\secondary\_widgets.scss)
+	- RSS widget needs to be styled more because of bigger content
+	- notice in <p> the html markup is terrible (title & body is place into one paragraph).
+		-- tip: Sometimes, html markups are terrible (e.g. RSS) in styling that you have to take into account for it.
+		
+		
+065 Challenge - Add an optional widget area to the footer
+	- challenge breakdown:
+		1. register a new widget ara ('sidebar')
+		2. display it in the footer
+		3. populate it with widgets 
+		4. make footer widget full bleed & give it a dark gray background color
+		5. tip: use _footer.scss & _widgets.scss
+
+066 Solution - Add an optional widget area to the footer
+	1. use register_sidebar() (functions.php)
+	2. duplicate sidebar.php & rename to sidebar-footer.php
+		-- <?php dynamic_sidebar( 'footer-1' ); ?>
+	3.  <?php get_sidebar( 'footer' ); ?> (footer.php)
+	4. go to customizer (widgets) & look for footer widgets & enable it
+	5. Do CSS for widget footer -- sass\site\secondary\_widgets.scss
+		- @media screen and (min-width: $query__medium) {
+			/* Use flex to create a responsive layout */
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+		}
+		- /* flex: 1 means all flex will have the same size - 066 Solution  */
+	    - /* If 2 or 3 widgets are displayed, make the second one twice as wide. */
+		
+		
+067 Get to know the index template hierarchy		
+	- 3 - index templates in underscore theme
+		1. archive.php
+		2. index.php
+		3. search.php
+	- tip: you can actually make a WP theme w/ only 3-files: (because everything leads back to index.php as seen in the WP heirarchy)
+		1. styles.css
+		2. index.php
+		3. functions.php
+		
+		
+068 Identify when you are on an archive page
+	- objective: detect what page your currently viewing
+	- is_singular() - inc\extras.php
+	- add_filter( 'body_class', 'humescores_body_classes' ); /// Adds custom classes to the array of <body> classes.
+	- /?S=post  (to search a post url)
+	- add_filter( 'body_class', 'framemacz_body_classes' ); // can also be used for checking other functionalities by adding classes
+	
+
+069 Customize index and archive templates
+	- /* note: & - means it only targets elements w/ both .page & .has-page-sidebar classes */
+		-- .page {
+			 &.has-page-sidebar {
+				.hentry {
+	- create a folder & file - sass\site\archive\_archive.scss
+		 -- .site-content {
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+	
+	- create a call here - sass\site\_site.scss	
+		-- @import "archive/archive";  
+    - content.php
+		
+		
+070 Add a custom Read More link to index posts
+	- objective: add continue reading <a> in index posts
+	- echo esc_url( get_permalink() )  -- template-parts\content.php (Retrieves the full permalink for the current post or post ID.)
+	- /// %s is replaced by the_title wrapped by <span> 
+				wp_kses( __( 'Continue reading %s', 'humescores' ), array( 'span' => array( 'class' => array() ) ) ),
+				the_title( '<span class="screen-reader-text">"', '"</span>', false )
+	- echo $read_more_link; 
+	-   .continue-reading  -- sass\site\archive\_archive.scss
+
+071 Display excerpts in indexes and archives
+	- the_excerpt() - template-parts\content.php
+	- remove wp_link_pages() 
+	
+	
+072 Customize the excerpt output
+	- 2 things to customize excerpt output:
+		1. change [...] (truncation mark)  
+			-- add_filter( 'excerpt_more', 'humescores_excerpt_more' ); /// inc\template-tags.php
+				--- https://developer.wordpress.org/reference/hooks/excerpt_more/ (Filters the string in the “more” link displayed after a trimmed excerpt.)
+		2. change excerpt length -- note: by default, excerpt length has 55 words max & puts truncation mark [...]
+				add_filter( 'excerpt_length', 'humescores_excerpt_length');
+				https://developer.wordpress.org/reference/hooks/excerpt_length/ (Filters the number of words in an excerpt.)
+         - note: excerpt length does not impact custom excerpts (the one find in WP admin forms). It will override the custom excerpt filters.
+				
+
+073 Add featured images to index and archive pages
+	-  objective: display featured images to index/archive pages
+	-  copy a code from content-single.php & paste to content.php
+		- the_post_thumbnail()
+	- add_image_size( 'humescores-index-img', 1000, 550, true );   -- functions.php
+	- run regenerate thumbnails to crop new images
+	- .index-image -- sass\site\archive\_archive.scss
+	- opacity: .8 /* add opacity when hovered to emphasize visual interaction */
+	
+074 Add more meaningful archive navigation
+	- objective: when more post are display, add navigation (indicate a counter	for total pages & your chronological navigation status)
+	- the_post_navigation() swap to the_posts_pagination()
+	- settings->reading
+		- Blog pages show at most (you can set this to 1, default is 10)
+	- https://codex.wordpress.org/Function_Reference/the_posts_pagination (index.php)
+		-- prev_text 
+		-- 'before_page_number' 
+		--  __( 'Page ', 'humescores' )
+		-- https://codex.wordpress.org/Function_Reference/paginate_links (paginate links function)
+	-- sass\navigation\_content-navigation.scss /* flex box aligns the pagination nicely */
+		
+
+075 Highlight sticky posts
+	- stick the post to front page
+	- CSS target class= sticky 
+	- tip: .sticky::before {}  -- sass\site\archive\_archive.scss (Add sticky CSS) - www.screencast.com/t/VQIniI9t3VI
+
+076 Customize archive pages (make it full width)
+	- many WP archives (e.g. date, post, category, author)
+	- archive.php indentical to index.php template (only difference is the_archive_title() & the_archive_description)
+	- style CSS on .page-header & .page-title  -- sass\site\archive\_archive.scss 
+	- copy code from index.php to archive.php
+		- the_posts_pagination()
+	- check the other archive types if they are displaying correctly
+
+077 Customize the search results page
+	- check & style results page (archive type)
+		-- it should display different among other archive pages
+	- note: 2 ways to check search result archive:
+		1. add a search widget & type a search
+		2. ?s=post - type in url (e.g. search for post)
+	- search.php (do a similar code w/ archive.php)
+	- NOTE: content-search.php (the_excerpt) vs content.php (the_content)	
+		-- tip: you can basically just delete content-search.php  & WP will automatically display content.php instead
+	- try checking ?s=page in url
+		-- .page -- sass\site\archive\_archive.scss (fix style)
+	- the_posts_pagination() search.php	(copy similar code from archive or index.php)
+	- check get_template_part( 'template-parts/content', 'none' ); (search.php or archive.php or index.php)
+	- check content-none.php
+
+078 Customize the 404 error page and empty search results
+	- note: 3 kinds of nothing found templates:
+		1. 404 - page doesn't exist
+		2. no search found
+		3. no content
+	- tip: if no search found, you can basically add other links (e.g. recent post)	& other another search bar (so user can opt to search again.)
+	- check search.php & content-none.php (try /?s=anygarbageurlsearch)
+		-- get_search_form() 
+		-- is_404() (if 404 page)
+		-- is_search() (if search result page)
+		-- new WP_Query ($args);
+		-- wp_reset_postdata();
+		-- get_template_part( 'template-parts/content', 'none' );
+	- do also a change for other templates:
+		-- content-none.php	
+		-- search.php
+		-- archive.php
+		-- index.php 
+		
+079 Get to know the page template
+	- after working on post, next would be page templates
+	- note: theme unit test data are accessible to the menu links
+	- differences w/ pages & post (despite being identical):
+			-- no categories/tags on pages
+			-- author name & publishing date (USUALLY do not display in themes) (pages are static)
+	- page templates:
+		- page.php ( a duplicate of single.php ) -- bottomline it's usually the same 
+		- content-page.php
+	 	
+
+080 Challenge - Create a page layout with a custom left-aligned sidebar
+	- what to do: https://www.screencast.com/t/s6cwq6tsE
+	- tips: https://www.screencast.com/t/SY7F7s5zyUs
+	
+081 Solution - Create a page layout with a custom left-aligned sidebar
+	1. register a new sidebar (functions.php)
+		- register_sidebar()
+	2. clone sidebar.php & rename sidebar-page.php 
+		- is_active_sidebar()
+		- dynamic_sidebar()
+	3. page.php	
+
+082 Customize responsive image output for all images
+	- problem: big image sizes are still uploaded whether desktop or mobile devices (waste of bandwidth & resources). Wordpress doesn't know/detect this.
+	- responsive image functionality ( automated in WP )
+	- use responsive image functionality  (advanced function) to tell wordpress exactly how wide the image sizes are: functions.php (originated 2016)
+	1. add_filter( 'wp_calculate_image_sizes', 'humescores_content_image_sizes_attr', 10, 2 );  -- 
+		-- https://developer.wordpress.org/reference/functions/wp_calculate_image_sizes/
+	2. add_filter( 'get_header_image_tag', 'humescores_header_image_tag', 10, 3 ); (Filter the `sizes` value in the header image markup.)
+		-- $html = str_replace( $attr['sizes'], '100vw', $html ); (100vw - means always full bleed)
+		-- (Create image tag markup for a custom header image). https://developer.wordpress.org/reference/functions/get_header_image_tag/
+	3.	-- add_filter( 'wp_get_attachment_image_attributes', 'humescores_post_thumbnail_sizes_attr', 10, 3 ); 
+		-- (filters the list of attachment image attributes ) https://developer.wordpress.org/reference/hooks/wp_get_attachment_image_attributes/  
+	- http://site1.net/markup-image-alignment/ -- test it here
+	- tip: add these to all your themes!
+
+083 Add SVG icon functionality
+	- adding icons to site (social media icons, footer, logo, etc )
+	   -- wp use vector icon fonts (good for responsive as a solution)
+	- Use web icon SVG (scalable vector graphics)
+		-- challenge is, its only useful if they are inline content. SVG markup is within html itself w/c makes its hard to work with.
+	- best tip: inc\icon-functions.php	(place it for any theme)
+		-- add_action( 'wp_footer', 'humescores_include_svg_icons', 9999 );
+		-- add_filter( 'walker_nav_menu_start_el', 'humescores_nav_menu_social_icons', 10, 4 );
+		-- apply_filters( 'humescores_social_links_icons', $social_links_icons );
+	- display by calling it images\svg-icons.svg (refer browser viewsource) https://www.screencast.com/t/Q52kpmqpPOYr (e.g. icon-github) 
+	- require get_template_directory() . '/inc/icon-functions.php';		 -- functions.php
+	- .icon & .svg-fallback  - sass\media\_icons.scss (if icon is to big, check .icon css)
+	- <html <?php language_attributes(); ?> class="no-svg"> <!-- we assume browser does not support SVG --> (check header.php)
+	- .svg-fallback  - sass\media\_icons.scss
+	- important: checks if browser supports SVGs by using javascript -- js\functions.js
+	- humescores_get_svg( array( 'icon' => 'arrow-long-left', 'fallback' => true ) ) 
+		--  index.php - https://www.screencast.com/t/a8u7dX0WSBb
+	- ( 'social' === $args->theme_location )  inc\icon-functions.php
+	- note: .fallback means if browser won't support SVG, it displays text instead.
+
+084 Add your own SVG icons in your theme
+	1. Be sure SVG functionality is activated
+	2. get free vector icon https://icomoon.io/ (https://icomoon.io/app/#/select/image) 
+	3. get code & paste to -- images\svg-icons.svg <title> - https://www.screencast.com/t/vtUyX4MC0
+    4. delete <path class = "anyclass"> & there should be no similar #ID  
+	5. update code 'next_text' => __( 'Older', 'humescores' ) . humescores_get_svg( array( 'icon' => 'arrow-right2' , 'fallback' => true ) ),  -- index.php
+
+085 Provide fallbacks for browsers without SVG support	
+	- https://caniuse.com/#feat=svg (check here for browser support compatibility)
+	- if svg is not browser supported, class= 'svg" will change into class= "no-svg"  js\functions.js
+	- $svg .= '<span class="svg-fallback icon-' . esc_attr( $args['icon'] ) . '"></span>';  - inc\icon-functions.php
+	-  array( 'icon' => 'arrow-left2', 'fallback' => true ) inc\icon-functions.php
+	- https://www.toptal.com/designers/htmlarrows/  -- https://www.screencast.com/t/jkGYTNQsD - sass\media\_icons.scss 
+		-- .svg-fallback { display: none; } (  initialized display to none  )
+		-- .no-svg .svg-fallback { display: inline-block; } (  if .no-svg is present, display as  )
+		-- important: checks if browser supports SVGs by using javascript -- js\functions.js ( to check, just set class="no-svg" ) https://www.screencast.com/t/MJvckIIf
+	- http://www.tedmontgomery.com/tutorial/ALTchrc.html (Special ALT Characters)
+	- important: edited the code & added URL - string to lowercase --  inc\icon-functions.php
+		-- if ( false !== strpos( strtolower($item_output), $attr ) ) { 
+	- note: clip-path: inset(50%); /* text may not be visible for svg fallback */	sass\modules\_accessibility.scss
+
+086 Get to know the Customizer
+	- customizer doesn't work w/ browser sync (node.js)
+	- customizer->homepage settings (lets you choose static or latest post/blog)
+	- customizer->additional CSS (enables admin to override all CSS, added in the end of all CSS files)
+	- objective: extend customizer functionality that enables admin to have more theme control
+		- additional color control 
+		- full post or excerpt option
+	- value from customizer.php passed to customizer.js
+	- js\customizer.js	
+		- wp.customize( 'blogname', function( value ) { /* receive from cuztomizer.php -- blognanme, blogdescription, header_textcolor */
+	- inc\customizer.php (all elements that show up in customizer)
+		-- all WP core features
+	 --	$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';	/// means we can send it to the customizer.js & do preview 
+
+
+087 Add controls for the header background color
+	- objective: control for background color of header/footer
+	- inc\customizer.php 
+	    -- https://codex.wordpress.org/Class_Reference/WP_Customize_Manager/get_setting
+		-- $wp_customize->add_setting( 'theme_bg_color', array(     - https://codex.wordpress.org/Class_Reference/WP_Customize_Manager/add_setting
+		-- $wp_customize->add_control( /// Control for header and footer background color.  - https://codex.wordpress.org/Class_Reference/WP_Customize_Manager/add_control
+			--- https://codex.wordpress.org/Class_Reference/WP_Customize_Color_Control
+			--- (lacking documentation & examples)
+	    -- theme_bg_color refers to wp.customize( 'theme_bg_color' found in customizer.js
+
+088 Preview settings in the Customizer
+	- duplicate a code js\customizer.js & change to  wp.customize( 'theme_bg_color', function( value ) { 	// Background color for header and footer.
+		-- it refers to $wp_customize->add_setting( 'theme_bg_color' ) /// inc\customizer.php
+		-- $( '.site-header, .site-footer' ).css( { /// use selector as target class
+		-- now you can change the color in wp customizer->colors  https://www.screencast.com/t/E23dYvP84VYk
+			- note: this is still the customizer preview, it's not yet applied to your theme..
+		
+089 Apply Customizer changes to the front end
+	- objective: it's time to apply the actual changes from the customizer preview to the theme
+	- we can't change the stylesheet (style.css) dynamically, so we need to inject code for styles to work
+	-  copy & edit function humescores_header_style()  until last code (endif) -->> CUT from inc\custom-header.php & PASTE to customizer.php
+		--  if ( HEADER_TEXTCOLOR != $header_text_color ) { 
+		-- if ( ! display_header_text() ) :
+			.site-title,
+			.site-description {
+				position: absolute;
+				clip: rect(1px, 1px, 1px, 1px);  /// means it is hidden
+			}
+		-- /// get the settings with the type theme_mod
+			-- $header_bg_color = get_theme_mod( 'theme_bg_color' );
+			-- $interactive_color = get_theme_mod('interactive_color');
+		-- if ( '#002254' != $header_bg_color ) { ?> /// set new style if header_bg_color is changed (not the default)
+		-- if ( '#b51c35' != $interactive_color ) { /// set new style if interactive_color is changed (not the default) ?>
+		-- note: now you know how to customize the "Customizer", 
+		  whenever you add code to the custom-header.php / customizer.php (controller), you also make changes in customizer.js:
+			-- wp.customize( 'theme_bg_color', function( value ) {
+			-- wp.customize( 'interactive_color', function( value ) {	
+
+
+090 Add sections and radio controls to the Customizer
+	- now that we have extended the color customization options ('theme_bg_color', 'interactive_color') 
+	- CSS that were changed: (color, outline-color, background-color, border-color, etc.)
+	- set the CSS styles for -->> wp.customize( 'interactive_color', function( value ) {	
+		- know what CSS selectors to target & apply the custom colors 
+	- Now we have changed the color for (Header text color w/ menu text,  header background, links etc,  https://www.screencast.com/t/zgL4aUBE
+	
+	- In customizer, you can also add sections / sub sections also 
+	- customizer.php ( add code to add the section with settings & control for it.
+		-- $wp_customize->add_section( 'theme_options',  // Add option to select index content (like Colors, Header Image, Menus, Widgets, etc.)
+		-- $wp_customize->add_setting(	'length_setting', // // Create excerpt or full content settings
+			--- 'sanitize_callback' => 'humescores_sanitize_length', // Sanitization function appears further down
+			--- function humescores_sanitize_length( $value ) {
+		-- $wp_customize->add_control(	'humescores_length_control', // Add the controls
+			- 'settings'	=> 'length_setting' // Matches setting ID from above
+	-- Customization for theme options w/ controllers (now visible to customizer) - https://www.screencast.com/t/BoO3xnGE
+    - https://codex.wordpress.org/Class_Reference/WP_Customize_Manager/add_section
+	- https://developer.wordpress.org/reference/classes/wp_customize_manager/add_section/
+		
+
+091 Change theme output based on Customizer settings		
+	- Objective: now apply / set the theme output based on the customizer settings. Basically, we need to hook this to the front end to make it work.
+	- note: unlike the color options functionality (previous video), the theme options (full content or excerpt) is not CSS & we need to change the actual template
+	- $length_setting = get_theme_mod('length_setting'); -- template-parts\content.php
+	- to test theme output, switch between excerpt / full content & jump between page contents (e.g. pagination) & see the results
+		- https://www.screencast.com/t/eDv1koBsg
+	- To know more (aside from color changes & basic settings), check out the customizer API for additional information. It has a huge advanced customization.
+	
+092 Add editor styles to match front-end styles
+	- problem: post is different between backend & front-end, because we use WP editor as default.
+	- create a new file -  inc\editor-styles.css  (Editor styles for TinyMCE)
+	- add_editor_style( array( 'inc/editor-styles.css', humescores_fonts_url() ) ); -- functions.php 
+	- when styling, treat the editor as a  page (static).	
+		-- <body> of editor is iframe
+	- html {
+		padding: 0 2em;
+	  }
+	
+	- body { ///  inc\editor-styles.css 
+		max-width: 1080px; /* editor body max width */
+		margin: 0 auto;
+		color: black;
+		font-family: "PT Serif", Georgia, Cambria, "Times New Roman", Times, serif;
+		font-size: 18px;
+		font-size: 1.125rem;
+		line-height: 1.5;
+	  } 
+	- tip: Match the styles of the post & editor by copying some CSS from styles.css to apply on your editor (e.g. fonts, color, line-height, h1-h6, blockquotes )
+		-- note: tables are a bit of a problem. TinyMCE is a bit aggresive in styling <table> (you have to write custom code to override. CSS selectors should be very specific)
+		-- recommendation: Ignore <table> styles 
+		-- start w/ html & body
+		-- typography, elements, etc. styles (visible in the editor) are all you need 
+		-- EXCLUDE: normalize, media queries,  layout, fancy buttons, content navigation (maybe comments, pagination, widgets, contact, footer, icons, svg)
+		-- when using SASS, inc\editor-styles.css is separately styled with SASS (reason: add_editor_style API is called from functions.php) 
+			-- Recommended to style it last during development.	
+	- copy code from styles.css ( from <h1> to <h6>  down to <table> before the <form>) & paste to inc\editor-styles.css
+	- also include links, alignments, captions & galleries  
+		-- start copy code from ## Links down to  ## Galleries  from styles.css & paste to inc\editor-styles.css
+	
+
+
+093 Add a screenshot
+	- capture a screenshot of your site & edit in photoshop to match size (preferably homepage)
+		- export as .png file & save as screenshot.png
+	- wp-admin->appearance->themes
+	- check the theme info if its correct & paste the screenshot & overwrite the existing wp image
+	
+	
+
+
+
+
+
+
+
+	
+	
+	
+/**********************************/	
+Lynda - Up and Running with NPM the Node Package Manager
+
+
+  
+	- npm is a part of node.js platform
+	- like git, it runs in a UNIX based platform
+   
+  1. download & install https://nodejs.org/en/  
+  2. download & install https://git-scm.com/download/win   
+	- node.js version 6.x (after download),  no need to setup, just set the environment variables.
+  3. sudo npm install -g grunt-cli 
+  4. cd f  (drive F:)
+  5. cd f/MyTutorials/MyWork/myapp (to install the grunt sass module)  (for some reason it doesn't work on a different drive of windows)
+	  -- cd ~/Desktop (use windows Desktop instead)
+  6. sudo npm install grunt-sass
+  7. check if installed (e.g. node_modules folder) (has more than 2.5k files)
+     notes:
+		-- Package.json File (node.js keeps track to this file about the project information)
+			--- it also has information about your loaded modules
+			--- builds/rebuilds node_modules
+        --- sample
+		{
+			"name"    : "myapp", (should all be lowercase-URL friendly, no space. don't start '.' or '_' )
+			"version" : "1.0.0"  ( 1st Digit - Major Changes, 2nd - Breaking Changes, 3rd - Patches that won't break (Semantic Versioning))
+					
+		}
+	8. sudo npm install --save grunt-sass	
+		-- "grunt-sass": "^2.0.0" 
+			(notice ^ means latest stable version of the application. you can also use * - the latest bleeding edge package version )
+			(no ^ (caret) is also acceptable) (if 2.0.0 is replaced w/ 0.0.0, it means its earlier than beta version & not production ready)
+	    -- you can delete the node_modules (folde)r & rebuild by typing "npm install"		
+	9. npm init (go to myapp)	(it creates package.json for you)
+	10. https://spdx.org/licenses
+		- usually MIT License (open-source)
+		- https://www.screencast.com/t/LG2uCN7W5TqQ ( you can delete the "scripts" & "main")	
+	11. sometimes it's useful to go back on previous versions, to check & update compatibility of the recent updates
+	12. To add node environment variables	https://www.screencast.com/t/9R47C9vzC (node version 6.x, npm, gulp)
+		
+	
+	Node Command Reference:
+		node --version
+		npm install -g grunt-cli
+		node server.js
+		npm init
+		npm install --save underscore
+		npm install --save-dev underscore  (this means that only requires on the development phase)
+		npm list  (checks your package & nodes_modules folder & shows the list of package installed in your app)
+		npm -g list  (global package list)
+		npm outdated (shows the outdated version packages)
+		npm update (it update/download the latest package)
+		npm install --save-dev grunt-sass (installs the grunt-sass)
+		npm uninstall grunt-sass ( or you can uninstall any package by specifying the its name)
+		npm uninstall --save-dev grunt-sass ( to delete all its related packages) 
+		npm prune (gets rid of the unnecessary files that are not in your package.json file but are in the "node_modules" folder) 	
+		npm config get prefix (get the path from npm:)
+	
+/**********************************/	
+
+
+/**********************************/ 
+Gulp - Complete Tutorial From Scratch    -  https://www.youtube.com/watch?v=TLXScb-BwEU&list=LLPabbbqOmufJAuieymw7UxQ&index=2&t=821s
+			
+https://www.npmjs.com/get-npm			
+https://www.taniarascia.com/getting-started-with-gulp/
+https://gulpjs.com/ 
+https://www.npmjs.com/package/python2/tutorial
+
+
+F:\Raymacz\xampp\htdocs\wp\site1\wp-content\themes
+
+
+1. npm rm --global gulp (If you've previously installed gulp globally,)
+2. node --version
+3. npm --version
+4. gulp -v
+5. install global & local gulp`
+  - npm install gulp-cli -g (global)
+  - npm install gulp -D (local)
+6. npm init (create package.json thru wizard or you can create manually)
+7. FIX
+	- NOTE: (to fix issue) downgraded to https://nodejs.org/download/release/v6.12.2/  https://www.screencast.com/t/jaGv4jDzPNMz 
+	- npm install autoprefixer
+	- npm install browser-sync
+	- npm install gulp-image
+	- npm install gulp-jshint
+	- npm install jshint gulp-jshint --save-dev
+	- npm install gulp-postcss
+	- npm update 
+	- npm install gulp-sass --save-dev
+		(-- npm install python2)
+		-- npm cache clean (delete node_modules)
+		-- npm install --save	
+	
+			
+/**********************************/ 
+
+	BEST NOTE:
+		- In SASS, SCSS when compiled will convert to CSS
+			- important: be sure to run gulp & compile sass everytime you update code or load a new sass file to see the effect!
+		- while Gulp is running, it will automatically update/compile/clone to CSS files & will do auto browser-sync
+		- To add node environment variables	https://www.screencast.com/t/9R47C9vzC (node.js version 6.x, npm, gulp)
+		- In sass directory structure, files that have the same name as directory usually @import the sibling files (*.scss)
+		- HTML Encoding Reference (URL-encoding : ASCII Character) http://krypted.com/utilities/html-encoding-reference/
+			-- %20 : space
+			-- %7C : | 
+		- default font-size of browsers is 1rem (16px)
+		- http://192.168.1.14:3001/ Browsersync
+			-- http://192.168.1.14:8080 External
+			-- https://humescores.localtunnel.me
+			-- http://localhost:8080/
+			-- http://site1.net
+		- for gulpfile.js code update pls check https://www.npmjs.com/package/gulp-sass & other gulp js (e.g.  gulp-postcss, gulp-sourcemaps)
+		- WP customizer won't work properly in browser-sync because of a cross-browser issue. Just use the normal localhost domain (e.g. site1.net).
+		- WP API is php only, no javascript for translation
+		- use mixin to ouput pixel & rem size  if browser supports, to call use @include
+		- printf( esc_html__( '%1$s', 'humescores' ), $categories_list );  //  '%1$s' - prints 1st variable of $categories_list		
+			 -- printf(...) is equivalent to fprintf(stdout,...)
+			 -- sprintf(buffer,...) is used to format a string to a buffer (variable).
+			 -- fprintf is used to output to stream.
+
+		- $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';	 
+			-- sprintf( $time_string,	
+				esc_attr( get_the_date( 'c' ) ), /// %1$s	
+				esc_html( get_the_date() ) ); /// %2$s
+		- SASS / LESS  (nested rules, variables, mixins, selector inheritance) https://stackoverflow.com/questions/4564916/nesting-css-classes		
+		- sketch - https://www.screencast.com/t/ixuloC9WLyWq (flex box)
+			-- https://www.screencast.com/t/MefVYBvZ6
+		-  (you can put mark-up <tags> to comments) http://site1.net/template-comments/#comment-34	
+		- authors comments can be highlighted - (WP adds a unique class= bypostauthor)
+		- when a new image is uploaded, a new image size is generated (add_image_size() ), but this is not retroactive (means the image previously uploaded is not included before this code is added)
+			-- to resolve this issue, use regenerate thumbnails plugin
+		- you can actually make a WP theme w/ 3-files only: (because everything leads back to index.php as seen in the WP heirarchy)	
+		- /* note: & - means it only targets elements w/ both .page & .has-page-sidebar classes */ 
+			-- .page {
+				 &.has-page-sidebar {
+					.hentry {
+			-- e.g. <body  class="page has-sidebar"></body>
+		- by default, excerpt length has 55 words max & puts truncation mark [...]	
+			-- excerpt length does not impact custom excerpts (the one find in WP admin forms)
+		- 2 ways to check search result archive:
+			1. add a search widget & type a search
+			2. ?s=post - type in url (e.g. search for post)	
+		- content-search.php (the_excerpt) vs content.php (the_content)	
+			-- tip: you can basically just delete content-search.php  & WP will automatically display content.php instead	
+		- 3 kinds of nothing found templates:
+			1. 404 - page doesn't exist
+			2. no search found
+			3. no content	
+		- now you know how to customize the "Customizer", whenever you add code to the custom-header.php / customizer.php (controller), you also make changes in customizer.js	
+		- unlike the color options functionality (previous video), the theme options (full content or excerpt) is not CSS & we need to change the actual template
+		- clip-path: inset(50%); /* text may not be visible for svg fallback */	sass\modules\_accessibility.scss
+		
+	BEST TIP:
+	- https://generatewp.com 
+    - For WordPress Theme Unit Test Data Plugin: it is good to know what type of data this is best for testing your own content/module you are working.
+		- note: theme unit test data are accessible to the menu links
+		- tip: 3 post to test content: 
+			1. http://site1.net/hello-world/
+			2. http://site1.net/markup-image-alignment/
+			3. http://site1.net/markup-html-tags-and-formatting/
+	- tip: ATOM - for small projects NETBEANS - for BIG PROJECTS	
+			- NETBEANS tip:
+			-- Name and Location: https://www.screencast.com/t/DCig6qRTd 
+			-- Run Configuration: https://www.screencast.com/t/ZkGN0JdKcNLO
+			-- Plugins: Darcula LAF for Netbeans (restart Netbeans)
+			-- ctrl-click function name - to trace source of code
+			-- autocomplete netbeans helps in remembering the code
+				--- file->project properties (include path -> wp-includes) https://www.screencast.com/t/DA3La5dY7z
+				--- tools->options->editor->code completion https://www.screencast.com/t/pULe2pojTC
+			-- if code is overwritten & Netbeans has error that it can't locate the file, just restart Netbeans
+	- Show Current Template	Plugin		
+	- Developer Plugin 			
+	- gulp.js tip: you can remove repository, bugs, homepage
+	- https://www.taniarascia.com/getting-started-with-gulp/
+	- https://css-tricks.com/gulp-for-beginners/
+	- you can customize font weights in google fonts, "Load Time: slow" is not advisable & avoid including fonts you don't really use
+	- no need to touch the <head> of WP
+	- press tab, goes to main wp content  (for screen readers)
+	- In CSS, use % width, height, etc. for media screen queries 
+	- best CSS for Menu are flex box
+	- tip: 3 post to test content: 
+		1. http://site1.net/hello-world/
+		2. http://site1.net/markup-image-alignment/
+		3. http://site1.net/markup-html-tags-and-formatting/
+	- SASS sometimes can be crappy that it doesn't sync CSS styles right away. To resolve this:
+		- open a 2nd browser & press F5 (refresh)
+		- Use http://192.168.1.14:8080/template-comments/#comment-34 for better CSS browser sync
+			-- (sometimes http://site1.net/template-comments/ doesn't sync w/ CSS browser, ) - https://www.screencast.com/t/z1pfS0E1wSg
+	- //* sets generic elements to be responsive ready (center) - themes\humescores\js\functions.js
+			--- wp_enqueue_script( 'humescores-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '20151215', true );		
+			--- (function($){
+					$('figure.wp-caption.aligncenter').removeAttr('style'); // remove WP default CSS style of <figure>
+					$('img.aligncenter').wrap('<figure class="centered-image" />');
+				})(jQuery); //* sets generic wp CSS to be more responsive
+			--- figure {
+				margin: 0;
+				width: 100vw;
+				margin: 0 -1em; 
+			} /* vw- full viewport width & margin set to full bleed image*/	
+	- https://jetpack.com/support/features/ (plugin: gallery, carousel, ads, sitemaps)
+	- <blockquote> nice background image - https://www.screencast.com/t/xvi8AeNtG - sass\typography\_copy.scss		
+	- To effectively CSS comments, start with one before doing multiple comments.
+	- "I style comments similary to all themes" - morten
+	- WP featured image (the_post_thumbnail):
+       -- featured images are usually shared in social media & 1 image per post -- https://developer.wordpress.org/reference/functions/the_post_thumbnail/
+	   -- featured images are separate from post content including database entry.
+	   -- when user/author adds featured image - it crops different sizes of it to fit
+	   -- featured images when uploaded do not automatically display in post pages.
+	   -- wrap it with <figure>
+	- Sometimes, html markups are terrible (e.g. RSS) in styling that you have to take into account for it.
+	- if possible better style all WP widgets (using monster widget plugin)
+	- .sticky::before {}  -- sass\site\archive\_archive.scss (Add sticky CSS)  - www.screencast.com/t/VQIniI9t3VI
+	- if no search found, you can basically add other links (e.g. recent post)	& other another search bar (so user can opt to search again.)
+	- use responsive image functionality  (advanced function) to tell wordpress exactly how wide the image sizes are: functions.php (originated 2016)
+	   -- https://developer.wordpress.org/reference/functions/wp_calculate_image_sizes/
+	   -- https://developer.wordpress.org/reference/functions/get_header_image_tag/
+	   -- https://developer.wordpress.org/reference/hooks/wp_get_attachment_image_attributes/
+	   -- TIP: add these to all your themes! (you can customize sizes good for desktop/small mobile devices)
+	- Web icon SVG (scalable vector graphics): inc\icon-functions.php	(place it for any theme)
+		-- important: checks if browser supports SVGs by using javascript -- js\functions.js ( to check, just set class="no-svg" ) https://www.screencast.com/t/MJvckIIf
+		-- display by calling it images\svg-icons.svg (refer browser view source) https://www.screencast.com/t/Q52kpmqpPOYr (e.g. icon-github) 
+		-- get free vector icon https://icomoon.io/ (https://icomoon.io/app/#/select/image) 
+		-- https://www.toptal.com/designers/htmlarrows/  -- https://www.screencast.com/t/jkGYTNQsD - sass\media\_icons.scss 
+		-- http://www.tedmontgomery.com/tutorial/ALTchrc.html (Special ALT Characters)
+		-- important: edited the code & added URL - string to lowercase -- inc\icon-functions.php
+	- Match the styles of the post & editor by copying some CSS from styles.css to apply on your editor (e.g. fonts, color, line-height, h1-h6, blockquotes )
+		-- note: tables are a bit of a problem. TinyMCE is a bit aggresive in styling <table> (you have to write custom code to override. CSS selectors should be very specific)
+		-- you can ignore <table> styles (not recommended)
+		-- typography, element, etc. styles (visible in the editor) are all you need (you don't need layout, fancy buttons, navigation
+		-- when using SASS, inc\editor-styles.css is separately styled with SASS (reason: add_editor_style API is called from functions.php) 
+			-- Recommended to style it last during development.
+	- plugins installed for this tutorial - https://www.screencast.com/t/SlimAz6FX	
+	- http://site3.net/markup-image-alignment/ markup image alignment is usually the cause of major misalignments in Grids (post 1177)
+	- /*b4 grid  >=  < 576 768 992 1200 container 1140 (b4) 1170 (b3)*/  @media screen and (min-width: $query_b4_md) {
+			/* max-width */
+			$query_b4_xs: 575px;
+
+			/* min-width */
+			$query_b4_sm: 576px;
+			$query_b4_md: 768px;
+			$query_b4_lg: 992px;
+			$query_b4_xl: 1200px;
+	
+	// font awesome pseudo-elements https://stackoverflow.com/questions/47712987/font-awesome-5-on-pseudo-elements
+	// pseudo-elements https://www.smashingmagazine.com/2011/07/learning-to-use-the-before-and-after-pseudo-elements-in-css/	
+	https://generatepress.com/forums/topic/font-awesome-vs-svg/#post-204923

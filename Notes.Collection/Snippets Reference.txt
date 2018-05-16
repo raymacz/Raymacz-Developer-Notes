@@ -1,0 +1,21 @@
+http://cornel.bopp-art.com/lightcase/#
+http://vegas.jaysalvat.com/
+https://codepen.io/jaysalvat/pen/OPBZrZ
+https://envato.com/blog/pure-css-animation-snippets/
+
+//This script will add a div that covers the entire screen as the page loads. It will show a CSS-only loading spinner automatically. It will wait until the window (not the document) finishes loading, then it will wait an optional extra few seconds.
+https://stackoverflow.com/questions/1853662/how-to-show-page-loading-div-until-the-page-has-finished-loading
+
+// lazy loading 
+https://www.sitepoint.com/five-techniques-lazy-load-images-website-performance/
+http://blog.dynamicdrive.com/5-brilliant-ways-to-lazy-load-images-for-faster-page-loads/
+https://dev.twitter.com/web/javascript/loading
+https://dev.twitter.com/web/embedded-tweets
+
+
+WP Bootstrap Navwalker
+https://github.com/wp-bootstrap/wp-bootstrap-navwalker/tree/v4
+
+
+Bootstrap 4 multilevel dropdown inside navigation
+	https://stackoverflow.com/questions/44467377/bootstrap-4-multilevel-dropdown-inside-navigation

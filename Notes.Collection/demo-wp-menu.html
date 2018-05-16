@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <style>
+  .dropdown-submenu {
+    position: relative;
+  }
+
+  .dropdown-submenu a::after {
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 6px;
+    top: .8em;
+  }
+
+  .dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: .1rem;
+    margin-right: .1rem;
+  }
+</style>
+  <body>
+    <h1>Hello, world!</h1>
+
+
+<!-- navbar 1 -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul id="primary-menu" class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+		  
+          <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Submenu action</a></li>
+              <li><a class="dropdown-item" href="#">Another submenu action</a></li>
+			  
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                  <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                  <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+
+                  <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                      <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </li>
+
+
+
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- navabar 2 -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark" role="navigation">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">Navbar</a>
+			  <?php
+			  
+			    // WP Bootstrap Navwalker
+              // wp_nav_menu(array(
+              //     'menu'						 => 'Main Menu',
+              //     'theme_location'	 => 'menu-1',
+              //     'menu_id'          => 'primary-menu',
+              //     'menu_class'        => 'nav navbar-nav',
+              //     'container'	 			 => 'div',
+              //     'container_class'	 => 'collapse navbar-collapse',
+              //     'container_id'      => 'bs-example-navbar-collapse-1',
+              //     'depth'            => 2,
+              //     'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+              //     'walker'      		 => new WP_Bootstrap_Navwalker()
+              //   ));
+                         // Bootstrap 4 multilevel dropdown inside navigation
+             // wp_nav_menu(array(
+              //    'menu'						 => 'Main Menu',
+               //   'theme_location'	 => 'menu-1',
+                //  'menu_id'          => 'primary-menu',
+                //  'menu_class'        => 'navbar-nav mr-auto',
+               //   'container'	 			 => 'div',
+                //  'container_id'		 => 'navbarNavDropdown',
+                //  'container_class'	 => 'collapse navbar-collapse',
+               //   'depth'            => 5,
+             //   ));
+              ?>
+            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+				<ul id="primary-menu" class="nav navbar-nav"><li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1046" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1046 nav-item dropdown"><a title="Pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-1046">Pages</a>
+				<ul class="dropdown-menu" aria-labelledby="menu-item-dropdown-1046" role="menu">
+					<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1695" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1695 nav-item"><a title="Page Image Alignment" href="//192.168.1.14:8080/about/page-image-alignment/" class="dropdown-item">Page Image Alignment</a></li>
+					<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1693" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1693 nav-item"><a title="Page Image Alignment" href="//192.168.1.14:8080/about/page-image-alignment/" class="dropdown-item">Page Image Alignment</a></li>
+					<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1696" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1696 nav-item"><a title="Page Markup And Formatting" href="//192.168.1.14:8080/about/page-markup-and-formatting/" class="dropdown-item">Page Markup And Formatting</a></li>
+					<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1694" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1694 nav-item"><a title="Page Markup And Formatting" href="//192.168.1.14:8080/about/page-markup-and-formatting/" class="dropdown-item">Page Markup And Formatting</a></li>
+				</ul>
+				</li>
+				<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1047" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1047 nav-item dropdown"><a title="Categories" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-1047">Categories</a>
+				<ul class="dropdown-menu" aria-labelledby="menu-item-dropdown-1047" role="menu">
+					<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1048" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1048 nav-item"><a title="Markup" href="//192.168.1.14:8080/category/markup/" class="dropdown-item">Markup</a></li>
+					<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1050" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1050 nav-item"><a title="Unpublished" href="//192.168.1.14:8080/category/unpublished/" class="dropdown-item">Unpublished</a></li>
+				</ul>
+				</li>
+				<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1051" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1051 nav-item dropdown"><a title="Depth" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-1051">Depth</a>
+				<ul class="dropdown-menu" aria-labelledby="menu-item-dropdown-1051" role="menu">
+					<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1052" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1052 nav-item dropdown"><a title="Level 01" href="#" class="dropdown-item">Level 01</a></li>
+				</ul>
+				</li>
+				<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1062" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1062 nav-item dropdown"><a title="Advanced" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-1062">Advanced</a>
+				<ul class="dropdown-menu" aria-labelledby="menu-item-dropdown-1062" role="menu">
+					<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1064" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1064 nav-item"><a title="Custom Title Attribute" href="#" class="dropdown-item">Menu Title Attribute</a></li>
+					<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1065" class="custom-menu-css-class menu-item menu-item-type-custom menu-item-object-custom menu-item-1065 nav-item"><a title="Menu CSS Class" href="#" class="dropdown-item">Menu CSS Class</a></li>
+					<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1066" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1066 nav-item"><a title="New Window / Tab" target="_blank" href="http://apple.com" class="dropdown-item">New Window / Tab</a></li>
+				</ul>
+				</li>
+				<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-1063" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1063 nav-item"><a title="Menu Description" href="#" class="nav-link">Menu Description</a></li>
+			</ul>
+			</div>          
+		</div>
+          <!--  container -->
+        </nav>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script>
+  
+  // Bootstrap 4 multilevel dropdown inside navigation
+/*
+var $childrenli = $('.navbar-nav>li'),
+    $mrauto = $('.navbar-nav');
+// initialize to bootstrap 4 classes - rbtm
+$childrenli.children('ul').parent('li').addClass('dropdown');
+$childrenli.addClass('nav-item').children('a').addClass('nav-link');
+$childrenli.children('ul').siblings('a').attr('id', 'navbarDropdownMenuLink').attr('data-toggle', 'dropdown').attr('aria-haspopup', 'true').attr('aria-expanded', 'false');
+$mrauto.find('ul a').addClass('dropdown-item');
+$mrauto.find('ul').addClass('dropdown-menu').siblings('a').addClass('dropdown-toggle').parent('li').addClass('dropdown-submenu');
+$mrauto.children('li').removeClass('dropdown-submenu');
+*/
+  
+  
+  $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+    if (!$(this).next().hasClass('show')) {
+      $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+    }
+    var $subMenu = $(this).next(".dropdown-menu");
+    $subMenu.toggleClass('show');
+
+	console.log(e);
+    $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+	  
+      $('.dropdown-submenu .show').removeClass("show");
+    });
+
+
+    return false;
+  });
+</script>
+  </body>
+</html>

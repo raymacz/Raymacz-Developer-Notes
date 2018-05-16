@@ -1,0 +1,223 @@
+02_01-What are custom post types and taxonomies
+	-  Posts	
+		- reverse chronological (descending)
+		- non-heirarchical (no parent/child)
+		- author
+		- categories & tags
+	- Pages
+		- Single Items (more static)
+		- Parent / child relationships
+		- usually on main menu
+	- Custom Post Type
+		- can act as post/page
+		- can be organized by categories, tags, custom taxonomies
+		- has separate index page or can have custom index template
+		- can have all / combination / none of the standard features
+		- can be called anywhere w/ a custom loop
+	- Taxonomy
+		- scheme of classifaction
+		- an organization system that allows us to relate one item w/ other similar items in heirarchical/non - heirarchical groups
+		 e.g. books in libraray, clothing closet (by shirt, socks, underwear, etc.)
+		- Kinds of Taxonomies  
+			1. Categories  (WP Default)
+			   -- Mandatory
+			   -- Heirarchical (parent/child category & usually sorted)
+			   -- Main organizational method
+			2. Tags  (WP Default)
+				-- Optional
+				-- non-heirarchical  (non-sorted)
+				-- Second organizational method
+			3. Custom Taxonomies
+				-- Heirarchical (like Categories) or non-heirarchical (like tags)
+				-- can be applied to one/several Custom Post types including Posts (WP)
+				-- can have custom index & archive templates (display differently from tags/categories)
+				-- usually displayed alongside categories  & other meta content
+				-- allows for more advanced organization of content
+				-- e.g. http://ciaobambino.com/location/caribbean/ (based on category, location, type/standard, style)
+	
+	
+02_02-Where does the custom post type and taxonomy code belong?
+	- 2 main options:  (both have a benefits / drawbacks)
+		a. use either a plugin 
+			-- usually most situation
+			-- can be displayed in any theme
+			-- can be on / off independently of a theme
+			-- (drawbacks: if you want to display in a theme, you need to make changes directly / child themes.
+			-- no issue w/ backwards compatibility if custom post types are removed from a certain theme.
+			-- plugins have fallbacks (if there is coding error, site will automatically turn-off the plugin)
+		b. theme (built-in to theme itself)
+			-- for custom builds only
+			-- content is theme dependent (can be a benefit so users won't accidentally turn-off if using plugin)
+			-- allows for advanced functionality (e.g. http://ciaobambino.com/location/caribbean/)
+	
+
+03_01-Creating a basic plugin
+	- https://codex.wordpress.org/Writing_a_Plugin#License
+	
+03_02-Testing the plugin to make sure it works
+	- plugins have fallbacks (if there is coding error, site will automatically turn-off the plugin)
+
+04_01-Creating a basic custom post type
+	- WP has 5 post types (reserved post types)	
+		1. Posts (obvious)
+		2. Pages (obvious)
+		3. Media - attachment post like image / video / audio / revision
+		4. Revision Posts (versions of single post / page)
+		5. Menu Items (under Appearance) - each new menu item created under custom menu are new post item
+	- https://codex.wordpress.org/Function_Reference/register_post_type
+		-- https://developer.wordpress.org/reference/functions/register_post_type/
+			-- https://developer.wordpress.org/reference/functions/get_post_type_labels/
+		-- https://developer.wordpress.org/reference/hooks/init/
+	
+04_02-Testing the custom post type in WordPress admin
+
+04_03-Building out an advanced custom post type
+	- flushing rewrite on activation https://codex.wordpress.org/Function_Reference/register_post_type#Flushing_Rewrite_on_Activation
+		-- automatically flush the rewrites to display URLs (tells WP to start using new slugs)
+		-- copy from codex to your code the snippet
+		-- https://codex.wordpress.org/Function_Reference/register_activation_hook
+		-- https://developer.wordpress.org/reference/functions/flush_rewrite_rules/
+		-- example.com/teztimonail/singlepost -->> "rewrite" => array( "slug" => "teztimonial", "with_front" => true )
+		-- supports -->> Default: title and editor
+	- dashicon for custom post type https://developer.wordpress.org/resource/dashicons/#format-quote
+	
+04_04-Challenge Create a custom post type for reviews
+
+04_05-Solution Create a custom post type for reviews
+		-- https://developer.wordpress.org/reference/functions/register_post_type/
+			-- https://developer.wordpress.org/reference/functions/get_post_type_labels/
+
+04_06-Creating posts with custom post types
+	- to view a custom post type w/ a 404 page, you need to reset the permalinks
+		-- reason: function did not kick in for flush_rewrite_rules & slugs --> https://www.screencast.com/t/q9jaljmc6oIy
+		-- what to do: 1.) permalinks - refresh
+					   2.) deactivate & reactivate the plugin
+		-- aso check templates involved in the display (e.g. single.php, content-single.php https://www.screencast.com/t/M6ABGEMC) https://www.screencast.com/t/sGt1wqFDei
+		
+05_01-Creating basic custom taxonomies
+	- Some types of Taxonomies: Tags - are non-heirarchical, Categories - heirarchical (not enough to display relationship between different Post & Post types)
+	- https://codex.wordpress.org/Function_Reference/register_taxonomy 
+	
+	
+05_02-Building out advanced custom taxonomies
+	- note: be careful with Reserved Terms https://codex.wordpress.org/Function_Reference/register_taxonomy#Reserved_Terms
+	- https://codex.wordpress.org/Function_Reference/register_taxonomy#Arguments
+	
+05_03-Challenge Create a custom taxonomy for price range
+
+05_04-Solution Create a custom taxonomy for price range
+	
+05_05-Applying custom taxonomy terms to posts
+	- note: you can opt to use screen options for displaying taxonomies or not
+	
+06_01-Exploring the WordPress template hierarchy
+	- https://wphierarchy.com/
+	- http://www.chipbennett.net/wp-content/uploads/2011/10/WordPressTemplateHierarchy.rev3_.png
+
+06_02-Creating a single post template for a custom post type
+	- child template tips:
+	    e.g. 
+			(assuming) <parent>/template-parts/content-single.php
+			(assuming) <child>/template-parts/content-single.php
+			using get_template_part( 'template-parts/content', 'single') 
+			note: will call the child template instead (override the parent), if child can't be found it will refer back to parent template.
+			
+			(assuming) <parent>/template-parts/content-single.php
+			(assuming) <child>/template-parts/content-single-review.php
+			using get_template_part( 'template-parts/content', 'single') 
+			using get_template_part( 'template-parts/content', 'single-review')
+			note: will call separately child & parent template
+	
+	    
+06_03-Adding custom taxonomies to a template
+	- https://codex.wordpress.org/Function_Reference/get_the_term_list
+		-- https://developer.wordpress.org/reference/functions/get_the_term_list/
+	- https://developer.wordpress.org/reference/functions/get_the_terms/ (surprisingly codex for this is lost)
+		
+	- https://codex.wordpress.org/Function_Reference/get_the_tag_list	
+		-- https://developer.wordpress.org/reference/functions/get_the_tag_list/
+	- taxonomy.php	(taxonomy-<$taxonomy>)
+	- taxonomy-product-type.php /  (taxonomy-<$taxonomy>)	
+	- taxonomy-product-type-ps1.php (taxonomy-<$taxonomy>-<$term>)
+	- note: no matter how many generations for parent/child hierarchy, the slug/url only points to two last descendants
+		e.g.  taxonomy-product-type-subps1.php / taxonomy-product-type-ps1.php (wherein  ps1/subps1 --> parent/child)
+	- https://wordpress.org/plugins/wp-category-permalink/ (choose which category shows up in the permalink)
+	- https://developer.wordpress.org/reference/functions/the_post_navigation/
+
+06_04-Creating a taxonomy archive template
+    - create taxonomy.php & content-single-review.php
+	- (Retrieve the currently-queried object.) https://developer.wordpress.org/reference/functions/get_queried_object/
+	    -- https://www.screencast.com/t/EhI8ydSbZhH - WP Query Object
+	    -- https://www.screencast.com/t/6y99mzDqcIDk
+		-- https://www.screencast.com/t/wivi5MFRq
+	- (Retrieves the taxonomy object of $taxonomy.) https://developer.wordpress.org/reference/functions/get_taxonomy/	
+	- https://developer.wordpress.org/reference/functions/get_post_type/
+		
+	
+06_05-Creating a custom-post-type index page
+	- http://localhost/wordpress/prices/free/
+	- create archive-review.php for http://localhost/wordpress/reviews/
+
+07_01-Including custom post types in the front-page index
+	- for custom types to be accessed by site visitors, you can provide menu links in your pages (e.g. home page)
+	- Unlike style.css, the functions.php of a child theme does not override its counterpart from the parent. Instead, it is loaded in addition to the parent’s functions.php. 
+	(Specifically, it is loaded right before the parent’s file.)
+		-- https://codex.wordpress.org/Child_Themes#Using_functions.php
+	- (Fires after the query variable object is created, but before the actual query is run.) https://developer.wordpress.org/reference/hooks/pre_get_posts/
+			-- means that the WP prepares a query & using the hook intercepts, make change on the query/sql before 
+			  it is actually fired/ran/sent/executed to the database.
+	- (Whether the current request is for an administrative interface page.) https://developer.wordpress.org/reference/functions/is_admin/
+	- (Is the query the main query?) https://developer.wordpress.org/reference/functions/is_main_query/
+	- (Determines if the query is for the blog homepage.) https://developer.wordpress.org/reference/functions/is_home/
+	- (Is the query for a search?) https://developer.wordpress.org/reference/functions/is_search/
+	- (The WordPress Query class.) https://developer.wordpress.org/reference/classes/wp_query/
+	- https://codex.wordpress.org/Post_Types 
+	- https://codex.wordpress.org/Plugin_API/Action_Reference/pre_get_posts
+	- https://codex.wordpress.org/Custom_Queries
+		-https://developer.wordpress.org/reference/hooks/posts_orderby/
+		-https://codex.wordpress.org/Class_Reference/WP_Post
+		- $query->set('post_type', array('post', 'review'));
+		- $query->set('orderby', array('post_date' => 'DESC', 'post_title'=> 'ASC'));
+
+// if its not in admin page & its the main query, modify it.	
+		
+07_02-Identifying a post type in index pages and search results
+	- get_post_type()
+
+07_03-Creating custom loops for custom post types
+	- (Destroys the previous query and sets up a new query.) https://developer.wordpress.org/reference/functions/wp_reset_query/
+	
+08_01-Thank you!
+
+
+BONUS:
+   https://www.organizedthemes.com/freeing-content-from-custom-post-types/ - retrieve old post type CPT UI
+   1st option:
+		1. enable Custom Post Type UI plugin
+		2. Click Add New Post Type (plugin menu)
+		3. Enter  https://www.screencast.com/t/qUR4fudS4  https://www.screencast.com/t/mUPwJAK5N9sc
+			a. Post Type Slug  
+			b. Plural Label 
+			c. Singular Label 
+   2nd option:
+		1. Create own plugin & enable it - https://generatewp.com/ --> https://wordpress.tv/2013/03/15/andrew-nacin-wp_query-wordpress-in-depth/
+
+
+
+https://generatewp.com (custom post types, taxonomies creation)
+
+http://wpengineer.com/2237/whats-the-difference-between-__-_e-_x-and-_ex/
+http://prismjs.com/
+https://wp-types.com/documentation/user-guides/displaying-wordpress-custom-content/
+https://firstsiteguide.com/display-number-different-post-types/
+
+wp_enqueue_scripts -->> take note of jquery not loading in https://stackoverflow.com/questions/6109847/jquery-is-not-a-function-error
+
+Big TIP: Inactive widgets for changing child themes https://wordpress.org/support/topic/switching-themes-turns-off-all-widgets/?replies=4
+Whenever you change themes (well – a lot of the times, seems a bit unpredictable when you lose your widgets), the widgets that were being used in the previous theme are saved in the “Inactive Widgets” area of the Widgets control panel.
+http://dev.themeblvd.com/tutorial/switching-to-a-child-theme-after-youve-already-started-building-your-website/
+
+display multiple object https://stackoverflow.com/questions/29484060/multiple-value-in-object-php
+display object within object 
+http://www.wpbeginner.com/wp-tutorials/25-extremely-useful-tricks-for-the-wordpress-functions-file/
+https://www.organizedthemes.com/freeing-content-from-custom-post-types/ - retrieve old post type CPT UI
