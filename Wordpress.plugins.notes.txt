@@ -1,9 +1,53 @@
-Plugin Notes
 
-plugins:
+Must-have plugins & tools for Developers: (This can be eventually disabled during production/release)
+		- https://themeisle.com/blog/free-wordpress-plugins-for-developers/
+		- https://premium.wpmudev.org/blog/wordpress-developer-tools/
+		- http://www.wpbeginner.com/showcase/24-must-have-wordpress-plugins-for-business-websites/
+		
+Theme Unit Test Data - https://codex.wordpress.org/Theme_Unit_Test		
+GenerateWP - https://generatewp.com/snippet/
+Plugin Inspector
+Developer
+Debug Bar	
+Simply Show Hooks
+Monster Widget
+Query Monitor
+User Switching
+Show Current Template
+Monster Widget
+Theme Check
+Log Deprecated Notices
+RTL Tester
+WP-CLI
+Styleguide
+Advanced CSS Editor
+Widget CSS Classes
+
+
+Essential plugins (maybe permanent) for any type of website:
+PHP Code Widget		
 Advanced Custom Fields
-Debug Bar
-Debug Bar Actions and Filters Addon
+Regenerate Thumbnails
+WP Mail SMTP
+Contact Form 7
+
+Optional plugins (maybe permanent) depending on requirement:
+Theme My Login
+WP Fastest Cache
+W3 Total Cache
+MonsterInsights
+
+
+Potential plugins to use:
+Roots.io
+Shared Counts
+AddToAny Share Buttons
+
+
+PLUGIN NOTES
+
+
+Plugin: Debug Bar Actions and Filters Addon
 
 007 Install and explore WordPress Theme Unit Test data
 	- for fully testing themes compatibility
@@ -14,41 +58,25 @@ Debug Bar Actions and Filters Addon
 		-- When done, it will be populated with content to test your theme
 		-- tip: it is good to know what type of data this is best for testing your own content/module you are working.
 
-008 Install the Developer plugin and other useful plugins	
-	- https://wordpress.org/plugins/developer/ (Developer Plugin) 
-		- choose what you plan to develop: theme, plugin, or VIP WP ("theme" in this lesson)
-		- all are good, but for theme we mostly use:
-			-- Debug Bar  (add debugging the WP toolbar at the very top)
-			-- Monster Widget (easier to add a lof widgets to sidebar very quickly)
-			-- regenerate thumbnails ( to regenerate any featured images once default setting is made)
-			-- theme check ( test WP theme if it meets basic WP standards)
-			-- manually activate all plugins
+plugin: Developer
 	- Tools->Developer (Constants Section)
-		-- WP_DEBUG (enables debug mode)
-			-open wp-config.php define('WP_DEBUG', false) & set it to true
-		-- SAVEQUERIES (logs DB queries for review) 
-	- Show Current Template	Plugin https://wordpress.org/plugins/show-current-template/
+		- WP_DEBUG (enables debug mode) 
+			-- open wp-config.php define('WP_DEBUG', false) & set it to true
+			-- SAVEQUERIES (logs DB queries for review) 
 	
-Developer
-Monster Widget
-PHP Code Widget		
-Query Monitor
-Regenerate Thumbnails
-Show Current Template
-Theme Check
-Widget CSS Classes
-WordPress Importer
-Theme My Login
-WP Mail SMTP
 
 
 
-WP Mail SMTP
+
+
+
+Plugin: WP Mail SMTP
 	https://wpforms.com/docs/how-to-set-up-smtp-using-the-wp-mail-smtp-plugin/
+	
+Plugin: Contact Form 7	
 	https://contactform7.com/recaptcha/
 	
 	[contact-form-7 id="1939" title="Contact form (frontpage)" html_id="contactForm" html_name="sentMessage"]
-		
 	[text* your-name id:name class:form-control placeholder "Your Name*"]
 	[email* your-email id:email class:form-control placeholder "Your Email*"]
 	[tel tel-664 id:phone class:form-control placeholder "Your Phone"]	
@@ -56,5 +84,5 @@ WP Mail SMTP
 	[submit id:sendMessageButton class:btn class:btn-primary class:btn-xl class:text-uppercase "Send Message"]
 	
 
-	
-https://webmandesign.github.io/docs/auberge/#plugins	
+Plugins recommended by a certain Theme (Auberge):
+	https://webmandesign.github.io/docs/auberge/#plugins	

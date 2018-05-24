@@ -268,8 +268,6 @@ https://code.tutsplus.com/articles/wordpress-actions-and-filters-whats-the-diffe
 A callback is any executable code that is passed as an argument to other code, which is expected to call back (execute) the argument at a given time. 
 This execution may be immediate as in a synchronous callback, or it might happen at a later time as in an asynchronous callback.
 
-note: There are common names for hook, functions, reference (Action or Filter). Sometimes, there is a hook but has no function & vice versa.
-		Sometimes function perform hooks w/ different names.
 
 	- wp_enqueue_scripts:
 		-- (action reference - used for enqueuing both scripts and styles) https://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts
@@ -281,6 +279,11 @@ http://www.wpbeginner.com/wp-tutorials/25-extremely-useful-tricks-for-the-wordpr
 
 
 ACTIONS vs FILTER Hooks
+	BEST TIP:
+	- to know which hooks fire first, you can use xdebug to trace do_action() & apply_filters() or search in netbeans
+	- to remove a certain function attached to a hook, search add_filter() & add_action() in "/wp-includes..."
+	   check default-filters.php, or use the "source #" reference https://developer.wordpress.org. Usually they are scattered in WP.
+
 
 ACTION
 	Allows to run our code at a specific time when Wordpress is doing something.
