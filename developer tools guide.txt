@@ -1,12 +1,19 @@
+
+
 kcd sword 530ls 5200 400ls 053lx 400 5232l
+/f/Raymacz/xampp/htdocs/wp/site1/wp-content/themes/gulp-dev
+/f/Raymacz/xampp/htdocs/wp/site3/wp-content/themes/gulp-dev
+
 
 https://gameplay.tips/guides/2010-kingdom-come-deliverance.html
 .github
 /f/Raymacz/xampp/htdocs/wp/site4/wp-content/
+/f/Raymacz/xampp/htdocs/wp/site3/wp-content/themes/gulp-dev
 /c/Users/admin/.atom/smart-templates/
 /f/Raymacz/xampp/htdocs/phpsbox/
 /f/MyTutorials/MyExercise/mynotes/Developer.notes
 /c/Users/admin/.atom/myCson_backup
+/f/MyTutorials/MyExercise/Raymacz.MyCode/Raymacz.Custom.WP.Plugins
 
 
 WORDPRESS INSTALL:
@@ -112,6 +119,7 @@ setup:
 	- npm install --save-dev ngrok
 		- https://github.com/BrowserSync/browser-sync/issues/192
 		- https://dashboard.ngrok.com/status ( client can see site remotely)
+		- 
 	- npm install --save-dev tether (https://www.npmjs.com/package/tether)
 		-- <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script> (add to enqueue script)
 		-- (https://github.com/shakacode/bootstrap-loader/issues/48)
@@ -128,6 +136,8 @@ setup:
 	- npm install gulp-newer --save-dev
 	- npm install font-awesome
 	- npm install jquery.easing
+	
+	- npm install gulp-debug --save-dev
 	- 
 	
 	- npm update 
@@ -159,6 +169,19 @@ setup:
     -  wp_enqueue_style( 'framemacz-style-bootstrap', get_template_directory_uri()  . '/bootstrap.css');
     -  wp_enqueue_style( 'framemacz-style', get_stylesheet_uri() ); // style.css
     -  wp_enqueue_script( 'framemacz-script-bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js' , array('jquery'), '20171225', true );
+	
+	
+	---------------------------------------------------------------
+NPM package notes:
+	
+How to run NGROK Live local server please check:  https://ngrok.com/docs#non-local
+	
+1. download ngrok.exe & paste to C:\Users\admin\.ngrok2
+2. run ngrok authtoken 7MXpQW1Hc9dnSyStagbuo_4SeninzmbhKYQ1ZguVbvw (it will create the ngrok.yml file as token)
+3.  run ngrok http -region ap 192.168.1.2:8080  https://www.screencast.com/t/tv9cQNVhpO
+	(this will link the ngrok domain to your localhost (192.168.1.2:8080)
+4.  login to https://dashboard.ngrok.com/status  & click the url to run the site https://www.screencast.com/t/JlNwvXEI
+5. Result will be this https://www.screencast.com/t/sIIoEDSljt
 
 --------------------------------------------------------------------
 

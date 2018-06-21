@@ -1,55 +1,67 @@
 
+
 Must-have plugins & tools for Developers: (This can be eventually disabled during production/release)
 		- https://themeisle.com/blog/free-wordpress-plugins-for-developers/
 		- https://premium.wpmudev.org/blog/wordpress-developer-tools/
 		- http://www.wpbeginner.com/showcase/24-must-have-wordpress-plugins-for-business-websites/
+
+===================  FOR DEVELOPMENT ===========================		
 		
-Theme Unit Test Data - https://codex.wordpress.org/Theme_Unit_Test		
+Theme Unit Test Data / FakerPress
 GenerateWP - https://generatewp.com/snippet/
-Plugin Inspector
+Show Current Template
 Developer
 Debug Bar	
-Simply Show Hooks
-Monster Widget
+Simply Show Hooks  052818
+Plugin Inspector
 Query Monitor
+Monster Widget
 User Switching
-Show Current Template
 Monster Widget
 Theme Check
-Log Deprecated Notices
+Log Deprecated Notices 052818
 RTL Tester
 WP-CLI
 Styleguide
-Advanced CSS Editor
-Widget CSS Classes
 
 
-Essential plugins (maybe permanent) for any type of website:
+
+
+================ Essential plugins (permanent) for any type of website: ===================
 PHP Code Widget		
-Advanced Custom Fields
+Advanced Custom Fields - ACF / Pods / Meta box / Toolset Types 
+	Compare WP - Plugin Comparison - Content Type / Custom Fields - https://docs.google.com/spreadsheets/d/1mSqienVYxLopTFGLPK0lGCJst2knKzXDtLQRgwjeBN8/edit#gid=3
 Regenerate Thumbnails
 WP Mail SMTP
 Contact Form 7
+Toolset Types
 
-Optional plugins (maybe permanent) depending on requirement:
+================ Optional plugins (may be permanent) depending on requirement =================
+Jetpack (sharing, CPT-food menu, lazy load)
 Theme My Login
 WP Fastest Cache
 W3 Total Cache
 MonsterInsights
+NextGEN Gallery
+Advanced CSS Editor
+Widget CSS Classes
+AddToAny Share Buttons  
+Simple Calendar   060818
+Radio Buttons for Taxonomies  061418
+Menu Icons by ThemeIsle (dashicons)
 
-
-Potential plugins to use:
+=================  Potential plugins to use  ============================
 Roots.io
 Shared Counts
-AddToAny Share Buttons
+
 
 
 PLUGIN NOTES
 
 
-Plugin: Debug Bar Actions and Filters Addon
+Plugin: Debug Bar Actions and Filters Addon ----------------------------
 
-007 Install and explore WordPress Theme Unit Test data
+007 Install and explore WordPress Theme Unit Test data 
 	- for fully testing themes compatibility
 	- https://codex.wordpress.org/Theme_Unit_Test (downloadble XML file)
 	- Use tools->import->Wordpress(install now)->Run Importar->Choose file->Upload & Import(Theme Unit Test Data Plugin)
@@ -58,7 +70,7 @@ Plugin: Debug Bar Actions and Filters Addon
 		-- When done, it will be populated with content to test your theme
 		-- tip: it is good to know what type of data this is best for testing your own content/module you are working.
 
-plugin: Developer
+plugin: Developer ----------------------------
 	- Tools->Developer (Constants Section)
 		- WP_DEBUG (enables debug mode) 
 			-- open wp-config.php define('WP_DEBUG', false) & set it to true
@@ -70,10 +82,10 @@ plugin: Developer
 
 
 
-Plugin: WP Mail SMTP
+Plugin: WP Mail SMTP  ----------------------------
 	https://wpforms.com/docs/how-to-set-up-smtp-using-the-wp-mail-smtp-plugin/
 	
-Plugin: Contact Form 7	
+Plugin: Contact Form 7	 ----------------------------
 	https://contactform7.com/recaptcha/
 	
 	[contact-form-7 id="1939" title="Contact form (frontpage)" html_id="contactForm" html_name="sentMessage"]
@@ -84,5 +96,45 @@ Plugin: Contact Form 7
 	[submit id:sendMessageButton class:btn class:btn-primary class:btn-xl class:text-uppercase "Send Message"]
 	
 
-Plugins recommended by a certain Theme (Auberge):
+Plugin: NextGEN Gallery ----------------------------
+	- Start w/ Other Options for default settings
+		- recommended: https://www.screencast.com/t/sPrQy1nv
+		- Lightbox Effects: fancybox (default) 
+			- other than default lightbox, you can opt to customize lightbox effects
+			- lightbox can be applied to any specific group of images or the entire WP images
+		- Watermarks 
+			- enable custom CSS is possible (upgrade safe)
+		- Roles / Permissions can be set
+		- Max image count: 10000
+	- Gallery Settings
+	- Overview: 
+		- Server Settings (PHP Max Upload size) (php.ini)
+	- recommended image size - 72 ppi
+	- standard ratio dimension size - 1.33, 1.49
+	- standard web digital image sizes -  http://tim-stanley.com/post/standard-web-digital-image-sizes/
+	- test photos: F:\MyTutorials\MyExercise\Raymacz.MyCode\WP Scripts Collection\img	
+	
+Plugins recommended by a certain Theme (Auberge): ----------------------------
 	https://webmandesign.github.io/docs/auberge/#plugins	
+	
+	
+Plugin: Simple Calendar	 ----------------------------
+	https://docs.simplecalendar.io/google-api-key/
+	https://docs.simplecalendar.io/make-google-calendar-public/?utm_source=inside-plugin&utm_medium=link&utm_campaign=core-plugin&utm_content=settings-link
+	https://docs.simplecalendar.io/find-google-calendar-id/?utm_source=inside-plugin&utm_medium=link&utm_campaign=core-plugin&utm_content=settings-link
+	https://docs.simplecalendar.io/event-template-tags/
+
+Plugin: MailChimp for WordPress ----------------------------------
+	Add API key from own Mailchimp account.
+	contact form 7 integration
+	
+Plugin: Simply Show Hooks, Query Monitor ----------------------
+  //points in action hook sequence & the functions attached to it - & also how to remove it
+	/*  https://www.screencast.com/t/rzNdQlJK06D - code remove_action()
+	 * 1. Hook must be in the same component (e.g. Non-core as shown in plugin: Query Monitor)
+	 *    note: all "before" hooks work but not all hooks "after", just the ones "nearer" to that hook or the farthest is 'wp_footer' hook
+	 *    https://www.screencast.com/t/4l1SseGXwNBM - hook functions removed
+	 *    https://www.screencast.com/t/oXoD29p9WY -  hook functions before removal
+	 * 
+	 */	
+	

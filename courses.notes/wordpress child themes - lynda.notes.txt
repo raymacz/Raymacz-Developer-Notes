@@ -130,7 +130,7 @@
   https://digwp.com/2016/01/include-styles-child-theme/
   
   
-  tip: post formats 
+  best tip: post formats 
 	  - can be activated in functions.php https://codex.wordpress.org/Post_Formats
       - an Aside in wordpress are one of the post formats. Usually they have titles & contain minimal information
 			1. you create a post & choose a certain post format like aside
@@ -140,5 +140,6 @@
 					get_template_part( 'template-parts/content', get_post_format() ) ); 
 				tip: a good example is the auberge-child theme which I made
 			
-			
+  best note: 
+     - wordpress will auto override parent files w/ child files - https://www.screencast.com/t/T9zUqD5jQotQ  (052918)
 			

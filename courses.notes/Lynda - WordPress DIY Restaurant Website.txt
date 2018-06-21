@@ -37,8 +37,8 @@
 		- add taxonomy -> Menu Sections (Appetizers, Salads, Entrees, Desserts, Drinks) 
 		- Add one Item (or add new)
 		- Add Many Items
-	- note: if a new taxonomy is added, you need to go settings->permalinks and save Changesnote: if a new taxonomy is added, you need to go settings->permalinks and save Changes
-	- note: add many items has limitations ( because you have limited options on how to input items)
+	- note: if a new taxonomy is added, you need to go settings->permalinks and save Changes
+	- note: "add many items" has limitations ( because you have limited options on how to input items)
 
 03_05-Adding a food menu page
 	- add new page - Menu
@@ -49,6 +49,9 @@
 	- remove tagline
 	- add logo (or just remove it)
 	- add site icon
+	- Banner Text (Featured Post Options will replace Site Description / Tagline) 
+		- if no Banner Text, Post Tile will replace Tagline in Carousel
+	- Carousel / Slider will Replace Tagline
 
 03_07-Customizing fonts and colors
 	- tip: auberge theme lets you choose google  https://www.screencast.com/t/hgYkhfG8EAm (customizer)
@@ -170,13 +173,14 @@ NOTES;
 	
    - if a new taxonomy is added, you need to go settings->permalinks and save Changesnote: if a new taxonomy is added, you need to go settings->permalinks and save Changes	
    - page-resources, page-fullwidth ( means you can choose on what templates to use (display) in the Admin Templates
+   - Disable food section archive linking - if enabled, food section won't link to archive page (front page or menu page)
    
    
 TIP:
    - (customizer) auberge theme lets you choose google fonts
    - (customizer) you can create a backend page (no content necessary) & assign it as post page / blog
    -  tip: Auberge theme let's you display customized content (MENU) to show in front page
-
+  	
    
       
 https://themedemos.webmandesign.eu/auberge/	

@@ -221,3 +221,9 @@ display multiple object https://stackoverflow.com/questions/29484060/multiple-va
 display object within object 
 http://www.wpbeginner.com/wp-tutorials/25-extremely-useful-tricks-for-the-wordpress-functions-file/
 https://www.organizedthemes.com/freeing-content-from-custom-post-types/ - retrieve old post type CPT UI
+
+061418
+http://www.wpbeginner.com/plugins/how-to-enforce-one-category-per-post-in-wordpress/
+https://sudarmuthu.com/blog/creating-single-select-wordpress-taxonomies/
+https://github.com/WebDevStudios/Taxonomy_Single_Term
+https://wordpress.org/plugins/categories-metabox-enhanced/
