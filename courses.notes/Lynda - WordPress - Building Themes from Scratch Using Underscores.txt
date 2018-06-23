@@ -357,7 +357,7 @@ username password http://site3.net/wp-admin/  boslot4321
 	- single.php
 		- template-parts
 			-- content-none.php (no content to display)
-			-- content.page.php (page content)
+			-- content-page.php (page content)
 			-- content-search.php (search results)
 			-- content.php (single post, indexed & archived pages)
 			
