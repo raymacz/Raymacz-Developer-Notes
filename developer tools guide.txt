@@ -1,12 +1,15 @@
+100-230v
 
 
-kcd sword 530ls 5200 400ls 053lx 400 5232l
+
+
 /f/Raymacz/xampp/htdocs/wp/site1/wp-content/themes/gulp-dev
 /f/Raymacz/xampp/htdocs/wp/site3/wp-content/themes/gulp-dev
 
 
 https://gameplay.tips/guides/2010-kingdom-come-deliverance.html
 .github
+/f/Raymacz/xampp/htdocs/wp/site1/wp-content/themes/auberge-child
 /f/Raymacz/xampp/htdocs/wp/site4/wp-content/
 /f/Raymacz/xampp/htdocs/wp/site3/wp-content/themes/gulp-dev
 /c/Users/admin/.atom/smart-templates/
@@ -143,6 +146,8 @@ setup:
 	- npm update 
 		-- npm cache clean (delete node_modules)
 		-- npm install --save	
+	- npm outdated	(to check outdated package versions)
+	- npm show {pkg} version
 
 4.	create wp-content\themes\gulp-dev\Gulpfile.js
 	- use codes (as shown in examples) according to packages https://www.npmjs.com/package/package	
@@ -172,13 +177,27 @@ setup:
 	
 	
 	---------------------------------------------------------------
+Browsersync package notes:
+	
+		https://github.com/Browsersync/recipes/tree/master/recipes/gulp.sass
+		https://github.com/BrowserSync/browser-sync/issues/1581
+	
+	
 NPM package notes:
 	
 How to run NGROK Live local server please check:  https://ngrok.com/docs#non-local
+
+note: https://github.com/bubenshchykov/ngrok/issues/118
+
+package.json
+
+"dependencies": {
+            "ngrok": "2.3.0"
+     } 
 	
 1. download ngrok.exe & paste to C:\Users\admin\.ngrok2
-2. run ngrok authtoken 7MXpQW1Hc9dnSyStagbuo_4SeninzmbhKYQ1ZguVbvw (it will create the ngrok.yml file as token)
-3.  run ngrok http -region ap 192.168.1.2:8080  https://www.screencast.com/t/tv9cQNVhpO
+2. run --->> ngrok authtoken 7MXpQW1Hc9dnSyStagbuo_4SeninzmbhKYQ1ZguVbvw (it will create the ngrok.yml file as token)
+3.  run -->> ngrok http -region ap 192.168.1.2:8080  -https://www.screencast.com/t/tv9cQNVhpO
 	(this will link the ngrok domain to your localhost (192.168.1.2:8080)
 4.  login to https://dashboard.ngrok.com/status  & click the url to run the site https://www.screencast.com/t/JlNwvXEI
 5. Result will be this https://www.screencast.com/t/sIIoEDSljt
@@ -237,7 +256,12 @@ https://help.github.com/articles/setting-your-username-in-git/
 https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
 https://help.github.com/articles/checking-for-existing-ssh-keys/
 
-
+for default browser:
+$ git help branch (to check if browser runs correctly on .gitconfig - C:\Users\admin\.gitconfig)
+[web]
+	browser=chrome
+[browser "chrome"] 
+	path = /c/Program Files (x86)/Google/Chrome/Application/chrome.exe
 		
  
 -------------------------------------------------------------------- 
@@ -253,7 +277,7 @@ invgamez@gmail.com invgamez pmanacezz4321!
 -------------------------------------------------------------------
 
 
- NODEJS
+ NODEJS http://blog.teamtreehouse.com/install-node-js-npm-windows 
  
   cd MyTutorials\MyWork\nodejs\MyCode\server
 
@@ -269,6 +293,7 @@ invgamez@gmail.com invgamez pmanacezz4321!
  * 7. it should work! 
  * backup F:\MyTutorials\MyExercise\Raymacz.Custom.WP.Plugins\nodejs\MyCode
   
+  
 
  NPM
 	F:\MyTutorials\MyExercise\Lynda - WordPress - Building Themes from Scratch Using Underscores\MyCode\myapp
@@ -277,17 +302,21 @@ invgamez@gmail.com invgamez pmanacezz4321!
 	- npm is a part of node.js platform
 	- like git, it runs in a UNIX based platform
    
-  1. download & install https://nodejs.org/en/  
+  1. download & install https://nodejs.org/en/   https://nodejs.org/en/download/releases/
   2. download & install https://git-scm.com/download/win   
-  3. https://www.npmjs.com/get-npm
+  3. https://www.npmjs.com/get-npm https://stackoverflow.com/questions/18412129/how-can-i-update-npm-on-windows
 
-1. npm rm --global gulp (If you've previously installed gulp globally,)
+  https://github.com/coreybutler/nvm-windows
+
+  
+  https://github.com/gulpjs/gulp/blob/4.0/docs/getting-started.md
+1. npm rm --global gulp (If you've previously installed gulp globally,) 
 2. node --version
 3. npm --version
 4. gulp -v
 5. install global & local gulp (both needed to be installed)
-  - npm install gulp-cli -g (global)
-  - npm install gulp -D (local)
+  - npm install --global gulp-cli(global)
+  - npm npm install --save-dev gulp (local)
 6. npm init (create package.json thru wizard or you can create manually)
 7. FIX
 	- NOTE: (to fix issue) downgraded to https://nodejs.org/download/release/v6.12.2/  https://www.screencast.com/t/jaGv4jDzPNMz 
@@ -322,6 +351,13 @@ invgamez@gmail.com invgamez pmanacezz4321!
 	
  
 https://engageinteractive.co.uk/blog/top-10-scss-mixins  
+
+
+-------------------------------------------------------------------- 
+
+UNICODE (colored) - http://xahlee.info/comp/unicode_food_drink.html    http://xahlee.info/comp/unicode_food_drink.html
+GENERICONS - https://wojnowski.net.pl/main/index/genericons-unicode-values
+FONT AWESOME - https://fontawesome.com/icons?d=gallery&c=payments-shopping,travel&m=free
 
 -------------------------------------------------------------------- 
   
@@ -424,7 +460,7 @@ PLUGINS:
 	
 	atom-smart-template
 	##atom-autocomplete-php
-	emmet  (when autosuggest emerges (e.g. bootstrap4), just press escape & then tab again to execute emmet)
+	emmet  (when autosuggest emerges (e.g. bootstrap4) 
 	atom-bootstrap3
 	atom-bootstrap4
 	atom-html-preview
@@ -465,8 +501,6 @@ PLUGINS:
     ## autocomplete-modules (later)
 
 
-
-
 081617
 
 atom beautify https://github.com/FriendsOfPHP/PHP-CS-Fixer
@@ -476,116 +510,12 @@ http://storage4.static.itmages.com/i/17/0815/h_1502813615_1246531_620d2718b5.png
 /usr/local/bin/php-cs-fixer
 
 
-============ atom  config
-"*":
-  "atom-autocomplete-php": {}
-  "atom-beautify":
-    coffeescript:
-      disabled: true
-    css: {}
-    d:
-      disabled: true
-    ejs:
-      disabled: true
-    elm:
-      disabled: true
-    erb:
-      disabled: true
-    erlang:
-      disabled: true
-    executables:
-      php:
-        path: "/usr/bin/php"
-      "php-cs-fixer":
-        path: "/usr/local/bin/php-cs-fixer"
-    fortran:
-      disabled: true
-    general:
-      _analyticsUserId: "c75e114a-bc10-4605-b8c5-4754a9b654d1"
-    gherkin:
-      disabled: true
-    glsl:
-      disabled: true
-    go:
-      disabled: true
-    gohtml:
-      disabled: true
-    handlebars:
-      disabled: true
-    haskell:
-      disabled: true
-    jsx:
-      disabled: true
-    latex:
-      disabled: true
-    less: {}
-    lua:
-      disabled: true
-    marko:
-      disabled: true
-    mustache:
-      disabled: true
-    nunjucks:
-      disabled: true
-    objectivec:
-      disabled: true
-    ocaml:
-      disabled: true
-    pawn:
-      disabled: true
-    perl:
-      disabled: true
-    php:
-      allow_risky: "yes"
-    puppet:
-      disabled: true
-    python:
-      disabled: true
-    r:
-      disabled: true
-    riot:
-      disabled: true
-    ruby:
-      disabled: true
-    rust:
-      disabled: true
-    sass: {}
-    spacebars:
-      disabled: true
-    svg:
-      disabled: true
-    swig:
-      disabled: true
-    tss:
-      disabled: true
-    twig:
-      disabled: true
-    typescript:
-      disabled: true
-    vala:
-      disabled: true
-    visualforce:
-      disabled: true
-    vue:
-      disabled: true
-    xtemplate:
-      disabled: true
-    yaml:
-      disabled: true
-  "atom-terminal": {}
-  core:
-    telemetryConsent: "limited"
-  "exception-reporting":
-    userId: "e469c921-4cd8-4f8a-b049-55ff348fedc6"
-  "linter-php":
-    executablePath: "/opt/lampp/bin/php"
-  "linter-ui-default": {}
-  minimap: {}
-".html.php.text":
-  editor:
-    showIndentGuide: true
+--------------------------------------------------------------------
+EMMET - https://atom.io/packages/emmet
 
-			  
+
+	#myid.wrap.myclass>ul>(li#myid$$>span.style>a[href="#"]{mytext$$})*3  - ctrl+e
+
 			  
 --------------------------------------------------------------------
 NOTEPAD ++
@@ -671,3 +601,11 @@ etmbym hidemeboslot4321!
  
 --------------------------------------------
 REGEX http://www.phpliveregex.com/ https://www.functions-online.com/preg_replace.html
+
+---------------------------------------------
+
+WIREFRAMING
+
+https://wireframe.cc/K5rqcU - 070418
+https://www.lucidchart.com/documents/edit/94966750-36a5-4b48-9675-f847e42b0a2b/0 - 070518
+https://drive.google.com/drive/u/1/folders/1JOJN2I4IqNihkUIP5iv1ANAJI5uOihoh - 070518

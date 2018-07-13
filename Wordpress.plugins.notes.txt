@@ -23,7 +23,7 @@ Log Deprecated Notices 052818
 RTL Tester
 WP-CLI
 Styleguide
-
+Advanced Database Cleaner / WordPress Database Reset
 
 
 
@@ -42,15 +42,19 @@ Theme My Login
 WP Fastest Cache
 W3 Total Cache
 MonsterInsights
+Lazy Load by WP Rocket
 NextGEN Gallery
 Advanced CSS Editor
 Widget CSS Classes
 AddToAny Share Buttons  
 Simple Calendar   060818
-Radio Buttons for Taxonomies  061418
+Radio Buttons for Taxonomies  061418 (single select Taxonomy)
 Menu Icons by ThemeIsle (dashicons)
+Loading Page with Loading Screen
 
 =================  Potential plugins to use  ============================
+Post Views Counter
+Elementor Page Builder
 Roots.io
 Shared Counts
 
@@ -137,4 +141,35 @@ Plugin: Simply Show Hooks, Query Monitor ----------------------
 	 *    https://www.screencast.com/t/oXoD29p9WY -  hook functions before removal
 	 * 
 	 */	
+	
+	
+Plugin: Pods ------------------------------	
+Tips:
+	1. Better to use in Widgets 
+	2. if using only in Widgets, don't enable auto template options - https://www.screencast.com/t/GSQb4cfnG42o
+Note:
+	1. Use Pods to Create/Extend Taxonomies/CPT - https://www.screencast.com/t/XPAcMS0LLUu
+	2. How to enable template - Components->Templates  https://www.screencast.com/t/Z30MMa7B
+	3. How to create a Pods Template - https://www.screencast.com/t/BGoxS2uRnMs7 
+	4. Documentation - https://pods.io/docs/code/pods/find/ & https://pods.io/docs/build/special-magic-tags/
+	5. Examples - Widget:
+		Single - https://www.screencast.com/t/n43BYuQhrUQL
+		Field Value - https://www.screencast.com/t/MxXwvi6j
+		List Items - https://www.screencast.com/t/ZrarbX8N
+			WHERE: t.ID < 2215 AND CAST(package_price.meta_value as DECIMAL) < 200
+			
+		SQL:  
+		SELECT DISTINCT `t`.* 
+		FROM `wp_posts` AS `t` 
+		LEFT JOIN `wp_postmeta` AS `package_price` 
+		ON `package_price`.`meta_key` = 'package_price' 
+		AND `package_price`.`post_id` = `t`.`ID` 
+		WHERE  ( t.ID < 2215 AND CAST(`package_price`.`meta_value` as DECIMAL) < 200 ) 
+		AND ( `t`.`post_type` = "course_package" )  
+		ORDER BY `t`.`post_date` DESC, 
+		`t`.`menu_order`, `t`.`post_title`, `t`.`post_date` LIMIT 0, 1
+		
+		
+		
+		264
 	
