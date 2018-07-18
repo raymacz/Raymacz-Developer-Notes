@@ -1,20 +1,22 @@
 
 /j/xampp/htdocs/wp/site1/wp-content/themes/gulp-dev
+/j/xampp/htdocs/wp/site2/wp-content/themes/gulp-dev
 /j/xampp/htdocs/wp/site3/wp-content/themes/gulp-dev
 
 
 https://gameplay.tips/guides/2010-kingdom-come-deliverance.html
 .github
 /j/xampp/htdocs/wp/site1/wp-content/themes/auberge-child
+/j/xampp/htdocs/wp/site2/wp-content/themes/boot2wp
+/j/xampp/htdocs/wp/site2/wp-content/themes/boot2wp-child
 /j/xampp/htdocs/wp/site4/wp-content/
 /j/xampp/htdocs/wp/site3/wp-content/themes/gulp-dev
 /c/Users/admin/.atom/smart-templates/
-/j/xampp/htdocs/phpsbox/
-/f/MyTutorials/MyExercise/mynotes/Developer.notes
-/g/MyTutorials/MyExercise/MyNotez/Raymacz-Developer-Notes
 /c/Users/admin/.atom/myCson_backup
+/j/xampp/htdocs/phpsbox/
 /g/MyTutorials/MyExercise/Raymacz.MyCode/Raymacz.Custom.WP.Plugins
-
+/g/MyTutorials/MyExercise/MyNotez/Raymacz-Developer-Notes
+/f/MyTutorials/MyExercise/mynotes/Developer.notes
 
 WORDPRESS INSTALL:
 
@@ -243,7 +245,7 @@ define( 'WP_DEBUG_DISPLAY', false );
 define( 'SCRIPT_DEBUG', true );
 	
 --------------------------------------------------------------------
-WORDPRESS MIGRATION
+WORDPRESS MIGRATION (migrate example) - https://www.screencast.com/t/wHKjRuBHmdWO
 
 78. Install WordPress Like a Pro
 	- better to install than upload WP to a hosting site (installs the core files & later drop the tables from the DB)
@@ -268,13 +270,20 @@ Git Bash for Windows
 
 https://git-scm.com/download/win
 
-GIT Subversion Github - guide https://gist.github.com/hofmannsven/6814451
+GIT Subversion Github - guide https://gist.github.com/raymacz/5f0ee4662875d782c6ca31f6274bf377
+
+git clone https://github.com/raymacz/Gulpfile-Sass-
+git add .
+git commit -m ""
+git pull origin dev
+git push -u origin dev
 
 https://stackoverflow.com/questions/3620633/what-is-the-difference-between-pull-and-clone-in-git
 
 https://help.github.com/articles/setting-your-username-in-git/
 https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
 https://help.github.com/articles/checking-for-existing-ssh-keys/
+https://help.github.com/articles/fetching-a-remote/
 
 for default browser:
 $ git help branch (to check if browser runs correctly on .gitconfig - C:\Users\admin\.gitconfig)
