@@ -1,22 +1,19 @@
-100-230v
 
-
-
-
-/f/Raymacz/xampp/htdocs/wp/site1/wp-content/themes/gulp-dev
-/f/Raymacz/xampp/htdocs/wp/site3/wp-content/themes/gulp-dev
+/j/xampp/htdocs/wp/site1/wp-content/themes/gulp-dev
+/j/xampp/htdocs/wp/site3/wp-content/themes/gulp-dev
 
 
 https://gameplay.tips/guides/2010-kingdom-come-deliverance.html
 .github
-/f/Raymacz/xampp/htdocs/wp/site1/wp-content/themes/auberge-child
-/f/Raymacz/xampp/htdocs/wp/site4/wp-content/
-/f/Raymacz/xampp/htdocs/wp/site3/wp-content/themes/gulp-dev
+/j/xampp/htdocs/wp/site1/wp-content/themes/auberge-child
+/j/xampp/htdocs/wp/site4/wp-content/
+/j/xampp/htdocs/wp/site3/wp-content/themes/gulp-dev
 /c/Users/admin/.atom/smart-templates/
-/f/Raymacz/xampp/htdocs/phpsbox/
+/j/xampp/htdocs/phpsbox/
 /f/MyTutorials/MyExercise/mynotes/Developer.notes
+/g/MyTutorials/MyExercise/MyNotez/Raymacz-Developer-Notes
 /c/Users/admin/.atom/myCson_backup
-/f/MyTutorials/MyExercise/Raymacz.MyCode/Raymacz.Custom.WP.Plugins
+/g/MyTutorials/MyExercise/Raymacz.MyCode/Raymacz.Custom.WP.Plugins
 
 
 WORDPRESS INSTALL:
@@ -133,12 +130,13 @@ setup:
 		(note: you have the option to use boostrap CDN or bootstrap.css - if CDN is used, bootstrap _custom.scss will not work. bootstrap.scss is not as updated as CDN)
 	- npm install --save-dev autoprefixer 
 	- npm install --save-dev gulp-image
-	- npm install gulp-jshint --save-dev
+	- npm install jshint gulp-jshint --save-dev -https://github.com/jshint/jshint/blob/master/examples/.jshintrc
 	- npm install --save-dev gulp-postcss
 	- npm install --save-dev gulp-sourcemaps  (hint files that traces the CSS origin of the browser - "enable CSS source maps")
 	- npm install gulp-newer --save-dev
 	- npm install font-awesome
 	- npm install jquery.easing
+	- npm install --save-dev gulp-rename  
 	
 	- npm install gulp-debug --save-dev
 	- 
@@ -148,6 +146,26 @@ setup:
 		-- npm install --save	
 	- npm outdated	(to check outdated package versions)
 	- npm show {pkg} version
+	
+	  "devDependencies": {
+    "autoprefixer": "^8.6.5",
+    "browser-sync": "^2.24.5",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-image": "^4.3.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-jshint": "^2.1.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-postcss": "^7.0.1",
+    "gulp-rename": "^1.3.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "jshint": "^2.9.5",
+    "ngrok": "^3.0.1"
 
 4.	create wp-content\themes\gulp-dev\Gulpfile.js
 	- use codes (as shown in examples) according to packages https://www.npmjs.com/package/package	
@@ -251,6 +269,8 @@ Git Bash for Windows
 https://git-scm.com/download/win
 
 GIT Subversion Github - guide https://gist.github.com/hofmannsven/6814451
+
+https://stackoverflow.com/questions/3620633/what-is-the-difference-between-pull-and-clone-in-git
 
 https://help.github.com/articles/setting-your-username-in-git/
 https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
