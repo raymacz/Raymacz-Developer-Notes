@@ -1,0 +1,374 @@
+
+===================================
+
+Ecommerce with Wordpress and WooCommerce - TeamTreeHOuse
+TutsPlus - Go Further With WooCommerce Themes
+Lynda - WordPress Ecommerce - WooCommerce
+
+
+============================================================
+Ecommerce with Wordpress and WooCommerce - TeamTreeHOuse
+
+
+1. Introduction to Ecommerce with WordPress
+
+2. Setting Up WooCommerce
+	- 6. Shipping Settings in WooCommerce 
+		-- create a shipping class
+		-- products->shipping classes (taxonomy)
+		-- more advanced shipping options - (Table Rate Shipping Plugin, Fedex, UPS, US Postal Service)
+		
+		
+3. Managing Products in WooCommerce
+
+	- 2. Different Types of Products in WooCommerce
+	  -- https://docs.woocommerce.com/document/managing-products/
+	  -- product types: simple, grouped, external or affiliate, variable
+	  
+	- 3. Setting Up a Simple Product  
+	  -- virtual: no shipping
+	  -- downloadable: (digital)
+	  -- sale: schedule (note: if sale price is removed, the frontend display will also be updated)
+	  -- inventory: manage stock
+	  -- shipping class: (default-flat rate)
+	  -- Linked Products: 
+			--- Up-sells- alternative expensive products, Cross-sells- alternative similar products, related products
+			--- grouping: choose what products to group
+	  -- Attributes: Size S|M|L (visible on prod. page)  ex. ISBN, author, publisher, other specifications, product details
+	  -- advanced: reviews, menu order, purchase notes
+	  
+	- 4. Setting Up a Grouped Product 
+	  - sell separate individual products into one
+	  - after grouped product item is made, you need to add all individual items for this group so you can see the price of the bundle.
+			-- if an simple product item is made,  
+				--- you can now select the grouping: name (bundle)
+			    --- assign a shipping class (refer #2.6)
+	  - Download Type: (e.g. Music) check shema.org (Search engines can easily identify what you are selling)
+	  
+	- 5. External or Affiliate Products in WooCommerce 
+		-- selling products from 3rd party (e.g. products posted in amazon can be linked)
+		(tip: it is best to write your own description to avoid technical duplicates from 3rd party sites.)
+		-- Product URL: use a shorten url (e.g. Amazon)
+		-- Button text: (e.g. Buy on Amazon)
+	    -- featured Images (tip: make sure not just copy image for copyright issues)
+	  
+	-  6. How Variable Products Work in WooCommerce
+		-- similar to Simple Products but with options (e.g. color, size)
+		-- Attributes: Size S|M|L (visible on prod. page)  
+				--- check: used for variations
+		-- Variation: (note: if used for variations is checked, there will be a new button: Add Variation)
+			- This will be good for colors, sizes, etc.
+	  
+	-  7. Product Reviews
+		-- comment approval review (moderator to avoid spam)
+		-- Go to WooCommerce Settings->Products->Product Ratings->enable ratings 
+			
+	  
+	  
+4. Managing Orders in WooCommerce  
+
+	- 1. Setting Up Test Orders in WooCommerce
+		-- a few options to test by creating new accounts & fake purchases
+		   a. coupons 
+				-- General: Discount type: Cart % Discount
+				-- usage restrictions: email
+				-- apply coupon, checkout
+		   b. Settings->checkout
+				-- COD enabled 
+				-- Enable COD if order is virtual
+					(In cart, instead of applying coupon discount, use COD in checkout & place order)
+		   c.  Setup sandbox with other payment gateways
+				-- settings->Checkout->Paypal->Enable Paypal Sandbox (developer.paypal.com -> create account)
+					-> test account as store owner (email)
+					-> test account as customer
+					-> https://developer.paypal.com/developer/accounts/
+				-- settings->Checkout->Stripe
+					-> expensive plugin but easy to setup for testing payments (Card Number & Card type)
+					-> https://stripe.com/docs/testing
+				-- use SMTP Mail & activate for testing local payment gateways	by receiving email notification upon checkout
+					
+	- 2. The Order Section in WooCommerce
+		-- order information section
+		-- get email notifications
+		-- all info should above should be accessible in Admin Area
+		-- Test by ordering & checkout (2-3 emails would be helpful in testing & create an account after ordering). Use COD upon testing.
+			-> order received confirmation page (Checkout, Order Details, Customer Details,  Billing Address)
+			-> checkout the order info. design when email is received
+			-> If customer logs into their account, list of recent orders will be displayed (order status)
+			-> Orders: Displays all item orders that have been placed by customers.
+		
+	- 3. WooCommerce Order Statuses - https://docs.woocommerce.com/document/managing-orders/
+		-- Pending payment
+		-- Failed
+		-- Processing
+		-- Completed
+		-- On-Hold
+		-- Cancelled
+		-- Refunded
+		-- tip: there are plugin to extend the Order status
+		-- note: you have to manually update the order status (refund, cancel, completed), clients will be notified thru email
+	  
+	- 4. Refunds in WooCommerce
+		-- NOTE: -- Some need API information inserted in order for refunds to work (like Paypal Integration). 
+		         -- Process the refund on Paypal's Site & come back to your site & mark
+				 -- Refunded order - Email Template can be changed in WP Admin
+				 
+		the status as refunded.
+	  
+	- 5. WooCommerce Coupons
+		- General:
+		- Usage Restriction:
+			- individual use
+			- exclude sale items
+			- What Products to include or exclude
+			- what categories if any to include or exclude
+			- restrict with certain emails 
+			- usage limit of coupons for users 
+		- keep track of how often coupons are being used
+		- coupons can be hidden & only available to certain users
+
+5. Extending WooCommerce
+				
+	- 1. WooCommerce Widgets	
+	  -- Mark featured item with "star" 
+	  -- widget samples:
+		1. Cart (Add to Cart & checkout) 
+		2. Search Products
+		3. Filter by Price
+		4. Product Categories
+		5. Products 
+		6. Recent Review 
+	  -- though not widget related, Products can be sorted (by popularity, rating, price, etc.) 	
+
+	  
+	  
+	- 2. WooCommerce Shortcodes  
+		-- https://docs.woocommerce.com/document/woocommerce-shortcodes/
+		-- https://docs.woocommerce.com/document/sensei-shortcodes/
+		tip:
+			--- [add_to_cart_url id="99"] (if you don't want to show / display / echo buttons)
+	
+	- 3. The WooCommerce Extension Community
+		-- https://woocommerce.com/product-category/woocommerce-extensions/
+		-- extensions add functionality to the woocommerce core (premium or paid market)
+		-- some are free:
+			- https://woocommerce.com/product-category/woocommerce-extensions/?min_price=0&max_price=0
+			- https://woocommerce.com/products/woocommerce-gateway-paypal-checkout/
+		-- https://codecanyon.net/category/wordpress/ecommerce
+			-- instead of buying themes,  you are buying code snippets
+			-- ran by the same guys in woocommerce
+			-- some plugins are much cheaper on other sites than woocommerce site
+			
+	- 4. Common WooCommerce Extensions
+		-- Payment Gateyway: Paypal, Stripe, Safepay
+			-- check if testing is free
+		-- Shipping Methods:	Shipwire, UPS
+		-- Reporting: 
+		-- Subscriptions: WooSubscriptions
+		-- Import & Exporting:
+		-- WP to app converter: https://apppresser.com/
+			- converts WP site to android or IOS app & can be submitted to iOS & Google Play stores.
+		-- Some are for managing an app
+			- https://woocommerce.com/ios/
+
+6. Running an Ecommerce Site Long Term
+	- 1. Reports and Analytics in WooCommerce
+		- woocommerce is far better than other brochure sites that don't really sell something 
+		- Analytics shows how many page visits, add cart, cart purchase, etc. 
+		- WooCommerce Reports - Orders, Customers, Stocks
+		- Google Analytics by Yoasts or ecommerce Tracking plugins
+		- Enhanced Ecommerce Google Analytics plugin.
+		
+	- 2. Learning More About Running Ecommerce Sites
+	- 3. Project Overview
+	- 4. Bonus Video - How to Begin Customizing WooCommerce Template Files
+		-- woocommerce can be copied to your custom theme subfolder to make a child theme for it - https://www.screencast.com/t/nRCyo7PxujD
+		-- note: only copy the files you want to customize (not necessarily all the files)
+		
+			
+BEST TIP:
+
+  - https://docs.woocommerce.com/document/importing-woocommerce-sample-data/	  
+  - some plugins are cheaper in other sites or free 
+  - some free themes are woocommerce integrated & functions are built-in, its part of theme rather than a plugin
+    -- https://justfreethemes.com/themes/ecommerce/
+	-- https://wordpress.org/themes/hestia/
+	-- https://themegrill.com/blog/free-woocommerce-themes/
+
+  - https://docs.woocommerce.com/?_ga=2.115631494.1482528557.1534144879-1431362282.1533710408
+  - google popular top free woocommerce
+	- https://www.wpbeginner.com/plugins/20-best-free-woocommerce-plugins-for-wordpress/
+	- https://www.cloudways.com/blog/must-have-woocommerce-plugins/#pluginone
+	- https://www.cloudways.com/blog/best-woocommerce-extensions/
+	- https://winningwp.com/best-free-woocommerce-plugins/
+	- https://envato.com/blog/22-must-woocommerce-plugins-2018/
+	- https://woocommerce.com/2017/12/top-selling-woocommerce-extensions-2017/
+	- https://codecanyon.net/popular_item/by_category?category=wordpress%2Fecommerce%2Fwoocommerce
+  - wordpress to app converter: https://apppresser.com/
+	- https://wordpress.org/plugins/tags/woocommerce-android/
+	- https://woocommerce.com/ios/
+	- https://www.metrilo.com/blog/woocommerce-iphone-app
+MY DOWNLOAD:
+	- https://woocommerce.com/checkout/order-received/3353971/?key=wc_order_5b716971b5a6e
+		-- https://docs.woocommerce.com/document/paypal-express-checkout/
+  
+
+
+=============================================================  
+TutsPlus - Go Further With WooCommerce Themes
+
+
+I.  Introduction
+	1.1. Introduction
+	1.2. Our WooCommerce Theme
+	1.3. Getting Started
+  	- create a youtube channel
+	- https://wordpress.org/plugins/woocommerce-html5-video/ 
+
+II.  Adding Product Videos
+	2.1. Product Videos Overview
+		- video really helps in SEO
+		- tip: embedded video means:
+			-- it requires no storage space in your site.
+			-- video format will not be an issue
+			-- Can really help in SEO thru youtube
+	2.2. Adding Videos in WooCommerce
+		- https://wordpress.org/plugins/woocommerce-html5-video/ 
+			-- lets you upload or embed videos
+	    	-- adds an CPT item metabox  https://www.screencast.com/t/gUwzynRCUZpn & https://www.screencast.com/t/RtRerTwsfh
+			-- paste the youtube embed code (result:  https://www.screencast.com/t/7KdDFWJGv6qv )
+	2.3. Styling the Video
+			-- add a css class to the embed code https://www.screencast.com/t/fY8UXIpzQxw5
+
+III. - Adding a Mega Menu			
+	3.1. Mega Menus Overview
+		- for accessibility as shown in very popular big sites (ebay, amazon, etc.)
+	3.2. Adding Product Attributes
+		a. add attributes by clicking configure terms - https://www.screencast.com/t/5j6cEzOXH (eg. range, audience)
+		b. add terms to attributes - https://www.screencast.com/t/fsXldL5Wwqy (eg. range)
+		c. input the product attributes - https://www.screencast.com/t/3ruB7Usc3AhY
+		d. check website - https://www.screencast.com/t/AQvOwbNmg
+	3.3. Creating the Mega Menu
+		- install https://wordpress.org/plugins/megamenu/		
+		- Adds attributes to the menus:
+			-- https://docs.woocommerce.com/document/using-custom-attributes-in-menus/
+			-- http://hookr.io/filters/woocommerce_attribute_show_in_nav_menus/
+			-- it will add to admin menu & you need to add it manually. https://www.screencast.com/t/OeD96t1Rd
+		- text / image thru a widget is also possible to add in mega menu - https://www.screencast.com/t/nbqFMot7C596
+		-- Mega menu CSS styling inside the WP Admin - https://www.screencast.com/t/DtjFnz5bF7n  - https://www.screencast.com/t/pwuJ8nZqr
+		
+IV. - Adding a Filter Menu		
+	4.1. Filter Menus Overview
+		- Very popular sites has a very functional filtering menu to narrow the search for products
+	4.2. Creating and Styling the Filter Menu
+		- After adding new Attributes, add woocommerce widgets https://docs.woocommerce.com/document/woocommerce-widgets/
+			-  Filter Products by Price / Filter Products by Attribute / etc.
+		- dont enable archive for an attribute if you want to show in the Admin Menu (eg size) - https://www.screencast.com/t/1vq469lU4n
+		- styling by choosing the right classes for the filters	 - https://www.screencast.com/t/cbNx83jGx
+			
+V. - Conclusion	
+		
+		
+	3.4. Styling the Mega Menu  
+  
+===================================================
+
+Developer Notes
+
+- Customize checkout & adding “order notes” or "note field" upon checkout - https://docs.woocommerce.com/document/tutorial-customising-checkout-fields-using-actions-and-filters/ 
+- "Registration" is changed to "Account Creation"
+- prevent customers from accessing Wordpress Admin - https://docs.woocommerce.com/document/allowing-customer-access-to-wp-admin-and-enabling-the-admin-bar/
+- http://hookr.io/filters/woocommerce_add_to_cart_validation/
+- empty cart https://stackoverflow.com/questions/49382193/empty-cart-before-add-to-cart-in-woocommerce
+	- https://stackoverflow.com/questions/32785328/woocommerce-clear-cart-on-user-logout
+	- https://stackoverflow.com/questions/32785328/woocommerce-clear-cart-on-user-logout
+-  API Hooks & functions 
+   -- https://docs.woocommerce.com/document/introduction-to-hooks-actions-and-filters/
+   -- https://docs.woocommerce.com/wc-apidocs/index.html	
+   -- https://docs.woocommerce.com/wc-apidocs/hook-docs.html
+- https://www.ssn-verify.com/generate - https://www.screencast.com/t/cVG1VHF0FS 530-18-8344  
+	- 530-18-8344 
+	- State Issued: Nevada (NV) 
+	-  Year Issued: 1936 - 1950 
+	- +1 702-893-3005
+	- https://www.yelp.com/biz/jollibee-las-vegas?osq=jollibee
+    - 3890 S Maryland Pkwy Ste 137 Las Vegas, NV 89119
+    - +1 702-893-3005
+ - https://docs.connect.squareup.com/testing/sandbox#sandbox-limitations
+ - completely remove data of woocommerce https://docs.woocommerce.com/document/installing-uninstalling-woocommerce/ 
+ - https://github.com/woocommerce/woocommerce/wiki/Enabling-product-gallery-features-(zoom,-swipe,-lightbox) 
+ - Developer Handbook notes: https://docs.woocommerce.com/document/woocommerce-theme-developer-handbook/ 
+	- can adjust the image sizes or use the customizer
+ - (update 082218)
+	- all found in customizer - display, sorting, catalog, store notice, image thumbnail cropping, checkout options, terms, policy 
+ - Terms and conditions is seen on checkout page (bottom)
+ - Inventory is under products 
+ - Out of stock may be set higher than 0 - top reason: replacement of defective items or replenishment time duration
+ - Exclusive Tax: North America
+ - Additional Tax Classes are added to the Standard Tax Rate - 
+		-- See https://woocommerce.com/products/taxjar/
+		-- https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+ - Tax setup - https://docs.woocommerce.com/document/setting-up-taxes-in-woocommerce/
+	 - US tax rate sample https://docs.woocommerce.com/wp-content/uploads/2013/02/us_tax_rates.csv -  https://www.screencast.com/t/svcyHjtxsf
+     - priority of taxes are compounded		
+ - EMAIL: A template file will be created/deleted by commerce
+	-- https://www.screencast.com/t/3pMAxTjHSes1 - shown in WP Admin
+	-- https://www.screencast.com/t/NdjHvmLw - shown in Atom IDE
+ - my product add samples:
+		- woo-cap (simple)
+		- woo-single (simple, virtual, downloadable)
+		- logo-collection (grouped)
+		- woo-hoodie / woo-sunglasses-1 Sunglasses – Rayban (variations)
+		
+ - Linked Products:
+		- up-sell - appears on product (higher price)
+		- cross-sell - appears on shopping cart (similar price)
+ - Menu Order - custom heirarchy ordering position		
+ - Shipping fixed flat fee (e.g. huge box that best fits grouped items) ( fedex, ups - international or postal mail - local )
+    -- Add as many zones as you need – customers will only see the methods available for their address.
+ - Shipping Classes work like WP Taxonomy	
+ - Variations: Product attribute needs to be added (e.g. sizes, color, logo) for variations to work.
+	- Click variations from all attributes - This will add all variation possibilites - max 50 (year 2015)
+ - Virtual means no shipping (eg services f a photographer )
+ - Downloadable means URL is required (eg songs)
+	- Download Limit - best to protect unlimited downloads & set it when customrequest
+	- Download Expiry - best to protect downloads & set it when customrequest
+ - Reviews: 	(customer trust reviews over marketing)
+	- Can be found in Admin Comments (eg SKU woo-sunglasses-1)
+	-  turn this for anti-spam reviews - Reviews can only be left by "verified owners"
+ - WooCommerce Low Stock Notification Per Product - https://shopplugins.com/low-stock-notification-per-product/	
+ - coupon free shipping - https://docs.woocommerce.com/document/free-shipping/
+ - Enable Paypal Sandbox https://developer.paypal.com/ 
+    -- API Credentials can be found here 
+	--  Get Sandbox Credentials here - https://developer.paypal.com/developer/accounts/  
+	  a.  Login to https://www.sandbox.paypal.com/myaccount/home using Sandbox Credentials
+	-- tutorial sandbox https://www.hostinger.ph/tutorials/setup-paypal-on-woocommerce-with-paypal-identity-token#Step-1-8211-Obtaining-PayPal-Identity-Token  
+	-- https://docs.woocommerce.com/document/paypal-standard/?_ga=2.137956336.1185523227.1535332907-1431362282.1533710408		  
+ - Setup for SSL HTTPS 
+    - https://letsencrypt.org/how-it-works/
+    - use Force SSL upon distribution / production -  Easy HTTPS Redirection plugin
+	- https://www.joomlashack.com/blog/tutorials/osdonate-ssl/
+	- https://www.quora.com/Is-there-any-registrar-that-provides-a-free-SSL-certificate-with-every-domain
+	- https://arboxy.com/free-ssl-and-stripe-for-woocommerce/
+	- https://docs.woocommerce.com/document/ssl-and-https/
+	- https://www.inmotionhosting.com/support/website/security/install-lets-encrypt-ssl
+ - HTTPS SSL requirement 
+    - https://eventespresso.com/topic/paypal-security-updates-2018-ipn-verification-postback-to-https/
+	- https://www.paypal.com/stories/us/paypal-merchants-less-than-30-days-to-upgrade-to-tls-12
+ - child theme setup - https://docs.woocommerce.com/document/set-up-and-use-a-child-theme/	
+ - template / theming 
+    -- https://docs.woocommerce.com/document/css-structure/
+	-- https://docs.woocommerce.com/documentation/plugins/woocommerce/woocommerce-codex/theming/
+	-- template format found in plugin - https://www.screencast.com/t/sZdGTS7IM8
+	-- actual theming example - https://www.screencast.com/t/X1CO5LFl
+ - "WooCommerce Layered Nav" is now called "Filter Products by Attribute"		
+ 
+ 	
+NEXT LESSON 
+	7 - Managing Sales
+	
+SKIPPED	
+	3 - Setting Up Payment Gateways
+	
+		
+		

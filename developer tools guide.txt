@@ -1,11 +1,13 @@
 
+https://www.allareacodes.com/georgia_area_codes.htm
+
+J:\xampp\htdocs\wp\site3\wp-content\themes
+
 /j/xampp/htdocs/wp/site1/wp-content/themes/gulp-dev
 /j/xampp/htdocs/wp/site2/wp-content/themes/gulp-dev
 /j/xampp/htdocs/wp/site3/wp-content/themes/gulp-dev
+/j/xampp/htdocs/wp/site4/wp-content/themes/gulp-dev
 
-
-https://gameplay.tips/guides/2010-kingdom-come-deliverance.html
-.github
 /j/xampp/htdocs/wp/site1/wp-content/themes/auberge-child
 /j/xampp/htdocs/wp/site2/wp-content/themes/boot2wp
 /j/xampp/htdocs/wp/site2/wp-content/themes/boot2wp-child
@@ -114,41 +116,47 @@ setup:
 	- tunnel: 'skeletonmacz'  // change to 'framemacz'
 	- proxy: 'site1.net', // change to  'site3.net'
 3. install npm packages
-	
-	- NOTE: (to fix issue) downgraded to https://nodejs.org/download/release/v6.12.2/  https://www.screencast.com/t/jaGv4jDzPNMz 
-	- npm install browser-sync gulp --save-dev (npm install -g browser-sync --msvs_version=2013)
-	- npm install gulp-sass --save-dev
-	- npm install --save-dev ngrok
-		- https://github.com/BrowserSync/browser-sync/issues/192
-		- https://dashboard.ngrok.com/status ( client can see site remotely)
-		- 
-	- npm install --save-dev tether (https://www.npmjs.com/package/tether)
-		-- <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script> (add to enqueue script)
-		-- (https://github.com/shakacode/bootstrap-loader/issues/48)
-	- npm install --save-dev jquery
-	- npm install --save-dev popper.js	
-	- npm install --save-dev bootstrap
-	  (npm install --save-dev bootstrap@4.0.0-alpha.6)
-		(note: you have the option to use boostrap CDN or bootstrap.css - if CDN is used, bootstrap _custom.scss will not work. bootstrap.scss is not as updated as CDN)
-	- npm install --save-dev autoprefixer 
-	- npm install --save-dev gulp-image
-	- npm install jshint gulp-jshint --save-dev -https://github.com/jshint/jshint/blob/master/examples/.jshintrc
-	- npm install --save-dev gulp-postcss
-	- npm install --save-dev gulp-sourcemaps  (hint files that traces the CSS origin of the browser - "enable CSS source maps")
-	- npm install gulp-newer --save-dev
-	- npm install font-awesome
-	- npm install jquery.easing
-	- npm install --save-dev gulp-rename  
-	
-	- npm install gulp-debug --save-dev
-	- 
-	
+
+
+
+https://codeburst.io/switching-to-gulp-4-0-271ae63530c0
+https://gist.github.com/demisx/beef93591edc1521330a
+https://www.sitepoint.com/introduction-gulp-js/
+https://browsersync.io/docs/gulp
+
+
+1. node-v8.11.3-x64 (node - v8.11.3, npm v6.2.0, gulp cli 2.0.1, local 3.9.1)
+2. npm install --global gulp-cli
+3. J:\xampp\htdocs\wp\site1\wp-content\themes\gulp-dev\package.json
+4.  npm install --save-dev gulp
+5. Packages:
+  - npm install --save-dev browser-sync gulp 
+  - npm install --save-dev gulp-sass 
+  - npm install --save-dev ngrok
+  - npm install --save-dev autoprefixer 
+  - npm install --save-dev gulp-image
+  - npm install --save-dev gulp-imagemin
+  - npm install --save-dev jshint gulp-jshint 
+  - npm install --save-dev gulp-postcss
+  - npm install --save-dev gulp-sourcemaps
+  - npm install --save-dev gulp-newer 
+  - npm install --save-dev gulp-plumber
+  - npm install --save-dev gulp-notify
+  - npm install --save-dev gulp-concat
+  - npm install --save-dev gulp-uglify
+  - npm install --save-dev gulp-clean-css 
+  - npm install --save-dev gulp-rename
+  - npm install --save-dev gulp-debug 
+  
+5. npm update
+
 	- npm update 
 		-- npm cache clean (delete node_modules)
 		-- npm install --save	
 	- npm outdated	(to check outdated package versions)
 	- npm show {pkg} version
 	
+
 	  "devDependencies": {
     "autoprefixer": "^8.6.5",
     "browser-sync": "^2.24.5",
@@ -169,39 +177,40 @@ setup:
     "jshint": "^2.9.5",
     "ngrok": "^3.0.1"
 
-4.	create wp-content\themes\gulp-dev\Gulpfile.js
-	- use codes (as shown in examples) according to packages https://www.npmjs.com/package/package	
-	- change:
-		-- themename = 'framemacz'; 
-		-- tunnel: 'framemacz'
-		-- proxy: 'site3.net',
-		-- return gulp.src(scss + '*.scss')   // change this because it's not working in the tutorial version
-5.	create folders & file:
-	- wp-content\themes\framemacz\sass\bootstrap\_bootstrap.scss  (https://www.npmjs.com/package/bootstrap)
-		-- \node_modules\bootstrap\scss\bootstrap.scss copy file to app\scss\_bootstrap.scss 
-		-- app\scss\_bootstrap.scss - change to correct path (ctrl+d to multiple select in atom)
-			--- @import "custom";
-			--- @import "../../../gulp-dev/node_modules/bootstrap/scss/variables";  
-			
-	- wp-content\themes\framemacz\sass\bootstrap\_custom.scss
-		-- \node_modules\bootstrap\scss\_custom.scss copy file to app\scss\_custom.scss
-	- wp-content\themes\framemacz\sass\bootstrap.scss 
-		- @import "bootstrap/bootstrap"; (add code)
-	- wp-content\themes\framemacz\bootstrap.css (empty)
+
 	
-6. run gulp in gulp-dev
-7.  add to functions.php
-    -  wp_enqueue_style( 'framemacz-style-bootstrap', get_template_directory_uri()  . '/bootstrap.css');
-    -  wp_enqueue_style( 'framemacz-style', get_stylesheet_uri() ); // style.css
-    -  wp_enqueue_script( 'framemacz-script-bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js' , array('jquery'), '20171225', true );
-	
+6. GULP notes
+
+- NOTE: (to fix issue) downgraded to https://nodejs.org/download/release/v6.12.2/  https://www.screencast.com/t/jaGv4jDzPNMz 
+- https://github.com/BrowserSync/browser-sync/issues/192
+- https://dashboard.ngrok.com/status ( client can see site remotely)
+	- npm install --save-dev tether (https://www.npmjs.com/package/tether)
+		-- <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script> (add to enqueue script)
+		-- (https://github.com/shakacode/bootstrap-loader/issues/48)
+	- npm install --save-dev jquery
+	- npm install --save-dev popper.js	
+	- npm install --save-dev bootstrap
+	  (npm install --save-dev bootstrap@4.0.0-alpha.6)
+		(note: you have the option to use boostrap CDN or bootstrap.css - 
+		if CDN is used, bootstrap _custom.scss will not work. bootstrap.scss is not as updated as CDN but will be most likely compatible with your current project)
+	- https://github.com/jshint/jshint/blob/master/examples/.jshintrc
+	- gulp-sourcemaps  (hint files that traces the CSS origin of the browser - "enable CSS source maps")
+	- npm install font-awesome
+	- npm install jquery.easing
+
+
+7. Debugging gulp 	 
+	node --inspect-brk ./node_modules/gulp/bin/gulp.js --verbose
+	- https://stackoverflow.com/questions/40033298/how-to-debug-a-gulp-task/51375041#51375041
+	- https://chrome.google.com/webstore/detail/nodejs-v8-inspector-manag/gnhhdgbaldcilmgcpfddgdbkhjohddkj
+	- Node.js V8 --inspector Manager (NiM) - https://www.screencast.com/t/kSznAKPRkh 
 	
 	---------------------------------------------------------------
-Browsersync package notes:
+Browsersync package notes & issues:
 	
 		https://github.com/Browsersync/recipes/tree/master/recipes/gulp.sass
-		https://github.com/BrowserSync/browser-sync/issues/1581
-	
+		https://stackoverflow.com/questions/51209307/gulp-browsersync-couldnt-open-browser/51416946#51416946
+	---------------------------------------------------------------
 	
 NPM package notes:
 	
@@ -216,8 +225,8 @@ package.json
      } 
 	
 1. download ngrok.exe & paste to C:\Users\admin\.ngrok2
-2. run --->> ngrok authtoken 7MXpQW1Hc9dnSyStagbuo_4SeninzmbhKYQ1ZguVbvw (it will create the ngrok.yml file as token)
-3.  run -->> ngrok http -region ap 192.168.1.2:8080  -https://www.screencast.com/t/tv9cQNVhpO
+2. run  --->> ngrok authtoken 7MXpQW1Hc9dnSyStagbuo_4SeninzmbhKYQ1ZguVbvw (it will create the ngrok.yml file as token)
+3.  run  in cmd -->> ngrok http -region ap 192.168.1.2:8080  -https://www.screencast.com/t/tv9cQNVhpO
 	(this will link the ngrok domain to your localhost (192.168.1.2:8080)
 4.  login to https://dashboard.ngrok.com/status  & click the url to run the site https://www.screencast.com/t/JlNwvXEI
 5. Result will be this https://www.screencast.com/t/sIIoEDSljt
@@ -263,7 +272,17 @@ WORDPRESS MIGRATION (migrate example) - https://www.screencast.com/t/wHKjRuBHmdW
 	    -- http://www.wpbeginner.com/wp-tutorials/how-to-find-and-replace-text-with-one-click-in-your-wordpress-database/
 		-- restore plugins (using FTP)
 		-- media library fix by uploading from E:\raymacz\RaymaczBackup\MyWork\Bitnami\wp48\apps\wordpress\htdocs\wp-content\uploads to server w/ same directory 
+		(Export tables as separate files)
 		
+TIP: importing multiple tables in localhost 
+	  -- https://stackoverflow.com/questions/9000147/how-to-easily-import-multiple-sql-files-into-a-mysql-database/18378614#18378614
+	  -- you can zip a sql table if it is too large (2.5MB+ becomes 650kb+)
+	  -- if sql is too big, try to separate sql tables
+	     a. iwar_extra.sql can be imported later once all sql tables are imported (e.g. iwar_table_wp95_brizy_logs.sql )
+	     b. iwar_database.sql can be imported last  https://www.screencast.com/t/soinwHoyyHt
+	  
+NOTE: if using GUI (e.g. HeideSQL), you can't remotely connect to 000webhost database phpmyadmin sql (at least for free users)	  
+
 --------------------------------------------------------------------
 
 Git Bash for Windows 
@@ -271,6 +290,7 @@ Git Bash for Windows
 https://git-scm.com/download/win
 
 GIT Subversion Github - guide https://gist.github.com/raymacz/5f0ee4662875d782c6ca31f6274bf377
+https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
 
 git clone https://github.com/raymacz/Gulpfile-Sass-
 git add .
@@ -296,7 +316,6 @@ $ git help branch (to check if browser runs correctly on .gitconfig - C:\Users\a
 -------------------------------------------------------------------- 
   
  
- 
   
  POSTMAN
  
@@ -305,6 +324,7 @@ invgamez@gmail.com invgamez pmanacezz4321!
 
 -------------------------------------------------------------------
 
+(node v8.11.3, npm 6.2.0, gulp 3.9.1)
 
  NODEJS http://blog.teamtreehouse.com/install-node-js-npm-windows 
  
@@ -349,6 +369,9 @@ invgamez@gmail.com invgamez pmanacezz4321!
 6. npm init (create package.json thru wizard or you can create manually)
 7. FIX
 	- NOTE: (to fix issue) downgraded to https://nodejs.org/download/release/v6.12.2/  https://www.screencast.com/t/jaGv4jDzPNMz 
+8. if node_modules deleted, restore it using:
+	- npm install
+	   - 
   
 
  SASS & BOOTSTRAP 4
@@ -380,6 +403,7 @@ invgamez@gmail.com invgamez pmanacezz4321!
 	
  
 https://engageinteractive.co.uk/blog/top-10-scss-mixins  
+
 
 
 -------------------------------------------------------------------- 
@@ -583,21 +607,14 @@ HEIDESQL 9.5.0.5196
 7. Open
 
 
--------------------------------------------------------------------- 
-
-https://www.000webhost.com	invgamez@gmail.com	000webhostacezz4321!
-
-
 
 --------------------------------------------------------------------
-HOSTING SITES
+HOSTING SITES / DOMAIN REGISTRAR
+
+https://www.hostingadvice.com/reviews/
 
 https://my.freenom.com/domains.php (free new domain)
 	- nameservers https://www.screencast.com/t/EEfaMzmSSaML
-
-https://www.000webhost.com/members/website/test-mqassist/domain
-	- https://www.screencast.com/t/VJfdr5cGrVv
-	
 
 https://www.000webhost.com/members/website/mqassist/settings
 	- Website sleeping time frame ( can be adjusted here) 
@@ -605,7 +622,7 @@ https://www.000webhost.com/members/website/mqassist/settings
 
 https://toolbox.googleapps.com/apps/dig/#CNAME/www.example-domain.tk
 
-https://www.000webhost.com/forum/t/how-to-change-nameservers-manage-dns-in-freenom-instead/106487
+
 	
 -------------------------------------------------------------------- 
 
@@ -638,3 +655,139 @@ WIREFRAMING
 https://wireframe.cc/K5rqcU - 070418
 https://www.lucidchart.com/documents/edit/94966750-36a5-4b48-9675-f847e42b0a2b/0 - 070518
 https://drive.google.com/drive/u/1/folders/1JOJN2I4IqNihkUIP5iv1ANAJI5uOihoh - 070518
+
+
+-----------------------------------------------------
+
+Privacy Policy https://privacy-policy-template.com/generator
+
+-----------------------------------------------
+
+
+
+https://www.000webhost.com
+
+mqassist.000webhostapp.com
+
+1. Mywebsites->details->set web address https://www.screencast.com/t/tNu0XVK7
+   - Add a domain->park domain  https://www.screencast.com/t/dld0RXKIb9F
+
+2. ns01.000webhost.com
+   ns02.000webhost.com  
+   
+   
+https://my.freenom.com/
+
+1.  services->mydomains->managedomain->manage freenom dns	
+	- set cnames  https://www.screencast.com/t/6AVXMypjmb
+	
+	
+note: if domain is expired. use export, change domain in sql., then export back...
+
+
+-----------------------------------------------
+
+PAGE BUILDER 
+
+https://www.slant.co/topics/2347/versus/~pingendo_vs_bootply_vs_buildbootstrap
+https://www.wpbeginner.com/beginners-guide/best-drag-and-drop-page-builders-for-wordpress/
+https://athemes.com/reviews/best-wordpress-page-builder-plugins-compared/#brizy
+
+image stock photos source --------------------
+
+https://www.unsplash.com 
+https://www.fotor.com
+https://www.picmonkey.com
+https://www.pexels.com
+https://www.pixabay.com
+https://www.freepik.com
+
+IPSUM Generator ------------------------------
+
+https://www.shopify.com.ph/partners/blog/79940998-15-funny-lorem-ipsum-generators-to-shake-up-your-design-mockups
+
+
+REST API ---------------------------------------
+
+http://v2.wp-api.org/
+https://github.com/WP-API/WP-API
+
+
+SSL ------------------------------------
+
+    Required Plugins: https://www.screencast.com/t/ghEXl09tF2i
+	1. Cloudflare
+	2. CloudFlare Flexible SSL
+
+	EV Certificate (Extended Validation) - more expensive SSL - https://www.thawte.com/
+	option#1
+	1. get free certificate - https://zerossl.com/free-ssl/#crt
+	( to be continued...)
+	
+	option#2 
+	1. change nameservers from domain registrar (freenom) - https://www.screencast.com/t/uKj4MrcVzJxW
+		- from https://www.screencast.com/t/jhvTBarI7W to  https://www.screencast.com/t/2VuxdIuWi2u
+		-  
+	2. Crypto - SSL set to Flexible	 (wait 24hrs)
+    3. go to domain registrar & change from parked to point domain (000webhost.com only)
+		-- https://www.000webhost.com/forum/t/how-to-use-cloudflare-for-ssl/53612
+		-- follow everything except last step on DNS (orange CDN button)
+	4. More Settings.
+		a. DNS Records - https://www.screencast.com/t/eUuIYc0Jjauy
+		b. Crypto 
+			-- Set SSL to Flexible - https://www.screencast.com/t/NVm7g24KY
+			-- Always use HTTPS set *OFF* & Automatic HTTPS Rewrites set *ON* - https://www.screencast.com/t/hQtbPPUZ6UQr
+		c. Speed 
+			-- Auto Minify set javascript, css, html  - https://www.screencast.com/t/sranlB7ev8
+		d. Caching 
+			-- Caching Level - Standard
+			-- Browser Cache Expiration (intially 30min then 4hours)
+			-- Always Online - Off   *LAST will be On*
+			-- Development Mode - On  *LAST will be Off*
+		e. Page Rules 
+		 	- *Highly Recommended* - https://www.screencast.com/t/wiKBrNcs7xpj ( for 000webhost only)
+		    - OR you can experiment below:
+				1. http://*webmacz.tk/wp-admin/*post=*  or *webmacz.tk/wp-admin/*post=* -- https://www.screencast.com/t/ewaNNdolNfr (this is due to SiteOrigin Page Builder) 
+				2. http://*webmacz.tk/	-- https://www.screencast.com/t/Hv4kNek9qZO
+				3. http://*webmacz.tk/*	-- https://www.screencast.com/t/5kGvyIRHhAd	
+				
+		note: 
+			-- Purge everything - (will get database error  of 000webhost, you have to wait around 20min.)	
+			-- The Rest are set to default. Please check other guides.
+			-- NO NEED to change to https if frontpage has SSL issues   - https://www.screencast.com/t/jBaXgi2e4Z5t
+
+
+	
+TEST SSL	
+https://www.ssllabs.com - https://www.screencast.com/t/YbX4RerzMqA
+https://www.geocerts.com/ssl-checker - https://www.screencast.com/t/B6ZWtW8PvfP3
+
+
+More reference:
+
+**THE BEST GUIDE** - http://arboxy.com/wp-content/uploads/2016/08/CloudFlarePagerules.jpg
+cloudflare - https://www.quora.com/Is-there-any-registrar-that-provides-a-free-SSL-certificate-with-every-domain
+activate cloudflare plugin	( SSL possible w/o plugin ) - https://www.youtube.com/watch?v=7zVCn-9IYws
+			- https://support.cloudflare.com/hc/en-us/articles/227342487-What-settings-are-applied-when-I-click-Apply-Default-Settings-in-Cloudflare-s-WordPress-plugin-
+			- almost all settings are found in the cloudflare site (except ipv6 can't be turned off) as compared to the Cloudflare plugin.
+
+https://kinsta.com/blog/err_too_many_redirects/
+	
+FAILED SSL (database gone) -- https://www.screencast.com/t/JGWmzznx	
+
+to RESET cloudflare for err_too_many_redirects
+   1. clear cookies, chached images & files, content settings
+   2. set default cloudflare & Automatic HTTPS Rewrites - ON & DNS CDN off (orange icon)
+   3. login to WP https://webmacz.tk/wp-login.php
+	
+WEBSITE INFO CHECKER ----------
+
+
+https://asm.ca.com/en/dnstool.php
+https://who.is/
+https://www.labnol.org/internet/tools/best-online-tools-for-webmasters-know-everything-about-websites/2744/
+	
+	
+	i took several online courses and fell in love with everything I do. 
+	
+	

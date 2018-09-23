@@ -1,0 +1,107 @@
+EXTENSIONS GALORE
+WordPress.org is home to some amazing extensions for WooCommerce, including:
+
+Google Analytics
+Delivery Notes
+PDF Invoices and Packing Slips
+Affiliates Integration Light
+New Product Badges
+Keen to see them all? Search WordPress.org for ‘WooCommerce’ to dive in.
+
+If you’re looking for something endorsed and maintained by the developers who built WooCommerce, there are a plethora of premium eCommerce extensions, the most popular of which include:
+
+
+
+WooCommerce Subscriptions
+WooCommerce Memberships
+WooCommerce Bookings
+Dynamic Pricing
+Table Rate Shipping
+Product CSV Import Suite
+
+===============================================================================
+
+
+
+Essential Plugins:
+
+ Akismet (anti spam for reviews)
+ Easy HTTPS Redirection 
+ WooCommerce HTML5 Video- https://wordpress.org/plugins/woocommerce-html5-video/
+ WooCommerce PDF Invoices & Packing Slips
+ WooCommerce Extra Product Sorting Options
+ TaxJar (Tax computation for US / Canada)
+ Enhanced Ecommerce Google Analytics Plugin for WooCommerce
+ AddToAny Share Buttons
+ https://cloudswipe.com/how-it-works/
+ Elementor Addons & Templates
+ 
+Feature Plugins:
+
+ WooCommerce Wishlist Plugin  / Wishlist and Waitlist for WooCommerce
+ Brands for WooCommerce
+ WooCommerce Image Zoom
+ Max Mega Menu 
+ YITH WooCommerce Compare  / Products Compare for WooCommerce
+ Product Watermark for WooCommerce
+ Email Cart for WooCommerce (share to friends)
+ Abandoned Cart Lite for WooCommerce
+ Booster for WooCommerce
+ WooCommerce Wallet – credit, cashback, refund system
+ WooCommerce Extended Coupon Features FREE
+ Min and Max Quantity for WooCommerce (set limit orders)
+ WooCommerce Discount Rules 
+ TLS 1.2 Compatibility Test
+ CloudFlare Flexible SSL / Cloudflare /   Really Simple SSL 
+ Better Search Replace
+
+ 
+More Plugins:
+ Customer Reviews for WooCommerce
+ Currency Exchange for WooCommerce
+ CodesWholesale.com for WooCommerce
+ Advanced Flat Rate Shipping Method WooCommerce
+ WC Fields Factory
+ ATUM Inventory Management for WooCommerce
+
+ 
+
+Plugin: Easy HTTPS Redirection ---------------------------------------------------------------
+
+	- force or un-force SSL -  https://docs.woocommerce.com/document/ssl-and-https/ 
+ 
+Plugin: WooCommerce HTML5 Video ------------------------------------------------------------------------
+		- https://wordpress.org/plugins/woocommerce-html5-video/
+ 
+Plugin: Max Mega Menu ----------------------------------------------------------------------------------
+		- install https://wordpress.org/plugins/megamenu/		
+		- Adds attributes to the menus:
+			-- https://docs.woocommerce.com/document/using-custom-attributes-in-menus/
+			-- http://hookr.io/filters/woocommerce_attribute_show_in_nav_menus/
+			-- it will add to admin menu & you need to add it manually. https://www.screencast.com/t/OeD96t1Rd
+			-- change from flyout to mega menu - https://www.screencast.com/t/IZPk4KabX3
+			-- add suffix to make items easier to add in the mega menu https://www.screencast.com/t/Y2CnTu0noHM
+			-- search the items by suffix - https://www.screencast.com/t/ttSFj2tp5tku
+			-- text / image thru a widget is also possible to add in mega menu - https://www.screencast.com/t/nbqFMot7C596
+			-- any plugin that adds a widget is possible (eg slideshow) - https://www.screencast.com/t/DtjFnz5bF7n
+			-- Mega menu CSS styling inside the WP Admin - https://www.screencast.com/t/DtjFnz5bF7n  - https://www.screencast.com/t/pwuJ8nZqr
+				-- https://www.screencast.com/t/VNkZM8ck
+				
+				
+Plugin: CloudFlare Flexible SSL / Cloudflare -------------------------------------------------------------
+
+	- https://www.cloudflare.com/integrations/wordpress/free-ssl-certificate-wordpress/				
+	- https://www.youtube.com/watch?v=vOJiJUpy_Mo&index=5&list=PL9-2beaTq93Q4xqYnk0Hg0oNIwVO0G86U&t=0s
+	- https://www.youtube.com/watch?v=ABDBj3Ke64Q&t=0s&list=PL9-2beaTq93Q4xqYnk0Hg0oNIwVO0G86U&index=4
+	
+	
+
+Plugin: WooCommerce Stripe Gateway --------------------- 
+
+get API keys here - https://dashboard.stripe.com/account/apikeys (no need to activate Stripe Account)
+woocommerce settings - https://www.screencast.com/t/SpqnwFPWS
+guide - https://arboxy.com/free-ssl-and-stripe-for-woocommerce/
+https://www.youtube.com/watch?v=pgru-VoINoY
+
+
+https://www.screencast.com/t/fig5Z4eaDG3F	

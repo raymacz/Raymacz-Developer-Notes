@@ -1,0 +1,50 @@
+Lynda - WordPress REST API (WP-API) - First Look
+
+Lynda - WordPress - REST API
+
+
+{base_url}/wp-json/wp/v2/posts
+http://site4.net/wp-json/wp/v2/posts?status=publish&per_page=5&format=standard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NEXT: 16.
+
+IMPT: 22
+
+NOTES:
+
+    - using _embed=true in a single request increases the size of returned raw data won't really affect performance wise. (12.)
+    - Existing API should be extended, NOT modified. (reason: resilience)
+			- some clients / developer's / 3rd party tools might experience problems using the APIs in the future.
+			- solution:
+				-- its better to duplicate the field instead w/ your modified data, removing fields is never encouraged. 
+		-- make your context instead. (Context is the 1st property of API Index for each routes)
+    - https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-rest-api-support-for-custom-content-types/	
+		-- whenever a new CPT or taxonomy is created/registered, REST API can be enabled.
+			-- 'show_in_rest'
+			-- 'rest_base'
+			-- 'rest_controller_class'
+		-- https://developer.wordpress.org/reference/functions/register_post_type/
+		-- https://developer.wordpress.org/reference/functions/register_taxonomy/	
+		tip: Pods Plugin, CPT / Taxonomy can be extended  
+				- https://www.screencast.com/t/c338fvBYqsN7 (enable REST API)
+				- https://www.screencast.com/t/9HBsHmXCpw (CPT & Taxonomy)
+	- sometimes this works - /wp-json/wp/v2/nova_menu_item/1851 & this collection doesn't	 /wp-json/wp/v2/nova_menu_item

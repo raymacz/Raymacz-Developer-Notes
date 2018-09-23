@@ -28,22 +28,30 @@ Advanced Database Cleaner / WordPress Database Reset
 
 
 ================ Essential plugins (permanent) for any type of website: ===================
+
+Elementor / Brizy – Page Builder / SiteOrigin
+AnyWhere Elementor
 PHP Code Widget		
-Advanced Custom Fields - ACF / Pods / Meta box / Toolset Types 
-	Compare WP - Plugin Comparison - Content Type / Custom Fields - https://docs.google.com/spreadsheets/d/1mSqienVYxLopTFGLPK0lGCJst2knKzXDtLQRgwjeBN8/edit#gid=3
+Advanced Custom Fields - ACF / Pods / Meta box / Toolset Types / Custom Field Suite
+	         Compare WP - Plugin Comparison - Content Type / Custom Fields 
+			    - https://docs.google.com/spreadsheets/d/1mSqienVYxLopTFGLPK0lGCJst2knKzXDtLQRgwjeBN8/edit#gid=3
+			    - https://www.pickplugins.com/blog/best-custom-fields-plugin-wordpress/
 Regenerate Thumbnails
 WP Mail SMTP
-Contact Form 7
+Contact Form 7 
 Toolset Types
 
 ================ Optional plugins (may be permanent) depending on requirement =================
+
+
 Jetpack (sharing, CPT-food menu, lazy load)
+Elementor Addons & Templates
 Theme My Login
 WP Fastest Cache
 W3 Total Cache
 MonsterInsights
 Lazy Load by WP Rocket
-NextGEN Gallery
+NextGEN Gallery / Responsive Lightbox & Gallery 
 Advanced CSS Editor
 Widget CSS Classes
 AddToAny Share Buttons  
@@ -51,12 +59,15 @@ Simple Calendar   060818
 Radio Buttons for Taxonomies  061418 (single select Taxonomy)
 Menu Icons by ThemeIsle (dashicons)
 Loading Page with Loading Screen
+SiteOrigin Widgets Bundle
+Live Chat with Facebook Messenger 
+
 
 =================  Potential plugins to use  ============================
 Post Views Counter
-Elementor Page Builder
 Roots.io
 Shared Counts
+
 
 
 
@@ -88,16 +99,30 @@ plugin: Developer ----------------------------
 
 Plugin: WP Mail SMTP  ----------------------------
 	https://wpforms.com/docs/how-to-set-up-smtp-using-the-wp-mail-smtp-plugin/
+	https://wpforms.com/how-to-securely-send-wordpress-emails-using-gmail-smtp/
+	
 	
 Plugin: Contact Form 7	 ----------------------------
+
+	NOTE: 
+		- if no reCAPTCHA from google, it will show an error: "There was an error trying to send your message. Please try again later."
+		- if error: "Sender email address does not belong to the site domain." https://contactform7.com/configuration-validator-faq/#from-email-in-site-domain
+				-- use this: define( 'WPCF7_VALIDATE_CONFIGURATION', false );
+		- mail (tab) - https://www.screencast.com/t/fAmcH56R5CQD		
+	      	
+
 	https://contactform7.com/recaptcha/
+	https://contactform7.com/text-fields/
+	https://contactform7.com/file-uploading-and-attachment/
 	
 	[contact-form-7 id="1939" title="Contact form (frontpage)" html_id="contactForm" html_name="sentMessage"]
 	[text* your-name id:name class:form-control placeholder "Your Name*"]
 	[email* your-email id:email class:form-control placeholder "Your Email*"]
 	[tel tel-664 id:phone class:form-control placeholder "Your Phone"]	
 	[textarea* your-message id:message class:form-control placeholder "Your Message*"]
+	[recaptcha theme:dark]
 	[submit id:sendMessageButton class:btn class:btn-primary class:btn-xl class:text-uppercase "Send Message"]
+	
 	
 
 Plugin: NextGEN Gallery ----------------------------
@@ -169,7 +194,77 @@ Note:
 		ORDER BY `t`.`post_date` DESC, 
 		`t`.`menu_order`, `t`.`post_title`, `t`.`post_date` LIMIT 0, 1
 		
-		
-		
-		264
+Plugin: ACF Advanced Custom Fields ------------------------------
+
+https://www.timjensen.us/acf-get-field-alternative/	
+https://www.quora.com/Is-there-a-good-alternative-to-the-ACF-WordPress-plugin
+https://www.freenulled.top/advanced-custom-fields-pro-v5-7-1/	
+https://github.com/timothyjensen/acf-field-group-values
 	
+Plugin: Custom Field Suite ------------------------
+
+http://customfieldsuite.com/ 
+https://docs.google.com/spreadsheets/d/1mSqienVYxLopTFGLPK0lGCJst2knKzXDtLQRgwjeBN8/edit#gid=3
+
+Plugin: CMB2 ------------------------
+
+
+
+https://www.ostraining.com/blog/wordpress/cmb2/
+https://github.com/CMB2/CMB2/wiki/Box-Properties
+https://cmb2.io/docs/basic-usage
+https://cmb2.io/docs/field-types
+https://cmb2.io/docs/bringing-metaboxes-to-the-front-end
+https://cmb2.io/docs/field-types#-types-group
+https://github.com/CMB2/CMB2/wiki/Field-Parameters
+https://getflywheel.com/layout/how-to-create-custom-meta-boxes-with-cmb2/
+https://github.com/CMB2/CMB2/wiki/Adding-your-own-show_on-filters
+https://github.com/CMB2/CMB2/wiki/Display-Options
+https://codex.wordpress.org/Function_Reference/post_type_supports
+https://github.com/CMB2/CMB2/wiki/Plugin-code-to-add-JS-validation-of-%22required%22-fields
+https://github.com/alexis-magina/cmb2-field-post-search-ajax
+
+
+Plugin: Brizy – Page Builder ---------------------------------------------------
+
+https://wordpress.org/support/topic/very-impressive-builder/
+https://wordpress.org/plugins/brizy/
+https://brizy.io/features/
+
+
+1. after plugin activation, configure - https://www.screencast.com/t/0CNas2oPQmH
+2. create page and start editing - https://www.screencast.com/t/BneYN0kT6
+3. insert shortcode - https://www.screencast.com/t/362uOTAc ( use atom snippet 'wp__gettpl_shortc' )
+4. the result - https://www.screencast.com/t/VQLoBlfDohuU
+
+
+Plugin: Elementor – Page Builder ---------------------------------------------------
+
+https://elementor.com/ - open source
+https://themeisle.com/blog/elementor-add-ons/
+https://elementor.com/third-party-addon-plugins/
+
+
+1. after plugin activation, configure - https://www.screencast.com/t/0CNas2oPQmH
+2. create page and start editing - https://www.screencast.com/t/BneYN0kT6
+3. insert shortcode - https://www.screencast.com/t/362uOTAc ( use atom snippet 'wp__gettpl_shortc' )
+4. the result - https://www.screencast.com/t/VQLoBlfDohuU
+note: 'rbtm_brizy' hook can be changed into 'rbtm_page_builder'
+
+
+
+Plugin: SiteOrigin ----------------------------------
+
+issue notes:
+- after Wordpress Migration - click page builder & update - https://www.screencast.com/t/Th9iIk0Y
+- sometimes has issues with https (e.g. Home page / Admin Pages) - u need to setup cloudflares - Page Rules
+
+
+
+more tips: ---------------------------------
+
+
+https://www.wpbeginner.com/plugins/13-free-user-management-plugins-for-wordpress/
+https://www.wpbeginner.com/plugins/7-free-wordpress-admin-themes/
+
+

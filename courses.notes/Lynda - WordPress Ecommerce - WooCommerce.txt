@@ -1,0 +1,5 @@
+a. Getting Started 
+	122464_01_02_SC01_settingup
+	  - Grunion Contact Form Plugin  (has Feedback CPT)
+	  - Website essential information:
+		Home, About, Legal (Privacy Policy, Terms & Conditions), 
