@@ -9,22 +9,6 @@ http://site4.net/wp-json/wp/v2/posts?status=publish&per_page=5&format=standard
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 NEXT: 16.
 
 IMPT: 22
@@ -48,3 +32,16 @@ NOTES:
 				- https://www.screencast.com/t/c338fvBYqsN7 (enable REST API)
 				- https://www.screencast.com/t/9HBsHmXCpw (CPT & Taxonomy)
 	- sometimes this works - /wp-json/wp/v2/nova_menu_item/1851 & this collection doesn't	 /wp-json/wp/v2/nova_menu_item
+	- 500 Internal Server Error
+		- sometimes caused by REST API invalid AJAX
+    - Schema #, Arguments #, Definition #
+	- "wp:featuredmedia" - https://www.screencast.com/t/xqpIrAqT23  https://stackoverflow.com/questions/51889908/how-to-use-wpfeaturedmedia-in-wp-rest-api-response
+	-  X-WP-Total -
+		 - https://www.screencast.com/t/omsW2Kf8b49
+	     - https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest#getResponseHeader%28%29
+		 - jqXHR.done(function( data, textStatus, jqXHR ) {}); The jqXHR Object-  https://api.jquery.com/jQuery.ajax/
+	 - get value of arguments / parameters of rest API https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js	 
+	 - if SyntaxError: Unexpected token r in JSON at position 0 
+	           - https://stackoverflow.com/questions/37280274/syntaxerror-unexpected-token-in-json-at-position-0-in-react-app/52553535#52553535
+ 			   - So basically, this means that I printed a value that isn't JSON that is mixed with the script that causes AJAX error response
+               - https://stackoverflow.com/questions/37280274/syntaxerror-unexpected-token-in-json-at-position-0-in-react-app

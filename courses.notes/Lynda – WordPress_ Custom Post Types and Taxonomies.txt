@@ -202,7 +202,8 @@ BONUS:
    2nd option:
 		1. Create own plugin & enable it - https://generatewp.com/ --> https://wordpress.tv/2013/03/15/andrew-nacin-wp_query-wordpress-in-depth/
 
-
+		
+		
 
 https://generatewp.com (custom post types, taxonomies creation)
 

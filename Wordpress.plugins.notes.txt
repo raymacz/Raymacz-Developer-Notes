@@ -20,19 +20,19 @@ User Switching
 Monster Widget
 Theme Check
 Log Deprecated Notices 052818
-RTL Tester
+Advanced Database Cleaner / WP-Sweep  
+WordPress Database Reset (for developement
+Broken Link Checker (check broken links)
+P3 (check slow performance plugins)
 WP-CLI
+RTL Tester
 Styleguide
-Advanced Database Cleaner / WordPress Database Reset
-
-
 
 ================ Essential plugins (permanent) for any type of website: ===================
 
 Elementor / Brizy – Page Builder / SiteOrigin
-AnyWhere Elementor
 PHP Code Widget		
-Advanced Custom Fields - ACF / Pods / Meta box / Toolset Types / Custom Field Suite
+Advanced Custom Fields - CMB2 / ACF / Pods / Meta box / Toolset Types / Custom Field Suite /
 	         Compare WP - Plugin Comparison - Content Type / Custom Fields 
 			    - https://docs.google.com/spreadsheets/d/1mSqienVYxLopTFGLPK0lGCJst2knKzXDtLQRgwjeBN8/edit#gid=3
 			    - https://www.pickplugins.com/blog/best-custom-fields-plugin-wordpress/
@@ -41,34 +41,61 @@ WP Mail SMTP
 Contact Form 7 
 Toolset Types
 
+
+Akismet (anti-spam)
+Yaost (SEO guide)
+Simple 301 Redirects (404 missing URL)
+User Registration 
+Google XML Sitemaps (SEO)
+All In One Schema.org Rich Snippets (SEO display content summary)
+Sucuri (DDos, malware, XSS, web firewall)
+BackupBuddy (backup Wordpress)
+WordPress Backup to Dropbox 
+MemberPress (membership plugin - subscription plans)
+
+
+
 ================ Optional plugins (may be permanent) depending on requirement =================
 
 
 Jetpack (sharing, CPT-food menu, lazy load)
-Elementor Addons & Templates
+Google Authenticator (authentication)
 Theme My Login
 WP Fastest Cache
 W3 Total Cache
 MonsterInsights
 Lazy Load by WP Rocket
-NextGEN Gallery / Responsive Lightbox & Gallery 
+NextGEN Gallery / Responsive Lightbox & Gallery / Envira Gallery
 Advanced CSS Editor
 Widget CSS Classes
-AddToAny Share Buttons  
+AddToAny Share Buttons  / Shared Counts (social sharing)
 Simple Calendar   060818
 Radio Buttons for Taxonomies  061418 (single select Taxonomy)
 Menu Icons by ThemeIsle (dashicons)
 Loading Page with Loading Screen
 SiteOrigin Widgets Bundle
 Live Chat with Facebook Messenger 
-
+Nivo Slider
+MonsterInsights (google analytics)
+OptinMonster (email subscriber conversion)
+Max Mega Menu
+Disable Comments
 
 =================  Potential plugins to use  ============================
 Post Views Counter
 Roots.io
-Shared Counts
+LearnDash (Sell Online Courses)
+Quick and Easy (FAQ)
+Google Apps for Work
+Freshbooks (Accounting)
+Leadin (visitor tracking & behavior)
+WP Hotel Booking
+Cinema Seat Reservation – Ticket System
+Bookly  (Booking / Appointment)
 
 
+=================== Plugins from client ================================
+Booking Calendar
 
 
 PLUGIN NOTES
@@ -207,7 +234,8 @@ http://customfieldsuite.com/
 https://docs.google.com/spreadsheets/d/1mSqienVYxLopTFGLPK0lGCJst2knKzXDtLQRgwjeBN8/edit#gid=3
 
 Plugin: CMB2 ------------------------
-
+admin - https://www.screencast.com/t/paFrJLClKDAR
+https://www.screencast.com/t/TLinnr9zdR
 
 
 https://www.ostraining.com/blog/wordpress/cmb2/
@@ -241,8 +269,16 @@ https://brizy.io/features/
 Plugin: Elementor – Page Builder ---------------------------------------------------
 
 https://elementor.com/ - open source
+https://elementor.com/header-footer-builder/ (PAID VERSION)
 https://themeisle.com/blog/elementor-add-ons/
 https://elementor.com/third-party-addon-plugins/
+
+Optional plugins:
+	Elementor Addon Elements
+	Elementor Addons & Templates - Sizzify Lite
+	Header Footer Elementor
+	NavMenu Addon For Elementor
+	AnyWhere Elementor
 
 
 1. after plugin activation, configure - https://www.screencast.com/t/0CNas2oPQmH
@@ -268,3 +304,29 @@ https://www.wpbeginner.com/plugins/13-free-user-management-plugins-for-wordpress
 https://www.wpbeginner.com/plugins/7-free-wordpress-admin-themes/
 
 
+Plugin: Header Footer Elementor ------------------------------------
+
+Appearance->Header Footer Builder - https://www.screencast.com/t/Wlmic8Uw
+
+
+Plugin: Akismet -------------------------------------------
+
+anti-spam especially for comments
+
+
+
+
+
+
+
+
+
+
+
+
+9 Best WordPress SEO Plugins and Tools - https://www.wpbeginner.com/showcase/9-best-wordpress-seo-plugins-and-tools-that-you-should-use/
+6 Best WordPress Appointment and Booking Plugins - https://www.wpbeginner.com/plugins/5-best-wordpress-appointment-and-booking-plugins/
+10 Best WordPress Booking & Reservation Plugins - https://www.quora.com/Which-is-the-best-flight-booking-software-plugin-used-in-WordPress
+6 Best WordPress Security Authentication Plugins 
+	- https://premium.wpmudev.org/blog/6-best-wordpress-security-authentication-plugins/
+	- https://onextrapixel.com/best-free-wordpress-plugins-two-factor-authentication/

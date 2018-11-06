@@ -1,6 +1,4 @@
 
-https://www.allareacodes.com/georgia_area_codes.htm
-
 J:\xampp\htdocs\wp\site3\wp-content\themes
 
 /j/xampp/htdocs/wp/site1/wp-content/themes/gulp-dev
@@ -18,7 +16,7 @@ J:\xampp\htdocs\wp\site3\wp-content\themes
 /j/xampp/htdocs/phpsbox/
 /g/MyTutorials/MyExercise/Raymacz.MyCode/Raymacz.Custom.WP.Plugins
 /g/MyTutorials/MyExercise/MyNotez/Raymacz-Developer-Notes
-/f/MyTutorials/MyExercise/mynotes/Developer.notes
+
 
 WORDPRESS INSTALL:
 
@@ -196,7 +194,7 @@ https://browsersync.io/docs/gulp
 	- https://github.com/jshint/jshint/blob/master/examples/.jshintrc
 	- gulp-sourcemaps  (hint files that traces the CSS origin of the browser - "enable CSS source maps")
 	- npm install font-awesome
-	- npm install jquery.easing
+	- npm install jquery.easing  (https://cdnjs.com/libraries/jquery-easing)
 
 
 7. Debugging gulp 	 
@@ -334,14 +332,15 @@ invgamez@gmail.com invgamez pmanacezz4321!
   
  general notes:  // TO Run Curl, ajax, wp_remote_get(), json_decode() from a remove server
  * 1. Run Git Bash
- * 2. cd /f/MyTutorials/MyWork/nodejs/MyCode
+ * 2. cd /j/MyCode (cd /f/MyTutorials/MyWork/nodejs/MyCode) 
  * 3. $ node server.js
  * 4. check in browser url - http://127.0.0.1:1337/products.json
- * 5. F:\MyTutorials\MyWork\nodejs\MyCode\server.js check fs.createReadStream("./jsonsample/products.json").pipe(response);	
+ * 5. G:\MyTutorials\MyWork\nodejs\MyCode\server.js  check fs.createReadStream("./jsonsample/products.json").pipe(response); (F:\MyTutorials\MyWork\nodejs\MyCode\server.js)	
  * 6. check tweet_reset_time (in min.)
  * 7. it should work! 
- * backup F:\MyTutorials\MyExercise\Raymacz.Custom.WP.Plugins\nodejs\MyCode
-  
+ * backup  (F:\MyTutorials\MyExercise\Raymacz.Custom.WP.Plugins\nodejs\MyCode)
+      - G:\MyTutorials\MyWork\nodejs\MyCode
+      - G:\MyTutorials\MyExercise\Raymacz.MyCode\nodejs\MyCode
   
 
  NPM
@@ -411,6 +410,7 @@ https://engageinteractive.co.uk/blog/top-10-scss-mixins
 UNICODE (colored) - http://xahlee.info/comp/unicode_food_drink.html    http://xahlee.info/comp/unicode_food_drink.html
 GENERICONS - https://wojnowski.net.pl/main/index/genericons-unicode-values
 FONT AWESOME - https://fontawesome.com/icons?d=gallery&c=payments-shopping,travel&m=free
+		     - https://fontawesome.com/v4.7.0/cheatsheet/		
 
 -------------------------------------------------------------------- 
   
@@ -693,7 +693,7 @@ https://www.slant.co/topics/2347/versus/~pingendo_vs_bootply_vs_buildbootstrap
 https://www.wpbeginner.com/beginners-guide/best-drag-and-drop-page-builders-for-wordpress/
 https://athemes.com/reviews/best-wordpress-page-builder-plugins-compared/#brizy
 
-image stock photos source --------------------
+image stock photos vector source --------------------
 
 https://www.unsplash.com 
 https://www.fotor.com
@@ -701,6 +701,7 @@ https://www.picmonkey.com
 https://www.pexels.com
 https://www.pixabay.com
 https://www.freepik.com
+https://www.creativebloq.com/graphic-design/best-places-free-vector-art-1012985
 
 IPSUM Generator ------------------------------
 
@@ -782,12 +783,10 @@ to RESET cloudflare for err_too_many_redirects
 	
 WEBSITE INFO CHECKER ----------
 
+https://www.wpthemedetector.com/
 
 https://asm.ca.com/en/dnstool.php
 https://who.is/
 https://www.labnol.org/internet/tools/best-online-tools-for-webmasters-know-everything-about-websites/2744/
-	
-	
-	i took several online courses and fell in love with everything I do. 
 	
 	

@@ -63,7 +63,7 @@ More Plugins:
  Advanced Flat Rate Shipping Method WooCommerce
  WC Fields Factory
  ATUM Inventory Management for WooCommerce
-
+ Advance Seat Reservation Management for WooCommerce
  
 
 Plugin: Easy HTTPS Redirection ---------------------------------------------------------------

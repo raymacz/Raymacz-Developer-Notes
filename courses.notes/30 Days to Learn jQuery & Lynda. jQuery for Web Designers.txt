@@ -235,7 +235,7 @@
 	-  $.each ({
 			trigger: 'publish',
 			on: 'subscribe',
-			on: 'unsubscribe'
+			off: 'unsubscribe'
 		}, function (key,val) {
 				jQuery[val] = function() {   // could not do jQuery.val in javascript, so do jQuery.[val] instead
 				o[key].apply( o, arguments ); 
@@ -1189,11 +1189,12 @@ BEST TIP:
 		-- to be able to do chaining, always return the jQuery Object inside your main method
 	- in javascript, object method's won't execute until called (even in a new instance) .	
 	
+BEST LESSON:
+		- lesson #: 12 (magnify), 14 (slider), 15 (slider OOP), 18 (templating), 20(Templating & JSON), 22(OOP), 26
+		
 // jQuery for Web Designers	
 
 BEST TIP:
-	- it is better to keep #ID selector for performance & followed by a filter like $().find()
-			(e.g. ('#ID').find(a).colorbox(); )
 	- http://gsgd.co.uk/sandbox/jquery/easing/ (30 + easing animations variations like bouncing)		
 		-- <script src="../../petal/js/plugins.min.js"></script>	easing plugin 
 	- it is better to keep #ID selector for performance & followed by a filter like $().find()
@@ -1201,7 +1202,7 @@ BEST TIP:
 		--  use $('div.anyclass') rather than $('.anyclass') // be more specific w/ selectors
 	- http://easing.net (for css3, but other available using javascript)
 	- http://www.jacklmoore.com/  - lightbox	
-	
+	- off: on: trigger: (Events and Event Delegation) http://jqfundamentals.com/chapter/events
 		
 		
 BEST NOTE:	

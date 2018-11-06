@@ -1,3 +1,5 @@
+NULLED THEMES: https://fruitfulcode.com/blog/nulled-themes-plugins-yes-no/
+
 https://generatepress.com/about/
 
 
@@ -34,4 +36,18 @@ https://wordpress.org/themes/mesmerize/
   https://justfreethemes.com/best-free-wordpress-themes/
   https://blogcharge.com/generatepress-review/
   https://www.websitetipstricks.com/generatepress-review/
+  
+  
+  theme: generatepress ------------------------------------
+  
+  https://docs.generatepress.com/article/using-child-theme/
+  https://generatepress.com/forums/topic/generatepress-child-theme/
+  
+  How to Remove Header Navigation (menu)
+	- header.php - add_action( 'generate_header', 'generate_construct_header' );
+	- navigation.php - function generate_navigation_position() { 
+	
+  generatepress vs bootstrap - https://generatepress.com/forums/topic/bootstrap/ 	
+  bootstrap scrollspy alternative - https://generatepress.com/forums/topic/scrollspy-one-section-pages/
+  View grid - https://unsemantic.com/
   

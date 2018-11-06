@@ -291,3 +291,20 @@ ACTION
 FILTERS
 	Give us access to the data which we can modify and return that data back using our custom functions.	
 	apply_filters() - executes filter.  add_filter() - hooks custom function
+	
+	
+------------------------------- 101918
+Lynda WordPress - Plugin Development
+
+Summary:
+- Pluggable Functions
+ 	- it starts with if (!function_exists('function name')) // don't include this when redifining a function
+	- example: wp_logout(); // in WP core - https://www.screencast.com/t/cyDbw1FdjQCN
+- WP Debug https://codex.wordpress.org/WP_DEBUG
+- WP Security Tecniques: Data validation, Sanitizing Input, Sanitizing Output, Using nonces, Checking users
+	- https://developer.wordpress.org/plugins/security/
+			
+		
+
+
+	

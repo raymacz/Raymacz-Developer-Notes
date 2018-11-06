@@ -142,4 +142,4 @@
 			
   best note: 
      - wordpress will auto override parent files w/ child files - https://www.screencast.com/t/T9zUqD5jQotQ  (052918)
-			
+	 - How to override parent theme functions in a child theme - https://www.mhthemes.com/support/overriding-parent-theme-functions-child-theme-tutorial/		

@@ -1,19 +1,55 @@
+
+In summary, my experiences in Wordpress are:
+
+- Building Wordpress Themes from Scratch  4.5
+- Building Custom Child Themes            4.5
+- Custom Theme Development                4.0  
+- Wordpress REST API                      3.5
+- Woocommerce Plugin Integration          3.0
+- Theme Structure & Hierarchy Best Practices   4.0
+- WordPress Plugin Development (OOP & Structural code)  3.5
+- Wordpress API - Action & Filter Hooks                                         4.0
+- Using Bootstrap 4 Wordpress Integration - Responsive  4.0 
+- Wordpress with SASS (NPM & Gulp)                                                  4.0
+- Custom Post Types and Taxonomies & Custom Fields                                  4.0 
+- Page-builder & shortcodes Implementation                                          4.5                                                                       
+
+
+
+	
+	PROPOSAL:
+	101218 	   https://www.peopleperhour.com/proposal/featured?id=14061008 https://www.peopleperhour.com/stream/view?id=15761907
+	101218	   https://www.peopleperhour.com/stream/view?id=15761987
+	101218	   https://www.peopleperhour.com/stream/view?id=15762013
+	101218 	   https://www.peopleperhour.com/stream/view?id=15766260	
+	101218 	   https://www.peopleperhour.com/stream/view?id=15766281	
+	101218	   https://www.peopleperhour.com/stream/view?id=15766308	
+	101218	   https://www.peopleperhour.com/stream/view?id=15766338 	
+	101218	   https://www.peopleperhour.com/stream/view?id=15766358	
+	101218	   https://www.peopleperhour.com/stream/view?id=15766462
+	
+	
 https://www.screencast.com/t/wITliub3v0o - 000webhost down https://status.000webhost.com/
 https://www.screencast.com/t/n6JFHFuYVHy - forum 000webhost down
+
+https://www.peopleperhour.com/freelance-jobs
 
 https://drive.google.com/drive/u/0/folders/1qHRSTopqGNID1fxbs9bqbeU-tYO3NHHW
 
 http://webdesignlaw.com/
 https://www.docracy.com/0kpa5hfcobb/freelance-developer-contract
 
-GOOGLE DRIVE:
+GOOGLE DRIVE: ------------------------------
 
 Freelancing Folder - https://drive.google.com/drive/u/0/folders/1qHRSTopqGNID1fxbs9bqbeU-tYO3NHHW
 Wordpress Freelance Website Specs - https://docs.google.com/spreadsheets/d/18Pmc2Lb6bl_Xrk8qT88Hb8uxpuzg0hBHTjfAnz80nyo/edit#gid=0 
 
 https://www.brightpod.com/boost/5-free-web-design-contract-templates-you-should-keep-handy
 Contract Killer - https://gist.github.com/malarkey/4031110
-https://gist.github.com/primozcigler/6885010
+Contract - https://gist.github.com/primozcigler/6885010
+
+
+------------------------------------------------
 
 
 https://www.screencast.com/t/U626kL6WyCn - junior developer salary rate
@@ -107,6 +143,7 @@ PAID:
    
 FREE
 	https://app.activtrak.com 
+	Webt
 	
 
 	
@@ -134,9 +171,10 @@ https://app.activtrak.com SETTINGS ---------------------------------------------
 		- timezone (+8 UTC)
 		- schedule (custom & assign)
 	
-----------------------------------------------------------------------------------------------------------------------	
-	https://www.webwork-tracker.com/free-time-tracker  
-	
+https://www.webwork-tracker.com/free-time-tracker   ----------------------------------------------------------------------------------------------------------------------	
+
+	Webwork Time Tracker
+
 	Problem: Reports & Screenshots are delayed in reporting, not responsive. Or some reports did not match or delayed.
 	
 ----------------------------------------------------------------------------------------------------------------------		
@@ -154,3 +192,250 @@ SYNONYM Wordpress
 
 www.thesaurus.com
 www.wordreference.com
+
+
+---------------------------------
+CRAIGLIST
+
+ https://fresno.craigslist.org/d/web-html-info-design/search/web 2910 S Ivy Ave, Fresno, CA 93706, USA
+ https://lasvegas.craigslist.org/d/web-html-info-design/search/web  7476 W. Cameron Ave. Las Vegas, NV 89113, USA
+
+ https://flagstaff.craigslist.org/web/d/looking-for-wordpress/6685984711.html
+ 
+issue - https://www.screencast.com/t/dGdjdgjGhww
+
+
+----------------------------------
+INTERVIEW
+
+https://docs.google.com/document/d/11iLTzrK4UQXhzqBGiBw_uMAp-DbfuX30tIAHfpGtsHM/edit#
+
+https://www.toptal.com/wordpress/interview-questions
+https://www.onlineinterviewquestions.com/wordpress-interview-questions/
+https://career.guru99.com/top-40-word-press-interview-questions/
+
+
+-----------------------------------
+EXAM
+
+Upwork
+	- http://alltutorial.in/upwork-php-test-answers-2015-16/
+	
+	
+-----------------------------------
+WARRANTY
+
+
+Usually in standard web development contracts (popular) in freelancing.
+Warranty on fixing issues are not usually indicated / specified. Once the product has been delivered (w/ client's approval),
+it is usually final.  It is the responsibility of the client to thoroughly check & review it.
+
+As for me, I am giving clients a period of 7-day (based on date) for clients to review their product & see any overlooked issues.
+
+
+Conditions:
+As much as possible, there shouldn't be any changes or code revisions during this period that is directly related to the work I've done.  
+Some fixes made by other developers on your website may somehow affect, in some cases conflict with my code.
+
+In the future, please make sure to hire developers that follow the best practices to avoid future issues. Thank you.
+
+----------------------------------------------------------
+PER HOUR or PACKAGE WORK
+
+if fixing would require more than a day, I usually would recommend per hour.
+	
+Building a website from scratch if it's simple with fewer pages is much easier to estimate.
+(like a single home page with a blog around 5 pages) - So this can be a package work.
+If it becomes more complex than that & harder to predict or estimate, I usually would recommend per hour.
+
+
+
+
+--------------------------------------------------
+FREELANCING HISTORY - 102518 https://www.useloom.com/share/773eb5f5b07e49a3bc1a591190f4300d
+
+102618 (5-6 hours)
+
+https://www.radianthealthaustralia.com.au
+
+1. Product List 
+   - Matching the Price - DONE 
+   - must include copying the title  - DONE 
+2.  Product Details 
+   - Must copy it also on the product details page - DONE 
+   - add price - DONE 
+   - copy more content - DONE 
+3. additional: https://www.screencast.com/t/WeSeFQfP9 
+	- fixed color to make it readable & also the broken links were taken care of - DONE   
+	
+	
+   
+3. Improve the layout of the website would be good
+
+4. copy the wordings & make slight changes - http://www.imrs2000.com/products/ 
+
+
+4. We can create a new link on the menu or just create a static page in the front for October sale  (much faster)
+Financing Now Available - https://docs.wixstatic.com/ugd/f3a55f_6e86f8aecb6743e5af2cee900ea8f0ae.pdf - DONE
+
+
+
+5. block out the calendar month (no booking session, just call)
+ - october november december https://www.screencast.com/t/wVZfKteCo - DONE
+ 
+
+6. Fully booked until the New Year, phone or text to make a booking - DONE
+ https://www.screencast.com/t/SqPHYPiHMplo  
+ so visitors can't book:
+ - calendar bookings are disabled until the end of the year 2018 
+ - Months are only viewable until dec 2018 
+ 
+ 
+
+7. Make adjustments to the spacing gap of the OCTOBER SALE - DONE
+
+ The Product should exactly match the business partner's site - https://www.screencast.com/t/7xG9Xo70QJw
+8.	Each Product Detail Page - DONE
+9.	List Product Page - DONE
+
+
+102718 ( 1 hour)
+
+10. fixed the sizes of the image for consistency - https://www.screencast.com/t/yDaG7S1y
+
+11. added new header menu PEMF
+
+
+102918 (4 hours)
+
+12. Navigation links
+  -  Remove PEMF sub link  - DONE
+  - Transfer links Health Benefits - DONE
+13. Center october sale & modify the design  - DONE https://www.screencast.com/t/1wUEA9Tb7c
+14. all fuschia labels - 
+    - https://www.screencast.com/t/iLRpW87FnX7f  - DONE
+	- https://www.screencast.com/t/NZj02g4j2COy - DONE
+15. Menu links for individual product details  https://www.screencast.com/t/gJs3zVO9KUy - DONE
+   Yes, we can retain the Produst List Page in the navigation links, we can also put individual links for each product details.
+   That's pretty standard for most websites so visitors can have other options to access pages on your site.
+   
+103018
+
+16. changing the wording & Style of Wellfit product - DONE  102618 (3 hours)
+
+
+103118
+
+17. more revisions & customized styling - (3 hours)
+
+https://www.radianthealthaustralia.com.au/imrs-wellfit-features/ 
+
+
+
+Dear Christine,
+
+With all due respect, I was surprised when you said that I would only bill you 3-hours.
+When we started working october 26,2018.  To think $5/hour for a Wordpess Web Developer 
+is very low.   The minimum australia wage is $18/hour - https://www.screencast.com/t/z9XXKE5qLgyo 
+To give you a clear understanding on the scope I covered:
+
+
+SUMMARY:
+
+102618 (6 hours)
+102718 ( 1 hour)
+102918 (4 hours)
+103018 (3 hours)
+103118  (3 hours)
+			
+TOTAL: 17-hours
+
+17*5 =  $85
+
+This includes our conversation, Tracing & understanding how your theme was coded
+with no documentation. 
+Working hours for styling and plugin functionality setup
+Modification and revisions 
+
+If you want to know MORE details about our history:
+
+==============================================
+
+FREELANCING HISTORY - 102518 
+
+102618 (5-6 hours)
+
+https://www.radianthealthaustralia.com.au
+
+1. Product List 
+   - Matching the Price - DONE 
+   - must include copying the title  - DONE 
+2.  Product Details 
+   - Must copy it also on the product details page - DONE 
+   - add price - DONE 
+   - copy more content - DONE 
+3. additional: https://www.screencast.com/t/WeSeFQfP9 
+	- fixed color to make it readable & also the broken links were taken care of - DONE   
+	
+	
+   
+3. Improve the layout of the website would be good
+
+4. copy the wordings & make slight changes - http://www.imrs2000.com/products/ 
+
+
+4. We can create a new link on the menu or just create a static page in the front for October sale  (much faster)
+Financing Now Available - https://docs.wixstatic.com/ugd/f3a55f_6e86f8aecb6743e5af2cee900ea8f0ae.pdf - DONE
+
+
+
+5. block out the calendar month (no booking session, just call)
+ - october november december https://www.screencast.com/t/wVZfKteCo - DONE
+ 
+
+6. Fully booked until the New Year, phone or text to make a booking - DONE
+ https://www.screencast.com/t/SqPHYPiHMplo  
+ so visitors can't book:
+ - calendar bookings are disabled until the end of the year 2018 
+ - Months are only viewable until dec 2018 
+ 
+ 
+
+7. Make adjustments to the spacing gap of the OCTOBER SALE - DONE
+
+ The Product should exactly match the business partner's site - https://www.screencast.com/t/7xG9Xo70QJw
+8.	Each Product Detail Page - DONE
+9.	List Product Page - DONE
+
+
+102718 ( 1 hour)
+
+10. fixed the sizes of the image for consistency - https://www.screencast.com/t/yDaG7S1y
+
+11. added new header menu PEMF
+
+
+102918 (4 hours)
+
+12. Navigation links
+  -  Remove PEMF sub link  - DONE
+  - Transfer links Health Benefits - DONE
+13. Center october sale & modify the design  - DONE https://www.screencast.com/t/1wUEA9Tb7c
+14. all fuschia labels - 
+    - https://www.screencast.com/t/iLRpW87FnX7f  - DONE
+	- https://www.screencast.com/t/NZj02g4j2COy - DONE
+15. Menu links for individual product details  https://www.screencast.com/t/gJs3zVO9KUy - DONE
+   Yes, we can retain the Produst List Page in the navigation links, we can also put individual links for each product details.
+   That's pretty standard for most websites so visitors can have other options to access pages on your site.
+   
+103018
+
+16. changing the wording & Style of Wellfit product - DONE  102618 (3 hours)
+
+
+103118
+
+17. more revisions & customized styling - (3 hours)
+
+https://www.radianthealthaustralia.com.au/imrs-wellfit-features/ 
+
