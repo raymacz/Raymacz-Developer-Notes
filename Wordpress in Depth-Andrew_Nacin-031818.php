@@ -130,7 +130,7 @@ function wp($query_vars = '') {
 	/* Other problems with */ query_posts()
 	 // - Pagination breaks. Wordpress calculated  paging using the query it did, not the query you did.
 	 // - you easily mess up globals. This can break widgets and more. 
-	 // - conclusion: query_posts() is bad.
+	 // - CONCLUSION: query_posts() is BAD!!! - CONCLUSION: query_posts() is BAD!!! - CONCLUSION: query_posts() is BAD!!!
 	 
 	 // TO SOLVE THIS ISSUE:
 	 

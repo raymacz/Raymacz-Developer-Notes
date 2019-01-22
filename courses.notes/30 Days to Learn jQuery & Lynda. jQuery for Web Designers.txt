@@ -1088,6 +1088,7 @@ JQUERY AJAX:
 		- $.post('filename.php', content.serialize, function()) // similar to $.post
 	$.post() Loads data from a server using an AJAX HTTP POST request
 		- $.post('filename.php', content.serialize, function())
+		- $(selector).post(URL,data,function(data,status,xhr),dataType)
 
 JQUERY MISC:
 

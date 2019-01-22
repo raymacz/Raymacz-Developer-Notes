@@ -28,8 +28,12 @@ WP-CLI
 RTL Tester
 Styleguide
 
+WP-Developer-Tools  ( 121518 worth to check)
+
 ================ Essential plugins (permanent) for any type of website: ===================
 
+
+Custom Fields for Gutenberg - https://perishablepress.com/custom-fields-gutenberg/
 Elementor / Brizy – Page Builder / SiteOrigin
 PHP Code Widget		
 Advanced Custom Fields - CMB2 / ACF / Pods / Meta box / Toolset Types / Custom Field Suite /
@@ -52,9 +56,11 @@ Sucuri (DDos, malware, XSS, web firewall)
 BackupBuddy (backup Wordpress)
 WordPress Backup to Dropbox 
 MemberPress (membership plugin - subscription plans)
+Duplicate Post (duplicate post or page)
+Loco Translate (translate or internationalization)
 
-
-
+Styles:
+Better Font Awesome  (dont need to add if you have existing font-awesome)
 ================ Optional plugins (may be permanent) depending on requirement =================
 
 
@@ -80,6 +86,8 @@ MonsterInsights (google analytics)
 OptinMonster (email subscriber conversion)
 Max Mega Menu
 Disable Comments
+Transients Manager (cache)
+Advanced Cron Manager – debug & control (shows all scheduled events)
 
 =================  Potential plugins to use  ============================
 Post Views Counter
@@ -92,10 +100,14 @@ Leadin (visitor tracking & behavior)
 WP Hotel Booking
 Cinema Seat Reservation – Ticket System
 Bookly  (Booking / Appointment)
+WP Statistics 
+Social Share Buttons
+User Submitted Posts (frontend form via template tag/shortcode for visitors)
+WPL Real Estate ( agents & agencies)
 
 
 =================== Plugins from client ================================
-Booking Calendar
+Booking Calendar (online booking services)
 
 
 PLUGIN NOTES
@@ -292,6 +304,7 @@ note: 'rbtm_brizy' hook can be changed into 'rbtm_page_builder'
 Plugin: SiteOrigin ----------------------------------
 
 issue notes:
+- sometimes the slider is messed up after migration, try switching Slider Color Scheme & update - https://www.screencast.com/t/L9o2X6OQ
 - after Wordpress Migration - click page builder & update - https://www.screencast.com/t/Th9iIk0Y
 - sometimes has issues with https (e.g. Home page / Admin Pages) - u need to setup cloudflares - Page Rules
 

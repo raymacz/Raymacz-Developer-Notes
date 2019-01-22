@@ -16,6 +16,10 @@ https://wordpress.org/themes/mesmerize/
   https://wordpress.org/themes/colormag/
   https://wordpress.org/support/theme/accesspress-store/reviews/
   https://wordpress.org/themes/accesspress-store/
+  
+  https://understrap.com/
+  
+  
   https://torquemag.io/2017/11/top-10-blank-wordpress-themes-impressive-advantages/
   
   https://accesspressthemes.com/wordpress-themes/accesspress-store/
@@ -29,6 +33,7 @@ https://wordpress.org/themes/mesmerize/
   
   REFERENCE:
   
+  https://justfreethemes.com/themes/elementor/
   https://www.wpcrafter.com/versus/generatepress-vs-oceanwp/
   https://www.codeinwp.com/blog/oceanwp-vs-astra-vs-generatepress/
   https://www.websitehostingrating.com/fastest-wordpress-themes/

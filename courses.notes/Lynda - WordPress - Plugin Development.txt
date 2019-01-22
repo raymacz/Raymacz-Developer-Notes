@@ -1,0 +1,555 @@
+ Lynda - WordPress - Plugin Development 110718
+ 
+ Important notes:
+ 
+05-Explore WordPress plugins
+ Licensing Guide - https://opensource.org/licenses/category 
+ The license notices - https://www.gnu.org/licenses/gpl-howto.en.html - https://www.screencast.com/t/l80VW1wc2o
+ License: GPLv2 or later
+ License URI: https://www.gnu.org/licenses/gpl-2.0.txt
+ 
+06-Get started 
+   -- J:\xampp\htdocs\wp\site1\wp-content\mu-plugins
+        PROS - https://www.screencast.com/t/CHFiRgSQppH
+        - MU means must-use
+		- always activated (no need to go admin & activate)
+		- any plugins (mu-plugins) are loaded before normal plugins
+		- users can't disable it by accident
+		CONS:
+		- no automatic or one-click updates
+		- no update notifications
+		- no activation/deactivation hooks
+		- no plugin directions, must be single PHP files only
+	-- Plugin Naming Guidelines
+		- plugin name should match 
+		    -- the main plugin file (eg. My Simple Plugin - my-simple-plugin.php)
+		    -- the main plugin directory   (eg. My Simple Plugin - my-simple-plugin.php)
+
+07-Explore WordPress APIs			
+	- https://codex.wordpress.org/WordPress_API%27s
+	
+08-Action and filter hooks
+	- Hooks: ( callback function is needed)
+	1. Action - Run custom code at specific points during WP execution (echo, write file, modify database, etc.)
+	2. Filter Hooks - Modify data during WP execution (modify post content before sending to user)
+    - wp_mail() - https://developer.wordpress.org/reference/functions/wp_mail/
+    - shows the execution sequence when it is fired - https://codex.wordpress.org/Plugin_API/Action_Reference	
+	
+09-Plugin activation and deactivation
+		- register_activation_hook() - runs when the plugin is activated - https://developer.wordpress.org/reference/functions/register_activation_hook/
+		    - https://codex.wordpress.org/Options_API
+		    - https://codex.wordpress.org/Function_Reference/current_user_can
+			- https://codex.wordpress.org/Roles_and_Capabilities#activate_plugins
+			- https://codex.wordpress.org/Function_Reference/add_option
+			- plugin code - https://www.screencast.com/t/pveecT5d
+			  -- this will add options to WP admin, check http://site2.net/wp-admin/options.php - https://www.screencast.com/t/ToCQ2OqjX6
+			  -- as shown in the phpmyadmin database - https://www.screencast.com/t/sxcdlwbkpqDw
+		- for WP multisite use hook - 'admin_init'	  
+		- register_deactivation_hook() -  runs when the plugin is deactivated - https://www.screencast.com/t/Ju1ANEAkm8B
+		- register_uninstall_hook() runs when the plugin is uninstalled
+			- useful when removing database if plugin is deactivated - https://www.screencast.com/t/TJ7TmQU6 
+			- (not sure why it doesn't work -error by just calling the function)
+
+10-Pluggable WordPress functions
+	- located in pluggable.php - https://codex.wordpress.org/Pluggable_Functions
+	- pluggable function (e.g. wp_logout() - https://www.screencast.com/t/dJJylixo)
+	- copy the functionality (exclude !function_exists line), and paste to functions.php to override
+	- note: if pluggable is overriden in functions.php, 
+		- you don't need to use the action hook within that function - https://www.screencast.com/t/6gPQX8bNn
+	- we can easily fully customize or override the pluggable function.
+
+
+11-Develop secure WordPress plugins
+    - https://developer.wordpress.org/plugins/security/
+	- Wordpress Security Techniques - https://www.screencast.com/t/eC3KK1biJ6YK
+	    -- checking users
+		-- Data validation 
+			- https://developer.wordpress.org/plugins/security/data-validation/
+			- examples: https://www.screencast.com/t/dIdkM560dCqA
+			- WP Validation Functions -  https://developer.wordpress.org/plugins/security/data-validation/#core-wordpress-functions
+			  - e.g. is_email(), term_exists(), username_exists() 
+			- PHP Validation Functions - https://www.screencast.com/t/njND38LA9dEM
+			  - https://developer.wordpress.org/plugins/security/data-validation/#built-in-php-functions
+            - Custom Validation Functions - https://www.screencast.com/t/K69iafAVlR6			  
+			- custom phone # number validation function
+   			    - validation function - https://www.screencast.com/t/GnFbOvoMCn
+				- display form - https://www.screencast.com/t/j8QLB7IM
+				- process submitted form from html $_POST[''] https://www.screencast.com/t/RJe5UFBkKY
+			    - front end - https://www.screencast.com/t/caZX8GnhGL9q	
+		-- sanitizing input (cleaning or filtering data to make it safe)
+		    - example of data sanitation - https://www.screencast.com/t/qeCbEP7BRntd
+			- sanitize data is built-in within WordPress functions
+				- https://developer.wordpress.org/plugins/security/securing-input/ - https://www.screencast.com/t/TeoQKmDpxT3
+			- PHP sanitation functions - https://www.screencast.com/t/OoBEuRGF0Q
+			- Custom Sanitations Functions - https://www.screencast.com/t/OoBEuRGF0Q	 
+			- display form  - https://www.screencast.com/t/Df2poMKbBJJS
+			- process submitted form from html $_POST[''] https://www.screencast.com/t/nrXUJYGm85
+			- sanitize_text_field( string $str ) - https://developer.wordpress.org/reference/functions/sanitize_text_field/
+			- for movies, instead of validating, use sanitizing
+		-- sanitizing output
+		-- Using nonces
+		    - https://codex.wordpress.org/WordPress_Nonces
+			- https://developer.wordpress.org/plugins/security/nonces/ 
+			- display form  - https://www.screencast.com/t/FqoaPOYkF
+			- front end - https://www.screencast.com/t/hJRUlRy0ZJ
+			- wp_nonce_field()	https://codex.wordpress.org/Function_Reference/wp_nonce_field
+			- process submitted form from html $_POST[''] 
+				-- code 1/3 - https://www.screencast.com/t/lHilbWJA
+				-- code 2/3 - https://www.screencast.com/t/JevGXJ06Cj
+				-- code 3/4 - https://www.screencast.com/t/uBKC8GijiDf6
+			- reason: if someone tries to submit a form from another location, nonce will fail & the form won't be processed	
+				
+12-Best practices for plugin development 
+		- best practices - https://www.screencast.com/t/2JCK1vhOu3x9	
+		- directory structure - https://www.screencast.com/t/AWqsSYR3by7p
+		- Plugin architecture examples:
+			- single plugin file, containing functions - http://bit.ly/2rTkTDS
+			- single plugin file, containing a class - 	http://bit.ly/2sWhjJt
+			- main plugin file with 1 or more class files (Plugin Boilerplate) - http://bit.ly/1CrMcVn 
+		- conditional loading of code and assets
+			- loads only if its in the admin - https://www.screencast.com/t/cLa6ywk8cFUk
+			- WP conditional Tags - https://codex.wordpress.org/Conditional_Tags
+				- is_singular() - single post or page
+				- is_single() - single post
+				- is_page() - single page
+				- is_archive() - archive page
+		- Architect Patterns: Resources
+			- Slash - singleton, loaders, actions, screens, handlers - http://bit.ly/2eD6VNq
+			- Implementing the MVC pattern in Wordpress plugins - http://bit.ly/2rXM1N0
+			- Wordpress plugin - WP MVC - http://wordpress.org/plugins/wp-mvc/ (MVC boilerplate)
+		- Avoid naming collisions 
+			- ways to avoid - https://www.screencast.com/t/gGltzNYC7sb
+				-- public namespacing - https://www.screencast.com/t/uUIaeaeHTq
+				-- check for existing implementations - https://www.screencast.com/t/jx4OXRWz
+				-- use OOP
+				-- choose a good plugin name
+				-- write great documentation  
+					- readme.txt contents sample - https://wordpress.org/plugins/files/2016/06/readme.txt
+					- WordPress Plugin readme.txt Validator -  https://wordpress.org/plugins/developers/readme-validator/
+				-- More Extra Pro tips: https://www.screencast.com/t/sichWis0
+				-- Plugin Boilerplates:
+				    - WordPress Plugin Boilerplate - https://github.com/DevinVinson/WordPress-Plugin-Boilerplate
+					- WordPress Widget Boilerplate - https://github.com/tommcfarlin/WordPress-Widget-Boilerplate
+					- WordPress Plugin Boostrap Boilerplate - https://github.com/claudiosanches/wordpress-plugin-boilerplate
+				-- Boilerplate - a pre-built starting point that can help speed up development.
+			
+13-Create the plugin directory and files
+	- sample plugin project to build in this tutorial - https://www.screencast.com/t/8jHE90pg
+		-- index.php 
+			- note:  prevents public from viewing the contents of the plugin directory (important for security)
+	        - no need to add index.php to javascript & css folders (because it's still viewable in the browser)         
+	- https://www.gnu.org/licenses/gpl-3.0.txt	
+		- code that prevents direct access to php file - https://www.screencast.com/t/PVkIibe1JJD6
+		
+14-Add administration menus		
+	- top level vs  sub-level menu - https://www.screencast.com/t/D7w00R4743
+	- parent slugs for add_submenu_page() - https://developer.wordpress.org/reference/functions/add_submenu_page/
+			- admin display: https://www.screencast.com/t/uImFtUUtMOt
+
+
+15-Add the plugin settings page
+	- Settings API - visual consistency, built-in security, handles all form processing
+	- Plugin planning:
+		-- Customize login page 
+			- https://www.screencast.com/t/VsUfQoe9Dz
+			- https://www.screencast.com/t/Z2fbJuEq
+		-- Customiz Admin area 
+			- https://www.screencast.com/t/fWs3iQzWt
+			- https://www.screencast.com/t/O6H8VLTlK1
+		-- possible html types of fields for most plugin
+			- https://www.screencast.com/t/Psm4kGGTS2
+	- admin display: https://www.screencast.com/t/fFloPn2CaI7	
+	- add_action('admin_init', 'loginadmin_register_settings');
+	- register_setting(),   add_settings_section()
+	- add separate files for callback and register fields 
+			- https://www.screencast.com/t/aLbljmzV6P2
+			- https://www.screencast.com/t/h1hrJrkrsjoO
+	
+16-Add settings callback functions
+	- 1-validate callback, 2-section callbacks, 5- field callbacks
+	- default plugin options - https://www.screencast.com/t/UOiHltSC
+	- loginadmin_callback_field_text() - https://www.screencast.com/t/bDErw5Ptyvt 
+	- check ../wp-content/debug.log for WP errors
+	- options.php - https://www.screencast.com/t/jBohCm4YHn
+	- loginadmin Settings - https://www.screencast.com/t/M7bzA1h2b
+	
+17-Validate plugin settings
+	- require_once plugin_dir_path( __FILE__ ) . 'admin/settings-validate.php';
+	- sample code: https://www.screencast.com/t/fkXsz2T8
+
+18-Add custom functionality
+	- last video: added menu item, plugin page, registered all settings, define callbacks, validation & other optimizations for safety & security
+	- Customize login page (plugin planning)
+		-- https://www.screencast.com/t/Z2fbJuEq
+		-- https://www.screencast.com/t/ZshNYFOH
+	- next todo is add functionality
+	- https://developer.wordpress.org/reference/hooks/login_headerurl/ 
+		-- result frontend:
+			1. login page logo url - https://www.screencast.com/t/37UlIldxd
+			  - wp admin - https://www.screencast.com/t/jozbp192
+		      - core-functions.php - https://www.screencast.com/t/wG2NFptB
+			2. login page logo title - https://www.screencast.com/t/3913vqGU  
+			  - wp admin - https://www.screencast.com/t/cbRExKPuRLc
+			3. login remember me - https://www.screencast.com/t/fnJSZV93j
+			4. login message - https://www.screencast.com/t/uKGTJ6z3j
+		    5. admin footer message - https://www.screencast.com/t/ljuVW4ddIm
+				- core-functions.php - https://www.screencast.com/t/9kMOKVZBOe
+			6. custom toolbar 
+				- remove comments & new contents - https://www.screencast.com/t/wAZ7g7TVcY
+				- core-functions.php - https://www.screencast.com/t/sgnwj5ex4t6R
+			7. user color scheme-
+				- by adding (register) new customer, the color scheme is preset 
+				- https://www.screencast.com/t/9OdI7z3DUi
+				- wpadmin display result - https://www.screencast.com/t/hV83EMHX
+				- core-functions.php -  https://www.screencast.com/t/aHBwJQRu
+
+				
+19-Include JavaScript and CSS
+	- how to load javascript & css files in plugin - https://www.screencast.com/t/ykXZUL3hVR94
+	- J:\xampp\htdocs\wp\site2\wp-content\plugins\rbtm-loginadmin\includes\core-functions.php
+	- loginadmin-login.css
+	- loginadmin-login.js
+	- https://developer.wordpress.org/reference/hooks/login_enqueue_scripts/
+	
+20-Plugin internationalization - https://www.screencast.com/t/m11o45jdbEuR
+	- WPi18n 
+	- I10n 
+	   -- common I10n Functions
+		-- __() - return the string
+		-- _e() - echoes the string instead of returning it
+		-- _x() - specify context
+	   -- Safe I10n Functions
+	    -- esc_html__()
+		-- esc_html_e()
+		-- esc_html_x()
+	   
+	- https://www.linkedin.com/learning/wordpress-internationalization
+	- https://developer.wordpress.org/plugins/internationalization/
+	- https://developer.wordpress.org/plugins/internationalization/how-to-internationalize-your-plugin/
+	- Phase 1: Prepare Folders and Files 
+		- https://www.screencast.com/t/yPCX4jiy
+		- https://www.screencast.com/t/hj9U87ZTw
+	- Phase 2: add localization functions - https://www.screencast.com/t/r9dRPOlO
+		- you only need to on strings that can be seen & translated - https://www.screencast.com/t/RoSLEwFT	
+	- Phase 3: Generate the POT file
+		- tools for i18n and I10n 
+			- Poedit - https://poedit.net/ - https://www.screencast.com/t/ruQmi4g7S
+			- Loco Translate plugin - https://wordpress.org/plugins/loco-translate/
+				-- debug with no errors - https://www.screencast.com/t/fjXfJRfT6l1
+				-- POT file added automatically - https://www.screencast.com/t/4QkRSHu5
+	
+21-Add an uninstall feature
+	- To uninstall the plugin, disable & delete. Uninstall must be able to delete its own added database to complete remove it from WP.
+	- uninstall methods
+		- register_uninstall_hook()
+		- uninstall.php
+		- phpmyadmin search option name 'loginadmin_options' 
+			- https://www.screencast.com/t/DFHpt0aMhcs
+			- https://www.screencast.com/t/90huzRIUvUdZ
+		- note: when deleting a plugin, be careful as the plugin files will all be deleted - https://www.screencast.com/t/gvGDkxfjTdP
+		- 2-ways for uninstall functionality to work:
+			1. use hook  - https://www.screencast.com/t/e4WnQI6AyI
+			2.  use uninstall.php - https://www.screencast.com/t/DVmattC3Ia (preferred which is easier as well)
+	-  techniques for uninstall:
+      	  delete options:                      delete_option()
+		  delete options (multisite):          delete_site_option()
+		  delete transient:                    delete_transient()
+		  delete metadata:                     delete_metadata()
+		  
+		  
+		  Delete database table:
+		  
+		  global $wpdb;
+		  $table_name = $wpdb->prefix.'myplugin_table';
+		  $wpdb->query("DROP TABLE IF EXISTS {$table_name}");
+		  
+		  Delete cron event:
+		  
+		  $timestamp = wp_next_scheduled('sfs_cron_cache');
+		  wp_unschedule_event($timestamp, 'sfs_cron_cache');
+	
+22-Test and debug
+	- plugin "rbtm-loginadmin" is complete
+	- debug.log - https://www.screencast.com/t/qKauzS6D
+	- wp-config.php - https://www.screencast.com/t/w8l4a02ks8p
+	- WP version environments - https://www.screencast.com/t/EapbpyUvkgCy
+	- Error Logs:
+		- Inside of WP:
+			- /wp-content/debug.log
+		- Outside of WP:
+			- apache_error.log
+			- mysql_error.log
+			- php_error.log
+		- Others to test:
+			- popular plugins, caching plugins, security plugins, related plugins in the same niche
+	- NOte: important! checking the details for possible issues of creating a plugin - https://www.screencast.com/t/8Ty635gfw		
+			
+			
+			
+23-Customize the WordPress loop		
+	- https://codex.wordpress.org/The_Loop_in_Action
+	- https://digwp.com/2011/05/loops/
+	- https://digwp.com/2011/09/3-ways-to-reset-the-wordpress-loop/
+	- https://wp-tao.com/wordpress-themes-book/
+	- query_posts(); // NEVER DON'T use this query as discussed by Nacin
+	- Custom Loop Techniques
+		-- get_posts()
+		-- pre_get_posts
+		-- WP_Query
+	- shortcode - https://www.screencast.com/t/E6cJR0mWO	
+	
+24-Create widgets
+	 - create a customized widget with the WP_Widget Class - https://www.screencast.com/t/lJB60Bs7xaCm
+	 - function update - code: https://www.screencast.com/t/Xg6QENao
+	 - function update - display: https://www.screencast.com/t/D97lZhazlOGl	
+	 
+25-Manage users and roles		 
+	-  https://codex.wordpress.org/Roles_and_Capabilities
+	- Wordpress Registered Users:
+		-- users' table (database)
+		-- requires username, password, email
+	- how to manage users by using add, update, delete users	
+		-- wp_create_user();
+		-- wp_update_user();
+		-- wp_delete_user();
+	- User Roles & Capabilities - https://www.screencast.com/t/vlBoxUVI	
+	- Default WP roles: - Super Admin, Administrator, Editor, Author, Contributor, Subscriber 
+		 - more roles can be added & default roles can be removed
+		 - 3 main functions for roles:
+		   - add_role(), get_role(), remove_role()
+	- code: manage-users.php - https://www.screencast.com/t/x1Ic7Na4lj
+		- add nonce field to the <form>
+	- wp_insert_user() - more control in adding users but more advanced	
+	- update_user_meta() - useful for only a single piece of user data (e.g. website url)
+	- wp_delete_user()	
+	- get_role(), add_role(), remove_role()
+
+
+26-Work with JavaScript and CSS
+	- Script and Style (how to include in WP)- https://www.screencast.com/t/8NpN98QQd
+		- wp_enqueue_script(), wp_enqueue_style()
+		- Wordpress 4.5 earlier		
+			-- wp_add_inline_script() - https://www.screencast.com/t/DgRLnIvV
+			-- wp_add_inline_style() - https://www.screencast.com/t/L49a38fOTk
+		- Wordpress 4.5 later
+			-- wp_localize_script()
+	- Hooks
+		- 'admin_enqueue_scripts' - for WP Admin
+		- 'wp_enqueue_scripts' - for public pages (front-end)
+		- 'login_enqueue_scripts' - for login pages
+	- javascript tips - https://www.screencast.com/t/iRSPhG0he
+
+
+27-Use the Options API
+	
+	- Options API - easy way to store data in WP database
+	- we can use string or array as value for Options API
+		-- CRUD 
+			- get_option()
+			- add_option() - https://www.screencast.com/t/eCldaZn5zYA
+			- update_option() - https://www.screencast.com/t/yoUSM86u
+			- delete_option() - https://www.screencast.com/t/v5NLccH9aN
+	- Settings API & Options API are all stored in the same Options table (database)
+
+28-Add custom post types and taxonomies
+	- default taxonomies: category, post_tag, link_category, post_format
+	- hook: 'init'
+	- register_post_type()
+	- register_taxonomy()
+	
+
+29-Work with custom fields
+	- types of metadata: post, user, comment, term
+		-- get_post_meta()
+		-- get_user_meta()
+		-- get_comment_meta()
+		-- get_term_meta()
+	- custom fields - https://www.screencast.com/t/YcVQi98dU
+		-- get_post_custom()
+		-- note: custom fields with Underscore in the beginning are hidden - https://www.screencast.com/t/J1cuQBsd1E4O
+			- if ('_' !== substr($key, 0, 1))
+	- hook: 'the_content'
+	- get_post_meta()
+	- get_the_ID()
+	- sanitize_text_field()
+	- code: https://www.screencast.com/t/aAOybXGIh9 (get the current day of the week & add it on the custom field)
+		- cal_to_jd(), jddayofweek()
+		- add_post_meta() - https://www.screencast.com/t/jvkg6XYkYUT3
+	- code: https://www.screencast.com/t/nzLASdfYhWL
+		- update_post_meta() - note: if any post doesnt match the updated post meta, it will automatically add
+	- code: https://www.screencast.com/t/nUUoaADccVml
+		- delete_post_meta()
+
+30-Add meta boxes
+	- metaboxes - https://www.screencast.com/t/XuqjZXkX
+		- note: - metaboxes are important because it enables us to associate metadata with post
+            	- are arrangeable, can be hidden, modular
+	- note: the sample code has not been internationalized (translation)
+	- includes\my-metabox.php
+	- Hook: 'add_meta_boxes', 'save_post'
+	
+31-Work with custom database queries (need to watch the video again)
+	- Getting Data - https://www.screencast.com/t/hl0pJkcx4O2
+	- WPDB Class: https://www.screencast.com/t/rpJ6ePzAB  
+	- WPDB methods:
+		-- https://www.screencast.com/t/vGyV7ey3R1X
+		-- https://www.screencast.com/t/N5J3SgURisN
+	- https://codex.wordpress.org/Class_Reference/wpdb
+	- https://developer.wordpress.org/reference/classes/wpdb/#methods
+	- Prepare against SQL injection attacks
+		- use $wpdb->prepare() to escape SQL queries - https://www.screencast.com/t/wVmIwYgC
+		- $wpdb->prepare() https://www.screencast.com/t/WuxUzzn1OO
+		- note: you don't need to use the prepare() method if there are no variables used in the SQL
+	- includes\my-wpdb.php	
+	- includes\role-cap-users.php
+	- note: duplicate meta key will still be added 
+		- https://www.screencast.com/t/FFcmmAzolzJ
+		- https://www.screencast.com/t/Bgy6qxqeibb
+	
+32-Integrate admin notices
+	- admin notices are displayed at top of admin page. - https://www.screencast.com/t/lLARnB4wZJrL
+	- 2 scenarios for admin notices:
+		1. If its a submenu of Admin Settings Page, then notices are auto.
+		2. otherwise notices are manual.
+	- admin\settings-page.php
+	- 3-ways to display admin notices:
+		1. using a function - https://www.screencast.com/t/sriTdAP98
+		2. using a hook - https://www.screencast.com/t/ZYfS1a5tXN
+		3. custom function - https://www.screencast.com/t/RWODjmjpA
+	- admin\settings-page.php
+	- CSS class names for admin notices - https://www.screencast.com/t/QJhxcDUvWlY
+	- https://digwp.com/2016/09/stop-ruining-wp-admin-area/
+	
+33-Use the Transients API	
+	- it stores temporary data on WP database - https://www.screencast.com/t/gW9Uzz14
+	- cache the data ( ex. store & fetch RSS data on every hour & conserve server resources )
+	- https://codex.wordpress.org/Transients_API
+	- get_transient()
+	- set_transient()
+	- delete_transient()
+	- Plugin: Transients Manager https://wordpress.org/plugins/transients-manager/ - https://www.screencast.com/t/lLKNeQiocF
+	- really helpful to improve performance & help ease query.
+	- frontend: 
+		 - transient manager plugin 
+			- https://www.screencast.com/t/nd2vLgOU8aHb 
+			- https://www.screencast.com/t/0C8jhfdu5 (expires)
+		 - insert shorcode 
+			- https://www.screencast.com/t/5D2TyeE5
+			- https://www.screencast.com/t/YtcQKjko5wd (with parameters)
+    - includes\my-transient.php - https://www.screencast.com/t/HYt0rnZRFz		 
+	- register_deactivation_hook() -  https://www.screencast.com/t/Yh70BDCwi
+	
+34-Use the HTTP API
+	- http request means communication of one server to another
+	- HTTP Request to External sites & services (Twitter API, Facebook API, Google Maps, etc.) - https://www.screencast.com/t/OKKUdJXY
+	- HTTP Request Methods - GET, POST, HEAD 
+		- https://www.screencast.com/t/ZDBwyQvs
+		- https://wp-mix.com/apache-request-method-types/
+	- HTTP Status codes 
+		-  https://www.screencast.com/t/LtqD9MrcN
+		- common status codes - https://www.screencast.com/t/79N0KruF7WP
+	- Wordpress HTTP API - https://www.screencast.com/t/VOpLtmvZ2xvC	
+	- API request functions:
+	   -- https://www.screencast.com/t/cWHMBwTNrHYA	
+			-- wp_safe_remote_get()
+			-- wp_safe_remote_post()
+	   -- https://www.screencast.com/t/cAn8ab2qOdEp
+			-- wp_safe_remote_head()
+			-- wp_safe_remote_request()	 // it uses any type of request (eg. PUT DELETE)
+	   -- if problems occur & doesn't return the response data, it will return (respond) an instance of the WP Error Class
+	-- Example: GET Data and check for Errors - https://www.screencast.com/t/SVr221NDff
+	-- Utility Functions (for response data) - https://www.screencast.com/t/dkY2dRJz
+		- http://bit.ly/2s0tmVY
+		- WP_Http::request() - https://developer.wordpress.org/reference/classes/WP_Http/request/ - https://www.screencast.com/t/XRhZSJkIs
+		  - List of HTTP header fields - https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+	-- Safe Remote Request 
+		-- https://www.screencast.com/t/YMh8q7cUTFh	   
+		-- https://developer.wordpress.org/reference/functions/wp_safe_remote_request/
+		-- wp_safe_remote_request() - https://www.screencast.com/t/r7HtEpJT
+	-- Performance - https://www.screencast.com/t/nflB0SFI0c4h
+    -- Performance Tips - https://www.screencast.com/t/aJ0etEgA6FMl	
+	- files: rbtm-loginadmin.php, includes\role-cap-users.php, includes\http-api-get-request.php	
+	- result: 
+		- HTTP GET REQUEST - https://www.screencast.com/t/1TDp9H6Mc	
+		- HTTP POST REQUEST - https://www.screencast.com/t/z2oUTwuAMKC
+
+35-Use WP-Cron
+	- WP Cron - https://www.screencast.com/t/10D2DIwE7U
+	- Cron Scheduling 
+		- System Cron runs at specific times
+		- WP-Cron runs at specified intervals
+	- WP Cron Intervals
+		- Hourly, Twice Daily, Daily, Plus any define custom intervals
+	- Hook: 'cron_schedules'
+	- Plugin: Advanced Cron Manager – debug & control - https://wordpress.org/plugins/advanced-cron-manager/
+	- Other WP Cron Functions - https://www.screencast.com/t/8rkn5p1aWIe	
+		-- wp_scheduled_single_event()
+		-- wp_unschedule_event()
+		-- wp_get_schedule()
+     - VERY IMPORTANT for register_deactivation_hook & register_activation_hook:
+		-- note: base path for plugins should be initialized from the root file of your plugin otherwise "register_" hook won't work 
+		-- https://www.screencast.com/t/z2cbRil8wsn
+	- result:
+		- shows all time log when hook cron fires - https://www.screencast.com/t/QEjj2ZfP	
+		- cron manager - https://www.screencast.com/t/GF7XbzJo
+	- files: rbtm-loginadmin.php, includes\role-cap-users.php, includes\my-wp-cron.php	
+
+
+36-Implement Ajax
+	- WP has built-in AJAX functions - whole page doesn't need to load when communicating with server.
+	- 'wp_ajax_admin_hook' 
+	   -- 'admin_hook' - name of the action that is passed in the POST request via jQuery post method
+		-  https://www.screencast.com/t/q3iqyQa04UXU
+       -- ajaxurl ($.post) - is automatically added/initialized by Worpresss - https://www.screencast.com/t/AdY7JkgCkOk	
+	   -- (logged-in)  wp_ajax_{action} - https://codex.wordpress.org/Plugin_API/Action_Reference/wp_ajax_(action) 
+	   -- (non-logged-in) wp_ajax_no_priv_{action} - https://developer.wordpress.org/reference/hooks/wp_ajax_nopriv__requestaction/
+	   -- tip: browser: reveal in source panel - https://www.screencast.com/t/XjUOxxznC5AH
+	   -- wp_localize_script('ajax-admin', 'ajax_admin', $script);
+    	  -- this passes the value to the javascript file variable - https://www.screencast.com/t/ocJQXDMr
+	   -- note: my-ajax.php loads 1st before ajax-admin.js 
+	- https://developer.wordpress.org/reference/hooks/wp_ajax__requestaction/
+	- files: includes/my-ajaxadmin.php, admin\js\ajax-admin.js, includes\role-cap-users.php
+	- result: 
+		-- https://www.screencast.com/t/SYv37lcM9K
+		-- https://www.screencast.com/t/oXjvQ5Rr
+	-  define public ajax url unlike in admin that was automatically defined by WP (to display) - https://www.screencast.com/t/q9Dura7w
+	- files: rbtm-loginadmin.php, includes\my-ajaxpublic.php, admin\js\ajax-public.js
+	- result: 
+	     1. debug: ajax handler debugging: https://www.screencast.com/t/0cuMR0oU
+		 2. https://www.screencast.com/t/uSKSHceGk
+	     3. end result (logged-in user): display user's Biographical Info - https://www.screencast.com/t/a9UlFKWWzi
+	     4. end result (logged-out user): display user's all meta values using a logged-out visitor  https://www.screencast.com/t/PX9WI0s4pKK
+	- https://developer.wordpress.org/reference/functions/get_user_by/
+
+37-Use the REST API
+	- REST API Overview - https://www.screencast.com/t/bkFEtmnukP (4.6 and earlier versions can use a REST API plugin)
+	- REST API Benefits - https://www.screencast.com/t/thT0oGJF0
+	- https://developer.wordpress.org/rest-api/reference/ (check WP available endpoints)
+	- Learn More about the REST API  - https://www.screencast.com/t/7sSs9lmOx5H
+	- Postman result:  
+		- https://www.screencast.com/t/OZKwh3jRLMzx
+	- files: rbtm-loginadmin.php, includes\my-restapi.php
+	- wp_add_inline_script('jquery-core', $script); 
+		- can be added to any of the scripts (eg. jquery-core, jquery-mirgate, jquery-ui-widget, etc.) https://www.screencast.com/t/tpIHdRBzYpei
+		- added in html elements to the js file - https://www.screencast.com/t/JOQbiBIKkpwj
+	- Learn more about REST API - https://www.screencast.com/t/W8NqOLQvsb
+	- note: skipped the plugin on how to create post using a shortcode. to know more check the video tutorial
+	
+	
+	
+	
+	
+	
+	
+	
+	MORE REFERENCE:  ----------------------------
+	
+	Wordpress Classes: https://developer.wordpress.org/reference/classes/
+	https://wpseek.com is alternative of https://developer.wordpress.org
+		
+Created/Modified Plugins Created:
+RBTM Relpost
+Rbtm Loginadmin
+
+
+

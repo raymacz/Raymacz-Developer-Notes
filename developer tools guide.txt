@@ -9,6 +9,10 @@ J:\xampp\htdocs\wp\site3\wp-content\themes
 /j/xampp/htdocs/wp/site1/wp-content/themes/auberge-child
 /j/xampp/htdocs/wp/site2/wp-content/themes/boot2wp
 /j/xampp/htdocs/wp/site2/wp-content/themes/boot2wp-child
+
+/j/xampp/htdocs/wp/site2/wp-content/themes/generatepress-child (nov 2018)
+
+
 /j/xampp/htdocs/wp/site4/wp-content/
 /j/xampp/htdocs/wp/site3/wp-content/themes/gulp-dev
 /c/Users/admin/.atom/smart-templates/
@@ -17,6 +21,8 @@ J:\xampp\htdocs\wp\site3\wp-content\themes
 /g/MyTutorials/MyExercise/Raymacz.MyCode/Raymacz.Custom.WP.Plugins
 /g/MyTutorials/MyExercise/MyNotez/Raymacz-Developer-Notes
 
+
+/j/xampp/htdocs/wp/site2/wp-content/themes/generatepress-child
 
 WORDPRESS INSTALL:
 
@@ -283,25 +289,32 @@ NOTE: if using GUI (e.g. HeideSQL), you can't remotely connect to 000webhost dat
 
 --------------------------------------------------------------------
 
-Git Bash for Windows 
+Git Bash for Windows Version Control
 
 https://git-scm.com/download/win
 
-GIT Subversion Github - guide https://gist.github.com/raymacz/5f0ee4662875d782c6ca31f6274bf377
+GIT Subversion Github Guide https://gist.github.com/raymacz/5f0ee4662875d782c6ca31f6274bf377
 https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
 
 git clone https://github.com/raymacz/Gulpfile-Sass-
+git config --list
 git add .
 git commit -m ""
 git pull origin dev
 git push -u origin dev
 
+:q (quit Vim in Github)
+
+Cloning Repo and Push/Pull - Git and GitHub for Poets https://www.youtube.com/watch?v=yXT1ElMEkW8
+1.7: git init and git add - Git and GitHub for Poets  https://youtu.be/9p2d-CuVlgc
+1.9: Resolving Merge Conflicts - Git and GitHub for Poets https://youtu.be/JtIX3HJKwfo
 https://stackoverflow.com/questions/3620633/what-is-the-difference-between-pull-and-clone-in-git
 
 https://help.github.com/articles/setting-your-username-in-git/
 https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
 https://help.github.com/articles/checking-for-existing-ssh-keys/
 https://help.github.com/articles/fetching-a-remote/
+https://stackoverflow.com/questions/22724921/do-i-need-to-do-git-init-before-doing-git-clone-on-a-project
 
 for default browser:
 $ git help branch (to check if browser runs correctly on .gitconfig - C:\Users\admin\.gitconfig)
@@ -689,9 +702,11 @@ note: if domain is expired. use export, change domain in sql., then export back.
 
 PAGE BUILDER 
 
+https://athemes.com/reviews/best-wordpress-page-builder-plugins-compared/
 https://www.slant.co/topics/2347/versus/~pingendo_vs_bootply_vs_buildbootstrap
 https://www.wpbeginner.com/beginners-guide/best-drag-and-drop-page-builders-for-wordpress/
 https://athemes.com/reviews/best-wordpress-page-builder-plugins-compared/#brizy
+https://thrivethemes.com/blog-post-thrive-architect/
 
 image stock photos vector source --------------------
 
@@ -781,12 +796,27 @@ to RESET cloudflare for err_too_many_redirects
    2. set default cloudflare & Automatic HTTPS Rewrites - ON & DNS CDN off (orange icon)
    3. login to WP https://webmacz.tk/wp-login.php
 	
-WEBSITE INFO CHECKER ----------
+WEBSITE INFO CHECKER / DETECTOR ----------
 
+https://themeisle.com/blog/wordpress-theme-detectors/
 https://www.wpthemedetector.com/
 
 https://asm.ca.com/en/dnstool.php
 https://who.is/
 https://www.labnol.org/internet/tools/best-online-tools-for-webmasters-know-everything-about-websites/2744/
 	
-	
+HTML Special Characters  W3C Characters -----------------------------------
+
+https://dev.w3.org/html5/html-author/charref	
+https://stackoverflow.com/questions/16834320/using-times-word-in-html-changes-to-%C3%97
+
+XAMPP ISSUES -----------------------------------
+
+https://premium.wpmudev.org/blog/troubleshooting-xampp/
+
+TCP PING INTERNET SPEED ---------------------
+
+https://www.youtube.com/playlist?list=PL9-2beaTq93RnMF586aSQVN8CLzKPN5aW
+TCP Optimizer
+DNS Benchmark
+http://ping-test.net/

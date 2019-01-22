@@ -4,6 +4,7 @@
 Ecommerce with Wordpress and WooCommerce - TeamTreeHOuse
 TutsPlus - Go Further With WooCommerce Themes
 Lynda - WordPress Ecommerce - WooCommerce
+Lynda - WordPress - Customizing WooCommerce Themes
 
 
 ============================================================
@@ -371,4 +372,182 @@ SKIPPED
 	3 - Setting Up Payment Gateways
 	
 		
+============================================================
+Lynda - WordPress - Customizing WooCommerce Themes		
+
+
+
+02-What you should know
+03-What to look for in a theme
+04-Starter themes
+05-WooCommerce specific themes
+06-Declare WooCommerce support
+	- add_theme_support( 'woocommerce' );
+	
+07-Match theme colors
+	- Plugin: Woocommerce Colors - copy from view page source & paste unminified code to style.css & disable plugin
+	
+08-Match email template and theme colors
+	- email template manage - https://www.screencast.com/t/SgRjqdg1 
+							- https://www.screencast.com/t/zd2ZNYbskK
+							
+09-Match email and theme colors with CSS
+    - add_filter('woocommerce_email_styles', function($css){}); 
+		- email css - https://www.screencast.com/t/qrfuTJgu 
+		- email-styles.php - https://www.screencast.com/t/D2bh4HCx
+	- preview email template - https://www.screencast.com/t/H2y9yRjr
+	- email template file - https://www.screencast.com/t/hwJIAgmdpsH
+	- email template manage (New order)- https://www.screencast.com/t/IhtN4h07
+	
+	- Woocommerce templates override:
+	   example #1: 
+	     1. plugin: 
+		      - J:\xampp\htdocs\wp\site4\wp-content\plugins\woocommerce\templates\emails\admin-new-order.php
+			  - J:\xampp\htdocs\wp\site4\wp-content\plugins\woocommerce\templates\emails\plain\admin-new-order.php
+		 2. child:  - J:\xampp\htdocs\wp\site4\wp-content\themes\estore-child\woocommerce\emails\admin-new-order.php
+		 
+10-Hooks and templates
+	- WooCommerce Hooks -http://hookr.io/plugins/woocommerce/3.0.6/hooks/#index=a&search=woocommerce
+	 To modify:
+		1. templates
+		2. Hooks
+			Actions - milestones (rearrange, add, remove)
+			Filters - modify values 
+	
+11-Override WooCommerce templates
+    - Woocommerce templates override:
+	   example #1: 
+	   -- plugin:   1. J:\xampp\htdocs\wp\site4\wp-content\plugins\woocommerce\templates\archive-product.php 
+	   -- parent:   2. J:\xampp\htdocs\wp\site4\wp-content\themes\estore\woocommerce\archive-product.php
+	   example #2: 
+	   -- plugin:   1. J:\xampp\htdocs\wp\site4\wp-content\plugins\woocommerce\templates\single-product\price.php
+	   -- parent:   2. J:\xampp\htdocs\wp\site4\wp-content\themes\estore\woocommerce\single-product\price.php
+	   -- child:    3. J:\xampp\htdocs\wp\site4\wp-content\themes\estore-child\woocommerce\single-product\price.php
+	- plugin: Better Font Awesome  (dont need to add if you have existing font-awesome)   
+	   -- add FA to add-to-cart button - https://www.screencast.com/t/mmNK0TJfqGHd
+      	   J:\xampp\htdocs\wp\site4\wp-content\themes\estore-child\woocommerce\single-product\add-to-cart\simple.php 
 		
+12-Update WooCommerce templates
+	- major.minor.patch
+	  -- patch - fix bugs
+	  -- need to check templates for "minor & major" release -- CSS classes may be for Javascript Validation
+	      - Woocommerce status - https://www.screencast.com/t/zjPV7weNc04
+	      - to fix update, copy the original template from Woocommerce plugin & paste to child theme then compare with parent & do necessary changes
+		     https://www.screencast.com/t/umeDTyzcV
+13-Use WooCommerce hooks
+	- move single meta template using hooks 
+		-- copy from: J:\xampp\htdocs\wp\site4\wp-content\plugins\woocommerce\templates\content-single-product.php
+	    -- paste to: J:\xampp\htdocs\wp\site4\wp-content\themes\estore-child\woocommerce\content-single-product.php
+		-- code - https://www.screencast.com/t/1uKnis23
+		-- frontend - https://www.screencast.com/t/wd8Epmmo7c9E
+		
+14-Change image sizes
+	- adjust image size in customizer (default: 600 & 300)- https://www.screencast.com/t/o23YCFrdl 
+	- to hard-crop the image & take it into effect use plugin:regenerate thumbnails
+	
+15-Resize image column width
+	- adjust row & column in customizer - https://www.screencast.com/t/92Ru9EBmE
+	- just copy, modify & put to style.css -  https://www.screencast.com/t/jAAKzhWo
+	
+16-Customize product data tabs
+	- remove description tab with a particular product post & change tab title by using a hook -  https://www.screencast.com/t/WpinzjB7J
+	
+17-Add social media icons
+	- plugin: Jetpack (enable sharing -https://www.screencast.com/t/GZxckVlkz5)
+
+18-Change the breadcrumb separator
+	- 'woocommerce_breadcrumb_defaults'
+	- $breadcrumb['delimiter'] = ' &gt ' // >
+
+19-Update the currency symbol
+	- 'woocommerce_currency_symbol'
+	- $currency_symbol = 'USD $';
+
+20-Filter products
+	- attributes - https://www.screencast.com/t/xJx1LHYs
+	- widget: filter by attributes - https://www.screencast.com/t/dXgOxiuYP5D
+	- sidebar widget: https://www.screencast.com/t/bd6ZwsLoM
+
+21-Display accepted credit cards
+	- usually accepted payment can be found on checkout - https://www.screencast.com/t/3jo6dfIn
+	- however we can use a plugin:   WooCommerce Accepted Payment Methods (Display available payment methods thru a widget)
+	- https://www.screencast.com/t/pnStMJaeQyHj
+	
+
+22- Change product display
+	- Plugin: WooCommerce Product Archive Customiser  - Increase # of products by column & per pages - https://www.screencast.com/t/CwhvDDGAwPKD	 
+	- 2-ways to increase products   (manual)
+		-- per page - 'loop_shop_per_page'
+		-- by column - 'loop_shop_columns'
+
+23-Display customer savings
+	- rule of thumb:
+		- if <3 digits, display % saved 
+		- if >3 digits, display actual amount saved
+		- https://stackoverflow.com/questions/47255535/how-to-display-the-regular-price-and-sale-price-in-single-product-and-loop-pages?noredirect=1&lq=1
+		- 'woocommerce_sale_price_html' to 'woocommerce_get_price_html'
+
+24-Customize the sorting menu
+    - remove orderby in sorting & adding a new sort functionality - https://www.screencast.com/t/U5yIGJdvFDKa
+	- J:\xampp\htdocs\wp\site2\wp-content\plugins\woocommerce\includes\class-wc-query.php
+	    -when searching for the hook, just search under woocommerce plugin
+	- 'woocommerce_catalog_orderby' 	
+	
+25-Streamline the checkout template
+	- hide unneccesary information on checkout page using CSS display:none or visibility:hidden
+
+26-Skip the cart	
+	- good for very few items
+	- direct checkout settings - https://www.screencast.com/t/ptrjxqKneu	
+		
+27-Add an Empty Cart button	
+	- 'woocommerce_cart_actions'
+    - echo '<a class="button" href="?empty-cart=true">'. __('Empty Cart', 'wooocommerce') . '</a>';
+
+28-Hide the coupon field
+	- Subsidy Cost - a cost that the store owner has to pay to get a sale
+	   - e.g. free-shipping, coupons, etc.
+	- disable Coupons 
+	   - Woocommerce->Settings->General (Tab)->Enable coupons (uncheck) https://www.screencast.com/t/xqlgRlTtjJN
+	- if you use coupons, but don't want to be obvious
+	- we can use a special link for the coupon
+		- Plugin: URL Coupons For WooCommerce
+			-- create a coupon & set it https://www.screencast.com/t/DGqXiNw0Y
+			-- woocommerce settings - https://www.screencast.com/t/ABmPfkTRup
+			-- as shown in tutorial - https://www.screencast.com/t/ZOSjy6vPXcyc
+			-- then hide coupon - https://www.screencast.com/t/SCxa91R5JXR
+			
+			
+29-Remove checkout fields
+	- e.g. remove phone field under checkout
+	- 'woocommerce_checkout_fields'
+	-  var_dump($myfield['billing']['billing_email']
+	
+30-Add checkout fields
+	- 'woocommerce_checkout_fields'
+	- sample after adding checkout fields - https://www.screencast.com/t/Xvw0mu9YI
+		
+			
+		
+    BEST NOTE:
+        - error (check) - Woocommerce->Logs->Status->logs - https://www.screencast.com/t/tjUALjYh
+	                 - debug.log - J:\xampp\htdocs\wp\site4\wp-content\debug.log - https://www.screencast.com/t/8xcLh2USW
+				     - https://docs.woocommerce.com/document/increasing-the-wordpress-memory-limit/
+					 - https://codex.wordpress.org/Editing_wp-config.php#Increasing_memory_allocated_to_PHP		
+	
+		- To manually add custom fields in checkout using custom code:
+		 https://jeroensormani.com/ultimate-guide-to-woocommerce-checkout-fields/
+		 https://hollerwp.com/customize-woocommerce-checkout-page/
+		 https://www.themelocation.com/how-to-add-custom-field-to-woocommerce-checkout-page/
+		 https://wisdmlabs.com/blog/add-custom-fields-woocommerce-checkout-page/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+http://woocommerce.wp-a2z.org/oik_api/
+https://github.com/srikat/genesis-sample/blob/master/functions.php

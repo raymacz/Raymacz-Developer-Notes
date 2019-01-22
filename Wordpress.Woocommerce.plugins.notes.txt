@@ -36,6 +36,13 @@ Essential Plugins:
  https://cloudswipe.com/how-it-works/
  Elementor Addons & Templates
  
+
+ 
+Design Plugins: 
+ Woocommerce Colors (incompatible theme: Estore)
+ WooCommerce Variation Swatches 
+ 
+ 
 Feature Plugins:
 
  WooCommerce Wishlist Plugin  / Wishlist and Waitlist for WooCommerce
@@ -54,7 +61,10 @@ Feature Plugins:
  TLS 1.2 Compatibility Test
  CloudFlare Flexible SSL / Cloudflare /   Really Simple SSL 
  Better Search Replace
-
+ Woocommerce Direct Checkout  (direct checkout (skip cart page)) 
+ URL Coupons For WooCommerce (use a special link for the coupon)
+ Checkout Field Editor (an interface to add, edit, and remove fields shown on your WooCommerce checkout page)	
+ Woocommerce Zapier 
  
 More Plugins:
  Customer Reviews for WooCommerce
@@ -64,6 +74,8 @@ More Plugins:
  WC Fields Factory
  ATUM Inventory Management for WooCommerce
  Advance Seat Reservation Management for WooCommerce
+ WooCommerce Accepted Payment Methods (Display available payment methods thru a widget)
+ WooCommerce Product Archive Customiser ( Increase # of products by column & per pages)
  
 
 Plugin: Easy HTTPS Redirection ---------------------------------------------------------------
@@ -105,3 +117,28 @@ https://www.youtube.com/watch?v=pgru-VoINoY
 
 
 https://www.screencast.com/t/fig5Z4eaDG3F	
+
+
+Plugin: Woocommerce Colors  -----------------------
+
+  - incompatible themes: Estore
+  - how to capture styles of this plugin:
+      - use browser - view page source (any product page) & copy <style type="text/css">
+	  - use http://unminify.com/ - https://www.screencast.com/t/B8dyeSclo 
+	  - paste unminified code to style.css
+	  - you can disable plugin & styling remains
+	  
+Plugin: WooCommerce Product Archive Customiser 
+   - Increase # of products by column & per pages - https://www.screencast.com/t/CwhvDDGAwPKD	  
+   
+   
+Plugin: Checkout Fields Editor     ----------------------------
+
+ - use this plugin with no hassle
+
+ - To manually add using custom code:
+		 https://jeroensormani.com/ultimate-guide-to-woocommerce-checkout-fields/
+		 https://hollerwp.com/customize-woocommerce-checkout-page/
+		 https://www.themelocation.com/how-to-add-custom-field-to-woocommerce-checkout-page/
+		 https://wisdmlabs.com/blog/add-custom-fields-woocommerce-checkout-page/
+	

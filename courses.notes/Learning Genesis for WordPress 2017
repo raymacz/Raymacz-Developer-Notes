@@ -1,0 +1,94 @@
+Learning Genesis for WordPress 2017
+
+01_03 - Which theme files make up a child theme
+	- https://sridharkatakam.com/comprehensive-guide-genesis-theme-supports/
+	
+	
+02_01 - Using automatic updates and custom feeds
+	- genesis in admin menu lets you have auto updates & notify you when you input your email
+	   -- https://www.screencast.com/t/Gv2KGD7PWX
+	- site.net/feeds (default URL - feeds)
+	
+02_02 - Selecting the default layout
+	- Layout settings can be set under default layout
+		- each post can also be set & override the default layout - https://www.screencast.com/t/RajISvHLfI
+	
+02_03 - Using a logo or text for your header	
+	- genesis has it's filename & directory for your logo & you can overwrite this w/ your own logo - https://www.screencast.com/t/PxaCS9iF
+		- this will automate whenever you choose to display image or text on your header area under the customizer
+	- some child themes let's you customize like the header, and the header section under theme settings will disappear
+		https://www.screencast.com/t/6Z0aN0uSp3
+	
+02_04 - Setting up navigation options, breadcrumbs, and comments
+     - Navigation settings has been deprecated (2.1.1 version) https://www.screencast.com/t/wbqVTGpt0Zg	
+	 -  breadcrumbs settings - https://www.screencast.com/t/tmSKZrKht7F
+	 - comments & trackbacks - https://www.screencast.com/t/gFcOLwVOtsC0
+
+02_05 - Configuring the content archives	 
+	- genesis->theme settings->content archives - https://www.screencast.com/t/FrqmRGXE2n
+	
+02_06 - Configuring the blog page template
+	- Genesis 2.5 - maybe it is deprecated - https://www.screencast.com/t/B2r73CJe3
+
+
+02_07 - Adding custom header and footer scripts
+	- Genesis 2.5 - https://www.screencast.com/t/sdbGVcETa9
+
+03_01 - Working with menus in Genesis 
+	- Manage locations of nvigation - https://www.screencast.com/t/rJWGeoWAQVM
+	
+04_01 - Using a custom or dynamic homepage
+	- front-page.php
+	- widgets depend on the type of genesis child theme you activated.
+	
+04_02 - Using a blog-style or static homepage	
+	- settings->Reading
+	
+05_01 - Standard Genesis widget areas
+	- widgets https://www.screencast.com/t/mUOpsPRPr
+
+05_02 - The Genesis Featured Page widget
+	- Widget to put a page in a widget as featured - https://www.screencast.com/t/AdTyMiRf8
+	
+05_03 - The Genesis Featured Posts widget	
+	- Featured Page widget -https://www.screencast.com/t/M7vauA0H9Z	
+	- what it looks like in the (front-end) https://www.screencast.com/t/rgYXaOuL
+
+05_04 - The Genesis User Profile widget
+	- Profile widget - https://www.screencast.com/t/cD4UMFWoQdVE
+	- what it looks like in the (front-end) https://www.screencast.com/t/DBCxEOBsHVt
+
+06_01 - Working with built-in Genesis SEO options	
+	- SEO Settings will now show in Genesis if you have another SEO plugin activated
+	- if a new page/post is added, Theme SEO Settings can be set - https://www.screencast.com/t/MfTKlYdXOfLy
+	- Custom SEO configuration - check genesis SEO documentation (StudioPress account) - https://www.screencast.com/t/B2FvabbKUq
+	
+06_02 - Using the Genesis Import Export feature
+	- the exported json won't include post/pages/images, it is only the genesis settings that will be saved to another site.
+	  https://www.screencast.com/t/zJWUi0pibEb8
+
+06_03 - Working with Genesis templates
+    - Archive template is a quick way for creating a sitemap - https://www.screencast.com/t/hS45yEJbmPb9
+	- (front-end) https://www.screencast.com/t/fhNywIwg8o
+	
+06_04 - How to shop for a Genesis theme	
+	- you can build your own child theme or buy a child theme for StudioPress
+	- Bottomline, Genesis framework needs a child theme to work.
+	- Choose a Child Theme Guideline - https://www.screencast.com/t/yu6vXsA9e
+	
+07_01 - Next steps	
+
+	- Genesis DIY
+	
+More Reference:
+
+		https://www.studiopress.com/ - apply for partnership as a freelancer
+
+		https://carriedils.com/genesis-hook-reference/
+		https://my.studiopress.com/genesis-beginners-guide/
+		https://studiopress.blog/genesis-child-themes/
+		https://github.com/srikat/genesis-sample/blob/master/functions.php
+		http://www.cagrimmett.com/til/2018/01/03/genesis-hooks.html
+		
+		https://my.studiopress.com/customization/snippets/
+		
