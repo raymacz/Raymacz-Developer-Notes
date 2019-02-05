@@ -32,8 +32,8 @@ WP-Developer-Tools  ( 121518 worth to check)
 
 ================ Essential plugins (permanent) for any type of website: ===================
 
-
-Custom Fields for Gutenberg - https://perishablepress.com/custom-fields-gutenberg/
+Classic Editor 
+Custom Fields for Gutenberg - https://perishablepress.com/custom-fields-gutenberg/ (Jeff Star)
 Elementor / Brizy – Page Builder / SiteOrigin
 PHP Code Widget		
 Advanced Custom Fields - CMB2 / ACF / Pods / Meta box / Toolset Types / Custom Field Suite /
@@ -104,7 +104,7 @@ WP Statistics
 Social Share Buttons
 User Submitted Posts (frontend form via template tag/shortcode for visitors)
 WPL Real Estate ( agents & agencies)
-
+WP-CFM (easily copy WP settings using options.php between site) 
 
 =================== Plugins from client ================================
 Booking Calendar (online booking services)
@@ -246,17 +246,23 @@ http://customfieldsuite.com/
 https://docs.google.com/spreadsheets/d/1mSqienVYxLopTFGLPK0lGCJst2knKzXDtLQRgwjeBN8/edit#gid=3
 
 Plugin: CMB2 ------------------------
-admin - https://www.screencast.com/t/paFrJLClKDAR
-https://www.screencast.com/t/TLinnr9zdR
 
+admin - https://www.screencast.com/t/qJIlqBH4
+J:\xampp\htdocs\wp\site1\wp-content\themes\auberge-child\includes\myfunc\my-cmb2.php - https://www.screencast.com/t/TLinnr9zdR
 
+SEE: Lesson #9 - G:\MyTutorials\MyExercise\MyNotez\Raymacz-Developer-Notes\courses.notes\Lynda - WordPress REST API - Building an Interactive Web App
+CHECK: J:\xampp\htdocs\wp\site2\wp-content\plugins\taskbook\includes\CMB2\example-functions.php 
+	   - note: if you add a new page, you will see tons of examples in Wordpress Admin from this file - example-functions.php
+	      -- https://www.screencast.com/t/FmTADL9RnV
+	
+https://cmb2.io/api/class-CMB2_Field.html (classes and funcitons
 https://www.ostraining.com/blog/wordpress/cmb2/
 https://github.com/CMB2/CMB2/wiki/Box-Properties
 https://cmb2.io/docs/basic-usage
 https://cmb2.io/docs/field-types
 https://cmb2.io/docs/bringing-metaboxes-to-the-front-end
 https://cmb2.io/docs/field-types#-types-group
-https://github.com/CMB2/CMB2/wiki/Field-Parameters
+https://github.com/CMB2/CMB2/wiki/Field-Parameters (important)
 https://getflywheel.com/layout/how-to-create-custom-meta-boxes-with-cmb2/
 https://github.com/CMB2/CMB2/wiki/Adding-your-own-show_on-filters
 https://github.com/CMB2/CMB2/wiki/Display-Options
@@ -329,12 +335,27 @@ anti-spam especially for comments
 
 
 
+PLugin: Classic Editor ------------------------------------------
+
+solves almost issues:
+	- adding new post (gutenberg) 
+	- siteoirigin page builder issue 
+
+https://plethorathemes.com/wordpress-tips-tutorials/restore-classic-wordpress-editor/
 
 
 
+Plugin: Wordpress Importer ----------------------------------------
 
+use gzip format 
+	- https://pixert.com/blog/workaround-failed-import-wordpress/  (you can go all content or individual)
+	- Next Wordpress Run Importer then choose a file
 
+Plugin: WP-CFM ----------------------------------------------
 
+    - easily copy WP settings under options.php between sites 	
+	- "configuration management" arbitrarily create a JSON file from any options in the WordPress DB as a "pull" action
+	- https://www.screencast.com/t/qlZXUsxwgs
 
 
 9 Best WordPress SEO Plugins and Tools - https://www.wpbeginner.com/showcase/9-best-wordpress-seo-plugins-and-tools-that-you-should-use/
@@ -343,3 +364,4 @@ anti-spam especially for comments
 6 Best WordPress Security Authentication Plugins 
 	- https://premium.wpmudev.org/blog/6-best-wordpress-security-authentication-plugins/
 	- https://onextrapixel.com/best-free-wordpress-plugins-two-factor-authentication/
+5 Best WordPress Plugins for Developers in 2019 (and 3 Worst) - https://www.websiteplanet.com/blog/best-wordpress-plugins-developers/	

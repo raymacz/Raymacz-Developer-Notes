@@ -1,0 +1,127 @@
+Lynda - WordPress REST API - Building an Interactive Web App
+
+
+01. Plan the Application
+	02 - Content model for the application	- https://www.screencast.com/t/7HO2AAchGl
+	03 - User flow for the application (wireframing) - https://www.screencast.com/t/An3V73ld9Q
+	
+02. Extend WordPress with a Plugin	
+	01 - Set up the core WordPress site
+	02 - Install OAuth 2 and basic auth plugins
+		- https://github.com/raymacz/Basic-Auth - uses only username & password, very useful in development for constant authentication.
+		- https://wordpress.org/plugins/oauth2-provider/ or https://wp-oauth.com/	
+	03 - Create a plugin	
+		- https://developer.wordpress.org/plugins/plugin-basics/including-a-software-license/
+		- Create & install plugin: Task Book
+	04 - Add custom post type for tasks
+		- file: includes\posttypes.php - https://www.screencast.com/t/Woa65u4A7a 
+			-- 'public'             => false, //available only in backend / admin
+			-- 'publicly_queryable' => false, // queryable only in backend / admin
+			-- 'rewrite'            => array( 'slug' => 'tasks' ), // if you want to publish a task in the future.
+			-- 'show_in_rest'       => true,
+			-- 'rest_base'          => 'tasks', //base route
+			-- 'menu_icon'          => 'dashicons-exerpt-view', //dashicon
+			-- 'supports'           => array( 'title', 'editor', 'author' ),
+			 
+	05 - Flush rewrite rules
+		- flush rewrite when plugin activates for permalinks to work (not get 404 when accessing rest api)
+		- file: includes\posttypes.php	
+		  -- taskbook_cpt_init(); // function name used with the 'init' hook
+		  -- flush_rewrite_rules();
+		- file: taskbook.php  
+		  -- register_activation_hook( __FILE__, 'taskbook_rewrite_flush' ); // for 'rest_base' &  'rewrite'  CPT
+    06 - Create task logger role
+		- file: includes\roles.php
+			- add_role()
+			- register_activation_hook() //note: for this to work, you to enable/disable the plugin again & refresh it.
+			- register_deactivation_hook() 
+		
+	07 - Assign capabilities to roles
+		- 'capability_type'    => 'task' 
+		- 'map_meta_cap'       => true, //allow to map new custom capabilities
+		- get_role() // get role (e.g. 'administrator', 'editor', 'task_logger' )
+		- add_cap()  
+			-  add capability to a role: ( capability_{Custom Post Type} )
+   			  --   (e.g. read, edit_tasks, publish_tasks, edit_published_tasks)
+			  --   (e.g. read_private_tasks, edit_others_tasks, edit_private_tasks, 
+			             delete_tasks, delete_published_tasks, delete_private_tasks, delete_others_tasks)
+						 
+		- https://codex.wordpress.org/Roles_and_Capabilities
+		- register_activation_hook()   //note: for this to work, you to enable/disable the plugin again & refresh it.
+		- file: includes\roles.php
+		
+	08 - Remove capabilities upon deactivation
+		- user can now edit with the new role (task logger) - https://www.screencast.com/t/Vw6PD9Hk6
+		- very important note:  2 most important capabilities for all type of CPTS, otherwise you can't view the WP admin dashboard
+				- $role->add_cap( 'read' ), $role->add_cap( 'edit_posts' );
+		- note: if set to private, members cannot see the other CPTs, you need to add capabilities including admin role for them to see private CPTs - https://www.screencast.com/t/Mtgb87oh 
+		- note: admin can see if any member editing the CPTs.  https://www.screencast.com/t/Mtgb87oh 
+		- note: (for custom roles) no need to add levels, this has been deprecated: $role->add_cap( 'level_1' );
+		
+	09 - Add CMB2 for custom meta boxes	
+		- plugin: CMB2 - J:\xampp\htdocs\wp\site2\wp-content\plugins\taskbook\includes\CMB2\example-functions.php 
+		    -- in this tutorial, CMB2 plugin is added internally in the includes folder
+		    -- copy includes\CMB2\example-functions.php and rename to includes\CMB2-functions.php
+			-- replace 'yourprefix_' to 'taskbook_'
+		    -- more reference from previous tutorials:
+				- admin - https://www.screencast.com/t/qJIlqBH4
+			    - J:\xampp\htdocs\wp\site1\wp-content\themes\auberge-child\includes\myfunc\my-cmb2.php - https://www.screencast.com/t/TLinnr9zdR
+		- file: taskbook.php, includes\CMB2-functions.php 
+		-- require_once plugin_dir_path( __FILE__ ) . 'includes/CMB2-functions.php'; (taskbook.php)
+		
+	10 - Create custom meta boxes
+		- plan for custom boxes - https://www.screencast.com/t/Jy1fuugN2Avb	
+		- result - https://www.screencast.com/t/kOxmcFN0
+		- file: includes\CMB2-functions.php 
+		- tip: you can try any of the functions in example-functions.php & see what metaxbox is best for your app.
+		
+	11 - CMB2 fields in the REST API	
+		- note: if permalink is set to plain - https://www.screencast.com/t/2mYKh4Wr 
+		     -- http://site2.net/index.php?rest_route=/wp/v2/tasks/2420 (important!)
+			 -- to check "rest_route"- https://www.screencast.com/t/uxJMx4TYWaVk
+		- note: if permalink is set to post name - https://www.screencast.com/t/0ja10RiEm	 
+		    --  http://site2.net/wp-json/wp/v2/tasks/2420
+			--  to check "wp-json" - https://www.screencast.com/t/wjeBU3ZYD
+		- if cpt is private  - https://www.screencast.com/t/W6YqY4iD
+			- permalink plain - https://www.screencast.com/t/dqFgPYRsvUv
+			- permalink post name - https://www.screencast.com/t/gX3xGGqOy60H
+		- cmb2 resp api result 
+		    - wp-admin: https://www.screencast.com/t/tmw7s2tu
+		    - postman: https://www.screencast.com/t/y5q840Xn37B
+			
+			
+	12 - Set status field automatically	
+		- action hook: 'save_post' 
+		- update_post_meta(), get_post_type()
+		- file: includes\status.php
+		- $_POST['taskbook_outcome'] - https://www.screencast.com/t/5uTmEJSh
+		
+	13 - Add status field to CMB2 output
+		- 'render_row_cb' - in CMB2, this displays a callback function
+		- https://github.com/CMB2/CMB2/wiki/Field-Parameters#render_row_cb
+		- 'type' => 'text_medium'  -  https://www.screencast.com/t/vWwkpns3nkm9
+		   -- I added this line because of the error which was required in https://github.com/CMB2/CMB2/wiki/Field-Parameters#type 
+		   -- to solve the error/bug issue in debug.log - https://www.screencast.com/t/Sa5bVNrKGhu
+		- how to know the html structure to diplay in WP admin, is to check the other box samples - https://www.screencast.com/t/g55sz6dSC
+		- https://cmb2.io/api/class-CMB2_Field.html
+		- file: includes\CMB2-functions.php
+		
+	14 - Register new REST field for status
+		- 'rest_api_init'
+		- file: includes\status.php
+		- postman 'task_status' - https://www.screencast.com/t/0KCA76DBkd4t
+	** NOTE YET FINISHED, need to fix bug
+		
+		
+    15 - Restrict REST access based on roles	
+		
+		
+		
+		
+		
+		
+CMB2 reference:
+   - https://github.com/CMB2/CMB2/wiki/Field-Parameters		
+   - https://cmb2.io/api/class-CMB2_Field.html
+		
+		
